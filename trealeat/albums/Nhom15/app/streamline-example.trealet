@@ -1,0 +1,60 @@
+{
+	"trealet":{
+		"exec":"streamline",
+		"title":"Trealet",
+		"locations": [
+			{
+				"name": "Cao Bằng",
+				"id": "caobang",
+				"effect": "loops",
+				"description": "description",
+				"images": [
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin1.png?_t=1633615159", 
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin2.png?_t=1633615159", 
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin3.png?_t=1633615159",
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin4.png?_t=1633615159", 
+					"https://trealet.com/albums/Nhom15/media/images/thacbangioc.png?_t=1633615159",
+					"https://trealet.com/albums/Nhom15/media/images/thacbangioc1.png?_t=1633615159"
+					
+				],
+				"position": {"x": "150px", "y": "150px" },
+				"next": "quangninh"
+			},
+			{
+				"name": "Quảng ninh",
+				"effect": "crazy",
+				"id": "quangninh",
+				"description": "description",
+				"images": [
+					"https://trealet.com/albums/Nhom15/media/images/quangninh1.png?_t=1633663050", 
+					"https://trealet.com/albums/Nhom15/media/images/quangninh2.png?_t=1633663050", 
+					"https://trealet.com/albums/Nhom15/media/images/quangninh3.png?_t=1633663050", 
+					"https://trealet.com/albums/Nhom15/media/images/quangninh4.png?_t=1633663050", 
+					"https://trealet.com/albums/Nhom15/media/images/quangninh5.png?_t=1633663050", 
+					"https://trealet.com/albums/Nhom15/media/images/quangninh6.png?_t=1633663050"
+				],
+				"position": {"x": "600px", "y": "300px" },
+				"next": "hanoi"
+			},
+			{
+				"name": "Hà nội",
+				"effect": "loops",
+				"id": "hanoi",
+				"description": "description",
+				"images": [
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin1.png?_t=1633615159", 
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin2.png?_t=1633615159", 
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin3.png?_t=1633615159",
+					"https://trealet.com/albums/Nhom15/media/images/suoilenin4.png?_t=1633615159", 
+					"https://trealet.com/albums/Nhom15/media/images/thacbangioc.png?_t=1633615159",
+					"https://trealet.com/albums/Nhom15/media/images/thacbangioc1.png?_t=1633615159"
+					
+				],
+				"position": {"x": "500px", "y": "100px" },
+				"next": null
+			}
+
+		] 
+
+	}
+}

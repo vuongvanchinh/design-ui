@@ -3,7 +3,7 @@
 const APP_URL = 'trealet';
 
 function initializeApp($exec){
-	$app_url = '../scripts.trealet';// '../../../..trealet'
+	$app_url = '../streamline-example.trealet';
 	$json_string = file_get_contents($app_url);	
 	if(!$json_string) die($app_url.' not found!');
 	$d = json_decode($json_string, true);	
@@ -70,6 +70,32 @@ function htmlItem($idata, $css_id=''){
 	}
 	
 	$html = '<div id="'.$css_id.'"><h1>'.$title.'</h1><center>'.$vobj.'</center><br><p>'.$desc.'</p></div>';
+	return $html;
+}
+
+function location($data) {
+	$style = 'style="left:'.$data['position']['x'].'; top:'.$data['position']['y'].';"';
+	$images = '';
+	$l = count($data['images']);
+
+	for($i = 0; $i < 6 && $i < $l; $i++) {
+		$images = $images.'<img src="'.$data['images'][$i].'" draggable="false" >';
+	}
+
+	$html = '
+		<div>
+			<div class="cube-wrapper" >
+				<div class="cube-box" style="animation-name: '.$data['effect'].'">
+					'.$images.'
+				</div>
+
+				<div class="cube-title">
+					<span>'.$data['name'].'</span>
+					
+				</div>
+			</div>
+		</div>';
+
 	return $html;
 }
 ?>

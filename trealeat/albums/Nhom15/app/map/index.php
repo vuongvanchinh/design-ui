@@ -25,25 +25,45 @@
 <style>
 </style>
 <link rel="stylesheet" href="assets/css/common.css">
-<link rel="stylesheet" href="assets/css/index.css">
+<link rel="stylesheet" href="assets/css/canvas_index.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-<div class="container" id="container">
-	<div id="view">
+<div class="container">
+    <div class="view">
+        <div class="board" id="board">
         <?php
-            foreach($d['locations'] as $location) {
-                echo location($location);
+            $locations = array(201, 1365, 219, 1700, 492);
+            $index = 0;
+            $l = count($d['locations']);
+            for($i = 0; $i < 5000; $i++) {
+                $content = '';
+                // $s = array_search($i, $locations);
+                if($index < $l && $i == 201 || $i==219 || $i == 1365) {
+                    $content = location($d['locations'][$index]);
+                    $index += 1;
+                } else {
+                    $content=$i;
+                }
+    
+                echo "
+                <div class='brick' onclick='onPath($i)'>
+                    $content
+                </div>
+                ";
             }
         ?>
+    
+        </div>
     </div>
 </div>
 </script>
 <script src="assets/js/index.js"></script>
+<script src="assets/js/map_index.js"></script>
 <script>
             document.addEventListener('DOMContentLoaded', function () {
-                const ele = document.getElementById('view');
+                const ele = document.getElementById('board');
                 ele.style.cursor = 'grab';
 
                 let pos = { top: 0, left: 0, x: 0, y: 0 };

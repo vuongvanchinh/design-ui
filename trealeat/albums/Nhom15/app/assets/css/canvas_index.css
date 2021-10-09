@@ -1,0 +1,100 @@
+
+.view {
+    --view-width: 100vw;
+    --view-height: 100vh;
+
+    
+    height: var(--view-height);
+    width: var(--view-width);
+    margin: 0 auto;
+    border: 1px solid blue;
+   
+}
+
+.board {
+    height: 100vh;
+    border: 1px solid black;
+    background: rgba(100,100,100,0.5); 
+    display: grid;
+    overflow: auto;
+    grid-template-columns: repeat(60, 1fr);
+    
+}
+
+
+.brick {
+    --from-col: auto;
+    --to-col: calc(var(--from-col) + var(--w));
+    --from-row: auto;
+    --to-row: calc(var(--from-row) + var(--w));
+    --w: 8;
+    --width: 50px;
+    grid-column: auto;
+    grid-row: auto;
+    border: 1px solid #000;
+    border-radius: 6px;
+    min-width: var(--width);
+    min-height: var(--width);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.path {
+    border: 3px solid rgb(7, 252, 211);
+    border-radius: 50%;
+}
+.brick:nth-child(202) {
+    --from-col: 3;
+    --from-row: 3;
+
+    grid-column: var(--from-col) / var(--to-col);
+    grid-row: var(--from-row) / var(--to-row);
+
+}
+
+.brick:nth-child(220) {
+    --from-col: 30;
+    --from-row: 2;
+    grid-column: var(--from-col) / var(--to-col);
+    grid-row: var(--from-row) / var(--to-row);
+
+}
+
+.brick:nth-child(1366) {
+    --from-col: 14;
+    --from-row: 14;
+    
+    grid-column: var(--from-row) / var(--to-row);
+    grid-row: var(--from-col) / var(--to-col);
+
+}
+
+.brick:nth-child(1701) {
+    --from-col: 37;
+    --from-row: 16;
+    
+    grid-column:var(--from-col) / var(--to-col);
+    grid-row:  var(--from-row) / var(--to-row);
+
+}
+
+.brick:nth-child(2631) {
+    --from-col: 24;
+    --from-row: 29;
+    
+    grid-column:var(--from-col) / var(--to-col);
+    grid-row:  var(--from-row) / var(--to-row);
+
+}
+
+
+.brick:nth-child(493) {
+    --from-col: 54;
+    --from-row: 6;
+    --w: 10;
+    
+    grid-column:var(--from-col) / var(--to-col);
+    grid-row:  var(--from-row) / var(--to-row);
+
+}
