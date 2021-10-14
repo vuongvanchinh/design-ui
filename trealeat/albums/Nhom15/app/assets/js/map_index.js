@@ -167,3 +167,7 @@ const onPath = (i) => {
         console.log(paths)
     }
 }
+
+function openModal(el) {
+    $(el).next().addClass('open-modal')
+}

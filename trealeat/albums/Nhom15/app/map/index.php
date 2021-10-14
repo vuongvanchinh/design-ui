@@ -2,13 +2,13 @@
 	require_once('../lib/functions.php');
 
 	$d = initializeApp('streamline');	
-	$ni = sizeof($d['items']);
-	$iu = array($ni);	
+	// $ni = sizeof($d['items']);
+	// $iu = array($ni);	
 
-	for($i=0;$i<$ni;$i++){
-		$itemid = $d['items'][$i];
-		$idata 	= fetchItemData($itemid);
-	}
+	// for($i=0;$i<$ni;$i++){
+	// 	$itemid = $d['items'][$i];
+	// 	$idata 	= fetchItemData($itemid);
+	// }
 ?>
 
 <!DOCTYPE HTML>

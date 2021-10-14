@@ -72,30 +72,63 @@ function htmlItem($idata, $css_id=''){
 	$html = '<div id="'.$css_id.'"><h1>'.$title.'</h1><center>'.$vobj.'</center><br><p>'.$desc.'</p></div>';
 	return $html;
 }
+function modal($header='', $body='',  $footer='', $variant='medium', $name) {
+	if (!$footer != '') {
+		$footer = "
+			<div class='modal-footer'>
+				$footer
+			</div>
+		";
+	} else {
+		$footer = '';
+	}
+
+	$html = "
+	<div class='modal modal-$variant' name='$name'>
+		<div class='modal-content'>
+			<div class='modal-header'> $header</div>
+			<div class='modal-body'>
+				$body
+			</div>
+			$footer
+		</div>
+	</div>
+	
+	";
+	
+	return $html;
+}
 
 function location($data) {
 	$style = 'style="left:'.$data['position']['x'].'; top:'.$data['position']['y'].';"';
 	$images = '';
+	$id =$data['id'];
+	$modal = modal("Header", "Body fyfyfyfyuf", "Footer", 'medium', $id);
 	$l = count($data['images']);
+	
 
 	for($i = 0; $i < 6 && $i < $l; $i++) {
 		$images = $images.'<img src="'.$data['images'][$i].'" draggable="false" >';
 	}
-
-	$html = '
-		<div>
-			<div class="cube-wrapper" >
-				<div class="cube-box" style="animation-name: '.$data['effect'].'">
-					'.$images.'
-				</div>
-
-				<div class="cube-title">
-					<span>'.$data['name'].'</span>
-					
-				</div>
+	
+	$name = $data['name'];
+	$effect = $data['effect'];
+	$html = "
+	<div>
+		<div class='cube-wrapper' >
+			<div class='cube-box' style='animation-name: $effect '>
+				$images
 			</div>
-		</div>';
+
+			<div class='cube-title'>
+				<span onclick='openModal(this)'>$name</span>
+				$modal
+			</div>
+		</div>
+	</div>
+	";
 
 	return $html;
 }
 ?>
+

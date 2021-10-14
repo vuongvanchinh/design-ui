@@ -1,9 +1,8 @@
 
 .view {
-    --view-width: 100vw;
+    --view-width: 99vw;
     --view-height: 100vh;
-
-    
+    box-sizing: border-box;
     height: var(--view-height);
     width: var(--view-width);
     margin: 0 auto;
@@ -12,15 +11,24 @@
 }
 
 .board {
-    height: 100vh;
+    max-height: 100%;
+    width: 100%;
     border: 1px solid black;
     background: rgba(100,100,100,0.5); 
     display: grid;
+    gap: 0;
     overflow: auto;
     grid-template-columns: repeat(60, 1fr);
+    /* justify-content: center; */
     
 }
+/* .board>* {
+    transform: scale(0.5);
+} */
 
+.board::-webkit-scrollbar {
+    /* display: none; */
+}
 
 .brick {
     --from-col: auto;
@@ -28,7 +36,7 @@
     --from-row: auto;
     --to-row: calc(var(--from-row) + var(--w));
     --w: 8;
-    --width: 50px;
+    --width: 40px;
     grid-column: auto;
     grid-row: auto;
     border: 1px solid #000;
@@ -38,13 +46,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow:hidden;
+}
+.plot {
+    
 }
 
 .path {
     border: 3px solid rgb(7, 252, 211);
     border-radius: 50%;
 }
-.brick:nth-child(202) {
+/* .brick:nth-child(202) {
     --from-col: 3;
     --from-row: 3;
 
@@ -98,3 +110,4 @@
     grid-row:  var(--from-row) / var(--to-row);
 
 }
+ */

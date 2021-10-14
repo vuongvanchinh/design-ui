@@ -1,5 +1,14 @@
 {
 	"trealet":{
+		"map": {
+			"cell_width": "50px",
+			"cells_per_row": 60,
+			"number_of_cells": 2000,
+			"plots": [
+			],
+			"paths": [] 
+		},
+		
 		"exec":"streamline",
 		"title":"Trealet",
 		"locations": [
@@ -26,7 +35,8 @@
 				"id": "quangninh",
 				"description": "description",
 				"images": [
-					"https://trealet.com/albums/Nhom15/media/images/quangninh1.png?_t=1633663050", 
+					
+					"https://trealet.com/albums/Nhom15/media/images/quangninh1.png?_t=1633663050",
 					"https://trealet.com/albums/Nhom15/media/images/quangninh2.png?_t=1633663050", 
 					"https://trealet.com/albums/Nhom15/media/images/quangninh3.png?_t=1633663050", 
 					"https://trealet.com/albums/Nhom15/media/images/quangninh4.png?_t=1633663050", 
@@ -34,7 +44,7 @@
 					"https://trealet.com/albums/Nhom15/media/images/quangninh6.png?_t=1633663050"
 				],
 				"position": {"x": "600px", "y": "300px" },
-				"next": "hanoi"
+				"next": "hanoi"				
 			},
 			{
 				"name": "Hà nội",
