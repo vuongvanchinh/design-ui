@@ -111,25 +111,6 @@ const refresh = () => {
         alert("enter full fill before")
     }
 }
-const modal = (header='', body='', footer='', id='', name='set-feature-modal', variant='main') => {
-    if (footer) {
-        footer = `<div class="modal-footer">${footer}</div>`
-    }
-    if (header) {
-        header = `<div class='modal-header'>${header}</div>`
-    }
-    return `
-    <div class='modal modal-${variant} open-modal' name='${name}' ${id?`id="${id}"`: ""}>
-        <div class='modal-content'>
-            ${header}
-            <div class='modal-body'>
-                ${body}
-            </div>
-            ${footer}
-        </div>
-    </div>
-    `
-}
 
 const onPlotMode = (index) => {
     alert(data)

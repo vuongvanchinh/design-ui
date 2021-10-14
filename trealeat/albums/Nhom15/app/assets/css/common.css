@@ -135,6 +135,10 @@
     display: none;
     justify-content: center;
     align-items: center;
+    
+    
+    transition: transform 0.5s ease;
+    
     /* pointer-events: none; */
    
 }
@@ -152,6 +156,28 @@
     background-color: #fff;
     border-radius: 4px;
     width: var(--modal-width);
+    animation-name: popup;
+    animation-duration: 0.5s;  
+    animation-fill-mode: forwards;
+    position: relative;
+}
+.modal-close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);
+    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #ccc;
+    cursor: pointer;
+    display: block;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+}
+
+.modal-close:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
 }
 
 .modal-body {
@@ -220,3 +246,20 @@
     background-color: var(--hover-bg);
     color: #fff;
 } 
+
+@keyframes popup{
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1)
+    }
+}
+@media screen and (max-width: 1279px) {
+    .modal-medium {
+        --modal-width: 80%;
+    }
+    .modal-small {
+        --modal-width: 80%;
+    }
+}

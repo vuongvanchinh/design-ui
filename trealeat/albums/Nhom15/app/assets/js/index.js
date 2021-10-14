@@ -1,9 +1,29 @@
 $(document).ready(() => {
-    focus('#hanoi');
-    // alert("hello")
+    
 })
 
-const ele = document.getElementById('container');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const ele = $('.view')[0];
 ele.scrollTop = 100;
 ele.scrollLeft = 150;
 let pos = { top: 0, left: 0, x: 0, y: 0 };

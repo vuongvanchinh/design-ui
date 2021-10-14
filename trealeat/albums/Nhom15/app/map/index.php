@@ -24,42 +24,38 @@
 <!--Easy Scroll Dots style-->
 <style>
 </style>
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <link rel="stylesheet" href="assets/css/common.css">
 <link rel="stylesheet" href="assets/css/canvas_index.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
-<div class="container">
-    <div class="view">
-        <div class="board" id="board">
-        <?php
-            $locations = array(201, 1365, 219, 1700, 492);
-            $index = 0;
-            $l = count($d['locations']);
-            for($i = 0; $i < 5000; $i++) {
-                $content = '';
-                // $s = array_search($i, $locations);
-                if($index < $l && $i == 201 || $i==219 || $i == 1365) {
-                    $content = location($d['locations'][$index]);
-                    $index += 1;
-                } else {
-                    $content=$i;
+    <div class="container" id="container">
+        <div class="view">
+            <div class="board" id="board">
+            <?php
+                
+                $index = 0;
+                
+                for($i = 0; $i < $d['map']['number_of_cells']; $i++) {
+                    $content = $i;    
+                    echo "
+                    <div class='brick'>
+                        $content
+                    </div>
+                    ";
                 }
-    
-                echo "
-                <div class='brick' onclick='onPath($i)'>
-                    $content
-                </div>
-                ";
-            }
-        ?>
-    
+            ?>
+        
+            </div>
         </div>
     </div>
-</div>
+<script>
+    const data = JSON.parse('<?php echo json_encode($d); ?>')
 </script>
 <script src="assets/js/index.js"></script>
+<script src="assets/js/common.js"></script>
 <script src="assets/js/map_index.js"></script>
 <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -105,6 +101,6 @@
                 // Attach the handler
                 ele.addEventListener('mousedown', mouseDownHandler);
             });
-        </script>
+    </script>
 </body>
 </html>
