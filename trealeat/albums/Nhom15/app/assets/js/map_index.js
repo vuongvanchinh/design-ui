@@ -15,8 +15,10 @@ const setup = () => {
         let index = data.locations.findIndex(item => item.id === p.location_id)
         console.log(index, p.location_id)
 
-        if (index !== -1) {
+        if (index !== -1) { // find out
             b.append(presentLocation(data.locations[index]))
+        } else {
+            b.append("cái này chưa có location đặt vào, vào trang admin để đặt")
         }
         b.css({gridColumn: `${p.x} / span ${p.w}`, gridRow: `${p.y} / span ${p.h}`})
     }

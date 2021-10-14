@@ -180,7 +180,8 @@ main {
   background-color: rgb(0, 175, 123);
 }
 .path {
-  border: 2px solid rgb(1, 107, 110);
+  border: 2px solid rgb(1, 224, 231);
   border-radius: 50%;
+  background: rgb(1, 224, 231);
   
 }

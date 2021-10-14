@@ -29,6 +29,7 @@ const pathToggleId = "#toggleDrawPathMode"
 const plotToggleId = "#togglePlotMode"
 
 $(document).ready(() => {
+    
     fetch('streamline-example.trealet')
     .then(response => response.json()).then(jsonResponse => {
         state =  jsonResponse.trealet
@@ -51,27 +52,36 @@ const renderMap = () => {
     let map = state.map
 
     let cells = ''
+    let style = `style="width: ${state.map.cell_width}; height: ${state.map.cell_width}"`
     for (let i = 0; i < state.map.number_of_cells; i++) {
-        let index = state.map.plots.findIndex(item => item.index === i);
-        let style = ''
-        if (index === -1) {
-            style =  `style='width: ${state.map.cell_width}; height:${state.map.cell_width};'`
-        } else {
-            style = `style='grid-column: ${plots[index].x} / span ${plots[index].w};
-                            grid-row:  ${plots[index].y} / span ${plots[index].h};
-            '`
-        }
-        cells += `<div class='brick ${index !== -1 ? "plot":"" }' ${style} onclick="setFeature(${i})" >
+        
+        cells += `<div class='brick' onclick="setFeature(${i})" ${style}>
                     ${i}
                 </div>`
     }
     $('#board').remove()
     $('#map').append(`    
         <div class="board" id="board" style="grid-template-columns: repeat(${map.cells_per_row}, 1fr);">
-        ${cells}
+        ${cells} 
         </div>
     `);
-    
+
+    // render plots 
+    for (let i = 0; i < state.map.plots.length; i++) {
+        let plot = state.map.plots[i];
+        let b = $(`.brick:nth-child(${plot.index + 1})`)
+        b.css({width: "auto", height: "auto", gridRow: `${plot.y} / span ${plot.h}`, gridColumn: `${plot.x} / span ${plot.w}`})
+        b.addClass('plot')
+        b.append(` location id: ${plot.location_id}`)
+    }
+
+    //render paths
+    for (let i = 0; i < state.map.paths.length; i++) {
+        let path = state.map.paths[i];
+        let b = $(`.brick:nth-child(${path.index + 1})`)
+        b.css({width: "auto", height: "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
+        b.addClass('path')
+    }
 }
 
 const changePage = (nav) => {
@@ -113,7 +123,7 @@ const refresh = () => {
 }
 
 const onPlotMode = (index) => {
-    alert(data)
+    
     if(state.map.paths.findIndex(item => item.index === index) !== -1) {
         alert('This is a path, You must delete path before set it become a plot')
         return
@@ -194,7 +204,7 @@ const onPlotMode = (index) => {
             <button class="btn btn-light" onclick="removeModal('#${modal_id}')">Cancel</button>
         </div>`
     removeModal('#form-plot-moda')
-    $('#map').prepend(modal(header, body, footer, modal_id, 'modal-set-feature', 'small'))
+    $('#map').prepend(modal(header, body, footer, modal_id, 'modal-set-feature', false, 'small'))
 } 
 const onPathMode = (i) => {
     let b = $(`.brick:nth-child(${i + 1})`)
@@ -237,6 +247,7 @@ const deletePlot = (index) => {
     state.map.plots = state.map.plots.filter(item => item.index != index);
     let b = $(`.brick:nth-child(${index + 1})`)
     b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
+    b.removeClass('plot')
     removeModal(`#${modal_id}`)
 }
 
@@ -307,6 +318,34 @@ const saveMap = () => {
     const obj = {
         trealet: state
     }
-    alert("Chinhs ")
-    console.log(JSON.stringify(obj))
+    saveText(JSON.stringify(obj), 'streamline-example.trealet')
+}
+
+const modal = (header='', body='', footer='', id='', name='set-feature-modal', close_icon = true, variant='main') => {
+    if (footer) {
+        footer = `<div class="modal-footer">${footer}</div>`
+    }
+    if (header) {
+        header = `<div class='modal-header'>${header}</div>`
+    }
+
+    return `
+    <div class='modal modal-${variant} open-modal' name='${name}' ${id?`id="${id}"`: ""}>
+        <div class='modal-content'>
+            ${header}
+            <div class='modal-body'>
+                ${body}
+            </div>
+            ${footer}
+            ${close_icon ? "<i class='bx bx-x modal-close'></i>":''}
+        </div>
+    </div>
+    `
+}
+
+function saveText(text, filename){
+    var a = document.createElement('a');
+    a.setAttribute('href', 'data:text/plain;charset=utf-8,'+encodeURIComponent(text));
+    a.setAttribute('download', filename);
+    a.click()
 }
