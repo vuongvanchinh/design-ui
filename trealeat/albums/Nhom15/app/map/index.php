@@ -42,7 +42,7 @@
                     $content = $i;    
                     echo "
                     <div class='brick'>
-                        $content
+                       
                     </div>
                     ";
                 }

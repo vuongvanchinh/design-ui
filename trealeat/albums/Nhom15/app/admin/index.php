@@ -48,6 +48,12 @@
                         ";
                     }
                 ?>
+                <li>
+                    <div class="nav-item" onclick="saveMap()">
+                        <i class='bx bxs-save'></i>    
+                        <span>Save</span>
+                    </div>
+                </li>
             </ul>
         </div>
         <main>
@@ -88,7 +94,7 @@
                         <button class="btn btn-light" id="togglePlotMode">Plots of land mode</button>
                         <button class="btn btn-light" onclick="saveMap()">Cancel</button>
                         <button class="btn btn-save" onclick="refresh()">Temper build</button>
-                        <button class="btn btn-save" onclick="saveMap()">Save</button>
+                        
                     </div>
                 </div>
             </div>

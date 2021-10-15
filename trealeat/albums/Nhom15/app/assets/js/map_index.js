@@ -12,8 +12,8 @@ const setup = () => {
         let p = data.map.plots[i]
         //find location
         let b = $(`.brick:nth-child(${p.index+1})`) // b = brick
-        let index = data.locations.findIndex(item => item.id === p.location_id)
-        console.log(index, p.location_id)
+        let index = data.locations.findIndex(item => item.id === p.item_id)
+        console.log(index, p.item_id)
 
         if (index !== -1) { // find out
             b.append(presentLocation(data.locations[index]))
@@ -40,21 +40,36 @@ function openModal(el) {
 const presentLocation = (data) => {
 
     return `
-        <div>
-            Present Location id:${data.id} name:${data.name}
-            trong này xẽ thiết kế  1 button để mở popup (chỉ có 1 pop up ở trong class container khi ng dùng tắt thì xóa bằng jquery 
-                <button onclick=showPopup(${data.id})> Show popup</button>
-                khi mở thì thêm vào, 'xem flow chuowng trinhf owr file map_index.js' 
-            )
-            đặt thẻ present ở đây 
-            
+        
+        <div class="video">
+            <video src="https://youtu.be/qAQHz2zPFFQ" muted loop autoplay></video>
+            <div class="details">
+                <h2>Your <span>Title</span></h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <div class="more">
+                <p onclick="showPopup(${data.id})" class="read-more">Read <span>More</span></p>
+                <div class="icon-links">
+                    <a href="#"><i class="fas fa-heart"></i></a>
+                    <a href="#"><i class="fas fa-eye"></i></a>
+                    <a href="#"><i class="fas fa-paperclip"></i></a>
+                </div>
+                </div>
+            </div>
         </div>
     `
 }
 
-const showPopup = (location_id) => {
-    let index = data.locations.findIndex(item => item.id == location_id)
-    console.log(data.locations, location_id)
+const slider = (data) => {
+    return `
+        <div class="slider">
+            Slider
+        </div>
+    `
+}
+
+const showPopup = (item_id) => {
+    let index = data.locations.findIndex(item => item.id == item_id)
+    console.log(data.locations, item_id)
     if (index === -1) {
         alert("Location not found")
 
@@ -63,7 +78,7 @@ const showPopup = (location_id) => {
         let header = `
             ${location.name}
         `
-        let md = modal(header, "body", "footer", popup_id, popup_id, 'medium')
+        let md = modal(header, "<h1>Chinh</h1>", "footer", popup_id, popup_id, 'medium')
         $('#container').prepend(md)
         $(`#${popup_id}`).mousedown((e) => {
             if(e.target.classList.contains('modal')) {

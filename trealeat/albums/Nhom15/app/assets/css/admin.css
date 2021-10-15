@@ -6,10 +6,24 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   position: fixed;
   height: 100vh;
+  --logo-height: 90px;
 }
 .sidebar > ul {
   padding: 0.5rem;
+  list-style: none;
+  height: calc(100% - var(--logo-height));
+  
 }
+
+.sidebar>ul>li:last-child {
+  margin: 0;
+  margin-top: auto;
+  
+  
+}
+
+
+
 .nav-item {
     font-size: 1.2rem;
     /* padding: 1rem; */
@@ -37,12 +51,12 @@
 }
 /* .logo {
     height: auto;
-
+    
 } */
 
 .logo > img {
   width: 100%;
-  height: auto;
+  height: var(--logo-height);
 }
 
 main {

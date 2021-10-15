@@ -4,7 +4,7 @@ let state = {
         number_of_cells: 2000,
         cells_per_row: 60,
         plots: [
-            { index: 64, x:5, y:2, w: 8, h: 8, location_id: 0},
+            { index: 64, x:5, y:2, w: 8, h: 8, item_id: 0},
             // { index: 150,x:20, y:2, w: 8, h: 8, location_index: 1}
         ],
         paths: [],//w and h default is 1
@@ -23,7 +23,7 @@ const number_of_cells_id = "number_of_cells"
 const cells_per_row_id = "cells_per_row"
 const cell_width_id = "cell_width"
 
-const location_id_value = 'location_id'
+const item_id_value = 'item_id'
 const modal_id = 'form-plot-modal'
 const pathToggleId = "#toggleDrawPathMode"
 const plotToggleId = "#togglePlotMode"
@@ -72,7 +72,7 @@ const renderMap = () => {
         let b = $(`.brick:nth-child(${plot.index + 1})`)
         b.css({width: "auto", height: "auto", gridRow: `${plot.y} / span ${plot.h}`, gridColumn: `${plot.x} / span ${plot.w}`})
         b.addClass('plot')
-        b.append(` location id: ${plot.location_id}`)
+        b.append(` location id: ${plot.item_id}`)
     }
 
     //render paths
@@ -147,9 +147,9 @@ const onPlotMode = (index) => {
             <label for="number_of_cells">Number cells height</label>
         </div>
         <div class="textfield">
-            <input type="number" name="${location_id_value}" 
+            <input type="number" name="${item_id_value}" 
                 placeholder="vd: 1" 
-                id="${location_id_value}" 
+                id="${item_id_value}" 
                 
             />
             <label for="number_of_cells">Location Id</label>
@@ -179,10 +179,10 @@ const onPlotMode = (index) => {
             <label for="number_of_cells">Number cells height</label>
         </div>
         <div class="textfield">
-            <input type="number" name="${location_id}" 
+            <input type="number" name="${item_id}" 
                 placeholder="vd: 8" 
-                id="${location_id}" 
-                value="${state.map.plots[has_index].location_id}"
+                id="${item_id}" 
+                value="${state.map.plots[has_index].item_id}"
             />
             <label for="number_of_cells">Location Id</label>
         </div>
@@ -258,7 +258,7 @@ const savePlot = (w_id, h_id, brick_index) => {
         alert("Width and height must be enter and greate more than 0")
         return
     }
-    let location_id = parseInt($(`#${location_id_value}`).val())
+    let item_id = parseInt($(`#${item_id_value}`).val())
     const zero = $(`.brick:nth-child(1)`).position(); 
     let b = $(`.brick:nth-child(${brick_index + 1})`)
     let p = b.position()
@@ -271,13 +271,13 @@ const savePlot = (w_id, h_id, brick_index) => {
 
     const index = state.map.plots.findIndex(item => item.index === brick_index)
     if (index === -1) {
-        state.map.plots.push({index: brick_index, x: x, y: y, w: w, h: h, location_id: location_id})
+        state.map.plots.push({index: brick_index, x: x, y: y, w: w, h: h, item_id: item_id})
     } else {
         state.map.plots[index].x = x
         state.map.plots[index].y = y
         state.map.plots[index].w = w
         state.map.plots[index].h = h
-        state.map.plots[index].location_id = location_id
+        state.map.plots[index].item_id = item_id
     }
     // delete paths is wrap by new plot
     let delete_indexs = []

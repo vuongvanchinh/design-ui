@@ -1,7 +1,7 @@
 {
     "trealet":{
         "map":{
-            "cell_width":"50px",
+            "cell_width":"30px",
             "cells_per_row":60,
             "number_of_cells":2100,
             "plots":[
@@ -11,7 +11,7 @@
                     "y":8,
                     "w":8,
                     "h":8,
-                    "location_id":0
+                    "item_id":0
                 },
                 {
                     "index":495,
@@ -19,7 +19,7 @@
                     "y":9,
                     "w":6,
                     "h":6,
-                    "location_id":1
+                    "item_id":1
                 },
                 {
                     "index":1557,
@@ -27,7 +27,7 @@
                     "y":28,
                     "w":8,
                     "h":8,
-                    "location_id":2
+                    "item_id":2
                 },
                 {
                     "index":970,
@@ -35,7 +35,7 @@
                     "y":18,
                     "w":10,
                     "h":10,
-                    "location_id":3
+                    "item_id":3
                 },
                 {
                     "index":1644,
@@ -43,7 +43,7 @@
                     "y":32,
                     "w":8,
                     "h":8,
-                    "location_id":4
+                    "item_id":4
                 }
             ],
             "paths":[
@@ -750,6 +750,7 @@
                     "https://trealet.com/albums/Nhom15/media/images/thacbangioc.png?_t=1633615159",
                     "https://trealet.com/albums/Nhom15/media/images/thacbangioc1.png?_t=1633615159"
                 ],
+                "rateting": "",
                 "position":{
                     "x":"150px",
                     "y":"150px"
