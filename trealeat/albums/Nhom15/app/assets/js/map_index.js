@@ -42,10 +42,10 @@ const presentLocation = (data) => {
     return `
         
         <div class="video">
-            <video src="https://youtu.be/qAQHz2zPFFQ" muted loop autoplay></video>
+            <img src="${data.images[0]}"/>
             <div class="details">
                 <h2>Your <span>Title</span></h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>${data.description}</p>
                 <div class="more">
                 <p onclick="showPopup(${data.id})" class="read-more">Read <span>More</span></p>
                 <div class="icon-links">

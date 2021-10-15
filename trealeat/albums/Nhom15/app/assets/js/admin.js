@@ -179,9 +179,9 @@ const onPlotMode = (index) => {
             <label for="number_of_cells">Number cells height</label>
         </div>
         <div class="textfield">
-            <input type="number" name="${item_id}" 
+            <input type="number" name="${item_id_value}" 
                 placeholder="vd: 8" 
-                id="${item_id}" 
+                id="${item_id_value}" 
                 value="${state.map.plots[has_index].item_id}"
             />
             <label for="number_of_cells">Location Id</label>
