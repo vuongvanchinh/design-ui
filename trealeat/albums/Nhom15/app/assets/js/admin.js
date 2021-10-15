@@ -108,7 +108,13 @@ const zoom = (direction) => {
 const change = (el) => {
     let value = el.value
     if(el.name === 'cell_width') {
-        value = parseInt(value) + "px"
+        value = parseInt(value);
+        if(!value || value < 40) {
+            value = "40px"
+            $(el).val("40px")
+        } else {
+            value += "px"
+        }
     }
     state.map[el.name] = value
 }
@@ -223,6 +229,8 @@ const onPathMode = (i) => {
         let cell_w = parseInt(state.map.cell_width)
         let x = ((p.left - zero.left) / cell_w) + 1
         let y = ((p.top - zero.top) / cell_w) + 1
+        console.log(p, zero)
+        console.log(x, y)
         state.map.paths.push({index: i, x:x, y:y})
         b.addClass('path')
         b.css({gridColumn: `${x} / span 1`, gridRow: `${y} / span 1`})
@@ -294,7 +302,6 @@ const savePlot = (w_id, h_id, brick_index) => {
 
     // set css for plot
     b.css({width: "auto", height: "auto", gridRow: `${y} / span ${h}`, gridColumn: `${x} / span ${w}`})
-
     removeModal(`#${modal_id}`)
 
 }

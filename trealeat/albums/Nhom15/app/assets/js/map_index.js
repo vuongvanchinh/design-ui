@@ -63,6 +63,8 @@ const slider = (data) => {
     return `
         <div class="slider">
             Slider
+            ${data.name}
+
         </div>
     `
 }
@@ -78,7 +80,7 @@ const showPopup = (item_id) => {
         let header = `
             ${location.name}
         `
-        let md = modal(header, "<h1>Chinh</h1>", "footer", popup_id, popup_id, 'medium')
+        let md = modal(header, slider(location), "footer", popup_id, popup_id, 'medium')
         $('#container').prepend(md)
         $(`#${popup_id}`).mousedown((e) => {
             if(e.target.classList.contains('modal')) {
