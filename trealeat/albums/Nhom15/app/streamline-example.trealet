@@ -739,14 +739,14 @@
         "locations":[
             {
                 "id":0,
-                "name":"Cao Bằng",
+                "name":"Điện Thái Hòa",
                 "effect":"loops",
                 "description":"description",
                 "images":[
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin1.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin2.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin3.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin4.png?_t=1633615159",
+                    "https://trealet.com/albums/Nhom15/media/images/Dien_Thai_Hoa.jpg?_t=1634378317",
+                    "https://trealet.com/albums/Nhom15/media/images/B%C3%AAn_trong_%C4%91i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpg?_t=1634378313",
+                    "https://trealet.com/albums/Nhom15/media/images/ngaivang.jpg?_t=1634378323",
+                    "https://trealet.com/albums/Nhom15/media/images/%C4%90i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpeg?_t=1634378319",
                     "https://trealet.com/albums/Nhom15/media/images/thacbangioc.png?_t=1633615159",
                     "https://trealet.com/albums/Nhom15/media/images/thacbangioc1.png?_t=1633615159"
                 ],
@@ -756,7 +756,8 @@
                     "x":"150px",
                     "y":"150px"
                 },
-                "next":"quangninh"
+                "next":"quangninh",
+                "videos": "https://www.youtube.com/embed/WZMkUfvqnus"
             },
             {
                 "id":1,

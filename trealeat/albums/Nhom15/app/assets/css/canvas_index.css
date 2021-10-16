@@ -37,74 +37,103 @@
     --width: 40px;
     grid-column: auto;
     grid-row: auto;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     border-radius: 6px;
-    min-width: var(--width);
-    min-height: var(--width);
+   
     display: flex;
     justify-content: center;
     align-items: center;
-    overflow:hidden;
+    /* overflow:hidden; */
+    /* transition: all 0.1s ease; */
+
 }
 
-
+.plot {
+    background-color: blue;
+}
 .path {
     border: 2px solid rgb(1, 107, 110);
-    border-radius: 50%;
+    border-radius: 50%/25%/30%;
     background-color: rgb(0, 151, 211);
 }
-/* .brick:nth-child(202) {
-    --from-col: 3;
-    --from-row: 3;
 
-    grid-column: var(--from-col) / var(--to-col);
-    grid-row: var(--from-row) / var(--to-row);
 
-}
-
-.brick:nth-child(220) {
-    --from-col: 30;
-    --from-row: 2;
-    grid-column: var(--from-col) / var(--to-col);
-    grid-row: var(--from-row) / var(--to-row);
+.present-item {
+    width: 100%;
+    height: 100%;
+    position: relative;
 
 }
 
-.brick:nth-child(1366) {
-    --from-col: 14;
-    --from-row: 14;
+.simple-slider {
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
+.simple-slide-item {
+    position: absolute;
+    top:  0;
+    left: 0;
     
-    grid-column: var(--from-row) / var(--to-row);
-    grid-row: var(--from-col) / var(--to-col);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: all 0.5s ease-out;
+}
+.simple-slide-item-active {
+    opacity: 1;
+}
+.present-info {
+    position: absolute;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 100%;
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease;
+}
+.present-item-name {
+    display:-webkit-box;
+    -webkit-line-clamp:1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+.present-info:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
 
 }
 
-.brick:nth-child(1701) {
-    --from-col: 37;
-    --from-row: 16;
-    
-    grid-column:var(--from-col) / var(--to-col);
-    grid-row:  var(--from-row) / var(--to-row);
+/* .present-item:hover .btn-detail{
+    visibility: visible;
+
+} */
+.btn-detail {
+    background-color: var(--main-color);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.3rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+.btn-detail:hover {
+    background-color: var(--hover-bg);
+}
+.btn-detail i{
+    padding-right:0.5rem;
 
 }
-
-.brick:nth-child(2631) {
-    --from-col: 24;
-    --from-row: 29;
-    
-    grid-column:var(--from-col) / var(--to-col);
-    grid-row:  var(--from-row) / var(--to-row);
-
-}
-
-
-.brick:nth-child(493) {
-    --from-col: 54;
-    --from-row: 6;
-    --w: 10;
-    
-    grid-column:var(--from-col) / var(--to-col);
-    grid-row:  var(--from-row) / var(--to-row);
-
-}
- */

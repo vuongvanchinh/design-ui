@@ -25,23 +25,26 @@
 <style>
 </style>
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="assets/css/global_variable.css">
 <link rel="stylesheet" href="assets/css/common.css">
 <link rel="stylesheet" href="assets/css/canvas_index.css">
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <body>
     <div class="container" id="container">
-        <div class="view">
+        <div class="view" id="view">
             <div class="board" id="board">
             <?php
                 
                 $index = 0;
-                
+                $cell_w = $d['map']['cell_width'];
+                $style = "width: $cell_w; height: $cell_w;"; 
                 for($i = 0; $i < $d['map']['number_of_cells']; $i++) {
                     $content = $i;    
                     echo "
-                    <div class='brick'>
+                    <div class='brick' style='$style'>
                        
                     </div>
                     ";

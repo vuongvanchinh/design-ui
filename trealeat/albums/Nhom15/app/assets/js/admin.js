@@ -108,10 +108,13 @@ const zoom = (direction) => {
 const change = (el) => {
     let value = el.value
     if(el.name === 'cell_width') {
+        let board_w = $('#board').width()
+        let max_w = Math.floor(board_w / state.map.cells_per_row)
+        
         value = parseInt(value);
-        if(!value || value < 40) {
-            value = "40px"
-            $(el).val("40px")
+        if(!value || value < max_w) {
+            value = `${max_w}px`
+            $(el).val(value)
         } else {
             value += "px"
         }
@@ -212,6 +215,7 @@ const onPlotMode = (index) => {
     removeModal('#form-plot-moda')
     $('#map').prepend(modal(header, body, footer, modal_id, 'modal-set-feature', false, 'small'))
 } 
+
 const onPathMode = (i) => {
     let b = $(`.brick:nth-child(${i + 1})`)
     if(state.map.plots.findIndex(item => item.index === i) !== -1) {
@@ -244,7 +248,6 @@ const setFeature = (index) => {
     } else {
         alert(`Please choose mode to draw`)
     }
-    
 }
 
 const removeModal = (id) => {
@@ -355,4 +358,27 @@ function saveText(text, filename){
     a.setAttribute('href', 'data:text/plain;charset=utf-8,'+encodeURIComponent(text));
     a.setAttribute('download', filename);
     a.click()
+}
+
+const zoom = (direction, offset=0.05) => {
+    
+    if(direction === -1) {//descrease
+        let target_w = (zoom_rate - offset) * parseFloat(data.map.cell_width)
+        let board_w = $('#board').width()
+        let min_brick_w = board_w / data.map.cells_per_row
+        if(target_w < min_brick_w) {
+            return false
+        } else {
+            zoom_rate -= offset
+            target_w += "px"
+            console.log(target_w,board_w, data.map.cells_per_row)
+            $('.brick:not(.plot)').css({width: target_w, height: target_w})
+        }
+    } else { //+ increase
+        let target_w = (zoom_rate + offset) *  parseFloat(data.map.cell_width)
+        target_w += "px"
+        zoom_rate += offset
+        $('.brick:not(.plot)').css({width: target_w, height: target_w})
+    }
+    return true
 }

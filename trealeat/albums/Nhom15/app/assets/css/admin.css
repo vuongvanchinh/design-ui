@@ -181,8 +181,8 @@ main {
   grid-row: auto;
   border: 1px solid #000;
   border-radius: 6px;
-  min-width: var(--width);
-  min-height: var(--width);
+  /* min-width: var(--width);
+  min-height: var(--width); */
   display: flex;
   justify-content: center;
   align-items: center;
