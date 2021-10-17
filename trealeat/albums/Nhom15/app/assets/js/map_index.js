@@ -62,16 +62,19 @@ const presentItem = (data) => {
     let slide_items = ''
     
 
-    for (let i = 0; i < data.images.length && i < 4; i++) {
+    for (let i = 0; i < data.media.length; i++) {
         let classs = 'simple-slide-item '
-        if (i === 0) {
+        if (slide_items.length === 0) {
             classs += 'simple-slide-item-active'
         }
-        slide_items += `
-            <div class="${classs}" style="background-image: url('${data.images[i]}')">
+        if(data.media[i].type ==='image') {
+            slide_items += `
+            <div class="${classs}" style="background-image: url('${data.media[i].url}')">
             
             </div>
-        `
+            `
+        }
+       
     }
     return `    
         <div class="present-item">
@@ -92,19 +95,39 @@ const presentItem = (data) => {
 }
 
 const popUpContent = (data) => {
-
+    let content = ''
+    for (i = 1; i < data.media.length; i++) {
+        content += mediaHtml(data.media[i], '', false)
+    }
     return `
         <div>
-            ${data.videos && data.videos.length > 1 ? `
-               <div class="video">
-                    <iframe src="https://www.youtube.com/embed/WZMkUfvqnus" title="${data.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
-               </div>
+            ${data.media.length > 0 && data.media[0].type=='YTB' ? `
+               ${mediaHtml(data.media[0])}
             `:''}
+            <p class="media-description">${data.description}</p>
+            ${content}
         </div>
     `
-
 }
 
+
+const popUpFooter = (data) => {
+
+    return `
+        <div class="flex space-between">
+            <span class="btn btn-footer"
+            onclick="alert('chưa cài đặt')"
+            >Quét mã QR</span>
+
+            <span class="btn btn-footer"
+                onclick="alert('chưa cài đặt')"
+            >
+            Chơi một trò chơi</span>
+        
+        </div>
+    
+    `
+}
 const changeSimpleSlide = () => {
     let slides_active = $('.simple-slide-item-active')
     for(i = 0; i < slides_active.length; i++) {
@@ -140,7 +163,8 @@ const showPopup = (item_id) => {
             ${location.name}
         `
         let popup_content = popUpContent(location)
-        let md = modal(header, popup_content , "footer", popup_id, popup_id, true,  'medium')
+        let popup_footer = popUpFooter(location)
+        let md = modal(header, popup_content , popup_footer, popup_id, popup_id, true,  'medium')
         $('#container').prepend(md)
         $(`#${popup_id}`).mousedown((e) => {
             if(e.target.classList.contains('modal')) {
@@ -201,4 +225,39 @@ const zoom = (direction, offset=0.05) => {
         $('.brick:not(.plot)').css({width: target_w, height: target_w})
     }
     return true
+}
+
+const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id="", only_media=true) => {
+    let media = ''
+    if (id.length > 0) {
+        id = `id="${id}"`
+    }
+    switch (data.type) {
+        case 'image':
+            media = `<img class="media-image" ${id} src="${data.url}"/>`
+            break;
+        case 'YTB': 
+            media = `
+                <div class="video">
+                    <iframe src="${data.url}" title="${data.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+                </div>
+            `
+        case "3d":
+            media = `
+                <div class="video">
+                    <iframe src="${data.url}" title="${data.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+                </div>
+            `
+        default:
+            break;
+    }
+    if(only_media) {
+        return media
+    } else {
+        return `
+            <p class="media-name">${data.name}</p>
+            ${media}
+            <p class="media-description">${data.description}</p>
+        `
+    }
 }

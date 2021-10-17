@@ -259,6 +259,8 @@ const deletePlot = (index) => {
     let b = $(`.brick:nth-child(${index + 1})`)
     b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
     b.removeClass('plot')
+    b.text(index)
+
     removeModal(`#${modal_id}`)
 }
 
@@ -360,25 +362,3 @@ function saveText(text, filename){
     a.click()
 }
 
-const zoom = (direction, offset=0.05) => {
-    
-    if(direction === -1) {//descrease
-        let target_w = (zoom_rate - offset) * parseFloat(data.map.cell_width)
-        let board_w = $('#board').width()
-        let min_brick_w = board_w / data.map.cells_per_row
-        if(target_w < min_brick_w) {
-            return false
-        } else {
-            zoom_rate -= offset
-            target_w += "px"
-            console.log(target_w,board_w, data.map.cells_per_row)
-            $('.brick:not(.plot)').css({width: target_w, height: target_w})
-        }
-    } else { //+ increase
-        let target_w = (zoom_rate + offset) *  parseFloat(data.map.cell_width)
-        target_w += "px"
-        zoom_rate += offset
-        $('.brick:not(.plot)').css({width: target_w, height: target_w})
-    }
-    return true
-}

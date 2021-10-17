@@ -14,7 +14,7 @@ function initializeApp($exec){
 }
 
 function fetchItemData($item_url){
-	$item_url = 'http://trealet.com/tiny'.$item_url.'/?json';
+	$item_url = 'https://trealet.com/tiny'.$item_url.'/?json';
 	$json_string = file_get_contents($item_url);
 	if(!$json_string) return;	
 	$d = json_decode($json_string, true);

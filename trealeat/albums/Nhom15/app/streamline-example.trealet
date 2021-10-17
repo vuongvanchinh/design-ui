@@ -741,41 +741,86 @@
                 "id":0,
                 "name":"Điện Thái Hòa",
                 "effect":"loops",
-                "description":"description",
-                "images":[
-                    "https://trealet.com/albums/Nhom15/media/images/Dien_Thai_Hoa.jpg?_t=1634378317",
-                    "https://trealet.com/albums/Nhom15/media/images/B%C3%AAn_trong_%C4%91i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpg?_t=1634378313",
-                    "https://trealet.com/albums/Nhom15/media/images/ngaivang.jpg?_t=1634378323",
-                    "https://trealet.com/albums/Nhom15/media/images/%C4%90i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpeg?_t=1634378319",
-                    "https://trealet.com/albums/Nhom15/media/images/thacbangioc.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/thacbangioc1.png?_t=1633615159"
+                "description":"Điện Thái Hòa (chữ Hán: 太和殿) là cung điện nằm trong khu vực Đại Nội của kinh thành Huế, là nơi đăng quang của 13 vua triều Nguyễn từ Gia Long đến Bảo Đại. Trong chế độ phong kiến cung điện này được coi là trung tâm của đất nước.",
+                "media":[
+                    {
+                        "name": "Video",
+                        "url": "https://www.youtube.com/embed/WZMkUfvqnus",
+                        "type": "YTB"
+                    },
+                    {
+                        "name": "Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/Dien_Thai_Hoa.jpg?_t=1634378317",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Ben trong Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/B%C3%AAn_trong_%C4%91i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpg?_t=1634378313",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Ngai vang",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/ngaivang.jpg?_t=1634378323",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Tham quan ngai vang",
+                        "url": "https://my.matterport.com/show/?m=axCx7Zoaz2F&play=1&nozoom=1&qs=1&ts=1&guides=0&lp=1", 
+                        "description": "",
+                        "type": "3d"
+                    },
+                    {
+                        "name": "Ben trong Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/%C4%90i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpeg?_t=1634378319",
+                        "description": "description",
+                        "type": "image"
+                    }
+                  
                 ],
-                "rateting": 4.5,
-            
-                "position":{
-                    "x":"150px",
-                    "y":"150px"
-                },
-                "next":"quangninh",
-                "videos": "https://www.youtube.com/embed/WZMkUfvqnus"
+                "next":"quangninh"
+                
             },
             {
                 "id":1,
                 "name":"Quảng ninh",
                 "effect":"crazy",
                 "description":"description",
-                "images":[
-                    "https://trealet.com/albums/Nhom15/media/images/quangninh1.png?_t=1633663050",
-                    "https://trealet.com/albums/Nhom15/media/images/quangninh2.png?_t=1633663050",
-                    "https://trealet.com/albums/Nhom15/media/images/quangninh3.png?_t=1633663050",
-                    "https://trealet.com/albums/Nhom15/media/images/quangninh4.png?_t=1633663050",
-                    "https://trealet.com/albums/Nhom15/media/images/quangninh5.png?_t=1633663050",
-                    "https://trealet.com/albums/Nhom15/media/images/quangninh6.png?_t=1633663050"
+                "media":[
+                    {
+                        "name": "Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/Dien_Thai_Hoa.jpg?_t=1634378317",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Ben trong Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/B%C3%AAn_trong_%C4%91i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpg?_t=1634378313",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Ngai vang",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/ngaivang.jpg?_t=1634378323",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Tham quan ngai vang",
+                        "url": "https://my.matterport.com/show/?m=axCx7Zoaz2F&play=1&nozoom=1&qs=1&ts=1&guides=0&lp=1", 
+                        "description": "",
+                        "type": "3d"
+                    },
+                    {
+                        "name": "Ben trong Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/%C4%90i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpeg?_t=1634378319",
+                        "description": "description",
+                        "type": "image"
+                    }
                 ],
-                "position":{
-                    "x":"600px",
-                    "y":"300px"
-                },
+              
                 "next":"hanoi"
             },
             {
@@ -783,18 +828,38 @@
                 "name":"Hà nội",
                 "effect":"loops",
                 "description":"description",
-                "images":[
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin1.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin2.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin3.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/suoilenin4.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/thacbangioc.png?_t=1633615159",
-                    "https://trealet.com/albums/Nhom15/media/images/thacbangioc1.png?_t=1633615159"
+                "media":[
+                    {
+                        "name": "Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/Dien_Thai_Hoa.jpg?_t=1634378317",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Ben trong Dien thai hoa",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/B%C3%AAn_trong_%C4%91i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpg?_t=1634378313",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Ngai vang",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/ngaivang.jpg?_t=1634378323",
+                        "description": "description",
+                        "type": "image"
+                    },
+                    {
+                        "name": "Tham quan ngai vang",
+                        "url": "https://my.matterport.com/show/?m=axCx7Zoaz2F&play=1&nozoom=1&qs=1&ts=1&guides=0&lp=1", 
+                        "description": "",
+                        "type": "3d"
+                    },
+                    {
+                        "name": "Ben trong Dien thai hoa last",
+                        "url": "https://trealet.com/albums/Nhom15/media/images/%C4%90i%E1%BB%87n_Th%C3%A1i_H%C3%B2a.jpeg?_t=1634378319",
+                        "description": "description",
+                        "type": "image"
+                    }
                 ],
-                "position":{
-                    "x":"500px",
-                    "y":"100px"
-                },
                 "next":null
             }
         ]
