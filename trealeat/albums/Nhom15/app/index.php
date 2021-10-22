@@ -1,6 +1,5 @@
 <?php 
     require_once('../lib/functions.php');
-    $d = initializeApp('streamline');	
     $username = 'Nhom15';
     $password = '12113133';
 
@@ -17,14 +16,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/admin.css">
-    <link rel="stylesheet" href="../assets/css/common.css">
-    <link rel="stylesheet" href="../assets/css/global_variable.css">
-    
     <link rel="stylesheet" href="assets/css/admin.css">
     <link rel="stylesheet" href="assets/css/common.css">
+    <!-- <link rel="stylesheet" href="assets/css/canvas_index.css"> -->
     <link rel="stylesheet" href="assets/css/global_variable.css">
-    
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Admin</title>
@@ -33,7 +28,7 @@
     <div class="container">
         <div class="sidebar">
             <div class="logo">
-                <img src="logo.jpg" alt="logo travel" draggable="false">
+                <img src="../media/images/logo.jpg" alt="logo travel" draggable="false">
             </div>
             <ul>
                 <?php
@@ -95,23 +90,13 @@
                         </div>
                     </div>
                     <div class="right">
-                        <button class="btn btn-light btn-active" id="toggleDrawPathMode">Draw path mode</button>
+                        <button class="btn btn-light" id="toggleDrawPathMode">Draw path mode</button>
                         <button class="btn btn-light" id="togglePlotMode">Plots of land mode</button>
                         <button class="btn btn-light" onclick="saveMap()">Cancel</button>
                         <button class="btn btn-save" onclick="refresh()">Temper build</button>
                         
                     </div>
                 </div>
-                    <div id="view">
-                        <?php
-                        $col_per_row = $d['map']['cells_per_row'];
-                        echo "
-                            <div class='board' id='board' style='grid-template-columns: repeat($col_per_row, 1fr);'>
-
-                            </div>
-                        ";
-                    ?>
-                    </div>
             </div>
             <div class="page" id="decorators">
                     Decorations
@@ -122,56 +107,11 @@
             </div>
         </main>        
     </div>
-    
-    <script>
-        let state =  JSON.parse('<?php echo json_encode($d); ?>')
-       
-        // handle scroll event 
-        document.addEventListener('DOMContentLoaded', function () {
-            const ele = document.getElementById('view');
-            ele.style.cursor = 'grab';
-            let pos = { top: 0, left: 0, x: 0, y: 0 };
-
-            const mouseDownHandler = function (e) {
-                ele.style.cursor = 'grabbing';
-                ele.style.userSelect = 'none';
-
-                pos = {
-                    left: ele.scrollLeft,
-                    top: ele.scrollTop,
-                    // Get the current mouse position
-                    x: e.clientX,
-                    y: e.clientY,
-                };
-
-                document.addEventListener('mousemove', mouseMoveHandler);
-                document.addEventListener('mouseup', mouseUpHandler);
-            };
-
-            const mouseMoveHandler = function (e) {
-                // How far the mouse has been moved
-                const dx = e.clientX - pos.x;
-                const dy = e.clientY - pos.y;
-
-                // Scroll the element
-                ele.scrollTop = pos.top - dy;
-                ele.scrollLeft = pos.left - dx;
-            };
-
-            const mouseUpHandler = function () {
-                ele.style.cursor = 'grab';
-                ele.style.removeProperty('user-select');
-
-                document.removeEventListener('mousemove', mouseMoveHandler);
-                document.removeEventListener('mouseup', mouseUpHandler);
-            };
-
-            // Attach the handler
-            ele.addEventListener('mousedown', mouseDownHandler);
-        });
-    </script>
-    <script src="../assets/js/admin.js"></script>
     <script src="assets/js/admin.js"></script>
+    <script>
+
+       
+    </script>
 
 </body>
 </html>

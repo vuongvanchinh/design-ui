@@ -4,33 +4,17 @@ let zoom_rate = 1
 // data is variable in file map/index.php
 $(document).ready(() => {
     setup()
-   
-    
+    $('.brick:nth-child(1)').click(() => {
+        changeSimpleSlide()
+    })
     $('.brick:nth-child(2)').click(() => {
         zoom(1)
     })
     document.getElementById('board').onwheel = function(e){ 
-        e.preventDefault()
-        // const target = $(e.target).closest('.brick')
-       
-        // const zero_p = $('.brick:nth-child(1)').position()
-        
-        const pre_zoom_rate = zoom_rate
-        // console.log(e.clientX, e.clientY)
-        // console.log("pre offset", (pre_position.left - zero_p.left), (pre_position.top - zero_p.top))
         let direction = e.deltaY < 0 ? 1: -1
-        zoom(direction, offset=0.1)
-        // console.log("after", (after_position.left - zero_p.left), (after_position.top - zero_p.top))
-        let new_position = {
-            x: zoom_rate * e.clientX,
-            y: zoom_rate * e.clientY
+        if (zoom(direction, offset=0.2)) {
+            return false
         }
-
-        // console.log(new_position)
-
-        let board = document.getElementById('board')
-        board.scrollLeft = board.scrollLeft + (zoom_rate - pre_zoom_rate) * e.clientX;
-        board.scrollTop = board.scrollTop + (zoom_rate - pre_zoom_rate) * e.clientY;
         return false;
         
     }
@@ -46,6 +30,7 @@ const setup = () => {
         //find location
         let b = $(`.brick:nth-child(${p.index+1})`) // b = brick
         let index = data.locations.findIndex(item => item.id === p.item_id)
+        console.log(index, p.item_id)
 
         if (index !== -1) { // find out
             b.append(presentItem(data.locations[index]))
@@ -220,22 +205,25 @@ const modal = (header='', body='', footer='', id='', name='set-feature-modal', c
 }
 
 const zoom = (direction, offset=0.05) => {
-    let current_percent = parseFloat($('.brick').css('zoom'))
+    
     if(direction === -1) {//descrease
+        let target_w = (zoom_rate - offset) * parseFloat(data.map.cell_width)
         let board_w = $('#board').width()
         let min_brick_w = board_w / data.map.cells_per_row
-        let min_percent = min_brick_w / parseFloat(data.map.cell_width)
-        
-        if (current_percent - offset >= min_percent) {
-            zoom_rate = current_percent - offset
-            $('.brick').css('zoom', zoom_rate)
+        if(target_w < min_brick_w) {
+            return false
+        } else {
+            zoom_rate -= offset
+            target_w += "px"
+            console.log(target_w,board_w, data.map.cells_per_row)
+            $('.brick:not(.plot)').css({width: target_w, height: target_w})
         }
-        console.log(min_percent, zoom_rate)
-    } else { 
-       zoom_rate = current_percent + offset
-        $('.brick').css('zoom', zoom_rate)
+    } else { //+ increase
+        let target_w = (zoom_rate + offset) *  parseFloat(data.map.cell_width)
+        target_w += "px"
+        zoom_rate += offset
+        $('.brick:not(.plot)').css({width: target_w, height: target_w})
     }
-  
     return true
 }
 

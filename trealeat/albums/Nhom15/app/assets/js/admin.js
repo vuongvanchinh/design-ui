@@ -1,20 +1,8 @@
-let state = {
-    map: {
-        cell_width: "50px",
-        number_of_cells: 2000,
-        cells_per_row: 60,
-        plots: [
-            { index: 64, x:5, y:2, w: 8, h: 8, item_id: 0},
-            // { index: 150,x:20, y:2, w: 8, h: 8, location_index: 1}
-        ],
-        paths: [],//w and h default is 1
-    }
-}
 let data = null
 let loadding = true
  // outputs a javascript object from the parsed json
 
-let pathMode = false
+let pathMode = true
 let plotMode = false
 
 const w_id = "number_cell_width"
@@ -27,24 +15,52 @@ const item_id_value = 'item_id'
 const modal_id = 'form-plot-modal'
 const pathToggleId = "#toggleDrawPathMode"
 const plotToggleId = "#togglePlotMode"
+let zoom_rate = 1
 
 $(document).ready(() => {
     
-    fetch('streamline-example.trealet')
-    .then(response => response.json()).then(jsonResponse => {
-        state =  jsonResponse.trealet
-        renderMap();
-        $(pathToggleId).click(() => {
-            drawPathModeToggle();
-        })
-        $(plotToggleId).click(() => {
-            plotModeToggle();
-        })
+    // fetch('../streamline-example.trealet')
+    // .then(response => response.json()).then(jsonResponse => {
+    //     state =  jsonResponse.trealet
+        
+    // }) 
+    renderMap();
+    $(pathToggleId).click(() => {
+        drawPathModeToggle();
+    })
+    $(plotToggleId).click(() => {
+        plotModeToggle();
+    })
+    document.getElementById('board').onwheel = function(e){ 
+        e.preventDefault()
+        // const target = $(e.target).closest('.brick')
+       
+        // const zero_p = $('.brick:nth-child(1)').position()
+        
+        const pre_zoom_rate = zoom_rate
+        // console.log(e.clientX, e.clientY)
+        // console.log("pre offset", (pre_position.left - zero_p.left), (pre_position.top - zero_p.top))
+        let direction = e.deltaY < 0 ? 1: -1
+        zoom(direction, offset=0.1)
+        // console.log("after", (after_position.left - zero_p.left), (after_position.top - zero_p.top))
+        let new_position = {
+            x: zoom_rate * e.clientX,
+            y: zoom_rate * e.clientY
+        }
 
-        $(`#${number_of_cells_id}`).val(state.map.number_of_cells)
-        $(`#${cells_per_row_id}`).val(state.map.cells_per_row)
-        $(`#${cell_width_id}`).val(state.map.cell_width)
-    })      
+        // console.log(new_position)
+
+        let view = document.getElementById('view')
+        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * e.clientX;
+        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * e.clientY;
+        return false;
+        
+    }
+
+    // update map parameter 
+    $(`#${number_of_cells_id}`).val(state.map.number_of_cells)
+    $(`#${cells_per_row_id}`).val(state.map.cells_per_row)
+    $(`#${cell_width_id}`).val(state.map.cell_width)     
 });
 
 const renderMap = () => {
@@ -59,13 +75,9 @@ const renderMap = () => {
                     ${i}
                 </div>`
     }
-    $('#board').remove()
-    $('#map').append(`    
-        <div class="board" id="board" style="grid-template-columns: repeat(${map.cells_per_row}, 1fr);">
-        ${cells} 
-        </div>
-    `);
-
+    $('#board').empty();
+    $('#board').append(cells)
+    
     // render plots 
     for (let i = 0; i < state.map.plots.length; i++) {
         let plot = state.map.plots[i];
@@ -93,17 +105,6 @@ const changePage = (nav) => {
     $(`#${pageId}`).addClass('page-view')
 }
 
-const zoom = (direction) => {
-    let pre_w = $('.brick').css('width')
-    let current_w = '50px'
-    if(direction === 1) {
-        current_w = `${parseInt(pre_w) * 1.1 }px`
-    } else {
-        current_w = `${parseInt(pre_w) * 0.9 }px`
-    }
-    $('.brick:not(.plot)').css('width', current_w);
-    $('.brick:not(.plot)').css('height', current_w);
-}
 
 const change = (el) => {
     let value = el.value
@@ -125,7 +126,9 @@ const change = (el) => {
 const refresh = () => {
     let {cell_width,cells_per_row, number_of_cells } = state.map
     if (cell_width && cells_per_row, number_of_cells) {
+
         renderMap()
+        $('.brick').css('zoom', 1)
     } else {
         alert("enter full fill before")
     }
@@ -223,7 +226,7 @@ const onPathMode = (i) => {
         return
     }
     let index = state.map.paths.findIndex(item => item.index===i)
-    if(index !== -1) {
+    if(index !== -1) { // delete 
         state.map.paths.splice(index, 1)
         $(`.brick:nth-child(${i + 1})`).removeClass('path')
         b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
@@ -231,9 +234,9 @@ const onPathMode = (i) => {
         const zero = $(`.brick:nth-child(1)`).position(); 
         let p = b.position()
         let cell_w = parseInt(state.map.cell_width)
-        let x = ((p.left - zero.left) / cell_w) + 1
-        let y = ((p.top - zero.top) / cell_w) + 1
-        console.log(p, zero)
+        let x = parseInt((p.left - zero.left) / cell_w) + 1
+        let y = parseInt((p.top - zero.top) / cell_w) + 1
+        console.log( i,"P", p, "Zero", zero)
         console.log(x, y)
         state.map.paths.push({index: i, x:x, y:y})
         b.addClass('path')
@@ -267,7 +270,7 @@ const deletePlot = (index) => {
 const savePlot = (w_id, h_id, brick_index) => {
     let w = parseInt($(w_id).val())
     let h = parseInt($(h_id).val())
-    if(!w || !h || !w <0 || !h <0) {
+    if(!w || !h || !w < 0 || !h < 0) {
         alert("Width and height must be enter and greate more than 0")
         return
     }
@@ -276,16 +279,18 @@ const savePlot = (w_id, h_id, brick_index) => {
     let b = $(`.brick:nth-child(${brick_index + 1})`)
     let p = b.position()
     let cell_w = parseInt(state.map.cell_width)
-    let x = ((p.left - zero.left) / cell_w) + 1
-    let y = ((p.top - zero.top) / cell_w) + 1
+    console.log("Cell width", cell_w)
+    console.log("Zero", zero)
+    console.log("brick point", p)
+    let x = parseInt((p.left - zero.left) / cell_w) + 1
+    let y = parseInt((p.top - zero.top) / cell_w) + 1
     
-
     // console.log(h, w)
 
     const index = state.map.plots.findIndex(item => item.index === brick_index)
-    if (index === -1) {
+    if (index === -1) {// add new
         state.map.plots.push({index: brick_index, x: x, y: y, w: w, h: h, item_id: item_id})
-    } else {
+    } else {// update
         state.map.plots[index].x = x
         state.map.plots[index].y = y
         state.map.plots[index].w = w
@@ -296,7 +301,7 @@ const savePlot = (w_id, h_id, brick_index) => {
     let delete_indexs = []
     for (let i = 0; i < state.map.paths.length; i++) {
         let item = state.map.paths[i]
-        if (item.x >= x && item.x <= x + w && item.y >= y && item.y <= y + h) {
+        if (item.x >= x && item.x < x + w && item.y >= y && item.y < y + h) {
             delete_indexs.push(i)
             let b = $(`.brick:nth-child(${item.index + 1})`)
             b.removeClass('path')
@@ -362,3 +367,21 @@ function saveText(text, filename){
     a.click()
 }
 
+const zoom = (direction, offset=0.05) => {
+    let current_percent = parseFloat($('.brick').css('zoom'))
+    if(direction === -1) {//descrease
+        let board_w = $('#view').width()
+        let min_brick_w = board_w / state.map.cells_per_row
+        let min_percent = min_brick_w / parseFloat(state.map.cell_width)
+        
+        if (current_percent - offset >= min_percent) {
+            zoom_rate = current_percent - offset
+            $('.brick').css('zoom', zoom_rate)
+        }
+    } else { 
+       zoom_rate = current_percent + offset
+        $('.brick').css('zoom', zoom_rate)
+    }
+  
+    return true
+}

@@ -1,6 +1,7 @@
 .container {
  
 }
+
 .sidebar {
   width: var(--sidebar-width);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
@@ -150,25 +151,32 @@ main {
   margin-right: 1rem;
 }
 
+#view {
+  width: calc(100% - .5rem);
+  height: calc(100vh - 100px);
+  overflow: auto; 
+  /* padding: 0.5rem; */
+  border: 1px solid #000;
+}
+#view::-webkit-scrollbar {
+  display: none;
+}
+
 .board {
-  height: calc(100% - 100px);
-  width: 100%;
-  border: 1px solid black;
+  width: fit-content;
   background: rgba(100,100,100,0.5); 
   display: grid;
-  gap: 0;
-  overflow: auto;
-  grid-template-columns: repeat(60, 1fr);
-  /* justify-content: center; */
+  position: relative; 
+  grid-gap: 0;
+  padding: 0;
+  margin: 0;
   
 }
+
 /* .board>* {
   transform: scale(0.5);
 } */
 
-.board::-webkit-scrollbar {
-  display: none;
-}
 
 .brick {
   --from-col: auto;
@@ -180,7 +188,7 @@ main {
   grid-column: auto;
   grid-row: auto;
   border: 1px solid #000;
-  border-radius: 6px;
+ 
   /* min-width: var(--width);
   min-height: var(--width); */
   display: flex;

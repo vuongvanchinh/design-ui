@@ -25,6 +25,11 @@
 <style>
 </style>
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+<link rel="stylesheet" href="../assets/css/global_variable.css">
+<link rel="stylesheet" href="../assets/css/common.css">
+<link rel="stylesheet" href="../assets/css/canvas_index.css">
+
+
 <link rel="stylesheet" href="assets/css/global_variable.css">
 <link rel="stylesheet" href="assets/css/common.css">
 <link rel="stylesheet" href="assets/css/canvas_index.css">
@@ -44,7 +49,7 @@
                 for($i = 0; $i < $d['map']['number_of_cells']; $i++) {
                     $content = $i;    
                     echo "
-                    <div class='brick' style='$style'>
+                    <div class='brick' style='$style' id='b$i'>
                        
                     </div>
                     ";
@@ -57,6 +62,10 @@
 <script>
     const data = JSON.parse('<?php echo json_encode($d); ?>')
 </script>
+<script src="../assets/js/index.js"></script>
+<script src="../assets/js/common.js"></script>
+<script src="../assets/js/map_index.js"></script>
+
 <script src="assets/js/index.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/map_index.js"></script>
