@@ -3,12 +3,8 @@ const popup_id = 'location_popup'
 let zoom_rate = 1
 // data is variable in file map/index.php
 $(document).ready(() => {
-    setup()
-   
     
-    $('.brick:nth-child(2)').click(() => {
-        zoom(1)
-    })
+    setup()
     document.getElementById('board').onwheel = function(e){ 
         e.preventDefault()
         // const target = $(e.target).closest('.brick')
@@ -222,7 +218,7 @@ const modal = (header='', body='', footer='', id='', name='set-feature-modal', c
 const zoom = (direction, offset=0.05) => {
     let current_percent = parseFloat($('.brick').css('zoom'))
     if(direction === -1) {//descrease
-        let board_w = $('#board').width()
+        let board_w = $('#view').width()
         let min_brick_w = board_w / data.map.cells_per_row
         let min_percent = min_brick_w / parseFloat(data.map.cell_width)
         
@@ -230,7 +226,6 @@ const zoom = (direction, offset=0.05) => {
             zoom_rate = current_percent - offset
             $('.brick').css('zoom', zoom_rate)
         }
-        console.log(min_percent, zoom_rate)
     } else { 
        zoom_rate = current_percent + offset
         $('.brick').css('zoom', zoom_rate)

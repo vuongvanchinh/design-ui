@@ -1,32 +1,26 @@
 
 .view {
-    --view-width: 100vw;
+    --view-width: 98vw;
     --view-height: 100vh;
     box-sizing: border-box;
     height: var(--view-height);
     width: var(--view-width);
+    
+    overflow: auto; 
+    border: 1px solid blue;
     margin: 0 auto;
-    /* border: 1px solid blue; */
-   
+
+}
+#view::-webkit-scrollbar {
+    display: none;
 }
 
 .board {
-    max-height: 100%;
-    width: 100%;
+    width: fit-content;
     background: rgba(100,100,100,0.5); 
     display: grid;
-    gap: 0;
-    overflow: auto;
-    grid-template-columns: repeat(60, 1fr);
-    /* justify-content: center; */
-    padding: 0;
-    margin: 0;
-    
-}
-
-
-.board::-webkit-scrollbar {
-    /* display: none; */
+    position: relative; 
+    grid-gap: 0;
 }
 
 .brick {
@@ -36,17 +30,11 @@
     --to-row: calc(var(--from-row) + var(--w));
     --w: 8;
     --width: 40px;
-    grid-column: auto;
-    grid-row: auto;
+  
     border: 1px solid #000;
-    /* border-radius: 6px; */
-   
     display: flex;
     justify-content: center;
     align-items: center;
-    /* overflow:hidden; */
-    /* transition: all 0.1s ease; */
-
 }
 
 .plot {

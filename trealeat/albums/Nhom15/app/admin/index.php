@@ -5,7 +5,7 @@
     $password = '12113133';
 
     $navs = json_decode('[
-        {"icon": "bx bx-map", "name": "Locations", "page": "locations"},
+        {"icon": "bx bx-map", "name": "Items", "page": "items"},
         {"icon": "bx bxs-dashboard", "name": "Map", "page": "map"},
         {"icon": "bx bx-dialpad-alt", "name": "Decorators", "page": "decorators"}
     ]');
@@ -35,35 +35,16 @@
             <div class="logo">
                 <img src="logo.jpg" alt="logo travel" draggable="false">
             </div>
-            <ul>
-                <?php
-                    $l = count($navs);
-
-                    for($i = 0; $i < $l; $i++) {
-                        $icon = $navs[$i]->icon;
-                        $name = $navs[$i]->name;
-                        $page = $navs[$i]->page;
-                        $active = $i == 0? 'nav-active':'';
-                        echo "<li>
-                                <div class='nav-item $active' name='$page' onclick='changePage(this)'>
-                                    <i class='$icon' ></i>
-                                    <span>$name</span>
-                                </div>
-                             </li>
-                        ";
-                    }
-                ?>
-                <li>
-                    <div class="nav-item" onclick="saveMap()">
-                        <i class='bx bxs-save'></i>    
-                        <span>Save</span>
-                    </div>
-                </li>
+            <ul id='navs'>
+                
             </ul>
         </div>
         <main>
-            <div class="page" id="locations">
-                    Locations
+            <div class="page" id="items">
+                <div id='item_actions' class="actions">
+
+
+                </div>
             </div>
             <div class="page" id="map">
                 <h1 style="text-align: center">Build your map</h1>

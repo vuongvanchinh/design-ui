@@ -71,7 +71,7 @@
 <script src="assets/js/map_index.js"></script>
 <script>
             document.addEventListener('DOMContentLoaded', function () {
-                const ele = document.getElementById('board');
+                const ele = document.getElementById('view');
                 ele.style.cursor = 'grab';
 
                 let pos = { top: 0, left: 0, x: 0, y: 0 };

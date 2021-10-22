@@ -24,22 +24,19 @@ $(document).ready(() => {
     //     state =  jsonResponse.trealet
         
     // }) 
-    renderMap();
+    renderNavs()
+    renderItem()
+    changePage('items')
+    renderMap()
     $(pathToggleId).click(() => {
-        drawPathModeToggle();
+        drawPathModeToggle()
     })
     $(plotToggleId).click(() => {
         plotModeToggle();
     })
     document.getElementById('board').onwheel = function(e){ 
         e.preventDefault()
-        // const target = $(e.target).closest('.brick')
-       
-        // const zero_p = $('.brick:nth-child(1)').position()
-        
         const pre_zoom_rate = zoom_rate
-        // console.log(e.clientX, e.clientY)
-        // console.log("pre offset", (pre_position.left - zero_p.left), (pre_position.top - zero_p.top))
         let direction = e.deltaY < 0 ? 1: -1
         zoom(direction, offset=0.1)
         // console.log("after", (after_position.left - zero_p.left), (after_position.top - zero_p.top))
@@ -62,11 +59,29 @@ $(document).ready(() => {
     $(`#${cells_per_row_id}`).val(state.map.cells_per_row)
     $(`#${cell_width_id}`).val(state.map.cell_width)     
 });
-
+const renderNavs = () => {
+    const navs = [
+        {icon: "bx bx-map", name: "Items", page:'items', onClick: () => changePage('items')},
+        {icon: "bx bxs-dashboard", name: "Map", page:'map', onClick:() =>  changePage('map')},
+        {icon: "bx bx-dialpad-alt", name: "Decorators", page:'decorators', onClick:() => changePage('decorators')},
+        {icon: "bx bxs-save", name: "Save", page:'sav', onClick: () => saveMap()}
+    ]
+    let navigation = $('#navs')
+    for (i = 0; i < navs.length; i++) {
+        let nav = navs[i];
+        navigation.append(`
+        <div class='nav-item' name='${nav.page}'>
+            <i class='${nav.icon}' ></i>
+            <span>${nav.name}</span>
+        </div>
+        `)
+        $(navigation.children().last()).click((e) => {
+            nav.onClick(e)
+        }) 
+    }
+}
 const renderMap = () => {
     let = plots = state.map.plots
-    let map = state.map
-
     let cells = ''
     let style = `style="width: ${state.map.cell_width}; height: ${state.map.cell_width}"`
     for (let i = 0; i < state.map.number_of_cells; i++) {
@@ -94,15 +109,40 @@ const renderMap = () => {
         b.css({width: "auto", height: "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
         b.addClass('path')
     }
+
+
 }
 
-const changePage = (nav) => {
-    let current = $(nav)
+const renderItem = () => {
+    const btns = [
+        {
+            name: "Add location",
+            onClick: (e) => { alert("Add location")}
+        },
+        {
+            name: "Add decorator",
+            onClick: (e) => { alert("Add decorator")}
+        }
+    ]
+    let actions = $('#item_actions')
+    for (i = 0; i < btns.length; i++) {
+        let btn = btns[i];
+        actions.append(`<button class="btn btn-light"}">${btn.name}</button>`)
+        $(actions.children().last()).click((e) => {
+            btn.onClick(e)
+        }) 
+    }
+}
+
+const changePage = (id) => {
+    console.log(`.nav-item[name='${id}']`)
+    let current = $(`.nav-item[name='${id}']`).first()
     $('.nav-item').removeClass('nav-active')
     current.addClass('nav-active')
-    let pageId = current.attr('name')
+    
     $('.page').removeClass('page-view')
-    $(`#${pageId}`).addClass('page-view')
+    $(`#${id}`).addClass('page-view')
+    
 }
 
 
