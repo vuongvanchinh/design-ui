@@ -2,6 +2,7 @@
 	require_once('../lib/functions.php');
 
 	$d = initializeApp('streamline');	
+  
 	// $ni = sizeof($d['items']);
 	// $iu = array($ni);	
 
@@ -40,34 +41,57 @@
 <body>
     <div class="container" id="container">
         <div class="view" id="view">
-            <div class="board" id="board">
             <?php
-                
-                $index = 0;
+                $cells_per_row = $d['map']['cells_per_row'];
                 $cell_w = $d['map']['cell_width'];
                 $style = "width: $cell_w; height: $cell_w;"; 
-                for($i = 0; $i < $d['map']['number_of_cells']; $i++) {
-                    $content = $i;    
-                    echo "
-                    <div class='brick' style='$style' id='b$i'>
-                       
+                $ni = $d['map']['number_of_cells'];
+                $cells = str_repeat("
+                    <div class='brick' style='$style'>
                     </div>
-                    ";
-                }
+                    ", $ni);
+                
+                echo "
+                    <div class='board' id='board' style='grid-template-columns: repeat($cells_per_row, 1fr);'>
+                        $cells                
+                    </div>
+                " 
             ?>
-        
-            </div>
         </div>
     </div>
-<script>
-    const data = JSON.parse('<?php echo json_encode($d); ?>')
-</script>
-<script src="../assets/js/index.js"></script>
+    <input type="hidden" id="data_is_set" value='0' style='display:none;'>
 <script src="../assets/js/common.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+    let data = {}
+    let loader = null
+    $(document).ready(() => {
+        loader = loading('loader-page')
+        $(`#container`).append(loader.getHtml())
+       
+        ;(async () => {
+            try {
+                let res = await JSON.parse('<?php echo json_encode(getFullLinkData($d));?>')
+                console.log(res)
+                data = res 
+                // loader.remove()
+                // loader = null
+                $('#data_is_set').val('1')
+
+            } catch (error) {
+                alert(error)
+                console.log(error)
+            }
+        })()
+    }) 
+
+</script>
+
+<script src="../assets/js/index.js"></script>
 <script src="../assets/js/map_index.js"></script>
 
 <script src="assets/js/index.js"></script>
-<script src="assets/js/common.js"></script>
+
 <script src="assets/js/map_index.js"></script>
 <script>
             document.addEventListener('DOMContentLoaded', function () {

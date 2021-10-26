@@ -1,6 +1,6 @@
 
 .view {
-    --view-width: 98vw;
+    --view-width: 100vw;
     --view-height: 100vh;
     box-sizing: border-box;
     height: var(--view-height);

@@ -5,7 +5,7 @@
     $password = '12113133';
 
     $navs = json_decode('[
-        {"icon": "bx bx-map", "name": "Items", "page": "items"},
+        {"icon": "bx bx-map", "name": "Locations", "page": "locations"},
         {"icon": "bx bxs-dashboard", "name": "Map", "page": "map"},
         {"icon": "bx bx-dialpad-alt", "name": "Decorators", "page": "decorators"}
     ]');
@@ -17,16 +17,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/admin.css">
-    <link rel="stylesheet" href="../assets/css/common.css">
     <link rel="stylesheet" href="../assets/css/global_variable.css">
+    <link rel="stylesheet" href="../assets/css/common.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <link rel="stylesheet" href="../assets/css/grid.css">
     
-    <link rel="stylesheet" href="assets/css/admin.css">
-    <link rel="stylesheet" href="assets/css/common.css">
     <link rel="stylesheet" href="assets/css/global_variable.css">
+    <link rel="stylesheet" href="assets/css/common.css">
+    <link rel="stylesheet" href="assets/css/grid.css">
+    <link rel="stylesheet" href="assets/css/admin.css">
     
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="../assets/js/richtext/richtext.min.css">
+    <script type="text/javascript" src="../assets/js/richtext/jquery.richtext.js"></script>
+    <link rel="stylesheet" href="assets/js/richtext/richtext.min.css">
+    <script type="text/javascript" src="assets/js/richtext/jquery.richtext.js"></script>
     <title>Admin</title>
 </head>
 <body>
@@ -40,11 +49,21 @@
             </ul>
         </div>
         <main>
-            <div class="page" id="items">
-                <div id='item_actions' class="actions">
-
-
+            <div class="page" id="locations-page">
+                <div id='add-item' class="grid" style='grid-gap: 10px;'>
+                
+            </div>
+    
+                <div id="location-content" style="max-width: 1080px; margin: 0 auto;">
+                    <div class="page-header">
+                        <h2>Locations</h2>
+                        <button onclick='addLocation()' class="btn btn-save">
+                            Add new location
+                        </button>
+                    </div>
+                    
                 </div>
+                  
             </div>
             <div class="page" id="map">
                 <h1 style="text-align: center">Build your map</h1>
@@ -106,7 +125,7 @@
     
     <script>
         let state =  JSON.parse('<?php echo json_encode($d); ?>')
-       
+        
         // handle scroll event 
         document.addEventListener('DOMContentLoaded', function () {
             const ele = document.getElementById('view');
@@ -151,8 +170,12 @@
             ele.addEventListener('mousedown', mouseDownHandler);
         });
     </script>
+    <script src="../assets/js/common.js"></script>
+    <script src="assets/js/common.js"></script>
     <script src="../assets/js/admin.js"></script>
     <script src="assets/js/admin.js"></script>
+    <script src="../assets/js/locationadmin.js"></script>
+    <script src="assets/js/locationadmin.js"></script>
 
 </body>
 </html>

@@ -1,34 +1,30 @@
 
 const popup_id = 'location_popup'
 let zoom_rate = 1
-// data is variable in file map/index.php
-$(document).ready(() => {
+
+
+$(document).ready(() => { 
+    if ($('#data_is_set').val() === '1') {
+        console.log('data is set right now')
+        setup()
+        loader.remove()
+        loader = null
+    } else {
+        $('#data_is_set').change(() => {
+            // alert('call setup')
+            setup()
+        })
+    }
     
-    setup()
-    document.getElementById('board').onwheel = function(e){ 
+    document.getElementById('view').onwheel = function(e){ 
         e.preventDefault()
-        // const target = $(e.target).closest('.brick')
-       
-        // const zero_p = $('.brick:nth-child(1)').position()
-        
         const pre_zoom_rate = zoom_rate
-        // console.log(e.clientX, e.clientY)
-        // console.log("pre offset", (pre_position.left - zero_p.left), (pre_position.top - zero_p.top))
         let direction = e.deltaY < 0 ? 1: -1
         zoom(direction, offset=0.1)
-        // console.log("after", (after_position.left - zero_p.left), (after_position.top - zero_p.top))
-        let new_position = {
-            x: zoom_rate * e.clientX,
-            y: zoom_rate * e.clientY
-        }
-
-        // console.log(new_position)
-
-        let board = document.getElementById('board')
-        board.scrollLeft = board.scrollLeft + (zoom_rate - pre_zoom_rate) * e.clientX;
-        board.scrollTop = board.scrollTop + (zoom_rate - pre_zoom_rate) * e.clientY;
+        let view = document.getElementById('view')
+        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
         return false;
-        
     }
     // changeSimpleSlide()
 })
@@ -60,7 +56,13 @@ const setup = () => {
         b.css({gridColumn: `${p.x} / span 1`, gridRow: `${p.y} / span 1`})
         b.addClass('path')
     }
-    // $('.brick:not(.plot)').css({width: data.map.cell_width, height:  data.map.cell_width})
+
+    $(window).resize((e) => {
+        if (zoom_rate < 1) {
+            zoom_rate = 1
+            $('.brick').css('zoom', zoom_rate)
+        }
+    })
 }
 
 
@@ -78,7 +80,7 @@ const presentItem = (data) => {
         if (slide_items.length === 0) {
             classs += 'simple-slide-item-active'
         }
-        if(data.media[i].type ==='image') {
+        if(data.type='image' || data.type==='GIF' || data.type==='JPEG'|| data.type==='JPG'|| data.type==='PNG'|| data.type==='TIF'|| data.type==='TIFF') {
             slide_items += `
             <div class="${classs}" style="background-image: url('${data.media[i].url}')">
             
@@ -96,7 +98,7 @@ const presentItem = (data) => {
            </div>
            <div class='present-info'>
             <span class='present-item-name'> ${data.name}</span>
-            <div onclick="showPopup(${data.id})"class='btn-detail'>
+            <div onclick="showPopup('${data.id}')"class='btn-detail'>
                 <i class='bx bx-show'></i>
                 <span>Xem</span>
             </div>
@@ -113,14 +115,13 @@ const popUpContent = (data) => {
     return `
         <div>
             ${data.media.length > 0 && data.media[0].type=='YTB' ? `
-               ${mediaHtml(data.media[0])}
+               ${mediaHtml(data.media[0], '', false)}
             `:''}
             <p class="media-description">${data.description}</p>
             ${content}
         </div>
     `
 }
-
 
 const popUpFooter = (data) => {
 
@@ -139,6 +140,7 @@ const popUpFooter = (data) => {
     
     `
 }
+
 const changeSimpleSlide = () => {
     let slides_active = $('.simple-slide-item-active')
     for(i = 0; i < slides_active.length; i++) {
@@ -152,19 +154,19 @@ const changeSimpleSlide = () => {
         }
     }
 }
+
 const slider = (data) => {
     return `
         <div class="slider">
             Slider
             ${data.name}
-
         </div>
     `
 }
 
 const showPopup = (item_id) => {
     let index = data.locations.findIndex(item => item.id == item_id)
-    console.log(data.locations, item_id)
+    // console.log(data.locations, item_id)
     if (index === -1) {
         alert("Location not found")
 
@@ -176,43 +178,16 @@ const showPopup = (item_id) => {
         let popup_content = popUpContent(location)
         let popup_footer = popUpFooter(location)
         let md = modal(header, popup_content , popup_footer, popup_id, popup_id, true,  'medium')
-        $('#container').prepend(md)
+        $('#container').prepend(md.getHtml())
         $(`#${popup_id}`).mousedown((e) => {
             if(e.target.classList.contains('modal')) {
-                closePopup()
+                md.close()
             }
         })
         $(`#${popup_id} .modal-close`).click((e) => {
-            closePopup()
+            md.close()
         })
     }
-}
-
-const closePopup = () => {
-    $(`#${popup_id}`).off('mousedown')
-    $(`#${popup_id}`).remove()
-}
-
-const modal = (header='', body='', footer='', id='', name='set-feature-modal', close_icon = true, variant='main') => {
-    if (footer) {
-        footer = `<div class="modal-footer">${footer}</div>`
-    }
-    if (header) {
-        header = `<div class='modal-header'>${header}</div>`
-    }
-
-    return `
-    <div class='modal modal-${variant} open-modal' name='${name}' ${id?`id="${id}"`: ""}>
-        <div class='modal-content'>
-            ${header}
-            <div class='modal-body'>
-                ${body}
-            </div>
-            ${footer}
-            ${close_icon ? "<i class='bx bx-x modal-close'></i>":''}
-        </div>
-    </div>
-    `
 }
 
 const zoom = (direction, offset=0.05) => {
@@ -239,25 +214,17 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
     if (id.length > 0) {
         id = `id="${id}"`
     }
-    switch (data.type) {
-        case 'image':
-            media = `<img class="media-image" ${id} src="${data.url}"/>`
-            break;
-        case 'YTB': 
-            media = `
-                <div class="video">
-                    <iframe src="${data.url}" title="${data.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
-                </div>
-            `
-        case "3d":
-            media = `
-                <div class="video">
-                    <iframe src="${data.url}" title="${data.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
-                </div>
-            `
-        default:
-            break;
+    if (data.type ==='image' || data.type==='GIF' || data.type==='JPEG'|| data.type==='JPG'|| data.type==='PNG'|| data.type==='TIF'|| data.type==='TIFF') {
+        media = `<img class="media-image" ${id} src="${data.url}"/>`
+
+    } else if (data.type === 'YTB' || data.type === 'IFRAME') {
+        media = `
+            <div class="video">
+                <iframe src="${data.url}" title="${data.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
+            </div>
+        `
     }
+
     if(only_media) {
         return media
     } else {
@@ -268,3 +235,4 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
         `
     }
 }
+
