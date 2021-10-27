@@ -17,7 +17,7 @@
 
 .board {
     width: fit-content;
-    background: rgba(100,100,100,0.5); 
+    /* background: rgba(100,100,100,0.5);  */
     display: grid;
     position: relative; 
     grid-gap: 0;
@@ -31,7 +31,7 @@
     --w: 8;
     --width: 40px;
   
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     display: flex;
     justify-content: center;
     align-items: center;

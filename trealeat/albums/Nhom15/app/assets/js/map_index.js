@@ -7,15 +7,14 @@ $(document).ready(() => {
     if ($('#data_is_set').val() === '1') {
         console.log('data is set right now')
         setup()
-        loader.remove()
-        loader = null
+        
     } else {
         $('#data_is_set').change(() => {
             // alert('call setup')
             setup()
+            
         })
     }
-    
     document.getElementById('view').onwheel = function(e){ 
         e.preventDefault()
         const pre_zoom_rate = zoom_rate
@@ -26,7 +25,8 @@ $(document).ready(() => {
         view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
         return false;
     }
-    // changeSimpleSlide()
+    
+  
 })
 
 
@@ -37,6 +37,7 @@ const setup = () => {
         
         </div>
     `
+    $('#board').css('grid-template-columns', `repeat(${data.map.cells_per_row}, 1fr)`)
     $('#board').append(brick.repeat(data.map.number_of_cells))
     //plots
     for(let i = 0; i < data.map.plots.length; i++) {
@@ -69,6 +70,7 @@ const setup = () => {
             $('.brick').css('zoom', zoom_rate)
         }
     })
+    $('#pre-loader').remove()
 }
 
 
@@ -110,9 +112,8 @@ const presentItem = (data) => {
             </div>
            </div>
         </div>
-    `
+   `
 }
-
 const popUpContent = (data) => {
     let content = ''
     for (i = 1; i < data.media.length; i++) {
@@ -130,7 +131,6 @@ const popUpContent = (data) => {
 }
 
 const popUpFooter = (data) => {
-
     return `
         <div class="flex space-between">
             <span class="btn btn-footer"
@@ -143,7 +143,6 @@ const popUpFooter = (data) => {
             Chơi một trò chơi</span>
         
         </div>
-    
     `
 }
 
