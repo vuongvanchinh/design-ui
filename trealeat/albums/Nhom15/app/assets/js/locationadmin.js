@@ -6,16 +6,34 @@ const renderLocationPage = () => {
     let body = ''
     for (i = 0; i < state.locations.length; i++) {
         body += `
-            <tr ondblclick="updateLocation('${state.locations[i].id}')">
+            <tr id='${state.locations[i].id}'>
+
                 <td>${state.locations[i].id}</td>
                 <td>${state.locations[i].name}</td>
-            
+                <td>${state.locations[i].media}</td>
+                <td>
+                    ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
+                        <div class="btn-del" onclick="deleteLocation('${state.locations[i].id}')">Delete</div>
+                    `).getHtml()}
+                </td>
             </tr>
         `
     }
-    const location_headers = ['Item id', 'Name']
-    $('#location-content').append(table(location_headers, body, 'locations-table'))
+
+    const location_headers = ['Item id', 'Name', 'Media', '']
+    $('#location-content').append(table(location_headers, body, 'locations-table', 'Locations', `There are ${state.locations.length} locations`))
+    $('#locations-table tbody tr').dblclick((e) => {
+        // console.log(e)
+        if ($(e.target).is('td')) {
+            let id = $(e.target).parent().attr('id');
+            updateLocation(id)
+        }
+    } )
 }
+
+
+
+
 const location_form = (dt = {id: false, name:'', description: '', media: []}) => {
     let form = `
     
@@ -111,12 +129,12 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
             return failed
         },
         setup: () => {
-            $('#location_description').richText();
+            $('#location_description').richText().trigger('change');
             // fill data
             if (dt.id) {
                 $('#location_name').val(dt.name)
                 $('#media-ids').val(dt.media.join(','))
-                $('#location_description').val(dt.description)
+                $('#location_description').val(dt.description).trigger('change')
             }
 
 
@@ -223,11 +241,39 @@ const addMedia = (type) => {
     })
 }
 
+const deleteLocation = (id) => {
+    let index = state.locations.findIndex(item => item.id === id)
+    if (index === -1) {
+        alert('not found')
+        return
+    }
+    let body = `
+        <div class="flex space-between">
+            <button class="btn btn-light" id='no-delete'>No</button>
+            <button class="btn btn-save" id='confirm-delete'>Yes</button>
+        </div>
+    `
+    let m = modal(`Are you sure delete ${id}?`, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
+    $('#locations-page').prepend(m.getHtml())
+    $('#no-delete').click(() => {
+        m.close()
+        m=null   
+        $(`tr#${id} .dropdown-content`).removeClass('drop')
+    })
+
+    $('#confirm-delete').click(() => {
+        state.locations.splice(index, 1)
+        m.close()
+        m = null
+        $(`tr#${id}`).fadeOut()
+
+    })
+} 
 const addLocation = () => {
     let form = location_form()
     let footer = `
         <div style="padding: .5rem 0">
-            <span class='btn btn-light ' id='cancel-location-form'>Cancel</span>
+            <span class='btn btn-light ' id='cancel-location-form' style ='margin-right: 0.5rem;'>Cancel</span>
             <span class='btn btn-save' id='add-location-btn'>Save</span>
         </div>
     `
@@ -239,19 +285,35 @@ const addLocation = () => {
     })
     $(`#add-location-btn`).click(() => {
         if(!form.validate()) { // not fail
-            let lastid = 1 
-            if (state.map.plots.length > 0) {
-                lastid = parseInt(state.locations[state.locations.length - 1].id.split('_')[0])
+            let lastid = 1
+            let l = state.locations.length 
+            console.log(l)
+            if (l > 0) {
+
+                lastid = parseInt(state.locations[l - 1].id.split('_')[1])
             } 
             let new_id = `location_${lastid + 1}`
             let dt = form.getData()
             state.locations.push({...dt, id: new_id})
             $('#locations-table tbody').append(`
-                <tr onclick="updateLocation('${new_id}')">
+                <tr id='${new_id}'>
                     <td>${new_id}</td>
                     <td>${dt.name}</td>
+                    <td>${dt.media}</td>
+                    <td>
+                        ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
+                            <div class="btn-del" onclick="deleteLocation('${new_id}')">Delete</div>
+                        `).getHtml()}
+                    </td>
                 </tr>
             `)
+            $('#locations-table tbody tr:last-child()').dblclick((e) => {
+                // console.log(e)
+                if ($(e.target).is('td')) {
+                    let id = $(e.target).parent().attr('id');
+                    updateLocation(id)
+                }
+            } )
             m.close()
         }
     })
@@ -267,7 +329,7 @@ const updateLocation = (location_id) => {
     let form = location_form(state.locations[index])
     let footer = `
         <div style="padding: .5rem 0">
-            <span class='btn btn-light ' id='cancel-location-form'>Cancel</span>
+            <span class='btn btn-light ' id='cancel-location-form' style ='margin-right: 0.5rem;'>Cancel</span>
             <span class='btn btn-save' id='update-location-btn'>Save</span>
         </div>
     `
@@ -285,7 +347,14 @@ const updateLocation = (location_id) => {
             $(`#locations-table > tbody > tr:nth-child(${index + 1})`).append(`
                 <td>${state.locations[index].id}</td>
                 <td>${dt.name}</td>
+                <td>${state.locations[index].media}</td>
+                <td>
+                    ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
+                        <div class="btn-del" onclick="deleteLocation('${state.locations[index].id}')">Delete</div>
+                    `).getHtml()}
+                </td>
             `)
+            
             m.close()
         }
     })

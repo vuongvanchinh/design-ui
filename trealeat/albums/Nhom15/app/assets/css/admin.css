@@ -16,14 +16,11 @@
   
 }
 
-.sidebar>ul>li:last-child {
+/* .sidebar>ul>li:last-child {
   margin: 0;
   margin-top: auto;
-  
-  
-}
 
-
+} */
 
 .nav-item {
     font-size: 1.2rem;
@@ -42,8 +39,9 @@
   font-size: 1.5rem;
   padding: 1rem;
 }
+
 .nav-item:not(.nav-active):hover {
-  background-color: var(--hover-bg);
+  background-color: rgb(5, 175, 161);
   color: #fff;
 }
 .nav-active {
@@ -176,35 +174,47 @@ main {
   
 }
 .table-admin-wraper {
-  padding: 0.5rem;
+  padding: 0;
   border-radius: .5rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-
+.table-name {
+  padding: 0.8rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.table-footer {
+  padding: 0.8rem;
+}
 .table-admin {
-  width: 100%;
-  border-collapse: collapse;
+    width: 100%;
+    border-collapse: collapse;
+}
+.table-admin tr {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    transition: all .5s ease;
+
 }
 .table-admin th {
   padding: 1rem;
-  background-color: #ccc;
-  border: 1px solid #000;
+  text-align: left;
   text-transform: uppercase;
 }
 
 .table-admin td {
-  padding: 0.5rem;
-  border: 1px solid #000;
+  padding: 0.8rem;
+  font-size: 1.2rem;
+  /* border: 1px solid #000; */
 }
 
 .table-admin th:first-child {
-  padding: 0.5rem;
-  width: 80px;
+  padding: 1rem;
+  min-width: 90px;
 }
 
 .table-admin tbody tr:hover {
   cursor: pointer;
-  background-color: #f1f1f1;
+  background-color: rgba(13, 187, 164, 0.336);
+  /* color: #f1f1f1; */
 }
 
 .media-form {
@@ -216,4 +226,22 @@ main {
   font-size: 1.5rem;
   padding: 0.5rem 0;
   position: relative;
+}
+
+@media screen and (max-width: 1279px) {
+    .sidebar {
+        --logo-height: 60px;
+    }
+    .nav-item {
+        flex-direction: column;
+        padding: 0.5rem 0.2rem;
+    }
+
+    .nav-item i {
+      padding:0.2rem;
+      font-size: 2rem; 
+    }
+    .nav-item span {
+      font-size: 0.875rem;
+    }
 }

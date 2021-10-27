@@ -156,5 +156,16 @@
 			"media":[
 				9714,
 				9706
-			],"next":null}
-		]}}
+			],
+			"next":null
+		}
+	],
+	"decorators": [
+		{
+			"id": "decorator_1",
+			"name": "test",
+			"media": []
+		}
+	]
+	}
+}

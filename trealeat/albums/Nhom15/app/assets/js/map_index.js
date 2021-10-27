@@ -31,7 +31,13 @@ $(document).ready(() => {
 
 
 const setup = () => {
-    
+    // render brick
+    let brick = `
+        <div class='brick' style = 'width: ${data.map.cell_width};height:${data.map.cell_width}'>
+        
+        </div>
+    `
+    $('#board').append(brick.repeat(data.map.number_of_cells))
     //plots
     for(let i = 0; i < data.map.plots.length; i++) {
         let p = data.map.plots[i]
@@ -169,7 +175,6 @@ const showPopup = (item_id) => {
     // console.log(data.locations, item_id)
     if (index === -1) {
         alert("Location not found")
-
     } else {
         let location = data.locations[index]
         let header = `

@@ -2,9 +2,9 @@ let data = null
 let loadding = true
  // outputs a javascript object from the parsed json
 
-let pathMode = true
+let pathMode = false
 let plotMode = false
-
+ 
 // const w_id = "number_cell_width"
 // const h_id = "number_cell_height"
 const number_of_cells_id = "number_of_cells"
@@ -49,7 +49,7 @@ const renderNavs = () => {
     const navs = [
         {icon: "bx bx-map", name: "Locations", page:'locations-page', onClick: () => changePage('locations-page')},
         {icon: "bx bxs-dashboard", name: "Map", page:'map', onClick:() =>  changePage('map')},
-        {icon: "bx bx-dialpad-alt", name: "Decorators", page:'decorators', onClick:() => changePage('decorators')},
+        {icon: "bx bx-dialpad-alt", name: "Decorators", page:'decorators-page', onClick:() => changePage('decorators-page')},
         {icon: "bx bxs-save", name: "Save", page:'sav', onClick: () => saveMap()}
     ]
     let navigation = $('#navs')
@@ -103,8 +103,6 @@ const renderMap = () => {
     })
 
 }
-
-
 
 const changePage = (id) => {
     console.log(`.nav-item[name='${id}']`)

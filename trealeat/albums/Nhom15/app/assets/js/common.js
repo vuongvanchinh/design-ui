@@ -17,6 +17,7 @@ const loading = (id='', variant='medium',  full_page = true) => {
     if (!full_page) {
         style = "style= 'width: 100%; height: auto; background-color: transparent; position: initial;'"
     }
+    
     let html = `
        <div class="dashed-loader-wraper" id='${id}' ${style}>
             <div class="dashed-loading dashed-loading-${variant}"></div>
@@ -33,7 +34,7 @@ const loading = (id='', variant='medium',  full_page = true) => {
     }
 }
 
-const table = (headers, body, id ='table-location') => {
+const table = (headers, body, id ='table-location', name='Table name', footer ='...') => {
     let heads = ''
     for (i = 0; i < headers.length; i++) {
         heads += `<th>${headers[i]}</th>`
@@ -41,6 +42,7 @@ const table = (headers, body, id ='table-location') => {
 
     return `
     <div class="table-admin-wraper">
+        <div class="table-name">${name}</div>
         <table id='${id}' class='table-admin'>
             <thead>
                 ${heads}
@@ -49,6 +51,9 @@ const table = (headers, body, id ='table-location') => {
                 ${body}
             </tbody>
         </table>
+        <div class="table-footer ">
+            ${footer}
+        </div>
     </div>
     `
 }
@@ -83,4 +88,28 @@ const modal = (header='', body='', footer='', id='modal_id', name='set-feature-m
             }, 500)
         }
     }
+}
+
+const dropdown = (toggle, content) => {
+    let html = `
+        <div class="dropdown">
+            <span class='dropdown-toggle' onclick=(drop(this))>${toggle}</span>
+            <div class="dropdown-content">
+                ${content}
+            </div>
+        </div>
+    
+    `
+    return {
+        getHtml: () => html,
+    }
+}
+
+const drop = (el) => {
+    $(el).next().toggleClass('drop')
+}
+
+const fetchData = (url, func) => {
+    let dt = null
+    fetch(url).then((res) => res.json()).then((data) => func(data))
 }

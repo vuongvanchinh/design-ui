@@ -95,9 +95,9 @@
                         </div>
                     </div>
                     <div class="right">
-                        <button class="btn btn-light btn-active" id="toggleDrawPathMode">Draw path mode</button>
+                        <button class="btn btn-light" id="toggleDrawPathMode">Draw path mode</button>
                         <button class="btn btn-light" id="togglePlotMode">Plots of land mode</button>
-                        <button class="btn btn-light" onclick="saveMap()">Cancel</button>
+                        
                         <button class="btn btn-save" onclick="refresh()">Temper build</button>
                         
                     </div>
@@ -113,19 +113,22 @@
                     ?>
                     </div>
             </div>
-            <div class="page" id="decorators">
-                    Decorations
-                    cdtydtydd
-                    vygygg
-                    <br>
-                    gtyfyuffuy
+            <div class="page" id="decorators-page">
+                <div id="decorator-content" style="max-width: 1080px; margin: 0 auto;">
+                    <div class="page-header">
+                        <h2>Decorator</h2>
+                        <button onclick='addDecorator()' class="btn btn-save">
+                            Add new decorator
+                        </button>
+                    </div>
+                    
+                </div>
             </div>
         </main>        
     </div>
     
     <script>
         let state =  JSON.parse('<?php echo json_encode($d); ?>')
-        
         // handle scroll event 
         document.addEventListener('DOMContentLoaded', function () {
             const ele = document.getElementById('view');
@@ -176,6 +179,8 @@
     <script src="assets/js/admin.js"></script>
     <script src="../assets/js/locationadmin.js"></script>
     <script src="assets/js/locationadmin.js"></script>
+    <script src="../assets/js/decoratoradmin.js"></script>
+    <script src="assets/js/decoratoradmin.js"></script>
 
 </body>
 </html>

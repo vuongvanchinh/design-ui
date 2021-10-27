@@ -1,15 +1,3 @@
-<?php 
-    require_once('../lib/functions.php');
-    $username = 'Nhom15';
-    $password = '12113133';
-
-    $navs = json_decode('[
-        {"icon": "bx bx-map", "name": "Locations", "page": "locations"},
-        {"icon": "bx bxs-dashboard", "name": "Map", "page": "map"},
-        {"icon": "bx bx-dialpad-alt", "name": "Decorators", "page": "decorators"}
-    ]');
-    if(!$navs) die('Cannot parse the navs content!');	
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,92 +13,18 @@
     <title>Admin</title>
 </head>
 <body>
-    <div class="container">
-        <div class="sidebar">
-            <div class="logo">
-                <img src="../media/images/logo.jpg" alt="logo travel" draggable="false">
-            </div>
-            <ul>
-                <?php
-                    $l = count($navs);
-
-                    for($i = 0; $i < $l; $i++) {
-                        $icon = $navs[$i]->icon;
-                        $name = $navs[$i]->name;
-                        $page = $navs[$i]->page;
-                        $active = $i == 0? 'nav-active':'';
-                        echo "<li>
-                                <div class='nav-item $active' name='$page' onclick='changePage(this)'>
-                                    <i class='$icon' ></i>
-                                    <span>$name</span>
-                                </div>
-                             </li>
-                        ";
-                    }
-                ?>
-                <li>
-                    <div class="nav-item" onclick="saveMap()">
-                        <i class='bx bxs-save'></i>    
-                        <span>Save</span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <main>
-            <div class="page" id="locations">
-                    Locations
-            </div>
-            <div class="page" id="map">
-                <h1 style="text-align: center">Build your map</h1>
-                <div class="actions">
-                    <div class="left">
-                        <div class="textfield">
-                            <input type="number" name="number_of_cells" 
-                                onchange="change(this)" placeholder="vd: 5000" 
-                                class="map-input"
-                                id="number_of_cells" 
-                            />
-                            <label for="number_of_cells">Number of cells</label>
-                        </div>
-                        <div class="textfield">
-                            <input type="number" name="cells_per_row" 
-                                onchange="change(this)" placeholder="vd: 50" 
-                                class="map-input"
-                                id="cells_per_row" 
-                            />
-                            <label for="cells_per_row">Cells per row</label>
-                        </div>
-                        <div class="textfield">
-                            <input type="text" name="cell_width" 
-                                onchange="change(this)" placeholder="Ex: 50px" 
-                                class="map-input"
-                                id="cell_width"
-                            />
-                            <label for="cell_width">Cell width</label>
-                        </div>
-                    </div>
-                    <div class="right">
-                        <button class="btn btn-light" id="toggleDrawPathMode">Draw path mode</button>
-                        <button class="btn btn-light" id="togglePlotMode">Plots of land mode</button>
-                        <button class="btn btn-light" onclick="saveMap()">Cancel</button>
-                        <button class="btn btn-save" onclick="refresh()">Temper build</button>
-                        
-                    </div>
-                </div>
-            </div>
-            <div class="page" id="decorators">
-                    Decorations
-                    cdtydtydd
-                    vygygg
-                    <br>
-                    gtyfyuffuy
-            </div>
-        </main>        
-    </div>
-    <script src="assets/js/admin.js"></script>
+    <div id='root'>
+    <script src="assets/js/common.js"></script>
+    <script src="../assets/js/common.js"></script>
     <script>
-
-       
+        // let data_url = 'https://hcloud.trealet.com/tiny7938/?json'
+        fetch('https://picsum.photos/id/237/200/300')
+        .then(res => {
+            console.log(res)
+            return res.json()})
+        .then((data) => {
+            console.log(data)
+        })
     </script>
 
 </body>
