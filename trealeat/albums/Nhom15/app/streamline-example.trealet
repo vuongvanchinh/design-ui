@@ -2,7 +2,7 @@
     "map":{
 			"cell_width":"50px",
 			"cells_per_row":50,
-			"number_of_cells":"3400",
+			"number_of_cells":3400,
 			"plots":[
 				{
 					"index":142,"x":23,"y":6,"w":3,"h":3,"item_id":"location_1"
@@ -141,7 +141,7 @@
 		},
 		{
 			"id":"location_2",
-			"name":"Quảng ninh",
+			"name":"Test",
 			"effect":"crazy",
 			"description":"description",
 			"media":[
@@ -150,7 +150,7 @@
 			"next":"hanoi"},				
 		{
 			"id":"location_3",
-			"name":"Hà nội",
+			"name":"Đại nội",
 			"effect":"loops",
 			"description":"description",
 			"media":[

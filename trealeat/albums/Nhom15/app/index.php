@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/admin.css">
-    <link rel="stylesheet" href="assets/css/common.css">
+    <!-- <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/common.css"> -->
     <!-- <link rel="stylesheet" href="assets/css/canvas_index.css"> -->
     <link rel="stylesheet" href="assets/css/global_variable.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
@@ -13,18 +13,12 @@
     <title>Admin</title>
 </head>
 <body>
-    <div id='root'>
+    <div id='root'></div>
     <script src="assets/js/common.js"></script>
-    <script src="../assets/js/common.js"></script>
+    <!-- <script src="../assets/js/common.js"></script> -->
+    <script src="assets/js/test.js"></script>
     <script>
-        // let data_url = 'https://hcloud.trealet.com/tiny7938/?json'
-        fetch('https://picsum.photos/id/237/200/300')
-        .then(res => {
-            console.log(res)
-            return res.json()})
-        .then((data) => {
-            console.log(data)
-        })
+     
     </script>
 
 </body>

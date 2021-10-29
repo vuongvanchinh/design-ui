@@ -2,31 +2,146 @@
 const popup_id = 'location_popup'
 let zoom_rate = 1
 
+let data = {}
 
 $(document).ready(() => { 
-    if ($('#data_is_set').val() === '1') {
-        console.log('data is set right now')
+    if (window.location.hostname === '127.0.0.1') {
+        data = JSON.parse('{"map":{"cell_width":"50px","cells_per_row":50,"number_of_cells":"3400","plots":[{"index":142,"x":23,"y":6,"w":3,"h":3,"item_id":"location_1"},{"index":457,"x":24,"y":13,"w":5,"h":5,"item_id":"location_2"},{"index":492,"x":9,"y":14,"w":4,"h":4,"item_id":"location_3"},{"index":815,"x":24,"y":21,"w":5,"h":5,"item_id":"location_5"},{"index":804,"x":9,"y":22,"w":4,"h":4,"item_id":"location_6"},{"index":1176,"x":24,"y":29,"w":5,"h":5,"item_id":"location_8"},{"index":773,"x":40,"y":20,"w":4,"h":4,"item_id":"location_9"},{"index":967,"x":34,"y":25,"w":4,"h":4,"item_id":"location_10"},{"index":1510,"x":24,"y":37,"w":5,"h":5,"item_id":"location_11"},{"index":2086,"x":24,"y":50,"w":5,"h":5,"item_id":"location_12"},{"index":1887,"x":25,"y":45,"w":3,"h":3,"item_id":"location_13"},{"index":1885,"x":41,"y":47,"w":3,"h":3,"item_id":"location_14"},{"index":1887,"x":25,"y":44,"w":3,"h":3,"item_id":"location_15"},{"index":1376,"x":40,"y":34,"w":4,"h":4,"item_id":"location_16"},{"index":2118,"x":41,"y":53,"w":3,"h":3,"item_id":"location_17"},{"index":1484,"x":9,"y":37,"w":4,"h":4,"item_id":"location_18"},{"index":1841,"x":9,"y":47,"w":3,"h":3,"item_id":"location_19"},{"index":2264,"x":9,"y":54,"w":3,"h":3,"item_id":"location_20"},{"index":2643,"x":25,"y":62,"w":3,"h":3,"item_id":"location_21"},{"index":2477,"x":9,"y":59,"w":3,"h":3,"item_id":"location_22"},{"index":622,"x":15,"y":17,"w":4,"h":4,"item_id":"location_23"},{"index":250,"x":6,"y":6,"w":17,"h":2,"item_id":"location_24"},{"index":172,"x":22,"y":4,"w":2,"h":2,"item_id":"location_25"},{"index":174,"x":25,"y":4,"w":2,"h":2,"item_id":"location_26"},{"index":251,"x":26,"y":6,"w":21,"h":2,"item_id":"location_27"},{"index":306,"x":45,"y":8,"w":2,"h":23,"item_id":"location_28"},{"index":1263,"x":47,"y":30,"w":2,"h":3,"item_id":"location_29"},{"index":1437,"x":47,"y":34,"w":2,"h":3,"item_id":"location_30"},{"index":1517,"x":45,"y":36,"w":2,"h":29,"item_id":"location_31"},{"index":2592,"x":28,"y":63,"w":17,"h":2,"item_id":"location_32"},{"index":2697,"x":27,"y":65,"w":2,"h":2,"item_id":"location_33"},{"index":2694,"x":24,"y":65,"w":2,"h":2,"item_id":"location_34"},{"index":270,"x":6,"y":8,"w":2,"h":23,"item_id":"location_35"},{"index":1414,"x":6,"y":36,"w":2,"h":29,"item_id":"location_35"},{"index":2535,"x":8,"y":63,"w":17,"h":2,"item_id":"location_36"},{"index":1151,"x":4,"y":30,"w":2,"h":3,"item_id":"location_37"},{"index":1318,"x":4,"y":34,"w":2,"h":3,"item_id":"location_38"},{"index":2858,"x":24,"y":71,"w":5,"h":5,"item_id":"location_39"}],"paths":[]},"exec":"streamline","title":"Trealet","locations":[{"id":"location_1","name":"Điện Thái Hòa","effect":"loops","description":"Điện Thái Hòa (chữ Hán: 太和殿) là cung điện nằm trong khu vực Đại Nội của kinh thành Huế, là nơi đăng quang của 13 vua triều Nguyễn từ Gia Long đến Bảo Đại. Trong chế độ phong kiến cung điện này được coi là trung tâm của đất nước.Xây dựng và trùng tu Quá trình xây dựng và trùng tu điện Thái Hòa được chia làm 3 thời kỳ chính; mỗi thời kỳ đều có những thay đổi lớn, cải tiến về kiến trúc và trang trí. Vua Gia Long khởi công xây dựng vào ngày 21 tháng 2 năm 1805 và hoàn thành vào tháng 10 cùng năm. Năm 1833 khi vua Minh Mạng quy hoạch lại hệ thống kiến trúc cung đình ở Đại Nội, trong đó có việc cho dời điện về mé nam và làm lại đồ sộ và lộng lẫy hơn. Năm 1923 dưới thời vua Khải Định để chuẩn bị cho lễ Tứ tuần Đại khánh tiết của nhà vua (mừng vua tròn 40 tuổi) diễn ra vào năm 1924, điện Thái Hòa đã được đại gia trùng kiến. Qua các đợt trùng tu lớn nói trên và nhiều lần trùng tu sửa chữa nhỏ khác dưới thời vua Thành Thái, Bảo Đại và trong thời gian gần đây (vào năm 1960, 1970, 1981, 1985 và 1992) điện Thái Hòa đã ít nhiều có thay đổi, vẻ cổ kính ngày xưa đã giảm đi một phần. Tuy nhiên, cốt cách cơ bản của nó thì vẫn còn được bảo lưu, nhất là phần kết cấu kiến trúc và trang trí mỹ thuật.","media":[{"type":"IFRAME","url":"qAQHz2zPFFQ","description":"Link youtube"},{"type":"jpg","url":"https://hcloud.trealet.com//albums/Nhom15/media/images/Bên_trong_điện_Thái_Hòa.jpg","description":"vghgftyftyftyftydytdtyt"},{"type":"jpeg","url":"https://hcloud.trealet.com//albums/Nhom15/media/images/Điện_Thái_Hòa.jpeg","description":"vghgftyftyftyftydytdtyt"},{"type":"ytb","url":"https://hcloud.trealet.com//albums/Nhom15/media/videos/test_1635256064.ytb","description":"bcgccychvhgchgchgchcghchgvgh"}],"next":"quangninh"},{"id":"location_2","name":"Test","effect":"crazy","description":"description","media":[{"type":"ytb","url":"https://hcloud.trealet.com//albums/Nhom15/media/videos/test_1635256064.ytb","description":"bcgccychvhgchgchgchcghchgvgh"}],"next":"hanoi"},{"id":"location_3","name":"Đại nội","effect":"loops","description":"description","media":[{"type":"ytb","url":"https://hcloud.trealet.com//albums/Nhom15/media/videos/test_1635256064.ytb","description":"bcgccychvhgchgchgchcghchgvgh"},{"type":"IFRAME","url":"https://www.360view.vn/gallery/data/projects/vietnam/thuathien_hue/kinhthanh__092011/index.html","description":"chgchhgcghcghcghchgchgcgcchgcghcghcghcghchgcghch"}],"next":null}],"decorators":[{"id":"decorator_1","name":"test","media":[]}]}')
+        console.log('on local')
         setup()
-        
+        document.getElementById('view').onwheel = function(e){ 
+            e.preventDefault()
+            const pre_zoom_rate = zoom_rate
+            let direction = e.deltaY < 0 ? 1: -1
+            zoom(direction, offset=0.1)
+            let view = document.getElementById('view')
+            view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+            view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
+            return false;
+        }    
     } else {
-        $('#data_is_set').change(() => {
-            // alert('call setup')
-            setup()
+        $(document).ready(() => {
+            let url = 'https://hcloud.trealet.com/apps_dev/btl/nhom15/app/streamline-example.trealet'
+            
+            ;(async () =>{
+                let fetched = {}
+                try {
+                    let res = await fetch(url)
+                    data = await res.json()
+                    data = data.trealet
+                    document.title = data.title
+                    //fetch media for locations 
+                    for(i = 0; i < data.locations.length; i++) {    
+                        for(j = 0; j < data.locations[i].media.length; j++) {
+                            if (fetched[data.locations[i].media[j]]) {
+                                data.locations[i].media[j] = fetched[data.locations[i].media[j]]
+                                console.log("hit")
+                            } else {
+                                try {
+                                    let mres = await fetch(`https://hcloud.trealet.com/tiny${data.locations[i].media[j]}?json`)
+                                    let dt = await mres.json()   
+                                    dt = dt.image
+                                    let type = dt.path.split('.')[1].toUpperCase()        
+                                    if (type === 'YTB' || type === 'TXT') {
+                                        try {
+                                            let code = await fetch(`https://hcloud.trealet.com${dt.url_full}`)
+                                            let link = await code.text()
+                                            let new_media = {type:'IFRAME', url: link.trim(), description: dt.desc, name: dt.title}
+                                            fetched[data.locations[i].media[j]] = new_media
+                                            data.locations[i].media[j] = new_media
+                                           
+                                        } catch (error) {
+                                            alert(error, "YTB")
+                                        }
+                                    } else {
+                                        let new_media = {
+                                            type: type,
+                                            url: `https://hcloud.trealet.com/${dt.url_full}`,
+                                            description: dt.desc,
+                                            name: dt.title
+                                        }
+                                        fetched[data.locations[i].media[j]] = new_media
+                                        data.locations[i].media[j] = new_media
+                                        
+                                    }      
+                                    
+                                } catch (error) {
+                                   alert(error)
+                                }
+                            }
+                            
+                        }
+                    }
+                    //fetch media for decorators
+                    for(i = 0; i < data.decorators.length; i++) {
+                        for(j = 0; j < data.decorators[i].media.length; j++) {
+                            if(fetched[data.decorators[i].media[j]]) {
+                                data.decorators[i].media[j] = fetched[data.decorators[i].media[j]]
+                                console.log("hit")
+                            } else {
+                                try {
+                                    let mres = await fetch(`https://hcloud.trealet.com/tiny${data.decorators[i].media[j]}?json`)
+                                    let dt = await mres.json()   
+                                    dt = dt.image
+                                    let type = dt.path.split('.')[1].toUpperCase()
+                                    console.log(type)        
+                                    if (type === 'YTB' || type === 'TXT') {
+                                        try {
+                                            let code = await fetch(`https://hcloud.trealet.com${dt.url_full}`)
+                                            let link = await code.text()
+                                            let new_media = {type:'IFRAME', url: link.trim(), description: dt.desc, name: dt.title}
+                                            
+                                            fetched[data.decorators[i].media[j]] = new_media
+                                            data.decorators[i].media[j] = new_media
+            
+                                        } catch (error) {
+                                             alert(error, "YTB")
+                                        }
+                                    } else {
+                                        let new_media = {
+                                            type: type,
+                                            url: `https://hcloud.trealet.com${dt.url_full}`,
+                                            description: dt.desc,
+                                            name: dt.title
+                                        }
+                                        fetched[data.decorators[i].media[j]] = new_media
+                                        data.decorators[i].media[j] = new_media
+                                    }      
+                                } catch (error) {
+                                   alert(error)
+                                }
+                            }
+                        }
+                    }
+                    /// handle
+                    // console.log(JSON.stringify(data))
+                    console.log(data)
+                    setup()        
+                    document.getElementById('view').onwheel = function(e){ 
+                        e.preventDefault()
+                        const pre_zoom_rate = zoom_rate
+                        let direction = e.deltaY < 0 ? 1: -1
+                        zoom(direction, offset=0.1)
+                        let view = document.getElementById('view')
+                        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+                        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
+                        return false;
+                    }
+                    // console.log(JSON.stringify(data))
+                    // console.log(data)
+                } catch (error) {
+                    console.log(error)
+                    alert('can not fetch data')
+                    // document.getElementById('#message').innerHTML = 'Can not fetch data'
+                }
+            })()
             
         })
+
     }
-    document.getElementById('view').onwheel = function(e){ 
-        e.preventDefault()
-        const pre_zoom_rate = zoom_rate
-        let direction = e.deltaY < 0 ? 1: -1
-        zoom(direction, offset=0.1)
-        let view = document.getElementById('view')
-        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
-        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
-        return false;
-    }
-    
-  
+
+   
+
 })
 
 
@@ -81,14 +196,13 @@ function openModal(el) {
 
 const presentItem = (data) => {
     let slide_items = ''
-    
-
     for (let i = 0; i < data.media.length; i++) {
         let classs = 'simple-slide-item '
         if (slide_items.length === 0) {
             classs += 'simple-slide-item-active'
         }
-        if(data.type='image' || data.type==='GIF' || data.type==='JPEG'|| data.type==='JPG'|| data.type==='PNG'|| data.type==='TIF'|| data.type==='TIFF') {
+        let media = data.media[i]
+        if(media.type === 'JPEG'|| media.type==='JPG'|| media.type === 'image' || media.type==='GIF' || media.type==='PNG'|| media.type==='TIF'|| media.type==='TIFF') {
             slide_items += `
             <div class="${classs}" style="background-image: url('${data.media[i].url}')">
             
@@ -97,8 +211,9 @@ const presentItem = (data) => {
         }
        
     }
+    console.log(slide_items)
     return `    
-        <div class="present-item">
+        <div class="present-item" onclick="showPopup('${data.id}')">
            <div class="simple-slider">
             ${
                 slide_items
@@ -106,10 +221,6 @@ const presentItem = (data) => {
            </div>
            <div class='present-info'>
             <span class='present-item-name'> ${data.name}</span>
-            <div onclick="showPopup('${data.id}')"class='btn-detail'>
-                <i class='bx bx-show'></i>
-                <span>Xem</span>
-            </div>
            </div>
         </div>
    `

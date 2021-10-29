@@ -1,0 +1,5 @@
+let res = await JSON.parse('<?php echo json_encode($d)?>')
+ <div onclick="showPopup('${data.id}')"class='btn-detail'>
+                <i class='bx bx-show'></i>
+                <span>Xem</span>
+            </div>

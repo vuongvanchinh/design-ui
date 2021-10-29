@@ -15,32 +15,35 @@ function initializeApp($exec){
 	
 	return $data;
 }
+
 function getFullLinkData($d) {
 	$data = $d;
-	for ($i = 0; $i < count($data['locations']); $i++) {
+	$ln = count($data['locations']);
+	for ($i = 0; $i < $ln; $i++) {
 		$l = $data['locations'][$i];
 		$media = array();
 		for ($j = 0; $j < count($l['media']); $j++) {
 			if (is_numeric($l['media'][$j])) {
 				$idata = fetchItemData($l['media'][$j]);
+				if(isset($idata['title'])) {
+					$item['name'] = $idata['title'];
+					$item['description'] = $idata['desc'];
+					$item['type'] = $ext = strtoupper(pathinfo($idata['url_full'], PATHINFO_EXTENSION));
+					
+					if ($item['type'] == 'YTB') {
+						$video = trim(file_get_contents('https://hcloud.trealet.com'.$idata['url_full']));
+						// print_r($video);
+						$item['url'] = 'https://www.youtube.com/embed/'.$video;
+					
+					} else if ($item['type'] === 'TXT') { //TXT as iframe link
+						$item['url'] = trim(file_get_contents('https://hcloud.trealet.com'.$idata['url_full']));
+						$item['type'] = 'IFRAME';
+					} else {
+						$item['url'] = 'https://hcloud.trealet.com'.$idata['url_full'];
+					}
+					array_push($media, $item);
+				} 
 				
-				$item['name'] = $idata['title'];
-				$item['description'] = $idata['desc'];
-				$item['type'] = $ext = strtoupper(pathinfo($idata['url_full'], PATHINFO_EXTENSION));
-				
-				if ($item['type'] == 'YTB') {
-					$video = trim(file_get_contents('https://hcloud.trealet.com'.$idata['url_full']));
-					// print_r($video);
-					$item['url'] = 'https://www.youtube.com/embed/'.$video;
-					// print_r($item['url']);
-				} else if ($item['type'] === 'TXT') {
-					$item['url'] = trim(file_get_contents('https://hcloud.trealet.com'.$idata['url_full']));
-					$item['type'] = 'IFRAME';
-				} else {
-					$item['url'] = 'https://hcloud.trealet.com'.$idata['url_full'];
-				}
-
-				array_push($media, $item);
 			} else {
 				array_push($media, $l['media'][$j]);
 			}

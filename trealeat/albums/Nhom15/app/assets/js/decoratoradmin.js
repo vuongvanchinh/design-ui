@@ -20,7 +20,6 @@ const renderDecoratorPage = () => {
             </tr>
         `
     }
-
     const decorator_headers = ['Item id', 'Name', 'Media', '']
     $('#decorator-content').append(table(decorator_headers, body, 'decorators-table', 'Decorators', `There are ${state.decorators.length} decorators`))
     $('#decorators-table tbody tr').dblclick((e) => {
