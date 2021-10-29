@@ -12,8 +12,8 @@ const fetchItem = async (id) => {
 
 $(document).ready(() => {
     let data = null
-    let url = 'streamline-example.trealet'
-    
+    let url = 'https://hcloud.trealet.com/albums/Nhom15/app/streamline-example.trealet'
+    //https://hcloud.trealet.com/albums/Nhom15/app/streamline-example~.trealet
     ;(async () =>{
         let fetched = {}
         try {
@@ -108,7 +108,8 @@ $(document).ready(() => {
             /// handle
             // console.log(JSON.stringify(data))
             console.log(data)
-            // console.log(JSON.stringify(data))
+            console.log(JSON.stringify(data))
+            document.getElementById('root').innerHTML = JSON.stringify(data)
             // console.log(data)
         } catch (error) {
             console.log(error)

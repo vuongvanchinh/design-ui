@@ -1,16 +1,7 @@
 <?php
-	// require_once('../lib/functions.php');
-
-	// $td = initializeApp('streamline');	
+	
     $domain = $_SERVER['HTTP_HOST'];
-    // $d = getFullLinkData($td) 
-	// $ni = sizeof($d['items']);
-	// $iu = array($ni);	
-
-	// for($i=0;$i<$ni;$i++){
-	// 	$itemid = $d['items'][$i];
-	// 	$idata 	= fetchItemData($itemid);
-	// }
+    
 ?>
 
 <!DOCTYPE HTML>
@@ -49,7 +40,6 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
-
 <body>
     <div class="container" id="container">
             <div class="dashed-loader-wraper" id='pre-loader'>
@@ -78,8 +68,6 @@
         ';
     }
 ?>
-
-
     <script>
             document.addEventListener('DOMContentLoaded', function () {
                 const ele = document.getElementById('view');
