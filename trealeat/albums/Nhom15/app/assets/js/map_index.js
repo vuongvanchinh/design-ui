@@ -131,6 +131,7 @@ $(document).ready(() => {
                     console.log(data)
 
                     setup()        
+
                     document.getElementById('view').onwheel = function(e){ 
                         e.preventDefault()
                         const pre_zoom_rate = zoom_rate
@@ -232,8 +233,9 @@ const presentItem = (data) => {
                 slide_items
             }
            </div>
-           <div class='present-info'>
-            <span class='present-item-name'> ${data.name}</span>
+           
+           <div class="tooltip">
+           ${data.name}
            </div>
         </div>
    `
@@ -354,6 +356,7 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
             </div>
         `
     }
+    
     if(only_media) {
         return media
     } else {

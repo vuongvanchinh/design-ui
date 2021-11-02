@@ -95,6 +95,7 @@
     align-items: center;
     transition: all 0.5s ease;
 }
+
 .present-item-name {
     display:-webkit-box;
     -webkit-line-clamp:1;
@@ -107,6 +108,19 @@
     background-color: rgba(0, 0, 0, 0.5);
     color: #fff;
 
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #000;
+    color: #fff;
+    padding: 0.5rem;
+    width: fit-content;
+    border-radius: 0.8rem;
+    
 }
 
 /* .present-item:hover .btn-detail{
