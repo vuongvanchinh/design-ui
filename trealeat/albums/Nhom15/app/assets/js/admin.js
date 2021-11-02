@@ -45,12 +45,14 @@ $(document).ready(() => {
     $(`#${cells_per_row_id}`).val(state.map.cells_per_row)
     $(`#${cell_width_id}`).val(state.map.cell_width)     
 });
+
 const renderNavs = () => {
     const navs = [
         {icon: "bx bx-map", name: "Locations", page:'locations-page', onClick: () => changePage('locations-page')},
         {icon: "bx bxs-dashboard", name: "Map", page:'map', onClick:() =>  changePage('map')},
         {icon: "bx bx-dialpad-alt", name: "Decorators", page:'decorators-page', onClick:() => changePage('decorators-page')},
         {icon: "bx bxs-save", name: "Save", page:'sav', onClick: () => saveMap()}
+        
     ]
     let navigation = $('#navs')
     for (i = 0; i < navs.length; i++) {
@@ -443,7 +445,6 @@ const zoom = (direction, offset=0.05) => {
     return true
 }
 
-
 const LOCATION_FORM = {
     id: null,
     name: '',
@@ -452,3 +453,7 @@ const LOCATION_FORM = {
         
     ] 
 } 
+
+const setingPage = () => {
+
+}

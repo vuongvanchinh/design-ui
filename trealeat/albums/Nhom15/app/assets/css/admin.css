@@ -177,6 +177,8 @@ main {
   padding: 0;
   border-radius: .5rem;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  max-width: 100%;
+  overflow: auto;
 }
 .table-name {
   padding: 0.8rem;
