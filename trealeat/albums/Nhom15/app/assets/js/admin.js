@@ -192,9 +192,9 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
                 $('#number_cell_height').val(dt.h)
                 $('#plot_item_id').val(dt.item_id)
             } else {
-                $('#number_cell_width').val(1)
-                $('#number_cell_height').val(1)
-                $('#plot_item_id').val('location_0')
+                $('#number_cell_width').val(2)
+                $('#number_cell_height').val(2)
+                $('#plot_item_id').val('decorator_0')
             }
             $('#number_cell_width').change(() => {
                 let w = $('#number_cell_width').val()
