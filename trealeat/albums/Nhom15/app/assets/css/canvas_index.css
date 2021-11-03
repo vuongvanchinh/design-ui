@@ -41,6 +41,7 @@
     background-color:#f1f1f1;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 }
+
 .path {
     border: 2px solid rgb(1, 107, 110);
     border-radius: 50%/25%/30%;
@@ -121,6 +122,7 @@
     width: fit-content;
     border-radius: 0.8rem;
 }
+
 svg {
     position: absolute;
     bottom: 10%;
@@ -135,8 +137,12 @@ svg {
 svg #topLocIcon path{
     padding: 10px;
 }
-.present-item:hover svg #topLocIcon #Group_4 #Vector_5{
-    fill: white !important;
+.present-item:hover svg #topLocIcon #Vector_7{
+    fill: red  !important;
+    fill-opacity:1;
+}
+.present-item:hover svg #topLocIcon  #Vector_6{
+    fill: black !important; 
     fill-opacity:1;
 }
 

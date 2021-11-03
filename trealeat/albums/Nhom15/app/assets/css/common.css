@@ -648,7 +648,7 @@ to {
   }
 
   .sec2 {
-    padding: 30% 0 0;
+    padding: 0% 0 0;
   }
   .sec2 h2 {
     text-transform: uppercase;
@@ -677,7 +677,7 @@ to {
   
   .sec2 .text-inner {
     position: relative;
-    margin: 10% 0 0 10%;
+    margin: 10% 0;
   }
   .left-right-sec:nth-child(odd) .text {
     margin-right: 50px;

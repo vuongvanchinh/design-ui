@@ -281,7 +281,7 @@ const presentItem = (data) => {
                      <path
                        id="Vector_5"
                        d="M114.5 159.68C85.5562 159.68 62.1028 137.233 62.1028 109.555C62.1028 81.8767 85.567 59.4302 114.5 59.4302C143.433 59.4302 166.897 81.8767 166.897 109.555C166.897 137.233 143.444 159.68 114.5 159.68Z"
-                       fill="#FFF8D1"
+                       fill="green"
                      />
                    </g>
                  </g>
@@ -298,7 +298,7 @@ const presentItem = (data) => {
                    <path
                      id="Vector_7"
                      d="M112.5 13.5337C53.0112 13.5337 4.78931 59.1819 4.78931 115.496C4.78931 168.874 57.5668 244.972 104.769 315.912C108.359 321.3 116.652 321.28 120.231 315.882C169.334 241.785 220.221 169.005 220.221 115.506C220.221 59.1819 171.989 13.5337 112.5 13.5337ZM117.757 163.999C85.198 167.055 58.0553 141.361 61.2835 110.54C63.6729 87.731 83.1591 69.2847 107.254 67.0229C139.813 63.9669 166.955 89.661 163.727 120.482C161.338 143.291 141.852 161.737 117.757 163.999Z"
-                     fill="#ED0F0F"
+                     fill="#FF6263"
                    />
                    <g id="Group_8">
                      <g id="Group_9">
@@ -399,7 +399,7 @@ const cardForwardSlider = (data) => {
           <div class="text-inner">
             <div class="scroll-txt">
               <p>
-                ${data.description}
+                ${data.description !== undefined ? data.description : ''}
               </p>
             </div>
           </div>
@@ -420,7 +420,7 @@ const cardReverseSlider = (data) => {
           <div class="text-inner">
             <div class="scroll-txt">
               <p>
-                ${data.description}
+              ${data.description !== undefined ? data.description : ''}
               </p>
             </div>
           </div>
