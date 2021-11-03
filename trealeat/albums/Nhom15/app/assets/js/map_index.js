@@ -174,12 +174,22 @@ const setup = () => {
         let p = data.map.plots[i]
         //find location
         let b = $(`.brick:nth-child(${p.index+1})`) // b = brick
-        let index = data.locations.findIndex(item => item.id === p.item_id)
+        if(p.item_id.startsWith('location')) {
+            let index = data.locations.findIndex(item => item.id === p.item_id)
 
-        if (index !== -1) { // find out
-            b.append(presentItem(data.locations[index]))
-        } else {
-            b.append("cái này chưa có location đặt vào, vào trang admin để đặt")
+            if (index !== -1) { // find out
+                b.append(presentItem(data.locations[index]))
+            } else {
+                b.append("cái này chưa có location đặt vào, vào trang admin để đặt")
+            }
+        } else if (p.item_id.startsWith('decorator')) {
+            let index = data.decorators.findIndex(item => item.id === p.item_id)
+
+            if (index !== -1) { // find out
+                b.append(presentDecorator(data.decorators[index]))
+            } else {
+                b.append("cái này chưa có decorators đặt vào, vào trang admin để đặt")
+            }
         }
         b.css({width: "auto", height: "auto", gridColumn: `${p.x} / span ${p.w}`, gridRow: `${p.y} / span ${p.h}`})
         b.addClass('plot')
@@ -208,7 +218,15 @@ const setup = () => {
 function openModal(el) {
     $(el).next().addClass('open-modal')
 }
-
+const presentDecorator = (data) => {
+    if(data.media.length > 0) {
+        return `
+            <div class='full bgc-image' style='background-image: url(${data.media[0].url})'></div>
+        `
+    } else {
+        return `Not decorator`
+    }
+}
 const presentItem = (data) => {
     // sử hàm này để thay đổi cái present card cái này sẽ để  hiển thị location, tạo thêm cái tương tự để  hiển thị decorators 
     let slide_items = ''

@@ -779,5 +779,30 @@
        "type":"IFRAME",
        "url":"https://youtu.be/GUT1GadgH1Y",
        "name":"KydaiHue1"
-    }
+    },
+    "15674":{
+      "type":"GIF",
+      "url":"https://hcloud.trealet.com/albums/Nhom15/media/images/cay1.gif",
+      "name":"Tree 1"
+   }, 
+   "15698":{
+      "type":"GIF",
+      "url":"https://hcloud.trealet.com/albums/Nhom15/media/images/cay2.gif",
+      "name":"Tree 2"
+   }, 
+   "15706":{
+      "type":"GIF",
+      "url":"https://hcloud.trealet.com/albums/Nhom15/media/images/cay3.gif",
+      "name":"Tree 3"
+   },
+   "15682":{
+      "type":"PNG",
+      "url":"https://hcloud.trealet.com/albums/Nhom15/media/images/u1ecf.png",
+      "name":"Grass 1"
+   },
+   "15690": {
+      "type":"PNG",
+      "url":"https://hcloud.trealet.com/albums/Nhom15/media/images/song3.gif",
+      "name":"Water 1"
+   }
  }
