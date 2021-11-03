@@ -330,17 +330,17 @@ const onPlotMode = (index) => {
             state.map.plots[has_index].item_id = dt.item_id
         }
         // delete paths is wrap by new plot
-        let delete_indexs = []
-        for (let i = 0; i < state.map.paths.length; i++) {
-            let item = state.map.paths[i]
-            if (item.x >= x && item.x < x + dt.w && item.y >= y && item.y < y + dt.h) {
-                delete_indexs.push(i)
-                let b = $(`.brick:nth-child(${item.index + 1})`)
-                b.removeClass('path')
-                b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})           
-            } 
-        }
-        state.map.paths.filter(item => !delete_indexs.includes(item.index))
+        // let delete_indexs = []
+        // for (let i = 0; i < state.map.paths.length; i++) {
+        //     let item = state.map.paths[i]
+        //     if (item.x >= x && item.x < x + dt.w && item.y >= y && item.y < y + dt.h) {
+        //         delete_indexs.push(i)
+        //         let b = $(`.brick:nth-child(${item.index + 1})`)
+        //         b.removeClass('path')
+        //         b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})           
+        //     } 
+        // }
+        // state.map.paths.filter(item => !delete_indexs.includes(item.index))
         // set css for plot
         b.css({width: "auto", height: "auto", gridRow: `${y} / span ${dt.h}`, gridColumn: `${x} / span ${dt.w}`})
         b.addClass('plot');
