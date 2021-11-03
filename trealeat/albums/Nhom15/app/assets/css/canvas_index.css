@@ -120,9 +120,38 @@
     padding: 0.5rem;
     width: fit-content;
     border-radius: 0.8rem;
-    
+}
+svg {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    height:30%;
 }
 
+#topLocIcon {
+    animation: locationIcon 1s ease-in-out infinite alternate;
+}
+svg #topLocIcon path{
+    padding: 10px;
+}
+.present-item:hover svg #topLocIcon #Group_4 #Vector_5{
+    fill: white !important;
+    fill-opacity:1;
+}
+
+  /* svg #locationIcon path:hover {
+    fill: red !important;
+    fill-opacity:1;
+  } */
+  @keyframes locationIcon{
+    from {
+      transform: translateY(-5%);
+    }
+    to {
+      transform: translateY(5%);
+    }
+  }
 /* .present-item:hover .btn-detail{
     visibility: visible;
 

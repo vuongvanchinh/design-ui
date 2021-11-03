@@ -8,9 +8,11 @@
     <link rel="stylesheet" href="assets/css/common.css"> -->
     <!-- <link rel="stylesheet" href="assets/css/canvas_index.css"> -->
     <link rel="stylesheet" href="assets/css/global_variable.css">
+    
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Admin</title>
+   
 </head>
 <body>
     <div id='root'></div>

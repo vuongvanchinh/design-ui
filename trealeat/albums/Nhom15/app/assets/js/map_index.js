@@ -144,6 +144,7 @@ $(document).ready(() => {
                     }
                     // console.log(JSON.stringify(data))
                     // console.log(data)
+                   
                 } catch (error) {
                     console.log(error)
                     alert('can not fetch data')
@@ -237,24 +238,257 @@ const presentItem = (data) => {
            <div class="tooltip">
            ${data.name}
            </div>
+
+           <svg
+           width="229"
+           height="352"
+           viewBox="0 0 229 352"
+           fill="none"
+           xmlns="http://www.w3.org/2000/svg"
+         >
+           <g id="Flat_Navigation_Icon_SVG_pvywdq 1" clip-path="url(#clip0_26:22)">
+             <g id="Group">
+               <g id="underLocIcon">
+                 <g id="Group_2">
+                   <path
+                     id="Vector"
+                     d="M115.051 347.337C173.184 347.337 220.311 334.77 220.311 319.266C220.311 303.763 173.184 291.195 115.051 291.195C56.9184 291.195 9.79224 303.763 9.79224 319.266C9.79224 334.77 56.9184 347.337 115.051 347.337Z"
+                     fill="#1FDFAE"
+                   />
+                   <path
+                     id="Vector_2"
+                     d="M115.051 352C60.3195 352 4.91772 340.762 4.91772 319.266C4.91772 297.771 60.3195 286.532 115.051 286.532C169.783 286.532 225.185 297.771 225.185 319.266C225.174 340.762 169.783 352 115.051 352ZM115.051 295.848C53.7699 295.848 14.6557 309.713 14.6557 319.266C14.6557 328.809 53.7591 342.685 115.051 342.685C176.333 342.685 215.436 328.82 215.436 319.266C215.436 309.723 176.333 295.848 115.051 295.848Z"
+                     fill="#060504"
+                   />
+                 </g>
+                 <g id="Group_3">
+                   <path
+                     id="Vector_3"
+                     d="M161.028 314.097C177.975 315.699 189.032 318.336 189.032 321.313C189.032 322.42 187.519 323.474 184.763 324.446"
+                     fill="#1FDFAE"
+                   />
+                   <path
+                     id="Vector_4"
+                     d="M184.763 329.109C182.785 329.109 180.915 327.941 180.191 326.059C179.629 324.601 179.878 323.04 180.721 321.841C176.959 320.858 170.561 319.68 160.542 318.739C157.862 318.491 155.905 316.206 156.176 313.642C156.435 311.088 158.834 309.216 161.504 309.464C191.399 312.287 193.895 317.064 193.895 321.324C193.895 326.193 188.286 328.179 186.438 328.83C185.887 329.016 185.314 329.109 184.763 329.109ZM185.001 323.422H185.022H185.001Z"
+                     fill="#060504"
+                   />
+                 </g>
+               </g>
+               
+               <g id="topLocIcon">
+                 <g id="Group_4">
+                   <g id="Group_5">
+                     <path
+                       id="Vector_5"
+                       d="M114.5 159.68C85.5562 159.68 62.1028 137.233 62.1028 109.555C62.1028 81.8767 85.567 59.4302 114.5 59.4302C143.433 59.4302 166.897 81.8767 166.897 109.555C166.897 137.233 143.444 159.68 114.5 159.68Z"
+                       fill="#FFF8D1"
+                     />
+                   </g>
+                 </g>
+                 <g id="Group_6">
+                   <g id="Group_7">
+                     <path
+                       id="Vector_6"
+                       d="M112.479 324.467C107.668 324.467 103.283 322.165 100.723 318.324L93.0562 306.814C47.298 238.226 0 167.306 0 115.496C0 56.7794 50.4731 9 112.5 9C174.527 9 225 56.7794 225 115.496C225 166.814 180.75 233.361 133.898 303.809C130.691 308.624 127.484 313.449 124.277 318.284C121.717 322.154 117.311 324.467 112.479 324.467ZM112.5 18.0573C55.7403 18.0573 9.56792 61.7654 9.56792 115.496C9.56792 164.683 56.1226 234.477 101.137 301.979L108.815 313.499C109.962 315.228 111.757 315.419 112.479 315.419C113.201 315.419 115.017 315.228 116.174 313.479C119.381 308.644 122.588 303.809 125.795 298.994C171.893 229.682 215.432 164.21 215.432 115.506C215.432 61.7654 169.26 18.0573 112.5 18.0573ZM112.553 168.774C97.6225 168.774 83.3503 163.245 72.7098 153.172C60.7419 141.843 54.8376 126.131 56.5155 110.088C59.1384 85.0067 80.2813 64.9922 106.776 62.5093C123.735 60.921 140.312 66.5102 152.29 77.8393C164.258 89.1684 170.162 104.88 168.485 120.924C165.862 146.005 144.719 166.02 118.224 168.503C116.334 168.683 114.433 168.774 112.553 168.774ZM112.436 71.3052C110.865 71.3052 109.293 71.3756 107.721 71.5263C85.7502 73.5871 68.2179 90.1837 66.0409 110.982C64.6498 124.322 69.5453 137.36 79.4848 146.769C89.4244 156.178 103.208 160.812 117.289 159.495C139.26 157.435 156.793 140.838 158.97 120.04C160.361 106.7 155.465 93.6619 145.526 84.2528C136.701 75.8992 124.85 71.3052 112.436 71.3052Z"
+                       fill="#060504"
+                     />
+                   </g>
+                 </g>
+                 <g id="Group 1">
+                   <path
+                     id="Vector_7"
+                     d="M112.5 13.5337C53.0112 13.5337 4.78931 59.1819 4.78931 115.496C4.78931 168.874 57.5668 244.972 104.769 315.912C108.359 321.3 116.652 321.28 120.231 315.882C169.334 241.785 220.221 169.005 220.221 115.506C220.221 59.1819 171.989 13.5337 112.5 13.5337ZM117.757 163.999C85.198 167.055 58.0553 141.361 61.2835 110.54C63.6729 87.731 83.1591 69.2847 107.254 67.0229C139.813 63.9669 166.955 89.661 163.727 120.482C161.338 143.291 141.852 161.737 117.757 163.999Z"
+                     fill="#ED0F0F"
+                   />
+                   <g id="Group_8">
+                     <g id="Group_9">
+                       <path
+                         id="Vector_8"
+                         d="M146.837 116.585C144.146 116.585 141.963 114.497 141.963 111.922C141.963 97.437 129.642 85.6502 114.5 85.6502C111.809 85.6502 109.625 83.5617 109.625 80.9872C109.625 78.4128 111.809 76.3242 114.5 76.3242C135.014 76.3242 151.701 92.288 151.701 111.912C151.712 114.507 149.529 116.585 146.837 116.585Z"
+                         fill="#060504"
+                       />
+                     </g>
+                   </g>
+                 </g>
+               </g>
+             </g>
+           </g>
+           <defs>
+             <clipPath id="clip0_26:22">
+               <rect width="229" height="352" fill="white" />
+             </clipPath>
+           </defs>
+         </svg>
         </div>
    `
 }
 const popUpContent = (data) => {
+
     let content = ''
     
-    for (i = 1; i < data.media.length; i++) {
-        content += mediaHtml(data.media[i], '', false)
+    for (i = 2; i < data.media.length; i++) {
+        content += slideMediaHtml(data.media[i], '', false)
     }
-    return `
-        <div>
-            ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
-               ${mediaHtml(data.media[0], '', true)}
-            `:''}
-            <p class="media-description">${data.description}</p>
-            ${content}
+    let card = '';
+
+    for (i = 1; i < data.media.length; i++) {
+        if(i % 2 === 1) {
+            card += cardForwardSlider(data.media[i])
+        } else {
+            card += cardReverseSlider(data.media[i])
+        }
+
+    }
+    // return `
+    //     <div>
+            // ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
+            //    ${mediaHtml(data.media[0], '', true)}
+            // `:''}
+            // <p class="media-description">${data.description}</p>
+    //         ${content}
+    //         <div>
+    //     </div>
+    // `
+
+        return `
+        <div class="slide-container">
+            <div class="duc-slider">
+                <div class="duc-slide current" style="background: url('${data.media[1].url}') no-repeat center center/cover;">
+                    <div class="duc-content">
+                    <h1>${data.media[1].name}</h1>
+                    ${data.media[1].description ?  `<p>${data.media[1].description}</p>`:''}
+                    </div>
+                </div>
+             
+                 ${content}
+
+            </div>
+            <div class="buttons-slider">
+                <button id="prevSlide"><i class="fas fa-arrow-left"></i></button>
+                <button id="nextSlide"><i class="fas fa-arrow-right"></i></button>
+            </div>
         </div>
-    `
+
+       
+        ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
+        ${mediaHtml(data.media[0], '', true)}
+        `:'<div></div>'}
+        <p class="media-description">${data.description}</p>
+
+       ${card}
+
+        <script>
+            ducSlider(${true},document.querySelectorAll('.duc-slide'), document.querySelector('#prevSlide'), document.querySelector('#nextSlide'))
+        </script>
+        `
+}
+
+const cardForwardSlider = (data) => {
+    let content = `      
+    <section class="sec2 left-right-sec">
+    <div class="containter-2">
+      <div class="sec2-inner">
+        <div class="img">
+          <img
+            src="${data.url}"
+            alt=""
+          />
+        </div>
+        <div class="text">
+          <h2>${data.name}</h2>
+          <div class="text-inner">
+            <div class="scroll-txt">
+              <p>
+                ${data.description}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>`;
+  return content;
+}
+
+const cardReverseSlider = (data) => {
+    let content = `      
+    <section class="sec2 left-right-sec">
+    <div class="containter-2">
+      <div class="sec2-inner">
+        <div class="text">
+          <h2>${data.name}</h2>
+          <div class="text-inner">
+            <div class="scroll-txt">
+              <p>
+                ${data.description}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="img">
+        <img
+          src="${data.url}"
+          alt=""
+        />
+      </div>
+      </div>
+    </div>
+  </section>`;
+  return content;
+}
+
+
+
+let slideInterval;
+
+const ducSlider = (auto = false, slides, prev, next) => {
+
+        const nextSlide = () => {
+            const current = document.querySelector('.current');
+            console.log(slides.length)
+            current.classList.remove('current');
+            if (current.nextElementSibling) {
+                current.nextElementSibling.classList.add('current');
+            } else {
+                slides[0].classList.add('current');
+            }
+            setTimeout(() => current.classList.remove('current'));
+        };
+    
+        const prevSlide = () => {
+            const current = document.querySelector('.current');
+            current.classList.remove('current');
+            if (current.previousElementSibling) {
+                current.previousElementSibling.classList.add('current');
+            } else {
+                slides[slides.length - 1].classList.add('current');
+            }
+            setTimeout(() => current.classList.remove('current'));
+        }
+    
+        next.addEventListener('click', () => {
+            nextSlide();
+            if (auto) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000)
+            }
+        }, false)
+    
+        prev.addEventListener('click', () => {
+            prevSlide();
+            if (auto) {
+                clearInterval(slideInterval);
+                slideInterval = setInterval(nextSlide, 5000)
+            }
+        }, false)
+    
+        if (auto) {
+            slideInterval = setInterval(nextSlide, 5000)
+        }
+
+}
+const clearSlideInterval = () => {
+    clearInterval(slideInterval);
 }
 
 const popUpFooter = (data) => {
@@ -269,7 +503,6 @@ const popUpFooter = (data) => {
                 onclick="alert('chưa cài đặt')"
             >
             Chơi một trò chơi</span>
-        
         </div>
     `
 }
@@ -313,10 +546,12 @@ const showPopup = (item_id) => {
         $('#container').prepend(md.getHtml())
         $(`#${popup_id}`).mousedown((e) => {
             if(e.target.classList.contains('modal')) {
+                clearSlideInterval();
                 md.close()
             }
         })
         $(`#${popup_id} .modal-close`).click((e) => {
+            clearSlideInterval();
             md.close()
         })
     }
@@ -364,6 +599,32 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
             <p class="media-name">${data.name}</p>
             ${media}
            ${data.description ?  `<p class="media-description">${data.description}</p>`:''}
+        `
+    }
+}
+
+const slideMediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id="", only_media=true) => {
+    let media = ''
+    if (id.length > 0) {
+        id = `id="${id}"`
+    }
+    if (data.type ==='image' || data.type==='GIF' || data.type==='JPEG'|| data.type==='JPG'|| data.type==='PNG'|| data.type==='TIF'|| data.type==='TIFF') {
+        media = `<img class="media-image" ${id} src="${data.url}"/>`
+
+    } else if (data.type === 'IFRAME' || data.type === 'YTB') {
+        return '';
+    }
+    
+    if(only_media) {
+        return media
+    } else {
+        return `
+            <div class="duc-slide"style=" background: url('${data.url}')  no-repeat center center/cover;">
+                <div class="duc-content" >
+                    <h1>${data.name}</h1>
+                    ${data.description ?  `<p>${data.description}</p>`:''}
+                </div>
+            </div>
         `
     }
 }

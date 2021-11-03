@@ -81,6 +81,7 @@ const modal = (header='', body='', footer='', id='modal_id', name='set-feature-m
     return {
         getHtml: () => html,
         close: () => {
+            
             $(`#${id} .modal-content`).css({animationName:'closePopup'})
             $(`#${id}`).css({transition: 'opacity .5s ease', opacity: 0})
             setTimeout(() => {
