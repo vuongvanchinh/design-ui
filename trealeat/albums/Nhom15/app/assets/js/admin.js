@@ -396,6 +396,7 @@ const deletePlot = (index) => {
     let b = $(`.brick:nth-child(${index + 1})`)
     b.css({'--b_w': state.map.cell_width ,gridRow: "auto", gridColumn: "auto"})
     b.removeClass('plot')
+    b.removeClass('plot--decorator')
     b.text(index)
 }
 
