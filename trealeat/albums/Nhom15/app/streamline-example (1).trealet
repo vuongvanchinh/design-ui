@@ -4,6 +4,7 @@
          "cell_width":"50px",
          "cells_per_row":50,
          "number_of_cells":3400,
+         "path_images": ['http', '']
          "plots":[
             {
                "index":457,
@@ -306,7 +307,8 @@
             {
                "index":353,
                "x":26,
-               "y":9
+               "y":9,
+               "media_url": ""
             },
             {
                "index":400,

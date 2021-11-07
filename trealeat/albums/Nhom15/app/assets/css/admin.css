@@ -113,54 +113,55 @@ main {
   margin-right: 1rem;
 }
 
-#view {
-  width: calc(100% - .5rem);
-  height: calc(100vh - 100px);
+.view {
+  --view-width: calc(100vw - var(--sidebar-width)-1rem);
+  /*  */
+  --view-height: calc(100vh - 100px);
+  box-sizing: border-box;
+  height: var(--view-height);
+  width: var(--view-width);
   overflow: auto; 
-  border: 1px solid #000;
-  position: relative;
+  margin: 0 auto;
+  /* display: flex;- 
+  justify-content: center;
+  align-items: center; */
+  background-color: #2b4162;
+  background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
 }
 
-#view::-webkit-scrollbar {
+.view::-webkit-scrollbar {
   display: none;
 }
 
 .board {
-  width: fit-content;
-  background: rgba(100,100,100,0.5); 
+  --board_w: fit-content;
+  width: var(--board_w);
+
   display: grid;
-  position: absolute; 
-  grid-gap: 0;
-  padding: 0;
-  margin: 0;
-  
+  position: relative; 
+  gap: 0;
+  margin: 0 auto;
+  /* background-color: #2b4162;
+  background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);     */
+  background-color: #ddd;
 }
 
-/* .board>* {
-  transform: scale(0.5);
-} */
-
-
 .brick {
-  --from-col: auto;
-  --to-col: calc(var(--from-col) + var(--w));
-  --from-row: auto;
-  --to-row: calc(var(--from-row) + var(--w));
-  --w: 8;
-  --width: 40px;
-  grid-column: auto;
-  grid-row: auto;
-  border: 1px solid #000;
- 
-  /* min-width: var(--width);
-  min-height: var(--width); */
+  --b_w: 50px;
+  width: var(--b_w);
+  height: var(--b_w);
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow:hidden;
+  border: 1px solid #000;
+  background-color: #ddd;
 }
 .plot {
-  background-color: rgb(5, 175, 161);
+  --plot-bg: rgb(5, 175, 161);
+  background-color: var(--plot-bg);
+}
+.plot--decorator {
+  --plot-bg: rgb(4, 218, 171);
 }
 
 .brick:hover {
@@ -247,3 +248,4 @@ main {
       font-size: 0.875rem;
     }
 }
+

@@ -400,9 +400,9 @@
 }
 
 .form-card {
-    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    box-shadow: rgba(75, 76, 77, 0.2) 0px 8px 24px;
     margin: 1rem 0;
-    border: 1px solid #ccc;
+    /* border: 1px solid #ccc; */
     border-radius: 4px;
 }
 
@@ -562,6 +562,16 @@ to {
 }
 
 .bgc-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.bg-image {
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

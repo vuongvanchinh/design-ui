@@ -5,42 +5,42 @@
     box-sizing: border-box;
     height: var(--view-height);
     width: var(--view-width);
-    
     overflow: auto; 
-    /* border: 1px solid blue; */
     margin: 0 auto;
-    /* background-position: center;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    background-color: #2b4162;
+    background-image: url('https://scitechdaily.com/images/Planet-Nine.gif');
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../../../app/background.jpg'); */
+    background-position: center;
 
 }
+
 #view::-webkit-scrollbar {
     display: none;
 }
 
 .board {
     width: fit-content;
-    /* background: rgba(100,100,100,0.5);  */
     display: grid;
     position: relative; 
-    grid-gap: 0;
+    gap: 0;
+    margin: auto;
     background-color: #2b4162;
-    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
+    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);    
 }
 
 .brick {
-    --from-col: auto;
-    --to-col: calc(var(--from-col) + var(--w));
-    --from-row: auto;
-    --to-row: calc(var(--from-row) + var(--w));
-    --w: 8;
-    --width: 40px;
-  
-    /* border: 1px solid #000; */
+    --b_w: 90px;
+    width: var(--b_w);
+    height: var(--b_w);
     display: flex;
     justify-content: center;
     align-items: center;
+    /* border: 1px solid #000; */
+
 }
 
 .plot {
@@ -57,9 +57,6 @@
     background-image: url('../../../app/bg.png');
 
 }
-
-
-
 
 .simple-slider {
     position: relative;

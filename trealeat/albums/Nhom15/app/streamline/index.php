@@ -18,73 +18,210 @@
 <title><?php echo $d['title']; ?></title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <!--test template style-->
-<style>
-	
-</style>
 <!--Easy Scroll Dots style-->
 <style>
 </style>
 <link rel="stylesheet" href="assets/css/common.css">
-<link rel="stylesheet" href="assets/css/index.css">
+<!-- <link rel="stylesheet" href="assets/css/index.css"> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
+<style>
+    .brick {
+        --w: 100px;
+        width: var(--w);
+        height: var(--w);
+        border: 1px solid #000;
 
-<body>
-<div class="container" id="container">
-	<div id="view">
-        <?php
-            foreach($d['locations'] as $location) {
-                echo location($location);
-            }
-        ?>
+    }
+    
+    #board {
+        width: fit-content;
+        display: grid;
+        place-items: center;
+        grid-template-columns: repeat(20, 1fr);
+        gap: 0;
+        width: 500px;
+        /* zoom: 0.5; */
+        margin: 0 auto;
+        position: relative;
+        border: 1px solid red;
+        overflow: auto;
+    }
+    .bg-red {
+        background-color: red;
+    }
+</style>
+<body >
+<div style='background: green'>
+    <p id="rs">
+    </p>
+    <button id='btni'>zoom +</button>
+    <button id='btnd'>zoom -</button>
+	<div id="board" class="board">
+        <div class="brick">1</div>
+        <div class="brick">2</div>
+        <div class="brick">3</div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
+        <div class="brick"></div>
     </div>
+    <input type="number" name="" id="test">
 </div>
 </script>
-<script src="assets/js/index.js"></script>
+<!-- <script src="assets/js/index.js"></script> -->
 <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                const ele = document.getElementById('view');
-                ele.style.cursor = 'grab';
+    let zoom_rate = 1;
+    $(document).ready(() => {
+        $('#test').change(() => {
+            let curent =  $('#test').val()
+            $('#test').val(parseInt( $('#test').val()) + 1)
+        })
+        $('.brick').click((e) => {
+            console.log(e.target)
+            $(e.target).toggleClass('bg-red');
+            let p = $(e.target).position()
+            let zero = $('.brick:nth-child(1)').position()
+            console.log($('#board').css('gap'))
+            $('#rs').html(`zleft ${zero.left} ztop: ${zero.top} p left: ${p.left} p top ${p.top} relative: left ${Math.floor(p.left) - Math.floor(zero.left)} 
+            top ${Math.floor(p.top) - Math.floor(zero.top)}`)
+        }) 
 
-                let pos = { top: 0, left: 0, x: 0, y: 0 };
+        $('#btni').click((e) => {
+            zoom_rate = zoom_rate + 0.1;
+            $('.brick').css('zoom', zoom_rate)            
+        })
+        $('#btnd').click((e) => {
+            zoom_rate = zoom_rate - 0.1;
+            $('.brick').css('zoom', zoom_rate)            
+        })
 
-                const mouseDownHandler = function (e) {
-                    ele.style.cursor = 'grabbing';
-                    ele.style.userSelect = 'none';
 
-                    pos = {
-                        left: ele.scrollLeft,
-                        top: ele.scrollTop,
-                        // Get the current mouse position
-                        x: e.clientX,
-                        y: e.clientY,
-                    };
+        let a = [
+            {
+                "type": "gradient",
+                "style": "background-color: #485461; background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);"
+            },
+            {
+                "type": "gradient",
+                "style": "background-color: #000000; background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);"
+            },
+            {
+                "type": "gradient",
+                "style": "background-color: #2b4162; background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);"
+            },
+            {
+                "type": "gradient",
+                "style": "background-color: #0d0a0b; background-image: linear-gradient(315deg, #0d0a0b 0%, #009fc2 74%);"
+            },
+            {
+                "type": "gradient",
+                "style": "background-color #000000; background-image linear-gradient(315deg, #000000 0%, #7f8c8d 74%);"
+            },
+            {
+                "type": "image",
+                "style": "https://huecity.gov.vn/Portals/0/Medias/Nam2021/T7/mo%20rong%20Hue%20(6).jpg"
+            }
+        ]
 
-                    document.addEventListener('mousemove', mouseMoveHandler);
-                    document.addEventListener('mouseup', mouseUpHandler);
-                };
+        console.log(a[1].style)
 
-                const mouseMoveHandler = function (e) {
-                    // How far the mouse has been moved
-                    const dx = e.clientX - pos.x;
-                    const dy = e.clientY - pos.y;
 
-                    // Scroll the element
-                    ele.scrollTop = pos.top - dy;
-                    ele.scrollLeft = pos.left - dx;
-                };
 
-                const mouseUpHandler = function () {
-                    ele.style.cursor = 'grab';
-                    ele.style.removeProperty('user-select');
-
-                    document.removeEventListener('mousemove', mouseMoveHandler);
-                    document.removeEventListener('mouseup', mouseUpHandler);
-                };
-
-                // Attach the handler
-                ele.addEventListener('mousedown', mouseDownHandler);
-            });
-        </script>
+    })        
+</script>
 </body>
 </html>

@@ -1,6 +1,5 @@
 $(document).ready(() => {
     renderLocationPage()
-    changePage('locations-page')
 })
 const renderLocationPage = () => {
     let body = ''

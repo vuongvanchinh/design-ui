@@ -1,0 +1,114 @@
+#backgrounds {
+    --col: 5;
+
+    display: grid;
+    grid-template-columns: repeat(var(--col), 1fr);
+    gap: 1rem;
+}
+
+.bg__body {
+    padding-top: 100%;
+    cursor: pointer;
+    border-radius: inherit;
+}
+
+.bg {
+    box-shadow: rgba(85, 86, 87, 0.2) 0px 8px 24px;
+    border-radius: 1rem;
+    transition: all 0.5s ease-out;
+    position: relative;
+}
+.bg__icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+    font-size: 1.5rem;
+
+    
+    /* background-color: green; */
+    /* box-shadow: rgba(22, 22, 22, 0.2) 0px 8px 24px; */
+
+}
+.bg__icon i {
+    border-radius: 50%;
+    /* background-color: red; */
+    cursor: pointer;
+    color: #666;
+}
+.bg__delbtn {
+    position: absolute;
+    right: 80%;
+    top: 80%;
+    padding: 0.3rem 1rem;
+    background-color: rgb(200 204 207);
+    box-shadow: rgb(32 31 31 / 20%) 0px 8px 24px;
+    font-size: 1rem;
+    color: #000;
+    border-radius: 4px;
+    transition: all 0.5s ease-out;
+    cursor: pointer;
+    display: none;
+}
+
+.bg__delbtn:hover {
+    background-color: #f1f1f1;
+    /* box-shadow: rgba(62, 62, 63, 0.2) 0px 7px 29px 0px; */
+}
+.bg__icon i:hover {
+    color: unset;
+}
+
+.bg--active {
+    outline: 5px solid rgb(0, 209, 181);
+    
+}
+
+.bg--gradient {
+    border-radius:50%;
+    border: 3px solid #1c446b;
+    /* transform: rotate(
+-45deg); */
+    /* margin-top: 2rem; */
+    /* height: 90%; */
+    padding-top: 100%;
+    
+}
+.bg--image {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-top: 100%;
+    border-radius:50%;
+}
+.bg__footer {
+    margin-top: 2rem;    
+    padding: 0.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+@media screen and (max-width: 1279px) {
+    #backgrounds {
+        --col: 4;
+
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #backgrounds {
+        --col: 3;
+
+    }
+}
+
+.add-bg {
+    font-size: 1.2rem;
+    cursor: pointer;
+    /* border: 2px dashed var(--main-color); */
+    transition: all 0.5s ease;
+}
+
+.add-bg:hover {
+    color: var(--main-color);
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+}

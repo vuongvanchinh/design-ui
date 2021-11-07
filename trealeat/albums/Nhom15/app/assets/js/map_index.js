@@ -77,7 +77,7 @@ $(document).ready(() => {
             e.preventDefault()
             const pre_zoom_rate = zoom_rate
             let direction = e.deltaY < 0 ? 1: -1
-            zoom(direction, offset=0.1)
+            zoom(direction, offset=0.05)
             let view = document.getElementById('view')
             view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
             view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
@@ -85,8 +85,7 @@ $(document).ready(() => {
         }    
     } else {
         // trên online thì gọi dữ liệu 
-        $(document).ready(() => {
-            let url = 'https://hcloud.trealet.com/apps_dev/btl/nhom15/app/streamline-example.trealet'
+        let url = 'https://hcloud.trealet.com/apps_dev/btl/nhom15/app/streamline-example.trealet'
             
             ;(async () =>{
                 try {
@@ -126,17 +125,15 @@ $(document).ready(() => {
                             console.log("Error ", id,  error)
                         }
                     }))
-                    console.log(medias)
+                    // console.log(medias)
                     data = filloutMediaData(medias, data)
-                    console.log(data)
-
+                    // console.log(data)
                     setup()        
-
                     document.getElementById('view').onwheel = function(e){ 
                         e.preventDefault()
                         const pre_zoom_rate = zoom_rate
                         let direction = e.deltaY < 0 ? 1: -1
-                        zoom(direction, offset=0.1)
+                        zoom(direction, offset=0.05)
                         let view = document.getElementById('view')
                         view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
                         view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
@@ -151,7 +148,6 @@ $(document).ready(() => {
                 }
             })()
             
-        })
 
     }
 
@@ -163,11 +159,16 @@ $(document).ready(() => {
 const setup = () => {
     // render brick
     let brick = `
-        <div class='brick' style = 'width: ${data.map.cell_width};height:${data.map.cell_width}'>
-        
+        <div class='brick' style ='--b_w: ${data.map.cell_width}'>
         </div>
     `
-    $('#board').css('grid-template-columns', `repeat(${data.map.cells_per_row}, 1fr)`)
+   
+
+    let style = board_style()//data.map.background.options[4].styl
+    $('#view').empty()
+    $('#view').append(`
+            <div id='board' class='board bg-image' style="${style}"></div>
+    `)
     $('#board').append(brick.repeat(data.map.number_of_cells))
     //plots
     for(let i = 0; i < data.map.plots.length; i++) {
@@ -191,7 +192,7 @@ const setup = () => {
                 b.append("cái này chưa có decorators đặt vào, vào trang admin để đặt")
             }
         }
-        b.css({width: "auto", height: "auto", gridColumn: `${p.x} / span ${p.w}`, gridRow: `${p.y} / span ${p.h}`})
+        b.css({'--b_w': "auto", gridColumn: `${p.x} / span ${p.w}`, gridRow: `${p.y} / span ${p.h}`})
         b.addClass('plot')
     }
     // auto change slide
@@ -213,11 +214,22 @@ const setup = () => {
     $('#pre-loader').remove()
 }
 
+const board_style = () => {
+  
+    let index = parseInt(data.map.background.selected)
 
+    let style = data.map.background.options[index].style
+    if(style.startsWith('http')) {
+        style = `background-image: url('${style}')`
+        
+    }
+    return style
+}
 
 function openModal(el) {
     $(el).next().addClass('open-modal')
 }
+
 const presentDecorator = (data) => {
     if(data.media.length > 0) {
         return `
@@ -244,6 +256,7 @@ const presentItem = (data) => {
            `
         }
     }
+
     return `    
         <div class="present-item" onclick="showPopup('${data.id}')">
            <div class="simple-slider">
@@ -343,19 +356,31 @@ const showPopup = (item_id) => {
 const zoom = (direction, offset=0.05) => {
     let current_percent = parseFloat($('.brick').css('zoom'))
     if(direction === -1) {//descrease
-        let board_w = $('#view').width()
-        let min_brick_w = board_w / data.map.cells_per_row
-        let min_percent = min_brick_w / parseFloat(data.map.cell_width)
+        let view_w = $('#view').width()
+        let b_w = $('#board').width()
+        let view_h = $('#view').height()
+        let b_h = $('#board').height()
+        let rate = (zoom_rate - offset) / zoom_rate
         
-        if (current_percent - offset >= min_percent) {
+        if (rate * b_w > view_w || rate * b_h > view_h ) {//current_percent - offset >= min_percent
             zoom_rate = current_percent - offset
             $('.brick').css('zoom', zoom_rate)
+        } else if (b_h > view_h) {
+            // offset = zoom_rate * (1 - (view_h / board_h))
+            zoom_rate = zoom_rate * view_h / b_h
+            console.log("room rate", zoom_rate)
+            $('.brick').css('zoom', zoom_rate)
         }
+        // else if (b_w > view_w) {
+        //     // offset = zoom_rate * (1 - (view_h / board_h))
+        //     zoom_rate = zoom_rate * view_w / b_w
+        //     // console.log("room rate", zoom_rate)
+        //     $('.brick').css('zoom', zoom_rate)
+        // }
     } else { 
        zoom_rate = current_percent + offset
         $('.brick').css('zoom', zoom_rate)
     }
-  
     return true
 }
 
@@ -365,7 +390,7 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
         id = `id="${id}"`
     }
     if (data.type ==='image' || data.type==='GIF' || data.type==='JPEG'|| data.type==='JPG'|| data.type==='PNG'|| data.type==='TIF'|| data.type==='TIFF') {
-        media = `<img class="media-image" ${id} src="${data.url}"/>`
+        media = `<img class="media-image" ${id} src="${data.url}" draggable="false"/>`
 
     } else if (data.type === 'IFRAME' || data.type === 'YTB') {
         media = `
@@ -373,8 +398,7 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
                 <iframe src="${data.url}" title="${data.name}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   
             </div>
         `
-    }
-    
+    }    
     if(only_media) {
         return media
     } else {
@@ -385,4 +409,3 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
         `
     }
 }
-

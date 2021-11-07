@@ -48,6 +48,7 @@ $(document).ready(() => {
 
 const renderNavs = () => {
     const navs = [
+        {icon: "bx bx-map", name: "Chung", page:'setting-page', onClick: () => changePage('setting-page')},
         {icon: "bx bx-map", name: "Locations", page:'locations-page', onClick: () => changePage('locations-page')},
         {icon: "bx bxs-dashboard", name: "Map", page:'map', onClick:() =>  changePage('map')},
         {icon: "bx bx-dialpad-alt", name: "Decorators", page:'decorators-page', onClick:() => changePage('decorators-page')},
@@ -71,7 +72,7 @@ const renderNavs = () => {
 const renderMap = () => {
     let = plots = state.map.plots
     let cells = ''
-    let style = `style="width: ${state.map.cell_width}; height: ${state.map.cell_width}"`
+    let style = `style="--b_w: ${state.map.cell_width}"`
     for (let i = 0; i < state.map.number_of_cells; i++) {
         
         cells += `<div class='brick' onclick="setFeature(${i})" ${style}>
@@ -80,21 +81,24 @@ const renderMap = () => {
     }
     $('#board').empty();
     $('#board').append(cells)
-    
     // render plots 
     for (let i = 0; i < state.map.plots.length; i++) {
         let plot = state.map.plots[i];
+        let clas = 'plot '
+        if (plot.item_id.startsWith('decorator')) {
+            clas += 'plot--decorator'
+        }
         let b = $(`.brick:nth-child(${plot.index + 1})`)
-        b.css({width: "auto", height: "auto", gridRow: `${plot.y} / span ${plot.h}`, gridColumn: `${plot.x} / span ${plot.w}`})
-        b.addClass('plot')
-        b.append(` location id: ${plot.item_id}`)
+        b.css({"--b_w":"auto", gridRow: `${plot.y} / span ${plot.h}`, gridColumn: `${plot.x} / span ${plot.w}`})
+        b.addClass(clas)
+        b.append(`item id: ${plot.item_id}`)
     }
-
+    
     //render paths
     for (let i = 0; i < state.map.paths.length; i++) {
         let path = state.map.paths[i];
         let b = $(`.brick:nth-child(${path.index + 1})`)
-        b.css({width: "auto", height: "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
+        b.css({"b_w": "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
         b.addClass('path')
     }
     $(window).resize((e) => {
@@ -103,7 +107,6 @@ const renderMap = () => {
             $('.brick').css('zoom', zoom_rate)
         }
     })
-
 }
 
 const changePage = (id) => {
@@ -367,8 +370,8 @@ const onPathMode = (i) => {
         const zero = $(`.brick:nth-child(1)`).position(); 
         let p = b.position()
         let cell_w = parseInt(state.map.cell_width)
-        let x = parseInt((p.left - zero.left) / cell_w) + 1
-        let y = parseInt((p.top - zero.top) / cell_w) + 1
+        let x = (Math.floor(p.left) - Math.floor(zero.left)) / cell_w + 1
+        let y =(Math.floor(p.top) - Math.floor(zero.top)) / cell_w + 1
         console.log( i,"P", p, "Zero", zero)
         console.log(x, y)
         state.map.paths.push({index: i, x:x, y:y})
@@ -427,19 +430,32 @@ function saveText(text, filename){
 }
 
 const zoom = (direction, offset=0.05) => {
-    let current_percent = zoom_rate
+    let current_percent = parseFloat($('.brick').css('zoom'))
     if(direction === -1) {//descrease
-        let board_w = $('#view').width()
-        let min_brick_w = board_w / state.map.cells_per_row
-        let min_percent = min_brick_w / parseFloat(state.map.cell_width)
-        
-        if (current_percent - offset >= min_percent) {
+        let b_w = $('#board').width()
+        let view_w = $('#view').width()
+        let b_h = $('#board').height()
+        let view_h = $('#view').height()
+
+        console.log("view", view_w, "view height", view_h)
+        console.log("board W", b_w, "board_height",b_h)
+        let rate = (zoom_rate - offset) / zoom_rate
+
+        if (rate * b_w > view_w || 
+            rate *b_h > view_h) {//current_percent - offset >= min_percent
             zoom_rate = current_percent - offset
             $('.brick').css('zoom', zoom_rate)
+            $('#board').css({'--board_w': `${zoom_rate * state.map.cells_per_row * parseFloat(state.map.cell_width)}px`})
+        } else if (b_h > view_h) {
+            zoom_rate = zoom_rate * view_h / b_h
+            console.log("room rate", zoom_rate)
+            $('.brick').css('zoom', zoom_rate)
+            $('#board').css({'--board_w': `${zoom_rate * state.map.cells_per_row * parseFloat(state.map.cell_width)}px`})
         }
     } else { 
        zoom_rate = current_percent + offset
         $('.brick').css('zoom', zoom_rate)
+        $('#board').css({'--board_w': `${zoom_rate * state.map.cells_per_row * parseFloat(state.map.cell_width)}px`})
     }
   
     return true
@@ -454,6 +470,4 @@ const LOCATION_FORM = {
     ] 
 } 
 
-const setingPage = () => {
 
-}

@@ -18,7 +18,7 @@
 <style>
 </style>
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <?php
     
     if ($domain == '127.0.0.1:8000') {
@@ -42,12 +42,12 @@
 </head>
 <body>
     <div class="container" id="container">
-            <div class="dashed-loader-wraper" id='pre-loader'>
-                <div class="dashed-loading dashed-loading-medium"></div>
-            </div>  
+        <div class="dashed-loader-wraper" id='pre-loader'>
+            <div class="dashed-loading dashed-loading-medium"></div>
+        </div>  
         <div class="view" id="view">
              
-            <div class="board" id='board'></div>
+            <div class="board bg-image" id='board'></div>
         </div>
         <p id="message"></p>
     </div>
