@@ -136,7 +136,6 @@ main {
 .board {
   --board_w: fit-content;
   width: var(--board_w);
-
   display: grid;
   position: relative; 
   gap: 0;

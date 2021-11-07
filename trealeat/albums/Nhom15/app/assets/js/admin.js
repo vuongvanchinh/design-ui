@@ -98,7 +98,7 @@ const renderMap = () => {
     for (let i = 0; i < state.map.paths.length; i++) {
         let path = state.map.paths[i];
         let b = $(`.brick:nth-child(${path.index + 1})`)
-        b.css({"b_w": "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
+        b.css({"b_w": "initial", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
         b.addClass('path')
     }
     $(window).resize((e) => {
@@ -311,8 +311,8 @@ const onPlotMode = (index) => {
         
         const zero = $(`.brick:nth-child(1)`).position()
         let cell_w = parseInt(state.map.cell_width)
-        let x = parseInt((p.left - zero.left) / cell_w) + 1
-        let y = parseInt((p.top - zero.top) / cell_w) + 1
+        let x = Math.round((Math.round(p.left) - Math.round(zero.left)) / cell_w) + 1
+        let y = Math.round((Math.round(p.top) - Math.round(zero.top)) / cell_w ) + 1
         let dt = form.getData()
         // console.log('x y: ', x, y, dt.w, dt.h, cell_w)
         if(has_index === -1) { // add new
@@ -345,9 +345,8 @@ const onPlotMode = (index) => {
         // }
         // state.map.paths.filter(item => !delete_indexs.includes(item.index))
         // set css for plot
-        b.css({width: "auto", height: "auto", gridRow: `${y} / span ${dt.h}`, gridColumn: `${x} / span ${dt.w}`})
+        b.css({'--b_w': 'auto' , gridRow: `${y} / span ${dt.h}`, gridColumn: `${x} / span ${dt.w}`})
         b.addClass('plot');
-        
         //close modal
         m.close()
         m = null
@@ -365,13 +364,14 @@ const onPathMode = (i) => {
     if(index !== -1) { // delete 
         state.map.paths.splice(index, 1)
         $(`.brick:nth-child(${i + 1})`).removeClass('path')
-        b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
+        b.css({'--b_w': state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
     } else { // add new
         const zero = $(`.brick:nth-child(1)`).position(); 
         let p = b.position()
         let cell_w = parseInt(state.map.cell_width)
-        let x = (Math.floor(p.left) - Math.floor(zero.left)) / cell_w + 1
-        let y =(Math.floor(p.top) - Math.floor(zero.top)) / cell_w + 1
+       
+        let x = Math.round((Math.round(p.left) - Math.round(zero.left)) / cell_w) + 1
+        let y = Math.round((Math.round(p.top) - Math.round(zero.top)) / cell_w ) + 1
         console.log( i,"P", p, "Zero", zero)
         console.log(x, y)
         state.map.paths.push({index: i, x:x, y:y})
@@ -437,8 +437,8 @@ const zoom = (direction, offset=0.05) => {
         let b_h = $('#board').height()
         let view_h = $('#view').height()
 
-        console.log("view", view_w, "view height", view_h)
-        console.log("board W", b_w, "board_height",b_h)
+        // console.log("view", view_w, "view height", view_h)
+        // console.log("board W", b_w, "board_height",b_h)
         let rate = (zoom_rate - offset) / zoom_rate
 
         if (rate * b_w > view_w || 
