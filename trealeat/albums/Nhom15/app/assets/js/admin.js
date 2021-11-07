@@ -394,7 +394,7 @@ const removeModal = (id) => {
 const deletePlot = (index) => {
     state.map.plots = state.map.plots.filter(item => item.index != index);
     let b = $(`.brick:nth-child(${index + 1})`)
-    b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
+    b.css({'--b_w': state.map.cell_width ,gridRow: "auto", gridColumn: "auto"})
     b.removeClass('plot')
     b.text(index)
 }
