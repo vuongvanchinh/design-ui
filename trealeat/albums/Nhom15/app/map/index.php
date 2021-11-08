@@ -26,13 +26,14 @@
             <link rel="stylesheet" href="assets/css/global_variable.css">
             <link rel="stylesheet" href="assets/css/common.css">
             <link rel="stylesheet" href="assets/css/canvas_index.css">        
+            <link rel="stylesheet" href="assets/css/showoff.css">        
         ';
     } else {
         echo'
             <link rel="stylesheet" href="../assets/css/global_variable.css">
             <link rel="stylesheet" href="../assets/css/common.css">
             <link rel="stylesheet" href="../assets/css/canvas_index.css">
-               
+            <link rel="stylesheet" href="assets/css/showoff.css"> 
         ';
     }
 ?>
