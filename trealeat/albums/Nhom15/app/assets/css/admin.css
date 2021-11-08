@@ -158,6 +158,7 @@ main {
 .plot {
   --plot-bg: rgb(5, 175, 161);
   background-color: var(--plot-bg);
+  overflow: hidden;
 }
 .plot--decorator {
   --plot-bg: rgb(4, 218, 171);

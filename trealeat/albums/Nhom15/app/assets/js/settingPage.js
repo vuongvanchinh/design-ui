@@ -30,8 +30,13 @@ const renderBgs = () => {
     console.log()
     
     $($(`#backgrounds`).children()[state.map.background.selected]).addClass('bg--active')
+   
     $('.bg__icon i').click((e) => {
-        $(e.target).next().css('display', 'block')
+        let mode = 'block'
+        if($(e.target).next().css('display') === 'block')  {
+            mode = 'none'
+        }
+        $(e.target).next().css('display', mode)
     })
 }
 

@@ -105,6 +105,7 @@ const renderMap = () => {
         if (zoom_rate < 1) {
             zoom_rate = 1
             $('.brick').css('zoom', zoom_rate)
+            $('#board').css({'--board_w': `${zoom_rate * state.map.cells_per_row * parseFloat(state.map.cell_width)}px`})
         }
     })
 }
@@ -346,7 +347,12 @@ const onPlotMode = (index) => {
         // state.map.paths.filter(item => !delete_indexs.includes(item.index))
         // set css for plot
         b.css({'--b_w': 'auto' , gridRow: `${y} / span ${dt.h}`, gridColumn: `${x} / span ${dt.w}`})
-        b.addClass('plot');
+        if(dt.item_id.startsWith('decorator')) {
+            b.addClass('plot plot--decorator');
+        } else {
+            b.addClass('plot');
+        }
+       
         //close modal
         m.close()
         m = null
@@ -471,4 +477,14 @@ const LOCATION_FORM = {
     ] 
 } 
 
-
+const checkPlot = () => {
+    let dt = {}
+    for (i = 0; i < state.map.plots.length; i++) {
+        if (dt[state.map.plots[i].index]) {
+            console.log("error", dt[state.map.plots[i].index])
+        } else {
+            dt[state.map.plots[i].index] = 1
+        }
+    }
+    console.log(dt)
+} 
