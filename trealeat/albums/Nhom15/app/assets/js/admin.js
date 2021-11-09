@@ -49,10 +49,10 @@ $(document).ready(() => {
 const renderNavs = () => {
     const navs = [
         {icon: "bx bx-map", name: "Chung", page:'setting-page', onClick: () => changePage('setting-page')},
-        {icon: "bx bx-map", name: "Locations", page:'locations-page', onClick: () => changePage('locations-page')},
-        {icon: "bx bxs-dashboard", name: "Map", page:'map', onClick:() =>  changePage('map')},
-        {icon: "bx bx-dialpad-alt", name: "Decorators", page:'decorators-page', onClick:() => changePage('decorators-page')},
-        {icon: "bx bxs-save", name: "Save", page:'sav', onClick: () => saveMap()}
+        {icon: "bx bx-map", name: "Các địa điểm", page:'locations-page', onClick: () => changePage('locations-page')},
+        {icon: "bx bxs-dashboard", name: "Bản đồ", page:'map', onClick:() =>  changePage('map')},
+        {icon: "bx bx-dialpad-alt", name: "Banner", page:'decorators-page', onClick:() => changePage('decorators-page')},
+        {icon: "bx bxs-save", name: "Lưu", page:'sav', onClick: () => saveMap()}
         
     ]
     let navigation = $('#navs')
@@ -480,11 +480,7 @@ const LOCATION_FORM = {
 const checkPlot = () => {
     let dt = {}
     for (i = 0; i < state.map.plots.length; i++) {
-        if (dt[state.map.plots[i].index]) {
-            console.log("error", dt[state.map.plots[i].index])
-        } else {
-            dt[state.map.plots[i].index] = 1
-        }
+        state.map.plots[i].index -= 1
     }
-    console.log(dt)
+    console.log(JSON.stringify({trealet: state}))
 } 

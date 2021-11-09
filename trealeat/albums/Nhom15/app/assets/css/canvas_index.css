@@ -11,7 +11,7 @@
     justify-content: center;
     align-items: center; */
     background-color: #2b4162;
-    background-image: url('https://scitechdaily.com/images/Planet-Nine.gif');
+    
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -28,8 +28,8 @@
     position: relative; 
     gap: 0;
     margin: auto;
-    background-color: #2b4162;
-    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);    
+    /* background-color: #2b4162;
+    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);     */
 }
 
 .brick {
@@ -40,11 +40,11 @@
     justify-content: center;
     align-items: center;
     /* border: 1px solid #000; */
-
+    background-color: transparent;
 }
 
 .plot {
-    background-color:#f1f1f1;
+    /* background-color:#f1f1f1; */
    
 }
 .path {
@@ -63,6 +63,7 @@
     display: flex;
     width: 100%;
     height: 100%;
+    border-radius: inherit;
 }
 
 .simple-slide-item {
@@ -77,6 +78,8 @@
     height: 100%;
     opacity: 0;
     transition: all 0.5s ease-out;
+    border-radius: inherit;
+    background-color: inherit;
 }
 .simple-slide-item-active {
     opacity: 1;
@@ -89,6 +92,9 @@
     cursor: pointer;
     zoom: 1;
     box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
+    border-radius: 1rem;
+    background-color: inherit;
+
 }
 
 .present-info {
@@ -162,6 +168,46 @@
 }
 
 
+svg {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    height:30%;
+}
+
+#topLocIcon {
+    animation: locationIcon 1s ease-in-out infinite alternate;
+}
+svg #topLocIcon path{
+    padding: 10px;
+}
+.present-item:hover svg #topLocIcon #Vector_7{
+    fill: red  !important;
+    fill-opacity:1;
+}
+.present-item:hover svg #topLocIcon #Vector_6{
+    fill: black !important; 
+    fill-opacity:1;
+}
+
+  /* svg #locationIcon path:hover {
+    fill: red !important;
+    fill-opacity:1;
+  } */
+@keyframes locationIcon{
+    from {
+      transform: translateY(-5%);
+    }
+    to {
+      transform: translateY(5%);
+    }
+}
+
+/* .present-item:hover .btn-detail{
+    visibility: visible;
+
+} */
 
 /* .present-item:hover .btn-detail{
     visibility: visible;

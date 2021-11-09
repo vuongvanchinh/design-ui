@@ -38,12 +38,6 @@
         }
     ?>
     
-    
-    
-    
-  
-   
-    
     <title>Admin</title>
 </head>
 <body>
@@ -64,7 +58,7 @@
                         <div class="col-7 col-md-12">
                             <div class="form-card">
                                 <div class="form-card-header">
-                                    Background
+                                    Nền
                                 </div>
                                 <div class="form-card-body" >
                                     <div class="grid" id='backgrounds'>
