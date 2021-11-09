@@ -19,8 +19,10 @@
             echo '
             <link rel="stylesheet" href="../assets/css/global_variable.css">
             <link rel="stylesheet" href="../assets/css/common.css">
+
             <link rel="stylesheet" href="../assets/css/admin.css">
             <link rel="stylesheet" href="../assets/css/grid.css">
+            <link rel="stylesheet" href="../assets/css/map.css">
             <link rel="stylesheet" href="../assets/css/settingpage.css">
             <link rel="stylesheet" href="../assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="../assets/js/richtext/jquery.richtext.js"></script>
@@ -31,6 +33,7 @@
             <link rel="stylesheet" href="assets/css/common.css">
             <link rel="stylesheet" href="assets/css/grid.css">
             <link rel="stylesheet" href="assets/css/admin.css">
+            <link rel="stylesheet" href="assets/css/map.css">
             <link rel="stylesheet" href="assets/css/settingpage.css">
             <link rel="stylesheet" href="assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="assets/js/richtext/jquery.richtext.js"></script>
@@ -112,40 +115,39 @@
             <div class="page" id="map">
                 <h1 style="text-align: center">Build your map</h1>
                 <div class="actions">
-                    <div class="left">
-                        <div class="textfield">
-                            <input type="number" name="number_of_cells" 
-                                onchange="change(this)" placeholder="vd: 5000" 
-                                class="map-input"
-                                id="number_of_cells" 
-                            />
-                            <label for="number_of_cells">Number of cells</label>
+
+                    <div class="left-btn">
+                        <div class="">
+                        <button class="btn btn-light" id="togglePlotMode">Xây dựng ô đất</button>    
                         </div>
-                        <div class="textfield">
-                            <input type="number" name="cells_per_row" 
-                                onchange="change(this)" placeholder="vd: 50" 
-                                class="map-input"
-                                id="cells_per_row" 
-                            />
-                            <label for="cells_per_row">Cells per row</label>
-                        </div>
-                        <div class="textfield">
-                            <input type="text" name="cell_width" 
-                                onchange="change(this)" placeholder="Ex: 50px" 
-                                class="map-input"
-                                id="cell_width"
-                            />
-                            <label for="cell_width">Cell width</label>
+                        <div id="toggleDrawPathMode-wraper">
+                            <button class="btn btn-light" id="toggleDrawPathMode" >Xây dựng đường đi</button>
+                            <div id="path-options">
+                                Abc dè
+                            </div>
                         </div>
                     </div>
                     <div class="right">
-                        <button class="btn btn-light" id="toggleDrawPathMode">Draw path mode</button>
-                        <button class="btn btn-light" id="togglePlotMode">Plots of land mode</button>
-                        
-                        <button class="btn btn-save" onclick="refresh()">Temper build</button>
-                        
+                        <div class="container-right">
+                            <div class="left-field">
+                                <div class="textfield">
+                                    <input type="number" name="number_of_cells" onchange="change(this)" placeholder="vd: 5000" class="map-input" id="number_of_cells" />
+                                    <label for="number_of_cells">Tổng số ô</label>
+                                </div>
+                                <div class="textfield">
+                                    <input type="number" name="cells_per_row" onchange="change(this)" placeholder="vd: 50" class="map-input" id="cells_per_row" />
+                                    <label for="cells_per_row">Số ô trên 1 dòng</label>
+                                </div>
+                                <div class="textfield">
+                                    <input type="text" name="cell_width" onchange="change(this)" placeholder="Ex: 50px" class="map-input" id="cell_width" />
+                                    <label for="cell_width">Độ rộng 1 ô</label>
+                                </div>
+                            </div>
+                            <button class="btn btn-save" onclick="refresh()">Làm mới</button>
+                        </div>
                     </div>
                 </div>
+
                     <div id="view" class='view'>
                     <?php
                         $col_per_row = $d['map']['cells_per_row'];

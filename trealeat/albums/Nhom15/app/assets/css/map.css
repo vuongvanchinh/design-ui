@@ -1,0 +1,119 @@
+.actions {
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    padding: 0.3rem 0.5rem;
+    padding-left: 0;
+}
+  
+
+  .left >div:not(:last-child) {
+    max-width: 150px;
+    margin-right: 1rem;
+  }
+  
+  .right>button:not(:last-child) {
+   
+    margin-right: 1rem;
+  }
+
+#map h1 {
+    text-align: center;
+    padding-bottom: 10px;
+    /* border-bottom: 2px solid #46c493; */
+    max-width: 40%;
+    margin: auto;
+}
+
+#map .left-field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-field>div {
+    max-width: 150px;
+    margin-right: 1rem;
+}
+
+#map .right {
+    /* display: flex;
+    background-color: grey; */
+    border: 2px solid #46c493;
+    padding: 1rem 0.5rem 0.5rem 0.5rem;
+}
+
+#map .container-right {
+    display: flex;
+    /* background-color: rgb(228, 222, 222); */
+    padding: 0.6rem;
+}
+
+
+#map .left-btn {
+    display: flex;
+    /* justify-content: space-around; */
+}
+#map .left-btn >div {
+    height: fit-content;
+}
+
+#toggleDrawPathMode-wraper {
+    margin-left: 1rem;
+    position: relative;
+
+}
+#path-options {
+    --bg: #fff;
+
+    width: 300px;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 130%;
+    left: 0;
+
+    background-color: var(--bg);
+    z-index: 3;
+    box-shadow: rgba(49, 49, 49, 0.2) 0px 8px 24px;
+    padding: 1rem;
+}
+
+#path-options::after {
+    content: '';
+    transition: all 0.2s ease-in-out;
+    border-width: 8px;
+    border-style: solid;
+    border-color: transparent transparent #000  transparent;
+    position: absolute;
+    left: 20%;
+    bottom: 100%;
+    transform: translateX(-50%);
+
+}
+@media screen and (max-width: 1024px) {
+    .left-field {
+        flex-direction: column;
+    }
+    .left-field>*:not(:last-child) {
+        margin-bottom: 1rem;
+    }
+    .left-btn {
+        flex-direction: column;
+    }
+    #toggleDrawPathMode-wraper {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+   
+}
+
+@media screen and (max-width: 768px) {
+   
+    #toggleDrawPathMode-wraper {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+    #map .right {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

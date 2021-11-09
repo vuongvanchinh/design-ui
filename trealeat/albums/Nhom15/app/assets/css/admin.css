@@ -87,31 +87,7 @@ main {
   left: 0;
 }
 
-.actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.3rem 0.5rem;
-  padding-left: 0;
-  
 
-}
-
-.left {
-  
-  display: flex;
-  justify-content: space-between;
-
-}
-.left >div:not(:last-child) {
-  max-width: 150px;
-  margin-right: 1rem;
-}
-
-.right>button:not(:last-child) {
- 
-  margin-right: 1rem;
-}
 
 .view {
   --view-width: calc(100vw - var(--sidebar-width)-1rem);

@@ -19,7 +19,7 @@ const renderLocationPage = () => {
         `
     }
 
-    const location_headers = ['Item id', 'Name', 'Media', '']
+    const location_headers = ['Item id', 'Tên', 'Hình ảnh / video id', '']
     $('#location-content').append(table(location_headers, body, 'locations-table', 'Locations', `There are ${state.locations.length} locations`))
     $('#locations-table tbody tr').dblclick((e) => {
         // console.log(e)

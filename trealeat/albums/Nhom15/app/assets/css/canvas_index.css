@@ -39,8 +39,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    zoom: 1;
     /* border: 1px solid #000; */
-    background-color: transparent;
+    /* background-color: transparent;
+    animation-name: welcome;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards; */
 }
 
 .plot {
@@ -245,5 +251,18 @@ svg #topLocIcon path{
    
     100% {
         transform: translateX(-50%) rotate(0deg);
+    }
+}
+
+@keyframes welcome {
+    0% {
+        zoom: 1;
+    
+    }
+    50% {
+        zoom: 0.5;
+    }
+    100% {
+        zoom: 1;
     }
 }

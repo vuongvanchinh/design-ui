@@ -1,6 +1,6 @@
 $(document).ready(() => {
     renderSettingPage()
-    changePage('setting-page')
+    changePage('map')
     $('#title').val(state.title)
     $('#title').change((e) => {
         state.title = e.target.value

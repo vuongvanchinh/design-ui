@@ -48,8 +48,8 @@ $(document).ready(() => {
 
 const renderNavs = () => {
     const navs = [
-        {icon: "bx bx-map", name: "Chung", page:'setting-page', onClick: () => changePage('setting-page')},
-        {icon: "bx bx-map", name: "Các địa điểm", page:'locations-page', onClick: () => changePage('locations-page')},
+        {icon: "bx bx-palette", name: "Chung", page:'setting-page', onClick: () => changePage('setting-page')},
+        {icon: "bx bx-map", name: "Địa điểm", page:'locations-page', onClick: () => changePage('locations-page')},
         {icon: "bx bxs-dashboard", name: "Bản đồ", page:'map', onClick:() =>  changePage('map')},
         {icon: "bx bx-dialpad-alt", name: "Banner", page:'decorators-page', onClick:() => changePage('decorators-page')},
         {icon: "bx bxs-save", name: "Lưu", page:'sav', onClick: () => saveMap()}

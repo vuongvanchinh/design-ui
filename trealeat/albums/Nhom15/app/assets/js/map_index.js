@@ -66,6 +66,7 @@ $(document).ready(() => {
                 console.log(medias)
                 data = filloutMediaData(medias, data)
                 setup()
+                welcomeAnimation()  
 
             } catch (error) {
                 console.log(error)
@@ -128,7 +129,8 @@ $(document).ready(() => {
                     // console.log(medias)
                     data = filloutMediaData(medias, data)
                     // console.log(data)
-                    setup()        
+                    setup() 
+                       
                     document.getElementById('view').onwheel = function(e){ 
                         e.preventDefault()
                         const pre_zoom_rate = zoom_rate
@@ -155,7 +157,10 @@ $(document).ready(() => {
 
 })
 
-
+const welcomeAnimation = () => {
+    // alert('Welcome')
+    // $('.brick').css({animation: 'welcome 3s ease-out 2s 1 forwards'})
+}
 const setup = () => {
     // render brick
     let brick = `
@@ -390,7 +395,7 @@ const cardForwardSlider = (data) => {
             alt=""
           />
         </div>
-        <div class="text">
+        <div class="text" >
           <h2>${data.name}</h2>
           <div class="text-inner">
             <div class="scroll-txt">
