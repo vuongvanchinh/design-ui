@@ -172,6 +172,17 @@
     }
    
 }
+@media screen and (max-width: 1400px) {
+    #path-choice-list {
+        width: 200px;
+    }
+    
+#path-choice-list .path-items {
+    --col : 5;
+    grid-template-columns: repeat(var(--col), 1fr);
+}
+   
+}
 
 @media screen and (max-width: 768px) {
    
@@ -182,5 +193,12 @@
     #map .right {
         padding-left: 0;
         padding-right: 0;
+    }
+    #path-choice-list {
+        width: 140px;
+    }
+    #path-choice-list .path-items {
+        --col : 3;
+        grid-template-columns: repeat(var(--col), 1fr);
     }
 }
