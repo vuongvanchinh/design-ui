@@ -359,17 +359,22 @@ const presentItem = (data) => {
 }
 const popUpContent = (data) => {
     let card = '';
-
+    let sign = 0
     for (i = 1; i < data.media.length; i++) {
         if (data.media[i].type === 'IFRAME') {
             card += `<div style='margin-top: 4rem;'>
                 ${mediaHtml(data.media[i], '', false)}
             </div>`
-        } else if (i % 2 === 1) {
-            card += cardForwardSlider(data.media[i])
         } else {
-            card += cardReverseSlider(data.media[i])
-        }
+            card += imageSection(data.media[i], sign)
+            sign += 1
+        } 
+        
+        // else if (i % 2 === 0) {
+            
+        // } else {
+        //     card += cardReverseSlider(data.media[i], i)
+        // }
     }
     return `
         ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
@@ -384,31 +389,49 @@ const popUpContent = (data) => {
         </div>
         `
 }
-const cardForwardSlider = (data) => {
-    let content = `      
-    <section class="sec2 left-right-sec">
-    <div class="containter-2">
-      <div class="sec2-inner">
-        <div class="img">
-          <img
+const imageSection = (data, i) => {
+    let modifed = 'image-section--even'
+    
+    let inner = `
+    <div class='image-section__img'>
+        <img
             src="${data.url}"
             alt=""
-          />
-        </div>
-        <div class="text" >
-          <h2>${data.name}</h2>
-          <div class="text-inner">
-            <div class="scroll-txt">
-              <p>
-                ${data.description !== undefined ? data.description : ''}
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
+        />
     </div>
-  </section>`;
-    return content;
+    <div class="image-section__text" >
+        <h2 class="image-section__text__name">${data.name}</h2>
+        <p class='image-section__text__description'>
+        ${data.description !== undefined ? data.description : ''}
+        </p>
+    </div>
+    `
+    if (i%2 !== 0) {
+        modifed = 'image-section--odd'
+        
+        inner = `
+        <div class="image-section__text" >
+            <h2 class="image-section__text__name">${data.name}</h2>
+            <p class='image-section__text__description'>
+            ${data.description !== undefined ? data.description : ''}
+           
+             </p>
+        </div>
+        <div class='image-section__img'>
+            <img
+                src="${data.url}"
+                alt=""
+            />
+        </div>
+       
+    `
+    }
+    return `
+        <div class="grid image-section ${modifed}" >
+            ${inner}
+        </div>
+    
+    `;
 }
 
 const cardReverseSlider = (data) => {
@@ -421,6 +444,9 @@ const cardReverseSlider = (data) => {
           <div class="text-inner">
             <div class="scroll-txt">
               <p>
+              ${data.description !== undefined ? data.description : ''}
+              ${data.description !== undefined ? data.description : ''}
+              ${data.description !== undefined ? data.description : ''}
               ${data.description !== undefined ? data.description : ''}
               </p>
             </div>
