@@ -122,8 +122,8 @@
                         </div>
                         <div id="toggleDrawPathMode-wraper">
                             <button class="btn btn-light" id="toggleDrawPathMode" >Xây dựng đường đi</button>
-                            <div id="path-options">
-                                Abc dè
+                            <div id="path-choice-list">
+                              
                             </div>
                         </div>
                     </div>
@@ -173,6 +173,7 @@
     </div>
     
     <script>
+
         let state =  JSON.parse('<?php echo json_encode($d); ?>')
         // handle scroll event 
         document.addEventListener('DOMContentLoaded', function () {

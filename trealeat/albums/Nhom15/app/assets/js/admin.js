@@ -21,14 +21,20 @@ let zoom_rate = 1
 $(document).ready(() => {
     renderNavs()
     renderMap()
+    renderPathList()
     //mode draw map
     $(pathToggleId).click(() => {
         drawPathModeToggle()
     })
     $(plotToggleId).click(() => {
         plotModeToggle();
-    })
 
+    })
+    $("#path-choice-list").resizable({    
+        handles: 'n,w,s,e',
+        minWidth: 200,
+        maxWidth: 400 
+    });
     document.getElementById('view').onwheel = function(e){ 
         e.preventDefault()
         const pre_zoom_rate = zoom_rate
@@ -46,6 +52,97 @@ $(document).ready(() => {
     $(`#${cell_width_id}`).val(state.map.cell_width)     
 });
 
+const renderPathList = () => {
+    let content = showPathItems();
+
+    let pathList = $('#path-choice-list')
+
+    pathList.html( `
+        <div class="path-items">
+            ${content}
+            <div class="path-item">
+                <div class="add-path-item" onclick="addPathItem()">
+                    <i class='bx bx-plus' style='font-weight: bold;'></i>
+                </div>
+            </div>
+        </div>
+        `
+    )
+}
+
+const selectPathImage = (me,i) => {
+    console.log( me.firstElementChild)
+    $('.path-active').removeClass('path-active')
+    me.firstElementChild.classList.add('path-active')
+    state.map.path_list.selected = i;
+}
+
+const showPathItems = () => {
+    let content = ''
+    for (let i = 0; i < state.map.path_list.options.length; i++) {
+        content += `
+            <div class="path-item" onclick="selectPathImage(this,${i})">
+                <img class="${state.map.path_list.selected === i? 'path-active' : ''}"src="${state.map.path_list.options[i]}">
+            </div>
+        `
+    }
+    return content;
+}
+
+const path_form = (data= {url:''}) => {
+    let html = `
+        <div class="textfield">
+            <input type="text" name="bg-url" 
+                placeholder ='https://abc.com/hinhanh.jpg'
+                id="path-url" 
+            />
+            <label for="number_of_cells">Đường dẫn url</label>
+            <p class='error-message' id='path-url-message'></p>
+        </div>
+    `
+
+    return {
+        getHtml: () => html,
+        getData: () => {
+            return $('#path-url').val()
+            
+        },
+        validate: () => {
+            if(!$('#path-url').val().trim()) {
+                $('#path-url-message').text('Bạn chưa điền đường dẫn tới ảnh')
+                return false
+            }
+            return true
+        },
+        setup: () => {
+            $('#path-url').focus()
+            renderPathList()
+        }
+
+    }
+}
+
+const addPathItem = () => {
+    let form = path_form()
+    let footer = `
+        <button class="btn btn-light" id='cancel-add-bg'>Hủy</button>
+        <span style='padding:0 0.5rem'></span>
+        <button class="btn btn-save"  id='save-add-bg'>Lưu</button>
+    `
+
+    let m = modal('Thêm nền đường mới', form.getHtml(), footer, modal_id, 'modal-set-feature', false, 'small')
+    $('#map').prepend(m.getHtml());
+    $('#cancel-add-bg').click(() => {
+        m.close()
+    })
+    $('#save-add-bg').click(() => {
+        if(form.validate()) {
+            state.map.path_list.options.push(form.getData())
+            renderPathList()
+            m.close()
+        }
+    })
+}
 const renderNavs = () => {
     const navs = [
         {icon: "bx bx-palette", name: "Chung", page:'setting-page', onClick: () => changePage('setting-page')},
@@ -98,7 +195,7 @@ const renderMap = () => {
     for (let i = 0; i < state.map.paths.length; i++) {
         let path = state.map.paths[i];
         let b = $(`.brick:nth-child(${path.index + 1})`)
-        b.css({"b_w": "initial", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
+        b.css({"b_w": "initial", "background": `url("${state.map.path_list.options[path.op_no]}")`,width: "auto", height: "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
         b.addClass('path')
     }
     $(window).resize((e) => {
@@ -369,6 +466,7 @@ const onPathMode = (i) => {
     let index = state.map.paths.findIndex(item => item.index===i)
     if(index !== -1) { // delete 
         state.map.paths.splice(index, 1)
+        b.css({"background": "none"})
         $(`.brick:nth-child(${i + 1})`).removeClass('path')
         b.css({'--b_w': state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
     } else { // add new
@@ -380,9 +478,9 @@ const onPathMode = (i) => {
         let y = Math.round((Math.round(p.top) - Math.round(zero.top)) / cell_w ) + 1
         console.log( i,"P", p, "Zero", zero)
         console.log(x, y)
-        state.map.paths.push({index: i, x:x, y:y})
         b.addClass('path')
-        b.css({gridColumn: `${x} / span 1`, gridRow: `${y} / span 1`})
+        b.css({"background": `url("${state.map.path_list.options[state.map.path_list.selected]}")`, gridColumn: `${x} / span 1`, gridRow: `${y} / span 1`})
+        state.map.paths.push({index: i, x:x, y:y, op_no:state.map.path_list.selected})
     }
 }
 const setFeature = (index) => {
@@ -408,6 +506,7 @@ const deletePlot = (index) => {
 
 
 const drawPathModeToggle = () => {
+    $("#path-choice-list").toggle();
     $(pathToggleId).toggleClass("btn-active")
     $(plotToggleId).removeClass("btn-active")
     pathMode = !pathMode
@@ -415,11 +514,13 @@ const drawPathModeToggle = () => {
 }
 
 const plotModeToggle = () => {
+    if(pathMode) {
+        $("#path-choice-list").toggle();
+    }
     $(pathToggleId).removeClass("btn-active")
     $(plotToggleId).toggleClass("btn-active")
     plotMode = !plotMode
     pathMode = false
-
 }
 const saveMap = () => {
     const obj = {

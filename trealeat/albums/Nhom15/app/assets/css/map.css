@@ -62,22 +62,22 @@
     position: relative;
 
 }
-#path-options {
+#path-choice-list {
     --bg: #fff;
 
-    width: 300px;
+    width: 400px;
     border-radius: 0.5rem;
     position: absolute;
     top: 130%;
     left: 0;
-
+    display: none;
     background-color: var(--bg);
     z-index: 3;
     box-shadow: rgba(49, 49, 49, 0.2) 0px 8px 24px;
     padding: 1rem;
 }
 
-#path-options::after {
+#path-choice-list::after {
     content: '';
     transition: all 0.2s ease-in-out;
     border-width: 8px;
@@ -87,8 +87,75 @@
     left: 20%;
     bottom: 100%;
     transform: translateX(-50%);
-
 }
+
+/* #path-choice-list {
+    position: absolute;
+    padding: 0.5rem;
+   
+    max-width: 500px;
+    top: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    z-index: 100;
+    border-radius:10px;
+} */
+
+#path-choice-list .path-items {
+    --col : 10;
+    display: grid;
+    grid-template-columns: repeat(var(--col), 1fr);
+    justify-content: space-between;
+    gap: 1vw;
+    max-height:2rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 7px;
+}
+
+
+.path-items .path-item img{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+    border-radius: 10%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    transition: all 0.2s ease-in-out;
+}
+.path-items .path-item:hover img{
+    width:20px;
+    height:20px;
+    cursor:pointer;
+    border-radius: 10%;
+    box-shadow: rgba(171, 214, 192, 0.16) 0px 1px 4px, rgb(139, 213, 133) 0px 0px 0px 3px;
+}
+
+.path-items .path-item {
+}
+.path-items .add-path-item{
+    cursor: pointer;
+    border: 1px solid black;    
+    flex: 1 0 21%;
+    margin: 1%;
+    display:block;
+    width:20px;
+    height:20px;
+    text-align:center;
+}
+.add-path-item{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px, rgb(51, 51, 51) 0px 0px 0px 3px;
+    border-radius: 40%;
+    text-align:center;
+}
+.path-items{
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius:10px;
+}
+.path-active {
+    outline:4px solid #f1c40f;
+}
+
 @media screen and (max-width: 1024px) {
     .left-field {
         flex-direction: column;

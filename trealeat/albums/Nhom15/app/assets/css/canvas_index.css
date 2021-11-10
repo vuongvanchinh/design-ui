@@ -57,10 +57,9 @@
     /* border: 7px solid rgb(86 86 86); */
     /* border-radius: 65% 36% 50% 50% / 44% 81% 46% 68%; */
     background-color: transparent;
-      background-position: center;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../../../app/bg.png');
 
 }
 

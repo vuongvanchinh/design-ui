@@ -205,7 +205,8 @@ const setup = () => {
     for (let i = 0; i < data.map.paths.length; i++) {
         let p = data.map.paths[i]
         let b = $(`.brick:nth-child(${p.index+1})`)
-        b.css({gridColumn: `${p.x} / span 1`, gridRow: `${p.y} / span 1`})
+        
+        b.css({background: `url("${data.map.path_list.options[p.op_no]}")`, gridColumn: `${p.x} / span 1`, gridRow: `${p.y} / span 1`})
         b.addClass('path')
     }
 
