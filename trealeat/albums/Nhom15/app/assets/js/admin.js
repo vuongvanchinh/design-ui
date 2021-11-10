@@ -21,6 +21,7 @@ let zoom_rate = 1
 $(document).ready(() => {
     renderNavs()
     renderMap()
+    renderPathOptions()
     //mode draw map
     $(pathToggleId).click(() => {
         drawPathModeToggle()
@@ -46,6 +47,128 @@ $(document).ready(() => {
     $(`#${cell_width_id}`).val(state.map.cell_width)     
 });
 
+const renderPaths = () => {
+    for (let i = 0; i < state.map.paths.length; i++) {
+        let path = state.map.paths[i];
+        let b = $(`.brick:nth-child(${path.index + 1})`)
+        if (path.op_no === undefined) {
+            state.map.paths[i].op_no = 0
+        }
+        b.css({"b_w": "initial", "background-image": `url("${state.map.path_list.options[path.op_no]}")`,width: "auto", height: "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
+        b.addClass('path')
+    }
+}
+const renderPathOptions = () => {
+    let content = showPathItems();
+
+    let pathList = $('#path-choice-list')
+
+    pathList.html( `
+        <div class="path-items">
+            ${content}
+            <div class="path-item add-path-item" onclick="addPathItem()" >
+                <i class='bx bx-plus' style='font-weight: bold;'></i>
+            </div>
+        </div>
+        `
+    )
+}
+const selectPathImage = (me,i) => {
+    console.log( me.firstElementChild)
+    $('.path-active').removeClass('path-active')
+    me.firstElementChild.classList.add('path-active')
+    state.map.path_list.selected = i;
+}
+const updatePathImageOption = (index) => {
+    let form = path_form(state.map.path_list.options[index])
+    let footer = `
+        <button class="btn btn-light" id='cancel-update-option'>Hủy</button>
+        <span style='padding:0 0.5rem'></span>
+        <button class="btn btn-save"  id='save-update-option'>Lưu</button>
+    `
+
+    let m = modal('Cập nhật', form.getHtml(), footer, 'update-path-option-modal', 'update-path-option-modal', false, 'small')
+    $('#map').prepend(m.getHtml());
+    form.setup()
+    $('#cancel-update-option').click(() => {
+        m.close()
+    })
+    $('#save-update-option').click(() => {
+        if(form.validate()) {
+            state.map.path_list.options[index] = form.getData()
+            renderPathOptions()
+            renderPaths()
+            m.close()
+        }
+    })
+}
+const showPathItems = () => {
+    let content = ''
+    for (let i = 0; i < state.map.path_list.options.length; i++) {
+        content += `
+            <div class="path-item" onclick="selectPathImage(this,${i})" ondblclick ="updatePathImageOption(${i})">
+                <img class="${state.map.path_list.selected === i? 'path-active' : ''}"src="${state.map.path_list.options[i]}">
+            </div>
+        `
+    }
+    return content;
+}
+
+const path_form = (url='') => {
+    let html = `
+        <div class="textfield">
+            <input type="text" name="bg-url" 
+                placeholder ='https://abc.com/hinhanh.jpg'
+                id="path-url" 
+            />
+            <label for="number_of_cells">Đường dẫn url</label>
+            <p class='error-message' id='path-url-message'></p>
+        </div>
+    `
+
+    return {
+        getHtml: () => html,
+        getData: () => {
+            return $('#path-url').val()
+            
+        },
+        validate: () => {
+            if(!$('#path-url').val().trim()) {
+                $('#path-url-message').text('Bạn chưa điền đường dẫn tới ảnh')
+                return false
+            }
+            return true
+        },
+        setup: () => {
+            $('#path-url').val(url)
+            $('#path-url').focus()
+            renderPathOptions()
+        }
+
+    }
+}
+
+const addPathItem = () => {
+    let form = path_form()
+    let footer = `
+        <button class="btn btn-light" id='cancel-add-path-option'>Hủy</button>
+        <span style='padding:0 0.5rem'></span>
+        <button class="btn btn-save"  id='save-add-path-option'>Lưu</button>
+    `
+
+    let m = modal('Thêm nền đường mới', form.getHtml(), footer, 'add-path-option-modal', 'add-path-option-modal', false, 'small')
+    $('#map').prepend(m.getHtml());
+    $('#cancel-add-path-option').click(() => {
+        m.close()
+    })
+    $('#save-add-path-option').click(() => {
+        if(form.validate()) {
+            state.map.path_list.options.push(form.getData())
+            renderPathOptions()
+            m.close()
+        }
+    })
+}
 const renderNavs = () => {
     const navs = [
         {icon: "bx bx-palette", name: "Chung", page:'setting-page', onClick: () => changePage('setting-page')},
@@ -95,12 +218,7 @@ const renderMap = () => {
     }
     
     //render paths
-    for (let i = 0; i < state.map.paths.length; i++) {
-        let path = state.map.paths[i];
-        let b = $(`.brick:nth-child(${path.index + 1})`)
-        b.css({"b_w": "initial", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
-        b.addClass('path')
-    }
+    renderPaths()
     $(window).resize((e) => {
         if (zoom_rate < 1) {
             zoom_rate = 1
@@ -120,7 +238,6 @@ const changePage = (id) => {
     $(`#${id}`).addClass('page-view')
     
 }
-
 
 const change = (el) => {
     let value = el.value
@@ -158,7 +275,7 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
                 placeholder="vd: 8" 
                 id="number_cell_width" 
             />
-            <label for="number_of_cells">Number cells width</label>
+            <label for="number_of_cells">Số ô rộng</label>
             <p class='error-message'></p>
         </div>
         <div class="textfield">
@@ -167,7 +284,7 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
                 placeholder="vd: 8" 
                 id="number_cell_height" 
             />
-            <label for="number_of_cells">Number cells height</label>
+            <label for="number_of_cells">Số ô dài</label>
             <p class='error-message'></p>
         </div>
         <div class="textfield">
@@ -175,7 +292,7 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
                 placeholder="vd: 8" 
                 id="plot_item_id" 
             />
-            <label for="number_of_cells">Location Id</label>
+            <label for="number_of_cells">Item id</label>
             <p class='error-message'></p>
         </div>
     `
@@ -333,19 +450,7 @@ const onPlotMode = (index) => {
             state.map.plots[has_index].h = dt.h
             state.map.plots[has_index].item_id = dt.item_id
         }
-        // delete paths is wrap by new plot
-        // let delete_indexs = []
-        // for (let i = 0; i < state.map.paths.length; i++) {
-        //     let item = state.map.paths[i]
-        //     if (item.x >= x && item.x < x + dt.w && item.y >= y && item.y < y + dt.h) {
-        //         delete_indexs.push(i)
-        //         let b = $(`.brick:nth-child(${item.index + 1})`)
-        //         b.removeClass('path')
-        //         b.css({width: state.map.cell_width, height: state.map.cell_width, gridRow: "auto", gridColumn: "auto"})           
-        //     } 
-        // }
-        // state.map.paths.filter(item => !delete_indexs.includes(item.index))
-        // set css for plot
+        
         b.css({'--b_w': 'auto' , gridRow: `${y} / span ${dt.h}`, gridColumn: `${x} / span ${dt.w}`})
         if(dt.item_id.startsWith('decorator')) {
             b.addClass('plot plot--decorator');
@@ -369,6 +474,7 @@ const onPathMode = (i) => {
     let index = state.map.paths.findIndex(item => item.index===i)
     if(index !== -1) { // delete 
         state.map.paths.splice(index, 1)
+        b.css({"background-image": "unset"})
         $(`.brick:nth-child(${i + 1})`).removeClass('path')
         b.css({'--b_w': state.map.cell_width, gridRow: "auto", gridColumn: "auto"})
     } else { // add new
@@ -380,9 +486,9 @@ const onPathMode = (i) => {
         let y = Math.round((Math.round(p.top) - Math.round(zero.top)) / cell_w ) + 1
         console.log( i,"P", p, "Zero", zero)
         console.log(x, y)
-        state.map.paths.push({index: i, x:x, y:y})
         b.addClass('path')
-        b.css({gridColumn: `${x} / span 1`, gridRow: `${y} / span 1`})
+        b.css({"background-image": `url("${state.map.path_list.options[state.map.path_list.selected]}")`, gridColumn: `${x} / span 1`, gridRow: `${y} / span 1`})
+        state.map.paths.push({index: i, x:x, y:y, op_no:state.map.path_list.selected})
     }
 }
 const setFeature = (index) => {
@@ -408,6 +514,7 @@ const deletePlot = (index) => {
 
 
 const drawPathModeToggle = () => {
+    $("#path-choice-list").toggle();
     $(pathToggleId).toggleClass("btn-active")
     $(plotToggleId).removeClass("btn-active")
     pathMode = !pathMode
@@ -415,12 +522,15 @@ const drawPathModeToggle = () => {
 }
 
 const plotModeToggle = () => {
+    if(pathMode) {
+        $("#path-choice-list").toggle();
+    }
     $(pathToggleId).removeClass("btn-active")
     $(plotToggleId).toggleClass("btn-active")
     plotMode = !plotMode
     pathMode = false
-
 }
+
 const saveMap = () => {
     const obj = {
         trealet: state

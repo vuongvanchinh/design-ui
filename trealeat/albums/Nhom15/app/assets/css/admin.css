@@ -145,10 +145,12 @@ main {
   background-color: rgb(0, 175, 123);
 }
 .path {
-  border: 1px solid rgb(1, 224, 231);
-  border-radius: 50%;
-  background: rgb(1, 224, 231);
-  
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.path:hover {
+  outline: 2px solid rgb(0, 175, 123);
 }
 .table-admin-wraper {
   padding: 0;
