@@ -66,7 +66,7 @@ $(document).ready(() => {
                 console.log(medias)
                 data = filloutMediaData(medias, data)
                 setup()
-                welcomeAnimation()  
+               
 
             } catch (error) {
                 console.log(error)
@@ -158,8 +158,11 @@ $(document).ready(() => {
 })
 
 const welcomeAnimation = () => {
-    // alert('Welcome')
-    // $('.brick').css({animation: 'welcome 3s ease-out 2s 1 forwards'})
+    let board_h = $('#board').height()
+    // let scr_h = $(window).height()
+    
+     $('#board').css({'--board-h': `${board_h}px`})
+
 }
 const setup = () => {
     // render brick
@@ -174,6 +177,8 @@ const setup = () => {
             <div id='board' class='board bg-image' style="${style}"></div>
     `)
     $('#board').append(brick.repeat(data.map.number_of_cells))
+    welcomeAnimation()
+    
     //plots
     for(let i = 0; i < data.map.plots.length; i++) {
         let p = data.map.plots[i]
@@ -216,6 +221,33 @@ const setup = () => {
         }
     })
     $('#pre-loader').remove()
+
+    
+    // view.scrollLeft = maxScrollLeft/2
+    // view.scrollLeft = maxScrollLeft/2
+    let view = document.getElementById('view')
+    let maxScrollLeft = view.scrollWidth - view.clientWidth;
+    let maxScrollTop = view.scrollHeight - view.clientHeight;
+    view.scrollTop = maxScrollTop
+    // view.scrollLeft = maxScrollLeft/2
+    let scroller = setTimeout(function () {
+        // $('#view').animate({
+        //     scrollTop: maxScrollTop
+        //     ,scrollLeft: maxScrollLeft/2
+        //   }, 500, function(){
+           
+        //     // view.scrollLeft = maxScrollLeft / 2 
+            
+        // });
+        console.log(maxScrollLeft, view.scrollWidth, view.clientWidth)
+        $('#view').css({display: 'block', margin: '0 auto', justifyContent: 'initial'})     
+        $('#view').scrollLeft(maxScrollLeft/2);   
+    }, 2200)
+
+    $('#view').scroll(() => {
+        let v = $('#view')
+        console.log(v.scrollTop(), v.scrollLeft())
+    })
 }
 
 const board_style = () => {
@@ -357,6 +389,7 @@ const presentItem = (data) => {
         </div>
    `
 }
+
 const popUpContent = (data) => {
     let card = '';
     let sign = 0
@@ -601,3 +634,4 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
         `
     }
 }
+

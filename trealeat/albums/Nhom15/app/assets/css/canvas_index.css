@@ -1,15 +1,15 @@
 
 .view {
+
     --view-width: 100vw;
     --view-height: 100vh;
     box-sizing: border-box;
     height: var(--view-height);
     width: var(--view-width);
     overflow: auto; 
-    margin: 0 auto;
-    /* display: flex;
+    /* margin: 0 auto; */
+    display: flex;
     justify-content: center;
-    align-items: center; */
     background-color: #2b4162;
     
     background-repeat: no-repeat;
@@ -18,18 +18,30 @@
 
 }
 
-#view::-webkit-scrollbar {
-    display: none;
+
+.view::-webkit-scrollbar {
+    /* display: none; */
+    /* background-color: red; */
 }
 
 .board {
+    --ani-dura: 2s;
+    --board-h: 100vh;
     width: fit-content;
     display: grid;
     position: relative; 
     gap: 0;
     margin: auto;
-    /* background-color: #2b4162;
-    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);     */
+    transition: transform 0.5s ease-in-out;
+   
+    transform-origin: center bottom;
+    animation-duration: var(--ani-dura);
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    animation-name: welcome;
+    animation-delay: 0.5s;
+    /* zoom: 0.8; */
 }
 
 .brick {
@@ -173,18 +185,18 @@
     transform: translateX(-50%);
 }
 
-
 svg {
     position: absolute;
     bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
-    height:30%;
+    height:20%;
 }
 
 #topLocIcon {
     animation: locationIcon 1s ease-in-out infinite alternate;
 }
+
 svg #topLocIcon path{
     padding: 10px;
 }
@@ -290,15 +302,6 @@ svg #topLocIcon path{
     }
 }
 
-/* .present-item:hover .btn-detail{
-    visibility: visible;
-
-} */
-
-/* .present-item:hover .btn-detail{
-    visibility: visible;
-
-} */
 .btn-detail {
     background-color: var(--main-color);
     color: #fff;
@@ -336,13 +339,20 @@ svg #topLocIcon path{
 
 @keyframes welcome {
     0% {
-        zoom: 1;
-    
+        transform: scale(1);
+       /* zoom: 1; */
     }
-    50% {
-        zoom: 0.5;
+    60% {
+       /* zoom: 0.3; */
+       transform: scale(0.25)
+    }
+
+    70% {
+       /* zoom: 0.3; */
+        transform: scale(0.25)
     }
     100% {
-        zoom: 1;
+        transform: scale(1);
+        /* zoom: 1; */
     }
 }

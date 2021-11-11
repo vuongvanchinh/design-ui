@@ -30,6 +30,8 @@ $(document).ready(() => {
         plotModeToggle();
     })
 
+    let p = document.getElementById('view').offsetTop
+    console.log(p)
     document.getElementById('view').onwheel = function(e){ 
         e.preventDefault()
         const pre_zoom_rate = zoom_rate
@@ -590,7 +592,11 @@ const LOCATION_FORM = {
 const checkPlot = () => {
     let dt = {}
     for (i = 0; i < state.map.plots.length; i++) {
-        state.map.plots[i].index -= 1
+        state.map.plots[i].y += 1
     }
+    for (i = 0; i < state.map.paths.length; i++) {
+        state.map.paths[i].y += 1
+    }
+
     console.log(JSON.stringify({trealet: state}))
 } 
