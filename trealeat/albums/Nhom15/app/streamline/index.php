@@ -1,14 +1,14 @@
 <?php
-	require_once('../lib/functions.php');
+	// require_once('../lib/functions.php');
 
-	$d = initializeApp('streamline');	
-	$ni = sizeof($d['items']);
-	$iu = array($ni);	
+	// $d = initializeApp('streamline');	
+	// $ni = sizeof($d['items']);
+	// $iu = array($ni);	
 
-	for($i=0;$i<$ni;$i++){
-		$itemid = $d['items'][$i];
-		$idata 	= fetchItemData($itemid);
-	}
+	// for($i=0;$i<$ni;$i++){
+	// 	$itemid = $d['items'][$i];
+	// 	$idata 	= fetchItemData($itemid);
+	// }
 ?>
 
 <!DOCTYPE HTML>
@@ -23,205 +23,61 @@
 </style>
 <link rel="stylesheet" href="assets/css/common.css">
 <!-- <link rel="stylesheet" href="assets/css/index.css"> -->
+<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <style>
-    .brick {
-        --w: 100px;
-        width: var(--w);
-        height: var(--w);
-        border: 1px solid #000;
+   #messages {
+       width: 350px;
+       max-width: 100%;
 
-    }
-    
-    #board {
-        width: fit-content;
-        display: grid;
-        place-items: center;
-        grid-template-columns: repeat(20, 1fr);
-        gap: 0;
-        width: 500px;
-        /* zoom: 0.5; */
-        margin: 0 auto;
-        position: relative;
-        border: 1px solid red;
-        overflow: auto;
-    }
-    .bg-red {
-        background-color: red;
-    }
+       position: fixed;
+       right: 0;
+       top: 1rem;
+       z-index: 33;
+       /* background-color: #f1f1f1; */
+       overflow: hidden;
+       height: 100vh;
+       padding: 0.5rem;
+   }
+
 </style>
 <body >
-<div style='background: green'>
-    <p id="rs">
-    </p>
-    <button id='btni'>zoom +</button>
-    <button id='btnd'>zoom -</button>
-	<div id="board" class="board">
-        <div class="brick">1</div>
-        <div class="brick">2</div>
-        <div class="brick">3</div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-        <div class="brick"></div>
-    </div>
-    <input type="number" name="" id="test">
+    <button class="btn-btn-save" onclick="showToast()">Toast</button>
+        <div id="messages">
+            <!-- <div class="toast">
+                <div class="toast__icon">
+                 <i class='bx bx-check-circle'></i>
+                </div>
+                <div class="toast__body">
+                    <div class="toast__title">
+                        Thành công
+                    </div>
+                    <div class="toast__message">
+                        Success load
+                    </div>
+                </div>
+                <div class="toast__close">
+                <i class='bx bx-x'></i>
+                </div>
+
+            </div> -->
+        </div>
 </div>
+<script src="assets/js/common.js"></script>
 </script>
 <!-- <script src="assets/js/index.js"></script> -->
 <script>
-    let zoom_rate = 1;
-    $(document).ready(() => {
-        $('#test').change(() => {
-            let curent =  $('#test').val()
-            $('#test').val(parseInt( $('#test').val()) + 1)
-        })
-        $('.brick').click((e) => {
-            console.log(e.target)
-            $(e.target).toggleClass('bg-red');
-            let p = $(e.target).position()
-            let zero = $('.brick:nth-child(1)').position()
-            console.log($('#board').css('gap'))
-            $('#rs').html(`zleft ${zero.left} ztop: ${zero.top} p left: ${p.left} p top ${p.top} relative: left ${Math.floor(p.left) - Math.floor(zero.left)} 
-            top ${Math.floor(p.top) - Math.floor(zero.top)}`)
-        }) 
-
-        $('#btni').click((e) => {
-            zoom_rate = zoom_rate + 0.1;
-            $('.brick').css('zoom', zoom_rate)            
-        })
-        $('#btnd').click((e) => {
-            zoom_rate = zoom_rate - 0.1;
-            $('.brick').css('zoom', zoom_rate)            
-        })
-
-
-        let a = [
-            {
-                "type": "gradient",
-                "style": "background-color: #485461; background-image: linear-gradient(315deg, #485461 0%, #28313b 74%);"
-            },
-            {
-                "type": "gradient",
-                "style": "background-color: #000000; background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);"
-            },
-            {
-                "type": "gradient",
-                "style": "background-color: #2b4162; background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);"
-            },
-            {
-                "type": "gradient",
-                "style": "background-color: #0d0a0b; background-image: linear-gradient(315deg, #0d0a0b 0%, #009fc2 74%);"
-            },
-            {
-                "type": "gradient",
-                "style": "background-color #000000; background-image linear-gradient(315deg, #000000 0%, #7f8c8d 74%);"
-            },
-            {
-                "type": "image",
-                "style": "https://huecity.gov.vn/Portals/0/Medias/Nam2021/T7/mo%20rong%20Hue%20(6).jpg"
-            }
-        ]
-
-        console.log(a[1].style)
-
-
-
-    })        
+   let toast = {
+       type: 'success',
+       title: 'Xin Chao',
+       message: 'Chuc ban vui ve',
+       duration: 5000
+   }
+   addToast(document.getElementById('messages'), toast)
+   const showToast = () => {
+    addToast(document.getElementById('messages'), toast)
+   } 
 </script>
 </body>
 </html>

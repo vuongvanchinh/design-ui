@@ -60,30 +60,32 @@ $(document).ready(() => {
                 let dt = await res.json()
                 data = dt.trealet
                 document.title = data.title
+                console.log('media loi')
                 // let media_ids = getListMediaId(data)
                 let medias_res = await fetch('media.json')
                 let medias = await medias_res.json()
                 console.log(medias)
                 data = filloutMediaData(medias, data)
                 setup()
-               
-
+                if(data.features.includes(constants.zoom)) {
+                    document.getElementById('view').onwheel = function(e){ 
+                        e.preventDefault()
+                        const pre_zoom_rate = zoom_rate
+                        let direction = e.deltaY < 0 ? 1: -1
+                        zoom(direction, offset=0.05)
+                        let view = document.getElementById('view')
+                        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+                        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
+                        return false;
+                    }
+                }
             } catch (error) {
                 console.log(error)
                 alert(error)
-            }
-            
+            }   
         })()
-        document.getElementById('view').onwheel = function(e){ 
-            e.preventDefault()
-            const pre_zoom_rate = zoom_rate
-            let direction = e.deltaY < 0 ? 1: -1
-            zoom(direction, offset=0.05)
-            let view = document.getElementById('view')
-            view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
-            view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
-            return false;
-        }    
+        
+       
     } else {
         // trên online thì gọi dữ liệu 
         let url = 'https://hcloud.trealet.com/apps_dev/btl/nhom15/app/streamline-example.trealet'
@@ -131,18 +133,21 @@ $(document).ready(() => {
                     // console.log(data)
                     setup() 
                        
-                    document.getElementById('view').onwheel = function(e){ 
-                        e.preventDefault()
-                        const pre_zoom_rate = zoom_rate
-                        let direction = e.deltaY < 0 ? 1: -1
-                        zoom(direction, offset=0.05)
-                        let view = document.getElementById('view')
-                        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
-                        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
-                        return false;
+                    if(data.features.includes(constants.zoom)) {
+                        document.getElementById('view').onwheel = function(e){ 
+                            e.preventDefault()
+                            const pre_zoom_rate = zoom_rate
+                            let direction = e.deltaY < 0 ? 1: -1
+                            zoom(direction, offset=0.05)
+                            let view = document.getElementById('view')
+                            view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+                            view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
+                            return false;
+                        }
                     }
-                    // console.log(JSON.stringify(data))
-                    // console.log(data)
+                    
+                    console.log(JSON.stringify(data))
+                    console.log(data)
                 } catch (error) {
                     console.log(error)
                     alert('can not fetch data')
@@ -152,33 +157,56 @@ $(document).ready(() => {
             
 
     }
-
-   
-
 })
 
 const welcomeAnimation = () => {
-    let board_h = $('#board').height()
-    // let scr_h = $(window).height()
-    
-     $('#board').css({'--board-h': `${board_h}px`})
+    if(data.features.includes(constants.welcome_animation)) {
+        $('#view').addClass('horizontal_center')
+        let board_h = $('#board').height()
+        let board_w = $('#board').width()
+        let min_zoom_rate = $('#view').height() / board_h
+        if ($('#view').width() / board_w < min_zoom_rate) {
+             min_zoom_rate = $('#view').width() / board_w
+             alert('width')
+        }  
+        document.documentElement.style.setProperty('--min-zoom-rate', min_zoom_rate);  
+        $('#board').css('animation-name', 'welcome')
+        let board = document.getElementById('board')
 
+        let view = document.getElementById('view')
+
+        let maxScrollTop = view.scrollHeight - view.clientHeight;
+        view.scrollTop = maxScrollTop
+        board.addEventListener('animationend', (e) => {
+            if(e.animationName === 'welcome') {
+                $('#view').removeClass('horizontal_center')     
+                let maxScrollLeft = view.scrollWidth - view.clientWidth;
+                view.scrollLeft = maxScrollLeft/2   
+                let toasts = document.getElementById('toasts')
+                addToast(toasts, {type: 'success', title: 'Chào bạn!', message: data.greeting, duration: 2000})
+            }
+        })
+    } else {
+        let toasts = document.getElementById('toasts')
+        addToast(toasts, {type: 'success', title: 'Chào bạn!', message: data.greeting, duration: 2000})
+    }
 }
+
 const setup = () => {
     // render brick
     let brick = `
         <div class='brick' style ='--b_w: ${data.map.cell_width}'>
         </div>
     `
-   
+
     let style = board_style()
     $('#view').empty()
+    $('#view').css(style)
     $('#view').append(`
-            <div id='board' class='board bg-image' style="${style}"></div>
+            <div id='board' class='board bg-image' ></div>
     `)
+    $('#board').css(style)
     $('#board').append(brick.repeat(data.map.number_of_cells))
-    welcomeAnimation()
-    
     //plots
     for(let i = 0; i < data.map.plots.length; i++) {
         let p = data.map.plots[i]
@@ -213,6 +241,8 @@ const setup = () => {
         b.css({backgroundImage: `url("${data.map.path_list.options[p.op_no]}")`, gridColumn: `${p.x} / span 1`, gridRow: `${p.y} / span 1`})
         b.addClass('path')
     }
+    // alert($('#board').height())
+    welcomeAnimation()
 
     $(window).resize((e) => {
         if (zoom_rate < 1) {
@@ -221,45 +251,63 @@ const setup = () => {
         }
     })
     $('#pre-loader').remove()
+   
 
+   
+    // let view = document.getElementById('view')
+
+    // let maxScrollTop = view.scrollHeight - view.clientHeight;
+    // view.scrollTop = maxScrollTop
+   
+    // let scroller = setTimeout(function () {
+    //     $('#view').removeClass('horizontal_center')     
+    //     let maxScrollLeft = view.scrollWidth - view.clientWidth;
+    //     view.scrollLeft = maxScrollLeft/2   
+    //     let toasts = document.getElementById('toasts')
+    //     addToast(toasts, {type: 'success', title: 'Chào bạn!', message: 'Chúc bạn tham quan vui vẻ', duration: 2000})
+    // }, animation_duration)
     
-    // view.scrollLeft = maxScrollLeft/2
-    // view.scrollLeft = maxScrollLeft/2
-    let view = document.getElementById('view')
-    let maxScrollLeft = view.scrollWidth - view.clientWidth;
-    let maxScrollTop = view.scrollHeight - view.clientHeight;
-    view.scrollTop = maxScrollTop
-    // view.scrollLeft = maxScrollLeft/2
-    let scroller = setTimeout(function () {
-        // $('#view').animate({
-        //     scrollTop: maxScrollTop
-        //     ,scrollLeft: maxScrollLeft/2
-        //   }, 500, function(){
-           
-        //     // view.scrollLeft = maxScrollLeft / 2 
-            
-        // });
+    $('.brick:nth-child(1)').click(() => {
+        let maxScrollLeft = view.scrollWidth - view.clientWidth;
+        // let maxScrollTop = view.scrollHeight - view.clientHeight;
         console.log(maxScrollLeft, view.scrollWidth, view.clientWidth)
-        $('#view').css({display: 'block', margin: '0 auto', justifyContent: 'initial'})     
-        $('#view').scrollLeft(maxScrollLeft/2);   
-    }, 2200)
-
-    $('#view').scroll(() => {
-        let v = $('#view')
-        console.log(v.scrollTop(), v.scrollLeft())
     })
 }
 
 const board_style = () => {
   
     let index = parseInt(data.map.background.selected)
+    let style = {}
+    let style_str = data.map.background.options[index].style
+    if(style_str.startsWith('http')) {
+        style = {
+            backgroundImage: `url('${style_str}')`,
 
-    let style = data.map.background.options[index].style
-    if(style.startsWith('http')) {
-        style = `background-image: url('${style}');`
-        
+        }
+    } else {
+        // let st = "background-color: #000000; background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);"
+        let l = style_str.split(';')
+        // let res = {}
+        for (let i = 0; i< l.length; i++) {
+            if(l[i].trim()) {
+                let t = l[i].trim().split(':')
+                let attrs = t[0].split('-')
+                if(attrs.length  > 1) {
+                    for(let j = 1; j < attrs.length; j++) {
+                        attrs[j] = attrs[j].charAt(0).toUpperCase() +  attrs[j].slice(1);
+                    }
+                    style[attrs.join('')] = t[1]
+                } else {
+                    style[t[0]] = t[1]
+                }    
+            }
+         
+        }
+
     }
-    return style + `grid-template-columns: repeat(${data.map.cells_per_row}, 1fr)`
+    style.gridTemplateColumns = `repeat(${data.map.cells_per_row}, 1fr)`
+    console.log(style)
+    return style 
 }
 
 function openModal(el) {
@@ -294,7 +342,7 @@ const presentItem = (data) => {
     }
 
     return `    
-        <div class="present-item" onclick="showPopup('${data.id}')">
+        <div class="present-item" id="${data.id}" onclick="showPopup('${data.id}')">
            <div class="simple-slider">
             ${
                 slide_items
@@ -402,13 +450,8 @@ const popUpContent = (data) => {
             card += imageSection(data.media[i], sign)
             sign += 1
         } 
-        
-        // else if (i % 2 === 0) {
-            
-        // } else {
-        //     card += cardReverseSlider(data.media[i], i)
-        // }
     }
+
     return `
         ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
         ${mediaHtml(data.media[0], '', true)}
@@ -430,6 +473,7 @@ const imageSection = (data, i) => {
         <img
             src="${data.url}"
             alt=""
+            draggable="false"
         />
     </div>
     <div class="image-section__text" >
@@ -454,6 +498,7 @@ const imageSection = (data, i) => {
             <img
                 src="${data.url}"
                 alt=""
+                draggable="false"
             />
         </div>
        
@@ -615,7 +660,7 @@ const mediaHtml = (data={type: "image", url:"", description: "",  name: ""}, id=
         id = `id="${id}"`
     }
     if (data.type ==='image' || data.type==='GIF' || data.type==='JPEG'|| data.type==='JPG'|| data.type==='PNG'|| data.type==='TIF'|| data.type==='TIFF') {
-        media = `<img class="media-image" ${id} src="${data.url}" draggable="false"/>`
+        media = `<img class="media-image" ${id} src="${data.url}" draggable/>`
 
     } else if (data.type === 'IFRAME' || data.type === 'YTB') {
         media = `

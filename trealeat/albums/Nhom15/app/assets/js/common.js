@@ -1,3 +1,14 @@
+const features = [
+    {name: 'Zoom', key:'zoom'},
+    {name: 'Hoạt hình chào mừng', key:'welcome_animation'}
+
+]
+const constants = {
+    welcome_animation: 'welcome_animation',
+    zoom: 'zoom'
+
+}
+
 function makeid(length) {
     var result           = '';
     var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -112,4 +123,54 @@ const drop = (el) => {
 const fetchData = (url, func) => {
     let dt = null
     fetch(url).then((res) => res.json()).then((data) => func(data))
+}
+
+
+const addToast = (parentEl, toast= {type: 'success', title:'', message: '', duration: 3000}, close_icon = true) => {
+    const icon = {
+        success: 'bx bxs-check-circle',
+        info: 'bx bxs-info-circle',
+        warning: 'bx bxs-error-alt',
+        error: 'bx bxs-error-alt'
+    }
+
+    let t = document.createElement('div')
+    t.classList.add(`toast`)
+    t.classList.add(`toast--${toast.type}`)
+    t.style.setProperty('--main-duration', `${Math.round(toast.duration/1000).toFixed(2)}s`)
+
+    t.innerHTML = `
+            <div class="toast__icon">
+                <i class='${icon[toast.type]}'></i>
+            </div>
+            <div class="toast__body">
+                <div class="toast__title">
+                    ${toast.title}
+                </div>
+                <div class="toast__message">
+                    ${toast.message}
+                </div>
+            </div>
+            <div class='toast__line'></div>
+           ${close_icon? ` <div class="toast__close">
+                                <i class='bx bx-x'></i>
+                            </div>`: ''}
+            
+    `
+    if (parentEl) {
+        parentEl.appendChild(t)
+    }
+    t.addEventListener('animationend', (e) => {
+        // console.log(e)
+        if(e.animationName === 'toast_fadeout') {
+            parentEl.removeChild(t)
+        }
+    });
+
+    if(close_icon) {
+        $(t).children('.toast__close').click(() =>{
+            parentEl.removeChild(t)
+        })
+    }
+
 }

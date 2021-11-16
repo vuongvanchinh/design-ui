@@ -89,6 +89,30 @@
 
                                 </div>
                             </div> 
+                            <div class="form-card">
+                                <div class="form-card-header">
+                                    Lời chào ban đầu
+                                </div>
+                                <div class="form-card-body">
+                                    <div class="textfield">
+                                        <input type="text" name="greeting" 
+                                            id="greeting"
+                                        />
+                                        <label for="number_of_cells">Lời chào</label>
+                                    </div>
+
+                                </div>
+                            </div> 
+                            <div class="form-card">
+                                <div class="form-card-header">
+                                    Kiểm soát một số tính năng
+                                </div>
+                                <div class="form-card-body">
+                                   <div id="features-control">
+
+                                   </div>
+                                </div>
+                            </div> 
                             
                         </div>
                     </div>

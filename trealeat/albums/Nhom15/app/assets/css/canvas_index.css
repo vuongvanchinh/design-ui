@@ -7,25 +7,25 @@
     height: var(--view-height);
     width: var(--view-width);
     overflow: auto; 
-    /* margin: 0 auto; */
-    display: flex;
-    justify-content: center;
+
     background-color: #2b4162;
-    
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
 
 }
 
-
+.horizontal_center {
+    display: flex;
+    justify-content: center;
+}
 .view::-webkit-scrollbar {
-    /* display: none; */
-    /* background-color: red; */
+   display: none;
+    /* background: #f1f1f1; */
 }
 
 .board {
-    --ani-dura: 2s;
+    --ani-dura: 4s;
     --board-h: 100vh;
     width: fit-content;
     display: grid;
@@ -39,11 +39,29 @@
     animation-iteration-count: 1;
     animation-timing-function: linear;
     animation-fill-mode: forwards;
-    animation-name: welcome;
+    animation-name: welcome_test;
     animation-delay: 0.5s;
-    /* zoom: 0.8; */
 }
 
+@keyframes welcome {
+    0% {
+        transform: scale(1);
+       /* zoom: 1; */
+    }
+    30% {
+       /* zoom: 0.3; */
+       transform: scale(var(--min-zoom-rate))
+    }
+
+    80% {
+       /* zoom: 0.3; */
+        transform: scale(var(--min-zoom-rate))
+    }
+    100% {
+        transform: scale(1);
+        /* zoom: 1; */
+    }
+}
 .brick {
     --b_w: 90px;
     width: var(--b_w);
@@ -52,13 +70,7 @@
     justify-content: center;
     align-items: center;
     zoom: 1;
-    /* border: 1px solid #000; */
-    /* background-color: transparent;
-    animation-name: welcome;
-    animation-duration: 3s;
-    animation-iteration-count: 1;
-    animation-timing-function: ease-in-out;
-    animation-fill-mode: forwards; */
+    /* transition: all 0.5s linear; */
 }
 
 .plot {
@@ -66,13 +78,12 @@
    
 }
 .path {
-    /* border: 7px solid rgb(86 86 86); */
-    /* border-radius: 65% 36% 50% 50% / 44% 81% 46% 68%; */
+  
     background-color: transparent;
-      background-position: center;
+    background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-image: url('../../../app/bg.png');
+    /* background-image: url('../../../app/bg.png'); */
 
 }
 
@@ -240,6 +251,8 @@ svg #topLocIcon path{
     width: 100%;
     border-radius: 2rem;
     box-shadow: rgba(20, 20, 20, 0.2) 0px 8px 24px;
+    user-select: none;
+    
 }
 .image-section__text {
     padding-top: 2rem;
@@ -337,22 +350,3 @@ svg #topLocIcon path{
     }
 }
 
-@keyframes welcome {
-    0% {
-        transform: scale(1);
-       /* zoom: 1; */
-    }
-    60% {
-       /* zoom: 0.3; */
-       transform: scale(0.25)
-    }
-
-    70% {
-       /* zoom: 0.3; */
-        transform: scale(0.25)
-    }
-    100% {
-        transform: scale(1);
-        /* zoom: 1; */
-    }
-}

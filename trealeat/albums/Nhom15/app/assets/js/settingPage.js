@@ -1,15 +1,21 @@
 $(document).ready(() => {
     renderSettingPage()
-    changePage('map')
+    changePage('setting-page')
     $('#title').val(state.title)
     $('#title').change((e) => {
         state.title = e.target.value
     })
+    $('#greeting').val(state.greeting)
+    $('#greeting').change((e) => {
+        state.greeting = e.target.value
+    })
 })
+
 
 const renderSettingPage = () => {
     $('#setting').prepend('Chào bạn đây là trang thiết lập')
     renderBgs()
+    renderFeatureControl()
 }
 
 
@@ -143,4 +149,45 @@ const addBg = () => {
         }
     })
 
+}
+
+const renderFeatureControl = () => {
+    let icon = ''
+    
+    let html = ''
+    for (i = 0; i < features.length; i++) {
+        let index = state.features.findIndex(item => item === features[i].key)
+        if(index >= 0) {
+            icon = "<i class='bx bxs-checkbox-checked' ></i>"
+        } else {
+            icon = "<i class='bx bx-checkbox'></i>"
+        }
+        html += `
+            <div class="feature-item">
+                <div class="feature-item__checkbox ${index >=0? 'checked':''}" id='${features[i].key}' >
+                    ${icon}
+                </div>
+                <div class='feature-item__label'>
+                    ${features[i].name}
+                </div>
+
+            </div>
+
+        `
+    }
+    $('#features-control').html(html)
+    $('.feature-item__checkbox').click((e)=> {
+
+        let el = $(e.target).closest('.feature-item__checkbox')
+        let index = state.features.findIndex(item => item === el.attr('id'))
+        if(index >= 0) {
+            state.features.splice(index, 1)
+            el.html("<i class='bx bx-checkbox'></i>")
+            el.removeClass('checked')
+        } else {
+            state.features.push(el.attr('id'))
+            el.html("<i class='bx bxs-checkbox-checked' ></i>")
+            el.addClass('checked')
+        }
+    })
 }

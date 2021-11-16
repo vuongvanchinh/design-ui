@@ -12,7 +12,22 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 <!--test template style-->
 <style>
-	
+	#toasts {
+        width: 350px;
+        max-width: 100%;
+
+        position: fixed;
+        right: 0;
+        top: 1rem;
+        z-index: 3;
+        overflow: hidden;
+        height: 100vh;
+        padding: 0.5rem;
+        background-color: transparent;
+        user-select: none;
+        /* background-color: red; */
+        pointer-events: none;
+    }
 </style>
 <!--Easy Scroll Dots style-->
 <style>
@@ -44,9 +59,14 @@
 </head>
 <body>
     <div class="container" id="container">
-        <div class="dashed-loader-wraper" id='pre-loader'>
-            <div class="dashed-loading dashed-loading-medium"></div>
-        </div>  
+        <div class="load-wrapp" id="pre-loader">
+            <div class="load-1">
+                
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
         <div class="view" id="view">
              
             <div class="board bg-image" id='board'></div>
@@ -54,6 +74,9 @@
         <p id="message"></p>
     </div>
 
+    <div id="toasts">
+
+    </div>
     <?php
     
     if ($domain == '127.0.0.1:8000') {

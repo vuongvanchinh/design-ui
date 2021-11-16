@@ -112,3 +112,43 @@
     color: var(--main-color);
     box-shadow: rgba(0, 0, 0, 0.2) 0px 8px 24px;
 }
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+
+}
+.feature-item + .feature-item {
+    margin-top: 0.5rem;
+}
+
+.feature-item__checkbox {
+    color: rgb(119, 119, 119);
+    padding: 0.3rem;
+    font-size: 2rem;
+    border-radius: 50%;
+    transition: all 0.5s ease;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.feature-item__checkbox.checked {
+    color: var(--main-color); 
+}
+
+.feature-item__checkbox:hover {
+    background-color: rgba(0, 122, 126, 0.247);
+    
+}
+
+.feature-item__label {
+    margin-left: 0.5rem;
+    flex-grow: 1;
+    
+}
+
+
