@@ -193,6 +193,20 @@
                     
                 </div>
             </div>
+            <div class="page" id="game">
+            <h1 style="text-align: center">Game</h1>
+                <div id="setting">
+                    <div class="row">
+                        <div class="col-7 col-md-12">
+                            Grid
+                        </div>
+                        <div class="col-5 col-md-12">
+                            Questions
+                        </div>
+                    </div>
+         
+                </div>
+            </div>
         </main>        
     </div>
     

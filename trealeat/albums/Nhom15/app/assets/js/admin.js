@@ -177,6 +177,7 @@ const renderNavs = () => {
         {icon: "bx bx-map", name: "Địa điểm", page:'locations-page', onClick: () => changePage('locations-page')},
         {icon: "bx bxs-dashboard", name: "Bản đồ", page:'map', onClick:() =>  changePage('map')},
         {icon: "bx bx-dialpad-alt", name: "Banner", page:'decorators-page', onClick:() => changePage('decorators-page')},
+        {icon: "bx bx-game", name: "Game", page:'game', onClick:() => changePage('game')},
         {icon: "bx bxs-save", name: "Lưu", page:'sav', onClick: () => saveMap()}
         
     ]

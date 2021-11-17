@@ -10925,7 +10925,8 @@
                12762,
                12770
             ],
-            "next":""
+            "next":"",
+            "question_ids": []
          },
          {
             "id":"location_2",
@@ -11430,6 +11431,39 @@
                18650
             ]
          }
-      ]
+      ],
+      "game": {
+         "questions": [
+            {
+               "id": "question_0",
+               "content": "Điện thóa hòa khởi công năm nào?",
+               "images": ["link anh"],
+               "answers": [
+                  {
+                     "content":"1958",
+                     "images": ["link anh"],
+                     "is_correct": false
+                  },
+                  {
+                     "content":"1865",
+                     "images": ["link anh"],
+                     "is_correct": true
+                  }
+               ],
+               "reward": 0
+            }
+         ],
+         "key": "Nhom 15",
+         "root_image": "link ảnh",
+         "cols": 3,
+         "rows": 3,
+         "pieces": {
+            "0": "link",
+            "1": "link"
+         },
+         "max_turn_replies": 5,
+         "win": "link anh",
+         "loss": "link ảnh"
+      }
    }
 }
