@@ -57,7 +57,7 @@ const callDataPromises = (media_ids) => {
 
 $(document).ready(() => {
     let data = null
-    let url = 'https://hcloud.trealet.com/albums/Nhom15/app/streamline-example.trealet'
+    let url = 'https://hcloud.trealet.com/apps_dev/btl/nhom15/app/streamline-example.trealet'
     //https://hcloud.trealet.com/albums/Nhom15/app/streamline-example~.trealet
     ;(async () =>{
         let medias = {}

@@ -14,7 +14,7 @@ const renderDecoratorPage = () => {
                 <td>${state.decorators[i].media}</td>
                 <td>
                     ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
-                        <div class="btn-del" onclick="deleteDecorator('${state.decorators[i].id}')">Delete</div>
+                        <div class="btn-del" onclick="deleteDecorator('${state.decorators[i].id}')">Xóa</div>
                     `).getHtml()}
                 </td>
             </tr>
@@ -38,7 +38,7 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
     <form>
         <div class="form-card">
             <div class="form-card-header">
-            General information
+            Thông tin chung
             </div>
             <div class="form-card-body">
                 <div class="textfield">
@@ -60,10 +60,10 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
                <div id='decorator-medias' class='child_setparate'>
                 <div class="textfield">
                     <input type="text" name="decorator-media-ids" 
-                        placeholder="list integer setpate by a comma" 
+                        placeholder="nhập các số nguyên cách nhau dấu phẩy" 
                         id="decorator-media-ids" 
                     />
-                    <label for="decorator-media-ids">Media ids</label>
+                    <label for="decorator-media-ids">Các media id</label>
                     <p class='error-message' ></p>
                 </div>
                </div>
@@ -92,7 +92,7 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
             }
             let media =  $('#decorator-media-ids').val()
             if (!media) {
-                $('#decorator-media-ids').next().next().text('This field must be fielded comma-separated integers')
+                $('#decorator-media-ids').next().next().text('Mục này phải điền các số nguyên cách nhau bằng dấu phẩy')
                 failed = true
                 $('#decorator-media-ids').focus()
             } else {
@@ -102,7 +102,7 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
                     let item = medias[i]
                     if (isNaN(item.trim())) {
                         failed = true
-                        $('#decorator-media-ids').next().next().text('This field must be comma-separated integers')
+                        $('#decorator-media-ids').next().next().text('Mục này phải điền các số nguyên cách nhau bằng dấu phẩy')
                         
                         ok = false
                         break;
@@ -132,7 +132,7 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
                 let name = $('#decorator_name').val().trim()
             
                 if (!name) {
-                    $('#decorator_name').next().next().text('This field is required')
+                    $('#decorator_name').next().next().text('Mục này không được trống')
                 }else {
                     $('#decorator_name').next().next().empty()
                 }
@@ -140,15 +140,15 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
             $('#decorator-media-ids').change(() => {
                 let media =  $('#decorator-media-ids').val()
                 if (!media) {
-                    $('#decorator-media-ids').next().next().text('This field must be fielded comma-separated integers')
+                    $('#decorator-media-ids').next().next().text('Mục này phải điền các số nguyên cách nhau bằng dấu phẩy')
                 } else {
                     let medias = media.trim().split(',')
                     let ok = true
                     for (i = 0; i < medias.length; i++) {
                         let item = medias[i]
                         if (isNaN(item.trim()) || item.trim() === '') {
-                            console.log(item, 'is not number')
-                            $('#decorator-media-ids').next().next().text('This field must be comma-separated integers')
+                           
+                            $('#decorator-media-ids').next().next().text('Mục này phải điền các số nguyên cách nhau bằng dấu phẩy')
                             
                             ok = false
                             break;
@@ -175,11 +175,11 @@ const deleteDecorator = (id) => {
     }
     let body = `
         <div class="flex space-between">
-            <button class="btn btn-light" id='no-delete'>No</button>
-            <button class="btn btn-save" id='confirm-delete'>Yes</button>
+            <button class="btn btn-light" id='no-delete'>Không</button>
+            <button class="btn btn-save" id='confirm-delete'>Có</button>
         </div>
     `
-    let m = modal(`Are you sure delete ${id}?`, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
+    let m = modal(`Bạn có chắc muốn xóa ${id}?`, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
     $('#decorators-page').prepend(m.getHtml())
     $('#no-delete').click(() => {
         m.close()
@@ -192,6 +192,12 @@ const deleteDecorator = (id) => {
         m.close()
         m = null
         $(`tr#${id}`).fadeOut()
+        addToast(document.getElementById('toasts'), {
+            type: 'success',
+            title: 'Đã xong!',
+            message: 'Đã xóa thành công!',
+            duration: 3000
+        })
 
     })
 } 
@@ -199,8 +205,8 @@ const addDecorator = () => {
     let form = decorator_form()
     let footer = `
         <div style="padding: .5rem 0">
-            <span class='btn btn-light ' id='cancel-decorator-form' style ='margin-right: 0.5rem;'>Cancel</span>
-            <span class='btn btn-save' id='add-decorator-btn'>Save</span>
+            <span class='btn btn-light ' id='cancel-decorator-form' style ='margin-right: 0.5rem;'>Hủy</span>
+            <span class='btn btn-save' id='add-decorator-btn'>Lưu</span>
         </div>
     `
     let m = modal(`Add new decorator`, form.getHtml(), footer, 'decorator-form', 'decorator-form', false, 'medium')
@@ -227,7 +233,7 @@ const addDecorator = () => {
                     <td>${dt.media}</td>
                     <td>
                         ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
-                            <div class="btn-del" onclick="deleteDecorator('${new_id}')">Delete</div>
+                            <div class="btn-del" onclick="deleteDecorator('${new_id}')">Xóa</div>
                         `).getHtml()}
                     </td>
                 </tr>
@@ -241,6 +247,12 @@ const addDecorator = () => {
             } )
            
             m.close()
+            addToast(document.getElementById('toasts'), {
+                type: 'success',
+                title: 'Đã xong!',
+                message: 'Đã thêm thành công 1 banner!',
+                duration: 3000
+            })
         }
     })
 
@@ -255,11 +267,11 @@ const updateDecorator = (decorator_id) => {
     let form = decorator_form(state.decorators[index])
     let footer = `
         <div style="padding: .5rem 0">
-            <span class='btn btn-light ' id='cancel-decorator-modal' style ='margin-right: 0.5rem;'>Cancel</span>
-            <span class='btn btn-save' id='update-decorator-btn'>Save</span>
+            <span class='btn btn-light ' id='cancel-decorator-modal' style ='margin-right: 0.5rem;'>Hủy</span>
+            <span class='btn btn-save' id='update-decorator-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`Update decorator `, form.getHtml(), footer, 'decorator-update-modal', 'decorator-update-modal', false, 'medium')
+    let m = modal(`Cập nhật banner`, form.getHtml(), footer, 'decorator-update-modal', 'decorator-update-modal', false, 'medium')
     $('#decorators-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-decorator-modal').click(() => {
@@ -277,12 +289,18 @@ const updateDecorator = (decorator_id) => {
                 <td>${dt.media}</td>
                 <td>
                     ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
-                        <div class="btn-del" onclick="deleteDecorator('${state.decorators[index].id}')">Delete</div>
+                        <div class="btn-del" onclick="deleteDecorator('${state.decorators[index].id}')">Xóa</div>
                     `).getHtml()}
                 </td>
             `)
            
             m.close()
+            addToast(document.getElementById('toasts'), {
+                type: 'success',
+                title: 'Đã xong!',
+                message: 'Đã cập nhật thành công!',
+                duration: 3000
+            })
         }
     })
 

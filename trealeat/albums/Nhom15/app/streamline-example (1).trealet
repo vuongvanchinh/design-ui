@@ -1,7 +1,6 @@
 {
    "trealet":{
-      
-      "greeting": "Chúc các bạn vui vẻ.",
+      "greeting": "Chúc các bạn vui vẻ. Nhớ đến Huế chơi nhé",
       "features":["zoom", "welcome_animation"],
       "map":{
          "cell_width":"50px",
@@ -21,7 +20,7 @@
             ]
          },
          "background":{
-            "selected": 7,
+            "selected":7,
             "options":[
                {
                   "type":"gradient",
@@ -10912,21 +10911,22 @@
       },
       "exec":"streamline",
       "title":"Huế",
-       "locations":[
+      "locations":[
          {
             "id":"location_1",
             "name":"Kỳ Đài",
             "effect":"loops",
             "description":"Kỳ đài của Kinh thành Huế, còn gọi là Cột cờ Kinh thành Huế là di tích kiến trúc thời nhà Nguyễn nằm chính giữa mặt nam của kinh thành Huế thuộc phạm vi pháo đài Nam Chánh cũng là nơi treo cờ của triều đình. Kỳ Đài được xây dựng vào năm Gia Long thứ 6 tức 1807 cùng thời gian xây dựng kinh thành Huế. Đến thời Minh Mạng, Kỳ Ðài được tu sửa. Kỳ Đài gồm hai phần: đài cờ và cột cờ.",
             "media":[
-               15330,
+               19018,
                12738,
                12746,
                12754,
                12762,
                12770
             ],
-            "next":""
+            "next":"",
+            "question_ids": []
          },
          {
             "id":"location_2",
@@ -10934,11 +10934,13 @@
             "effect":"crazy",
             "description":"Ngọ Môn là một trong những công trình kiến trúc có giá trị tiêu biểu và đặc sắc của miền núi Ngự sông Hương. Đây là một bộ phận của quần thể di tích Kinh Thành Huế đã được UNESCO công nhận là Di sản Văn hoá Thế giới. Mặc dù đã được xây dựng cách đây hơn một thế kỷ rưỡi và hứng chịu biết bao sự tàn phá của chiến tranh nhưng với kỹ thuật xây dựng đỉnh cao Ngọ Môn Huế vẫn tồn tại bất biến.",
             "media":[
+               19026,
                15306,
                11778,
                11786,
                11794,
-               11802
+               11802,
+               15770
             ],
             "next":""
          },
@@ -10991,19 +10993,21 @@
          {
             "id":"location_6",
             "name":"Điện Thái Hòa",
+            "effect":"loops",
             "description":"Điện Thái Hoà là cung điện nằm trong khu vực Đại Nội của kinh thành Huế, là nơi đăng quang của 13 vua triều Nguyễn từ Gia Long đến Bảo Đại. Điện Thái Hò biểu trưng cho quyền lực của Hoàng triều Nguyễn.",
             "media":[
-               15322,
-               12170,
-               12178,
-               12186,
+               19146,
                12194,
                12202,
                12210,
                12218,
                12226,
-               12234
-            ]
+               12234,
+               15730,
+               15746,
+               15762
+            ],
+            "next":null
          },
          {
             "id":"location_7",
@@ -11041,7 +11045,7 @@
             "effect":"loops",
             "description":"Thái Miếu hay còn gọi là Thái Tổ Miếu là miếu thờ từ chúa Nguyễn Hoàng đến chúa Nguyễn Phúc Thuần. Miếu được xây dựng từ năm Gia Long thứ 3 tức năm 1804 ở góc Đông Nam trong Hoàng thành, đối xứng với Thế Tổ Miếu ở phía Tây Nam. Qui mô và bố trí kiến trúc của Thái Miếu gần tương tự như Thế Tổ Miếu. Tòa điện chính kiến trúc theo lối nhà kép trùng thiềm điệp ốc, chính đường 13 gian 2 chái kép, tiền đường 15 gian 2 chái đơn. Phía đông điện chính là điện Long Đức, phía nam có điện Chiêu Kính. Đối diện với điện Chiêu Kính ở phía tây là điện Mục Tư, phía bắc điện này có tòa nhà vuông",
             "media":[
-               15290,
+               19034,
                12482,
                12490,
                12498,
@@ -11056,7 +11060,7 @@
             "effect":"loops",
             "description":"Triệu Tổ miếu là miếu thờ ông Nguyễn Kim, còn gọi là Cam (1468-1545), thân sinh của chúa Tiên Nguyễn Hoàng. Nguyễn Kim là người đã phò Lê Trang Tông khởi đầu cho sự nghiệp trung hưng nhà Lê. Năm 1545, ông bị hàng tướng nhà Mạc là Dương Chấp Nhất đầu độc chết. Sau này, triều Nguyễn truy tôn miếu hiệu cho ông là Triệu Tổ Tĩnh Hoàng đế.Triệu Miếu được xây dựng năm Gia Long thứ 3 (1804) ở phía đông nam, bên trong Hoàng Thành, phía bắc của Thái Miếu.",
             "media":[
-               15298,
+               19050,
                12522,
                12538,
                12546,
@@ -11102,7 +11106,7 @@
             "effect":"loops",
             "description":"Cung được khởi công xây dựng từ năm Minh Mạng thứ 1 (1821), với tên ban đầu là cung Trường Ninh, kiểu thức như một hoa viên. Kiến trúc ban đầu xếp theo hình chữ tam, gồm một điện chính ở giữa, một điện phía trước, một lầu phía sau và một số công trình phụ ở xung quanh.",
             "media":[
-               15282,
+               18994,
                14578,
                14586,
                14818,
@@ -11120,6 +11124,8 @@
             "effect":"loops",
             "description":"Cung Diên Thọ là một hệ thống kiến trúc cung điện trong Hoàng thành Huế, cung Diên Thọ nằm tại phía tây của Tử Cấm Thành, phía nam điện Phụng Tiên và phía bắc cungTrường Sanh. Theo quy chế đờ Tự Đức, cung nằm ở nhai phường Tây nhất thuộc Hoàng Thành, gần với cửa Chương Đức và đài Tây khuyết. ung Diên Thọ được coi là hệ thống kiến trúc cung điện quy mô nhất còn lại tại Cố đô Huế.",
             "media":[
+               19154,
+               11242,
                15266,
                14898,
                14906,
@@ -11158,6 +11164,7 @@
             "effect":"loops",
             "description":"Hưng miếu hay Hưng Tổ miếu là ngôi miếu thờ Thế tử Nguyễn Phúc Luân (hay Nguyễn Phúc Côn) và bà Nguyễn Thị Hoàn - song thân của vua Gia Long, vị trí ở tây nam Hoàng thành (cách Thế miếu chừng 50 mét về phía Bắc), thành phố Huế, tỉnh Thừa Thiên Huế. Ngôi miếu hiện được dùng để thờ. Nằm ở phía Tây Nam Hoàng thành Huế, Hưng Tổ Miếu hay Hưng Miếu (Hưng nghĩa là khởi nghiệp, nghĩa khác là thịnh vượng) là ngôi miếu thờ Thế tử Nguyễn Phúc Luân (hay Nguyễn Phúc Côn) và bà Nguyễn Thị Hoàn – song thân của vua Gia Long.",
             "media":[
+               19042,
                15258,
                15066,
                15074,
@@ -11180,7 +11187,7 @@
             "effect":"loops",
             "description":"Thế miếu là một ngôi nhà lớn, được xây theo quy cách chung của các cung điện, gồm hai tòa nhà ghép lại bằng trần vỏ cua. Diện tích miếu hơn 1500m2 là nơi thờ tự các vua Nguyễn. Mỗi gian thiết trí một án thờ, có 10 Vua được thờ nơi đây. Miếu được sơn son thếp vàng lộng lẫy, trang trí rất công phu và tiền của.",
             "media":[
-               15274,
+               19042,
                15162,
                15170,
                15186,
@@ -11423,161 +11430,41 @@
             "media":[
                18650
             ]
-         },
-         {
-            "name":"Song 6",
-            "media":[
-               20170
-            ],
-            "id":"decorator_33"
-         },
-         {
-            "name":"Song 7",
-            "media":[
-               20194
-            ],
-            "id":"decorator_34"
-         },
-         {
-            "name":"Song 8",
-            "media":[
-               20202
-            ],
-            "id":"decorator_35"
-         },
-         {
-            "name":"Tree 25",
-            "media":[
-               20210
-            ],
-            "id":"decorator_36"
-         },
-         {
-            "name":"Tree 26",
-            "media":[
-               20218
-            ],
-            "id":"decorator_37"
-         },
-         {
-            "name":"Tree 27",
-            "media":[
-               20226
-            ],
-            "id":"decorator_38"
-         },
-         {
-            "id":"decorator_39",
-            "name":"Tree 28",
-            "media":[
-               20234
-            ]
-         },
-         {
-            "name":"Tree 29",
-            "media":[
-               20242
-            ],
-            "id":"decorator_40"
-         },
-         {
-            "name":"Tree 30",
-            "media":[
-               20250
-            ],
-            "id":"decorator_41"
-         },
-         {
-            "name":"Tree 31",
-            "media":[
-               20258
-            ],
-            "id":"decorator_42"
-         },
-         {
-            "name":"Tree 32",
-            "media":[
-               20266
-            ],
-            "id":"decorator_43"
-         },
-         {
-            "name":"Tree 33",
-            "media":[
-               20274
-            ],
-            "id":"decorator_44"
-         },
-         {
-            "name":"Tree 34",
-            "media":[
-               20290
-            ],
-            "id":"decorator_45"
-         },
-         {
-            "name":"Tree 35",
-            "media":[
-               20298
-            ],
-            "id":"decorator_46"
-         },
-         {
-            "name":"Tree 36",
-            "media":[
-               20346
-            ],
-            "id":"decorator_47"
-         },
-         {
-            "name":"Tree 37",
-            "media":[
-               20354
-            ],
-            "id":"decorator_48"
-         },
-         {
-            "name":"Tree 38",
-            "media":[
-               20362
-            ],
-            "id":"decorator_49"
-         },
-         {
-            "name":"Tree 39",
-            "media":[
-               20370
-            ],
-            "id":"decorator_50"
-         },
-         {
-            "name":"Tree 40",
-            "media":[
-               20378
-            ],
-            "id":"decorator_51"
-         },
-         {
-            "name":"Tree 41",
-            "media":[
-               20386
-            ],
-            "id":"decorator_52"
-         },
-         {
-            "name":"Ho 1",
-            "media":[
-               20394
-            ],
-            "id":"decorator_53"
-         },
-         {
-            "name":"Ho 2",
-            "media":[
-               20402
-            ],
-            "id":"decorator_54"
          }
-      ]
+      ],
+      "game": {
+         "questions": [
+            {
+               "id": "question_0",
+               "content": "Điện thóa hòa khởi công năm nào?",
+               "images": ["link anh"],
+               "answers": [
+                  {
+                     "content":"1958",
+                     "images": ["link anh"],
+                     "is_correct": false
+                  },
+                  {
+                     "content":"1865",
+                     "images": ["link anh"],
+                     "is_correct": true
+                  }
+               ],
+               "reward": 0
+            }
+         ],
+         "key": "Nhom 15",
+         "root_image": "link ảnh",
+         "cols": 3,
+         "rows": 3,
+         "pieces": {
+            "0": "link",
+            "1": "link"
+         },
+         "max_turn_replies": 5,
+         "win": "link anh",
+         "loss": "link ảnh",
+         "description": ""
+      }
    }
 }

@@ -446,6 +446,7 @@ const onPlotMode = (index) => {
                 h: dt.h, 
                 item_id: dt.item_id
             })
+            
         } else { // update
             state.map.plots[has_index].x = dt.x
             state.map.plots[has_index].y = dt.y
@@ -463,6 +464,7 @@ const onPlotMode = (index) => {
        
         //close modal
         m.close()
+       
         m = null
     })
 
@@ -591,13 +593,23 @@ const LOCATION_FORM = {
 } 
 
 const checkPlot = () => {
-    let dt = {}
-    for (i = 0; i < state.map.plots.length; i++) {
-        state.map.plots[i].y += 1
-    }
-    for (i = 0; i < state.map.paths.length; i++) {
-        state.map.paths[i].y += 1
-    }
+    let count = 0;
 
-    console.log(JSON.stringify({trealet: state}))
+    let i = 0
+    while( i <  state.decorators.length) {
+       let d = state.decorators[i];
+       let index = state.map.plots.findIndex(plot => plot.item_id === d.id)
+       if(index === -1) {
+            state.decorators.splice(i, 1)
+            console.log(d.id)
+           count ++
+       } else {
+           i ++
+       }
+
+    }
+    console.log(JSON.stringify(state.decorators))
+
+   console.log(count)
+   
 } 

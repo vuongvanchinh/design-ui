@@ -12,7 +12,7 @@ const renderLocationPage = () => {
                 <td>${state.locations[i].media}</td>
                 <td>
                     ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
-                        <div class="btn-del" onclick="deleteLocation('${state.locations[i].id}')">Delete</div>
+                        <div class="btn-del" onclick="deleteLocation('${state.locations[i].id}')">Xóa</div>
                     `).getHtml()}
                 </td>
             </tr>
@@ -20,7 +20,7 @@ const renderLocationPage = () => {
     }
 
     const location_headers = ['Item id', 'Tên', 'Hình ảnh / video id', '']
-    $('#location-content').append(table(location_headers, body, 'locations-table', 'Locations', `There are ${state.locations.length} locations`))
+    $('#location-content').append(table(location_headers, body, 'locations-table', 'Locations', `Đang có ${state.locations.length} địa điểm.`))
     $('#locations-table tbody tr').dblclick((e) => {
         // console.log(e)
         if ($(e.target).is('td')) {
@@ -39,7 +39,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
     <form>
         <div class="form-card">
             <div class="form-card-header">
-            General information
+            Thông tin chung
             </div>
             <div class="form-card-body">
                 <div class="textfield">
@@ -47,12 +47,12 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                         placeholder="enter your name" 
                         id="location_name" 
                     />
-                    <label for="location_name">Name</label>
+                    <label for="location_name">Tên</label>
                     <p class='error-message'></p>
                 </div>
                 
                 <div>
-                    <label for="location_description">Description</label>
+                    <label for="location_description">Mô tả</label>
                     <textarea  id="location_description">
 
                     </textarea>
@@ -68,7 +68,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                <div id='medias' class='child_setparate'>
                 <div class="textfield">
                     <input type="text" name="media-ids" 
-                        placeholder="list integer setpate by a comma" 
+                        placeholder="một dãy các số nguyên cách nhau bởi dấu cách" 
                         id="media-ids" 
                     />
                     <label for="media-ids">Media ids</label>
@@ -92,7 +92,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
             let failed = false;
             let name = $('#location_name').val().trim()
             if (!name) {
-                $('#location_name').next().next().text('This field is required')
+                $('#location_name').next().next().text('Mục này không được trống')
                 $('#location_name').focus()
                 failed = true
             }else {
@@ -102,7 +102,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
             
             let media =  $('#media-ids').val()
             if (!media) {
-                $('#media-ids').next().next().text('This field must be fielded comma-separated integers')
+                $('#media-ids').next().next().text('Mục này cần điền các số nguyên cách nhau bằng dấu phẩy')
                 failed = true
                 $('#media-ids').focus()
             } else {
@@ -112,7 +112,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                     let item = medias[i]
                     if (isNaN(item.trim())) {
                         failed = true
-                        $('#media-ids').next().next().text('This field must be comma-separated integers')
+                        $('#media-ids').next().next().text('Mục này cần điền các số nguyên cách nhau bằng dấu phẩy')
                         
                         ok = false
                         break;
@@ -120,8 +120,6 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                 }
                 if (ok) {
                     $('#media-ids').next().next().empty()
-                    
-                    
                 }
             }
             
@@ -142,7 +140,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                 let name = $('#location_name').val().trim()
             
                 if (!name) {
-                    $('#location_name').next().next().text('This field is required')
+                    $('#location_name').next().next().text('Mục này không được trống')
                 }else {
                     $('#location_name').next().next().empty()
                 }
@@ -150,7 +148,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
             $('#media-ids').change(() => {
                 let media =  $('#media-ids').val()
                 if (!media) {
-                    $('#media-ids').next().next().text('This field must be fielded comma-separated integers')
+                    $('#media-ids').next().next().text('Mục này cần điền các số nguyên cách nhau bằng dấu phẩy')
                 } else {
                     let medias = media.trim().split(',')
                     let ok = true
@@ -158,7 +156,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                         let item = medias[i]
                         if (isNaN(item.trim()) || item.trim() === '') {
                             console.log(item, 'is not number')
-                            $('#media-ids').next().next().text('This field must be comma-separated integers')
+                            $('#media-ids').next().next().text('Mục này cần điền các số nguyên cách nhau bằng dấu phẩy')
                             
                             ok = false
                             break;
@@ -192,7 +190,7 @@ const media_form = (dt, type='image') => {
                                 placeholder="name" 
                                 class="media_name"
                             />
-                            <label for="media_name">Name</label>
+                            <label for="media_name">Tên</label>
                         </div>
                         <div class="textfield">
                             <input type="text" name="media_url" 
@@ -248,11 +246,11 @@ const deleteLocation = (id) => {
     }
     let body = `
         <div class="flex space-between">
-            <button class="btn btn-light" id='no-delete'>No</button>
-            <button class="btn btn-save" id='confirm-delete'>Yes</button>
+            <button class="btn btn-light" id='no-delete'>Không</button>
+            <button class="btn btn-save" id='confirm-delete'>Có</button>
         </div>
     `
-    let m = modal(`Are you sure delete ${id}?`, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
+    let m = modal(`Bạn có chắc muốn xóa ${id}?`, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
     $('#locations-page').prepend(m.getHtml())
     $('#no-delete').click(() => {
         m.close()
@@ -265,6 +263,12 @@ const deleteLocation = (id) => {
         m.close()
         m = null
         $(`tr#${id}`).fadeOut()
+        addToast(document.getElementById('toasts'), {
+            type: 'success',
+            title: 'Đã xong!',
+            message: 'Đã xóa thành công!',
+            duration: 3000
+        })
 
     })
 } 
@@ -272,11 +276,11 @@ const addLocation = () => {
     let form = location_form()
     let footer = `
         <div style="padding: .5rem 0">
-            <span class='btn btn-light ' id='cancel-location-form' style ='margin-right: 0.5rem;'>Cancel</span>
-            <span class='btn btn-save' id='add-location-btn'>Save</span>
+            <span class='btn btn-light ' id='cancel-location-form' style ='margin-right: 0.5rem;'>Hủy</span>
+            <span class='btn btn-save' id='add-location-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`Add new location`, form.getHtml(), footer, 'location-form', 'location-form', false, 'medium')
+    let m = modal(`Thêm địa điểm mới`, form.getHtml(), footer, 'location-form', 'location-form', false, 'medium')
     $('#locations-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-location-form').click(() => {
@@ -301,7 +305,7 @@ const addLocation = () => {
                     <td>${dt.media}</td>
                     <td>
                         ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
-                            <div class="btn-del" onclick="deleteLocation('${new_id}')">Delete</div>
+                            <div class="btn-del" onclick="deleteLocation('${new_id}')">Xóa</div>
                         `).getHtml()}
                     </td>
                 </tr>
@@ -314,6 +318,12 @@ const addLocation = () => {
                 }
             } )
             m.close()
+            addToast(document.getElementById('toasts'), {
+                type: 'success',
+                title: 'Đã xong!',
+                message: 'Đã thêm thành công một địa điểm!',
+                duration: 3000
+            })
         }
     })
 
@@ -322,17 +332,17 @@ const addLocation = () => {
 const updateLocation = (location_id) => {
     let index = state.locations.findIndex(item => item.id === location_id)
     if (index === -1) {
-        alert("Not found")
+        alert("Lỗi đã xảy ra")
         return
     }
     let form = location_form(state.locations[index])
     let footer = `
         <div style="padding: .5rem 0">
-            <span class='btn btn-light ' id='cancel-location-form' style ='margin-right: 0.5rem;'>Cancel</span>
-            <span class='btn btn-save' id='update-location-btn'>Save</span>
+            <span class='btn btn-light ' id='cancel-location-form' style ='margin-right: 0.5rem;'>Hủy</span>
+            <span class='btn btn-save' id='update-location-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`Update location `, form.getHtml(), footer, 'location-update-form', 'location-update-form', false, 'medium')
+    let m = modal(`Câp nhật địa điểm`, form.getHtml(), footer, 'location-update-form', 'location-update-form', false, 'medium')
     $('#locations-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-location-form').click(() => {
@@ -349,12 +359,18 @@ const updateLocation = (location_id) => {
                 <td>${state.locations[index].media}</td>
                 <td>
                     ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
-                        <div class="btn-del" onclick="deleteLocation('${state.locations[index].id}')">Delete</div>
+                        <div class="btn-del" onclick="deleteLocation('${state.locations[index].id}')">Xóa</div>
                     `).getHtml()}
                 </td>
             `)
             
             m.close()
+            addToast(document.getElementById('toasts'), {
+                type: 'success',
+                title: 'Đã xong!',
+                message: 'Đã cập nhật thành công!',
+                duration: 3000
+            })
         }
     })
 

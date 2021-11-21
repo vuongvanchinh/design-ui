@@ -13,17 +13,17 @@
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-   
+    
     <?php 
        if ($domain != '127.0.0.1:8000') {
             echo '
             <link rel="stylesheet" href="../assets/css/global_variable.css">
             <link rel="stylesheet" href="../assets/css/common.css">
-
             <link rel="stylesheet" href="../assets/css/admin.css">
             <link rel="stylesheet" href="../assets/css/grid.css">
             <link rel="stylesheet" href="../assets/css/map.css">
             <link rel="stylesheet" href="../assets/css/settingpage.css">
+            <link rel="stylesheet" href="../assets/css/game.css">
             <link rel="stylesheet" href="../assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="../assets/js/richtext/jquery.richtext.js"></script>
             ';
@@ -35,6 +35,7 @@
             <link rel="stylesheet" href="assets/css/admin.css">
             <link rel="stylesheet" href="assets/css/map.css">
             <link rel="stylesheet" href="assets/css/settingpage.css">
+            <link rel="stylesheet" href="assets/css/game.css">
             <link rel="stylesheet" href="assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="assets/js/richtext/jquery.richtext.js"></script>
             ';
@@ -42,6 +43,21 @@
     ?>
     
     <title>Admin</title>
+    <style>
+        #toasts {
+            width: 350px;
+            max-width: 100%;
+            position: fixed;
+            right: 0;
+            top: 1rem;
+            z-index: 333;
+            height: calc(100vh - 1rem);
+            padding: 0.5rem;
+            background-color: transparent;
+            user-select: none;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -127,9 +143,9 @@
     
                 <div id="location-content" style="max-width: 1080px; margin: 0 auto;">
                     <div class="page-header">
-                        <h2>Locations</h2>
+                        <h2>Các địa điểm</h2>
                         <button onclick='addLocation()' class="btn btn-save">
-                            Add new location
+                            Thêm địa điểm mới
                         </button>
                     </div>
                     
@@ -185,9 +201,9 @@
             <div class="page" id="decorators-page">
                 <div id="decorator-content" style="max-width: 1080px; margin: 0 auto;">
                     <div class="page-header">
-                        <h2>Decorator</h2>
+                        <h2>Các banner</h2>
                         <button onclick='addDecorator()' class="btn btn-save">
-                            Add new decorator
+                            Thêm banner mới
                         </button>
                     </div>
                     
@@ -195,10 +211,98 @@
             </div>
             <div class="page" id="game">
             <h1 style="text-align: center">Game</h1>
-                <div id="setting">
+                <div id="game-setting">
                     <div class="row">
                         <div class="col-7 col-md-12">
-                            Grid
+                            <div class="form-card">
+                                <div class="form-card-header">Mô tả chung về  trò chơi của bạn cho người chơi</div>
+                                <div class="form-card-body">
+                                    <textarea id="game_description" name="game_description" id="game_description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-card">
+                                <div class="form-card-header">Thiết lập</div>
+                                <div class="form-card-body">
+                                    <div class="row">
+                                        <div class="col-5 col-ms-12 game-params" >
+                                            
+                                            <div class="section">
+                                                <div class="textfield" style="margin-bottom: 1rem;">
+                                                    <input type="number" 
+                                                        name="max_turn_replies" 
+                                                        placeholder="vd: 50" 
+                                                        id="max_turn_replies"
+                                                            
+                                                    />
+                                                    <label for="cells_per_row">Số lần trả lời tối đa</label>
+                                                </div>
+                                                <div class="textfield">
+                                                    <input type="text" name="key" placeholder="vd: XINCHAO" id="key" />
+                                                    <label for="key">Từ khóa của trò chơi</label>
+                                                </div>
+                                            </div>
+                                            <div class="section">
+                                                <div class="section__label">Banner chúc mừng người chiến thắng</div>
+                                                <div class="section__body">
+                                                   <div class="bg-image select_image_wraper" id="win_banner">
+                                                    <div class="select_button_blur ">
+                                                        <span onclick="selectImage('win')">Chọn ảnh</span>
+                                                    </div>
+                                                   </div>      
+                                                </div>
+                                            </div>
+                                            <div class="section">
+                                                <div class="section__label">Banner gửi đến người thua cuộc</div>
+                                                <div class="section__body">
+                                                   <div class="bg-image select_image_wraper" id="loss_banner">
+                                                    <div class="select_button_blur ">
+                                                        <span onclick="selectImage('loss')">Chọn ảnh</span>
+                                                    </div>
+                                                   </div>      
+                                                </div>
+                                            </div>
+                                            
+
+                                        </div>
+                                          
+                                        <div class="col-7 col-ms-12" style = "padding:0;">
+                                            <div class="flex space-between" style="margin-bottom: 1rem;">
+                                                <div class="section">
+                                                    <div class="section__label">Số  hàng</div>
+                                                    <div class="section__body">
+                                                        <div class="game-param">
+                                                            <div  onclick="changeDimention('rows', -1)"><i class='bx bx-minus' ></i></div>
+                                                            <span id='rows'></span>
+                                                            <div onclick="changeDimention('rows', 1)"><i class='bx bx-plus'></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="section" style="margin: 0">
+                                                    <div class="section__label">Số  cột</div>
+                                                    <div class="section__body">
+                                                        <div class="game-param">
+                                                            <div onclick="changeDimention('cols', -1)"><i class='bx bx-minus' ></i></div>
+                                                            <span id='cols'></span>
+                                                            <div onclick="changeDimention('cols', 1)"><i class='bx bx-plus'></i></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="grid_images_wraper">
+                                                <div id="grid-images">
+
+                                                </div>
+                                                <div class="select_button">
+                                                    <span onclick="selectImage('root_image')">Chọn ảnh</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+
                         </div>
                         <div class="col-5 col-md-12">
                             Questions
@@ -209,7 +313,7 @@
             </div>
         </main>        
     </div>
-    
+    <div id="toasts"></div>
     <script>
         let state =  JSON.parse('<?php echo json_encode($d); ?>')
         // handle scroll event 
@@ -258,12 +362,12 @@
     <?php 
        if ($domain != '127.0.0.1:8000') {
             echo '
-            <script src="../assets/js/admin.js"></script>
             <script src="../assets/js/common.js"></script>
+            <script src="../assets/js/admin.js"></script>
             <script src="../assets/js/settingPage.js"></script>
             <script src="../assets/js/locationadmin.js"></script>
             <script src="../assets/js/decoratoradmin.js"></script>
-
+            <script src="../assets/js/gamePage.js"></script>
             ';
         } else {
             echo '
@@ -272,7 +376,7 @@
             <script src="assets/js/settingPage.js"></script>
             <script src="assets/js/locationadmin.js"></script>
             <script src="assets/js/decoratoradmin.js"></script>
-           
+            <script src="assets/js/gamePage.js"></script>
             ';
         }
     

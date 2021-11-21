@@ -125,7 +125,6 @@ const fetchData = (url, func) => {
     fetch(url).then((res) => res.json()).then((data) => func(data))
 }
 
-
 const addToast = (parentEl, toast= {type: 'success', title:'', message: '', duration: 3000}, close_icon = true) => {
     const icon = {
         success: 'bx bxs-check-circle',
