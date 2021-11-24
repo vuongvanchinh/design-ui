@@ -351,42 +351,10 @@
                                                     <img src="https://tinypng.com/images/social/website.jpg" alt="">
                                                     <button><i class='bx bxs-x-circle'></i></button>
                                                 </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                    <button><i class='bx bxs-x-circle'></i></button>
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                    <button><i class='bx bxs-x-circle'></i></button>
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                    <button><i class='bx bxs-x-circle'></i></button>
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                    <button><i class='bx bxs-x-circle'></i></button>
-                                                </div>
                                                 <div class="question-image" id="add-q-img" onclick='addQImage("select-QA-image")'> 
                                                     <i class='bx bx-image-add'></i>
                                                 </div>
                                             </div>
-                                            <p>Hình ảnh cho câu hỏi:</p>
-                                            <div class="question-image-list">
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                </div>
-                                            </div>
-
                                         </div>
 
                                         <div class="add-QA" style="margin-top: 1rem;" id="add-QA-btn">
