@@ -984,3 +984,17 @@ textarea {
 .toast--error {
   --color: #dc3545;
 }
+
+.update-path-header-popup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alert-comfirm-del {
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.active-alert-popup {
+  display:block;
+}

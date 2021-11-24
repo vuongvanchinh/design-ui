@@ -1,7 +1,3 @@
-
-
-
-
 $(document).ready(() => {
     renderGameGridImage()
     $('#cols').text(state.game.cols);
@@ -49,7 +45,6 @@ const renderGameGridImage = () => {
         </div>
         `
     }
-    
     let html = `
         <div class='grid bg-image' style="--col:${cols}; background-image:url('${state.game.root_image}');" >
             ${img_cells}

@@ -24,6 +24,7 @@
             <link rel="stylesheet" href="../assets/css/map.css">
             <link rel="stylesheet" href="../assets/css/settingpage.css">
             <link rel="stylesheet" href="../assets/css/game.css">
+            <link rel="stylesheet" href="../assets/css/question.game.css">
             <link rel="stylesheet" href="../assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="../assets/js/richtext/jquery.richtext.js"></script>
             ';
@@ -36,6 +37,7 @@
             <link rel="stylesheet" href="assets/css/map.css">
             <link rel="stylesheet" href="assets/css/settingpage.css">
             <link rel="stylesheet" href="assets/css/game.css">
+            <link rel="stylesheet" href="assets/css/question.game.css">
             <link rel="stylesheet" href="assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="assets/js/richtext/jquery.richtext.js"></script>
             ';
@@ -261,8 +263,6 @@
                                                    </div>      
                                                 </div>
                                             </div>
-                                            
-
                                         </div>
                                           
                                         <div class="col-7 col-ms-12" style = "padding:0;">
@@ -305,10 +305,98 @@
 
                         </div>
                         <div class="col-5 col-md-12">
-                            Questions
+                            <div class="form-card">
+                                <div class="form-card-header">
+                                    <div class="title-and-drop">
+                                        <div>
+                                            <p>Thêm câu hỏi</p>
+                                        </div>
+                                        <div class="idlocal-dropdown-form">
+                                            <button id="showLocationId-btn"></button>
+                                            <div class="idlocal-dropdown-content" id="locationId-list">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-card-body">
+                                    <div class="section">
+                                        <div class="textfield" style="margin-bottom: 1rem;">
+                                            <input type="text" name="question" placeholder="vd: Nhóm 15 được điểm gì?" id="question_content" />
+                                            <label for="question">Câu hỏi</label>
+                                        </div>
+                                        <div class="QA-card-form">
+                                            <p>Câu trả lời:</p>
+                                            <div class="answer-list" id="answers-list">
+                                                <div class="textfield text-del-row" >
+                                                    <input type="text" name="answer" placeholder="vd: Được A+" />
+                                                    <label for="answer">Đáp án 1</label>
+                                                </div>
+                                            </div>
+                                            <div class="add-A" style="margin-top: 1rem;">
+                                                <button class="add-answers" id="add-answer-btn" >Thêm câu trả lời</button>
+                                            </div>
+                                        </div>
+                                        <div class="QA-card-form">
+                                            <p>Hình ảnh cho câu hỏi:</p>
+                                            <div class="question-image-list">
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                    <button><i class='bx bxs-x-circle'></i></button>
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                    <button><i class='bx bxs-x-circle'></i></button>
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                    <button><i class='bx bxs-x-circle'></i></button>
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                    <button><i class='bx bxs-x-circle'></i></button>
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                    <button><i class='bx bxs-x-circle'></i></button>
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                    <button><i class='bx bxs-x-circle'></i></button>
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                    <button><i class='bx bxs-x-circle'></i></button>
+                                                </div>
+                                                <div class="question-image" id="add-q-img" onclick='addQImage("select-QA-image")'> 
+                                                    <i class='bx bx-image-add'></i>
+                                                </div>
+                                            </div>
+                                            <p>Hình ảnh cho câu hỏi:</p>
+                                            <div class="question-image-list">
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                </div>
+                                                <div class="question-image" > 
+                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="add-QA" style="margin-top: 1rem;" id="add-QA-btn">
+                                            <button>Thêm vào danh sách</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-         
                 </div>
             </div>
         </main>        
@@ -368,6 +456,8 @@
             <script src="../assets/js/locationadmin.js"></script>
             <script src="../assets/js/decoratoradmin.js"></script>
             <script src="../assets/js/gamePage.js"></script>
+            <script src="../assets/js/question.game.js"></script>
+            <script src="assets/js/questions.game.js"></script>
             ';
         } else {
             echo '
@@ -377,6 +467,7 @@
             <script src="assets/js/locationadmin.js"></script>
             <script src="assets/js/decoratoradmin.js"></script>
             <script src="assets/js/gamePage.js"></script>
+            <script src="assets/js/questions.game.js"></script>
             ';
         }
     

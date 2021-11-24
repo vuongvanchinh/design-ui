@@ -68,7 +68,6 @@
     <script>
          $(document).ready(function() {
             $('#location_description').richText();
-
         });
     </script>
 </body>

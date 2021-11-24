@@ -35,7 +35,6 @@ const renderLocationPage = () => {
 
 const location_form = (dt = {id: false, name:'', description: '', media: []}) => {
     let form = `
-    
     <form>
         <div class="form-card">
             <div class="form-card-header">
@@ -272,6 +271,7 @@ const deleteLocation = (id) => {
 
     })
 } 
+
 const addLocation = () => {
     let form = location_form()
     let footer = `
