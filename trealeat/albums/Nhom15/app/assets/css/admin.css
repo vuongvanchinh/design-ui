@@ -1,5 +1,7 @@
 .container {
-
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
 }
 
 .sidebar {
@@ -103,6 +105,7 @@ main {
   align-items: center; */
   background-color: #2b4162;
   background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
+  outline:2px solid var(--main-color);
 }
 
 .view::-webkit-scrollbar {

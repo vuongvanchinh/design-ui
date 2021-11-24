@@ -153,9 +153,8 @@
                   
             </div>
             <div class="page" id="map">
-                <h1 style="text-align: center">Build your map</h1>
+                <h1 style="text-align: center; font-size: 1.5rem; line-height: 1.5rem;">Thiết kế bản đồ</h1>
                 <div class="actions">
-
                     <div class="left-btn">
                         <div class="">
                         <button class="btn btn-light" id="togglePlotMode">Xây dựng ô đất</button>    

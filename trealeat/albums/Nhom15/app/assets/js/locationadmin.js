@@ -19,8 +19,8 @@ const renderLocationPage = () => {
         `
     }
 
-    const location_headers = ['Item id', 'Tên', 'Hình ảnh / video id', '']
-    $('#location-content').append(table(location_headers, body, 'locations-table', 'Locations', `Đang có ${state.locations.length} địa điểm.`))
+    const location_headers = ['Id', 'Tên', 'Id Hình ảnh/video...', '']
+    $('#location-content').append(table(location_headers, body, 'locations-table', 'Các địa điểm', `Đang có ${state.locations.length} địa điểm.`))
     $('#locations-table tbody tr').dblclick((e) => {
         // console.log(e)
         if ($(e.target).is('td')) {
@@ -280,7 +280,7 @@ const addLocation = () => {
             <span class='btn btn-save' id='add-location-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`Thêm địa điểm mới`, form.getHtml(), footer, 'location-form', 'location-form', false, 'medium')
+    let m = modal(`<p style='font-weight: 560;'>Thêm địa điểm mới</p>`, form.getHtml(), footer, 'location-form', 'location-form', false, 'medium')
     $('#locations-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-location-form').click(() => {
@@ -342,7 +342,7 @@ const updateLocation = (location_id) => {
             <span class='btn btn-save' id='update-location-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`Câp nhật địa điểm`, form.getHtml(), footer, 'location-update-form', 'location-update-form', false, 'medium')
+    let m = modal(`<p style='font-weight: 560;'>Cập nhật địa điểm</p>`, form.getHtml(), footer, 'location-update-form', 'location-update-form', false, 'medium')
     $('#locations-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-location-form').click(() => {

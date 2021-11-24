@@ -1,0 +1,182 @@
+.QA-card-form {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+    padding:1rem;
+}
+.show-localList {display: block;}
+.form-card-header .title-and-drop{
+    display: flex;
+    justify-content: space-between;
+}
+.form-card-header .title-and-drop > div > p {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+.form-card-header .title-and-drop .idlocal-dropdown-form button{
+    background-color: var(--main-color);
+    color: white;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px
+}
+.form-card-header .title-and-drop .idlocal-dropdown-form button:hover{
+    background-color: #0b422f;
+}
+.idlocal-dropdown-form {
+    position: relative;
+    display: inline;
+    right: 5rem;
+}
+.idlocal-dropdown-form .idlocal-dropdown-content {
+    display: none;
+    margin-right: 2rem;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 120%;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+    overflow-y: auto;
+    max-height: 30vh;
+}
+.form-card-header .title-and-drop .idlocal-dropdown-content div p{
+    font-size: 1rem;
+    margin: 0.3rem auto ;
+    cursor: pointer;
+
+}
+.form-card-header .title-and-drop .idlocal-dropdown-content div:hover{
+    background-color: rgb(157, 154, 154);
+}
+.QA-card-form .answer-list {
+    overflow-y: auto;
+    max-height: 30vh;
+}
+
+.answer-list .textfield {
+    width:80%;
+    margin:0.5rem auto;
+}
+.answer-list .textfield {
+    margin-top:1rem;
+}
+.text-del-row {
+    position: relative;
+}
+.text-del-row .del-answer-form {
+    position: absolute;
+    right: -10%;
+    top: 5%;
+    border-radius: 10%;
+    padding: 0 0.6rem 0.2rem 0.6rem;
+    font-size: 1.5rem;
+    background: red;
+    color: white;
+    cursor: pointer;
+}
+.text-del-row .del-answer-form:hover {
+    background-color:rgb(93, 11, 11);
+}
+.QA-card-form > p{
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+.add-QA{
+    width:90%;
+    margin:0.5rem auto;
+}
+.add-QA button {
+    background-color: white;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    border: 1px solid black;
+}
+.add-QA button:hover {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+}
+.add-A {
+    display:flex;
+    justify-content: center;
+    margin:0.5rem auto;
+}
+.add-A button.add-answers{
+    background-color: white;
+    cursor: pointer;
+    font-weight: 600;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    width: 80%;
+    border: 1px solid black;
+}
+.add-A button.add-answers:hover {
+    background-color: var(--main-color);
+    color: white;
+    border: none;
+}
+
+/* question image*/
+.question-image-list{
+    --col: 4;
+    --w: fit-content;
+    --height: auto;
+    width: var(--w);
+    height: auto;
+    display: grid;
+    /* overflow-x: auto; */
+    grid-template-columns: repeat(var(--col), 1fr);
+    gap: 5px;
+    overflow-x: auto;
+}
+.question-image-list .question-image{
+    position: relative;
+    border: 2px solid var(--main-color);
+}
+.question-image-list .question-image img{
+    width: 100%;
+}
+.question-image-list .question-image button{
+    color: red;
+    background-color: transparent;
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    cursor: pointer;
+    display:none;
+    font-size: 1.5rem!important;
+}
+
+.question-image-list .question-image:hover img{
+    filter: brightness(70%);
+}
+.question-image-list .question-image:hover button{
+    display:block;
+}
+
+#add-q-img {
+    font-size: 4rem!important;
+    text-align:center;
+    position:relative;
+    background-color: var(--main-color);
+    color:white;
+    cursor:pointer;
+}
+#add-q-img:hover {
+    background-color: green;
+    color: #CAD5E2;
+}
+
+#add-q-img i{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+}

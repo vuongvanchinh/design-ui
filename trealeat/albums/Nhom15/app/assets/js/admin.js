@@ -19,6 +19,7 @@ const location_headers = ['Item Id', 'Name']
 let zoom_rate = 1
 
 $(document).ready(() => {
+    console.log(state)
     renderNavs()
     renderMap()
     renderPathOptions()
@@ -54,8 +55,9 @@ const renderPaths = () => {
         let path = state.map.paths[i];
         let b = $(`.brick:nth-child(${path.index + 1})`)
         if (path.op_no === undefined) {
-            state.map.paths[i].op_no = 0
+            state.map.paths[i].op_no = `op_0`
         }
+        // state.map.paths[i].op_no =  `op_${state.map.paths[i].op_no}`
         b.css({"b_w": "initial", "background-image": `url("${state.map.path_list.options[path.op_no]}")`,width: "auto", height: "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
         b.addClass('path')
     }
@@ -83,18 +85,70 @@ const selectPathImage = (me,i) => {
 }
 const updatePathImageOption = (index) => {
     let form = path_form(state.map.path_list.options[index])
+
+    let header = `
+    <div class="update-path-header-popup">
+        <div style="padding-top: 5px;">
+            <p>Cập nhật</p>
+        </div>
+        <div class="btns-popup">
+            <button class="btn btn-light" id='cancel-update-option'>Hủy</button>
+            <button class="btn btn-save"  id='save-update-option'>Lưu</button>
+        </div>
+    </div>
+
+    `
     let footer = `
-        <button class="btn btn-light" id='cancel-update-option'>Hủy</button>
-        <span style='padding:0 0.5rem'></span>
-        <button class="btn btn-save"  id='save-update-option'>Lưu</button>
+    <div class="update-path-footer-popup">
+        <div class="update-path-footer-btns">
+            <button class="btn btn-danger" id='delfake-item'>Xoá</button>
+        </div>
+
+        <div class="alert-comfirm-del">
+            <p style="color:red; font-size: 1.2rem; margin-bottom: 0.5rem;">Cảnh báo xoá!</p>
+            <p>Bạn có chắc chắn muốn xoá không? Nếu xoá đi thì tất cả đường đi đã vẽ bằng nó cũng sẽ bị xoá.</p>
+            <div style="padding:0.5rem;"></div>
+            <button class="btn btn-primary" id='cancel-del-item'>Không</button>
+            <span style='padding:0 0.5rem'></span>
+            <button class="btn btn-danger" id='delforce-item'>Có</button>
+        </div>  
+    </div>
     `
 
-    let m = modal('Cập nhật', form.getHtml(), footer, 'update-path-option-modal', 'update-path-option-modal', false, 'small')
+    let m = modal(header, form.getHtml(), footer, 'update-path-option-modal', 'update-path-option-modal', false, 'small')
+
     $('#map').prepend(m.getHtml());
-    form.setup()
+    form.setup();
+
     $('#cancel-update-option').click(() => {
         m.close()
     })
+
+    $('#delfake-item').click(() => {
+        $('.update-path-footer-popup .alert-comfirm-del').toggle('fast');
+        $('#delfake-item').css({display: "none"})
+    })
+
+    $('#delforce-item').click(() => {
+        delete state.map.path_list.options[index];
+        state.map.paths = state.map.paths.filter(path => path.op_no !== index)
+        renderPathOptions()
+        renderPaths()
+        renderMap()
+        m.close()
+        addToast(document.getElementById('toasts'), {
+            type: "success",
+            message: `Bạn đã xoá thành công`, 
+            title:'Xong!',
+            duration: 3000
+        })
+    })
+
+    $('#cancel-del-item').click(() => {
+        $('.update-path-footer-popup .alert-comfirm-del').toggle('fast');
+        $('#delfake-item').css({display: "block"})
+    })
+
     $('#save-update-option').click(() => {
         if(form.validate()) {
             state.map.path_list.options[index] = form.getData()
@@ -106,13 +160,21 @@ const updatePathImageOption = (index) => {
 }
 const showPathItems = () => {
     let content = ''
-    for (let i = 0; i < state.map.path_list.options.length; i++) {
+    for(let i in state.map.path_list.options ) {
         content += `
-            <div class="path-item" onclick="selectPathImage(this,${i})" ondblclick ="updatePathImageOption(${i})">
+            <div class="path-item" onclick="selectPathImage(this,'${i}')" ondblclick ="updatePathImageOption('${i}')">
                 <img class="${state.map.path_list.selected === i? 'path-active' : ''}"src="${state.map.path_list.options[i]}">
             </div>
         `
     }
+
+    // for (let i = 0; i < state.map.path_list.options.length; i++) {
+    //     content += `
+    //         <div class="path-item" onclick="selectPathImage(this,${i})" ondblclick ="updatePathImageOption(${i})">
+    //             <img class="${state.map.path_list.selected === i? 'path-active' : ''}"src="${state.map.path_list.options[i]}">
+    //         </div>
+    //     `
+    // }
     return content;
 }
 
@@ -165,7 +227,11 @@ const addPathItem = () => {
     })
     $('#save-add-path-option').click(() => {
         if(form.validate()) {
-            state.map.path_list.options.push(form.getData())
+            let index = 0;
+            if(Object.keys(state.map.path_list.options).length !== 0 ) {
+                index = parseInt(Object.keys(state.map.path_list.options).pop().split('_')[1]) + 1;
+            }
+            state.map.path_list.options[`op_${index}`] = form.getData()
             renderPathOptions()
             m.close()
         }
@@ -200,7 +266,6 @@ const renderMap = () => {
     let cells = ''
     let style = `style="--b_w: ${state.map.cell_width}"`
     for (let i = 0; i < state.map.number_of_cells; i++) {
-        
         cells += `<div class='brick' onclick="setFeature(${i})" ${style}>
                     ${i}
                 </div>`

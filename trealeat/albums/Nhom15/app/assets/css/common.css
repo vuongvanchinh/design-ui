@@ -361,8 +361,9 @@
 
 .textfield {
   --bg: #fff;
-
+  height: fit-content;
   position: relative;
+ 
   /* background-color: red; */
 }
 
@@ -390,6 +391,12 @@
   font-size: 0.9rem;
   background-color: var(--bg);
   padding: 0 0.5rem;
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
 }
 
 .form-card {
@@ -403,7 +410,7 @@
   border-bottom: 1px solid rgb(243, 242, 242);
   padding: 1rem;
   font-size: 1.2rem;
-  font-weight: 550;
+  font-weight: 555;
 }
 
 .form-card-body {
@@ -983,4 +990,18 @@ textarea {
 }
 .toast--error {
   --color: #dc3545;
+}
+
+.update-path-header-popup {
+  display: flex;
+  justify-content: space-between;
+}
+
+.alert-comfirm-del {
+  margin-bottom: 1rem;
+  display: none;
+}
+
+.active-alert-popup {
+  display:block;
 }

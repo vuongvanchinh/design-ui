@@ -8,7 +8,6 @@ const renderDecoratorPage = () => {
     for (i = 0; i < state.decorators.length; i++) {
         body += `
             <tr id='${state.decorators[i].id}'>
-
                 <td>${state.decorators[i].id}</td>
                 <td>${state.decorators[i].name}</td>
                 <td>${state.decorators[i].media}</td>
@@ -20,8 +19,8 @@ const renderDecoratorPage = () => {
             </tr>
         `
     }
-    const decorator_headers = ['Item id', 'Name', 'Media', '']
-    $('#decorator-content').append(table(decorator_headers, body, 'decorators-table', 'Decorators', `There are ${state.decorators.length} decorators`))
+    const decorator_headers = ['Id', 'Tên', 'Id Hình ảnh/video...', '']
+    $('#decorator-content').append(table(decorator_headers, body, 'decorators-table', 'Các banner', `Đang có ${state.decorators.length} decorators`))
     $('#decorators-table tbody tr').dblclick((e) => {
         // console.log(e)
         if ($(e.target).is('td')) {
@@ -209,7 +208,7 @@ const addDecorator = () => {
             <span class='btn btn-save' id='add-decorator-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`Add new decorator`, form.getHtml(), footer, 'decorator-form', 'decorator-form', false, 'medium')
+    let m = modal(`<p style='font-weight: 560;'>Thêm banner mới</p>`, form.getHtml(), footer, 'decorator-form', 'decorator-form', false, 'medium')
     $('#decorators-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-decorator-form').click(() => {
@@ -219,7 +218,6 @@ const addDecorator = () => {
         if(!form.validate()) { // not fail
             let lastid = 1
             let l = state.decorators.length 
-         
             if (l > 0) {
                 lastid = parseInt(state.decorators[l - 1].id.split('_')[1])
             } 
@@ -271,7 +269,7 @@ const updateDecorator = (decorator_id) => {
             <span class='btn btn-save' id='update-decorator-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`Cập nhật banner`, form.getHtml(), footer, 'decorator-update-modal', 'decorator-update-modal', false, 'medium')
+    let m = modal(`<p style='font-weight: 560;'>Cập nhật banner</p>`, form.getHtml(), footer, 'decorator-update-modal', 'decorator-update-modal', false, 'medium')
     $('#decorators-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-decorator-modal').click(() => {

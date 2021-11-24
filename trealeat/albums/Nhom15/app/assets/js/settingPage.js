@@ -1,6 +1,6 @@
 $(document).ready(() => {
     renderSettingPage()
-    changePage('game')
+    changePage('map')
     $('#title').val(state.title)
     $('#title').change((e) => {
         state.title = e.target.value
@@ -13,7 +13,7 @@ $(document).ready(() => {
 
 
 const renderSettingPage = () => {
-    $('#setting').prepend('Chào bạn đây là trang thiết lập')
+    // $('#setting').prepend('Chào bạn đây là trang thiết lập')
     renderBgs()
     renderFeatureControl()
 }
