@@ -59,9 +59,8 @@
 </head>
 <body>
     <div class="container" id="container">
-        <div class="load-wrapp" id="pre-loader">
-            <div class="load-1">
-                
+        <div class="load-wrapp bg-image" style="background-image: url('https://goexplorer.org/wp-content/uploads/connectivity.jpg')" id="pre-loader">
+            <div class="load-1" >
                 <div class="line"></div>
                 <div class="line"></div>
                 <div class="line"></div>

@@ -57,6 +57,7 @@ const renderPaths = () => {
         if (path.op_no === undefined) {
             state.map.paths[i].op_no = `op_0`
         }
+        // state.map.paths[i].op_no =  `op_${state.map.paths[i].op_no}`
         b.css({"b_w": "initial", "background-image": `url("${state.map.path_list.options[path.op_no]}")`,width: "auto", height: "auto", gridRow: `${path.y} / span 1`, gridColumn: `${path.x} / span 1`})
         b.addClass('path')
     }
