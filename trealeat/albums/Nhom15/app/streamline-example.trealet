@@ -4907,32 +4907,57 @@
          }
       ],
       "game":{
-         "questions":[
+      "questions": [
+        {
+          "id": "question_0",
+          "content": "Một cộng một bằng mấy?",
+          "images": [
+            "https://tinypng.com/images/social/website.jpg",
+            "https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
+          ],
+          "answers": [
             {
-               "id":"question_0",
-               "content":"Điện thóa hòa khởi công năm nào?",
-               "images":[
-                  "link anh"
-               ],
-               "answers":[
-                  {
-                     "content":"1958",
-                     "images":[
-                        "link anh"
-                     ],
-                     "is_correct":false
-                  },
-                  {
-                     "content":"1865",
-                     "images":[
-                        "link anh"
-                     ],
-                     "is_correct":true
-                  }
-               ],
-               "reward":0
+              "content": "Bằng 10",
+              "isAnswer": true,
+              "images": "https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
+            },
+            {
+              "content": "Bằng 20",
+              "isAnswer": false,
+              "images": "https://static5.depositphotos.com/1007168/472/i/950/depositphotos_4725473-stock-photo-hot-summer-sun-wearing-shades.jpg"
             }
-         ],
+          ],
+          "reward": 3
+        },
+        {
+          "id": "question_1",
+          "content": "Một con vịt có bao nhiêu cái chân?",
+          "images": [],
+          "answers": [
+            {
+              "content": "1 đôi chân",
+              "isAnswer": true,
+              "images": ""
+            },
+            {
+              "content": "2 đôi chân",
+              "isAnswer": false,
+              "images": ""
+            },
+            {
+              "content": "3 đôi chân",
+              "isAnswer": false,
+              "images": ""
+            },
+            {
+              "content": "4 đôi chân",
+              "isAnswer": false,
+              "images": ""
+            }
+          ],
+          "reward": 3
+        }
+      ],
          "key":"Nhom 15",
          "root_image":"https://cdn.thecrazytourist.com/wp-content/uploads/2018/08/ccimage-shutterstock_519084481.jpg",
          "cols":3,
