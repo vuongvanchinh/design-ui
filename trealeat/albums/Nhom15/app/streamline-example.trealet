@@ -4919,12 +4919,12 @@
             {
               "content": "Bằng 10",
               "isAnswer": true,
-              "images": "https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
+              "images": ["https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"]
             },
             {
               "content": "Bằng 20",
               "isAnswer": false,
-              "images": "https://static5.depositphotos.com/1007168/472/i/950/depositphotos_4725473-stock-photo-hot-summer-sun-wearing-shades.jpg"
+              "images": ["https://static5.depositphotos.com/1007168/472/i/950/depositphotos_4725473-stock-photo-hot-summer-sun-wearing-shades.jpg"]
             }
           ],
           "reward": 3
@@ -4937,22 +4937,22 @@
             {
               "content": "1 đôi chân",
               "isAnswer": true,
-              "images": ""
+              "images": [""]
             },
             {
               "content": "2 đôi chân",
               "isAnswer": false,
-              "images": ""
+              "images": [""]
             },
             {
               "content": "3 đôi chân",
               "isAnswer": false,
-              "images": ""
+              "images": [""]
             },
             {
               "content": "4 đôi chân",
               "isAnswer": false,
-              "images": ""
+              "images": [""]
             }
           ],
           "reward": 3

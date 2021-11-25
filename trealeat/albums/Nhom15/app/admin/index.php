@@ -305,7 +305,7 @@
 
                         </div>
                         <div class="col-6 col-md-12">
-                            <div id="QA-container">abc
+                            <div id="QA-container">
                             </div>
                         </div>
                     </div>

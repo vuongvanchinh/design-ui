@@ -15,6 +15,7 @@ $(document).ready(() => {
     $(ADD_QA_BTN).click(()=>{
         if(questionForm.validate()) {
             let data = questionForm.getData()
+            console.log(data)
             $(QUESTION_LIST).append(appendIDQuestion(data).html());
             state.game.questions.push(data)
         }
@@ -162,7 +163,9 @@ const quizForm = () => {
             if(imgUrl === 'none') {
                 imgUrl = ''
             }
-            data.push({content: $(this).find('input[type=text]').val(), isAnswer, images: imgUrl });
+            let images = [];
+            images.push(imgUrl);
+            data.push({content: $(this).find('input[type=text]').val(), isAnswer, images: images });
          })
          return data;
      }
