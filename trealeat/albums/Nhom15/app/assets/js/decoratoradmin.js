@@ -42,7 +42,7 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
             <div class="form-card-body">
                 <div class="textfield">
                     <input type="text" name="decorator_name" 
-                        placeholder="enter your name" 
+                        placeholder="Tên" 
                         id="decorator_name" 
                     />
                     <label for="decorator_name">Name</label>

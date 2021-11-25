@@ -538,6 +538,13 @@ const slider = (data) => {
 const showPopup = (item_id) => {
 	let index = data.locations.findIndex(item => item.id == item_id)
 	// console.log(data.locations, item_id)
+
+	if(!$(`#${item_id} .tooltip`).hasClass('tooltip-visited')) {
+		$(`#${item_id} .tooltip`).addClass('tooltip-visited')
+		$(`#${item_id} .tooltip`).append("<i class='bx bx-user-check'></i>")
+	}
+	
+	
 	if (index === -1) {
 		alert("Location not found")
 	} else {

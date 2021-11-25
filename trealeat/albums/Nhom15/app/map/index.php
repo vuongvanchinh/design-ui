@@ -59,7 +59,7 @@
 </head>
 <body>
     <div class="container" id="container">
-        <div class="load-wrapp" id="pre-loader">
+        <div class="load-wrapp bg-image" id="pre-loader">
             <div class="load-1">
                 
                 <div class="line"></div>

@@ -65,15 +65,12 @@ const renderPaths = () => {
 const renderPathOptions = () => {
     let content = showPathItems();
 
-    let pathList = $('#path-choice-list')
-
+    let pathList = $('#path_options_wraper')
+    // pathList.css('display', 'flex')
     pathList.html( `
-        <div class="path-items">
-            ${content}
-            <div class="path-item add-path-item" onclick="addPathItem()" >
-                <i class='bx bx-plus' style='font-weight: bold;'></i>
+            <div class="path-items">
+                ${content}
             </div>
-        </div>
         `
     )
 }
@@ -452,7 +449,7 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
 const onPlotMode = (index) => {
     
     if(state.map.paths.findIndex(item => item.index === index) !== -1) {
-        alert('This is a path, You must delete path before set it become a plot')
+        alert('Đây là một ô đường đi, Bận phải xó nó trước khi biến nó thành ô đất.')
         return
     }
 
@@ -538,7 +535,7 @@ const onPlotMode = (index) => {
 const onPathMode = (i) => {
     let b = $(`.brick:nth-child(${i + 1})`)
     if(state.map.plots.findIndex(item => item.index === i) !== -1) {
-        alert('This is a plot, You must delete plot before set it become a path')
+        alert('Đây là một ô đất, Bạn phải xó nó trước khi biến nó thành một ô đường đi.')
         return
     }
     let index = state.map.paths.findIndex(item => item.index===i)
@@ -584,7 +581,11 @@ const deletePlot = (index) => {
 
 
 const drawPathModeToggle = () => {
-    $("#path-choice-list").toggle();
+    let value = 'flex'
+    if(pathMode) {
+        value = 'none'
+    }
+    $("#path-choice-list").css('display', value);
     $(pathToggleId).toggleClass("btn-active")
     $(plotToggleId).removeClass("btn-active")
     pathMode = !pathMode

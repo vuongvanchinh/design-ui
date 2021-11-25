@@ -44,7 +44,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
             <div class="form-card-body">
                 <div class="textfield">
                     <input type="text" name="location_name" 
-                        placeholder="enter your name" 
+                        placeholder="Tên" 
                         id="location_name" 
                     />
                     <label for="location_name">Tên</label>

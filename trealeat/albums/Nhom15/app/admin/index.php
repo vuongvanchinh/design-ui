@@ -162,7 +162,12 @@
                         <div id="toggleDrawPathMode-wraper">
                             <button class="btn btn-light" id="toggleDrawPathMode" >Xây dựng đường đi</button>
                             <div id="path-choice-list">
-                              
+                                <div id="path_options_wraper">
+
+                                </div>
+                                <div class="path-item add-path-item" onclick="addPathItem()" >
+                                    <i class='bx bx-plus' style='font-weight: bold;'></i>
+                                </div>
                             </div>
                         </div>
                     </div>

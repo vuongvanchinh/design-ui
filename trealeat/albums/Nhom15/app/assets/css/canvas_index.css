@@ -155,8 +155,8 @@
 }
 
 .tooltip {
-    --bg: #008966a1;
-    --color: rgb(247 255 0);
+    --bg: #000000a1;
+    --color: rgb(0 241 245);
     position: absolute;
     bottom: 105%;
     left: 50%;
@@ -176,7 +176,19 @@
 }
 
 .tooltip-visited {
-    --color: rgb(105 255 3);
+    --color: rgb(255, 255, 255);
+    --bg: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.tooltip-visited i {
+    /* --color: rgb(255, 255, 255);
+    --bg: var(--main-color); */
+    font-size: 2rem;
+    padding-left: 0.5rem;
 }
 
 .tooltip:hover {
