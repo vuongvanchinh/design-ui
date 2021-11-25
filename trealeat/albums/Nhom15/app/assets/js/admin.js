@@ -77,12 +77,13 @@ const renderPathOptions = () => {
         `
     )
 }
-const selectPathImage = (me,i) => {
+const selectPathImage = (me, i) => {
     console.log( me.firstElementChild)
     $('.path-active').removeClass('path-active')
     me.firstElementChild.classList.add('path-active')
     state.map.path_list.selected = i;
 }
+
 const updatePathImageOption = (index) => {
     let form = path_form(state.map.path_list.options[index])
 
@@ -194,7 +195,6 @@ const path_form = (url='') => {
         getHtml: () => html,
         getData: () => {
             return $('#path-url').val()
-            
         },
         validate: () => {
             if(!$('#path-url').val().trim()) {

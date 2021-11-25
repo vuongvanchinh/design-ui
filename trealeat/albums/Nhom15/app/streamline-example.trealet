@@ -231,1151 +231,1151 @@
           "h": "7",
           "item_id": "location_3"
         },
-            {
-               "index":182,
-               "x":28,
-               "y":6,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":183,
-               "x":34,
-               "y":6,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":248,
-               "x":19,
-               "y":8,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":282,
-               "x":27,
-               "y":9,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":269,
-               "x":13,
-               "y":9,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":201,
-               "x":11,
-               "y":7,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":609,
-               "x":27,
-               "y":19,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":809,
-               "x":30,
-               "y":24,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":810,
-               "x":36,
-               "y":24,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":714,
-               "x":11,
-               "y":22,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":716,
-               "x":13,
-               "y":22,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":973,
-               "x":25,
-               "y":29,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":974,
-               "x":27,
-               "y":29,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":865,
-               "x":30,
-               "y":26,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":1252,
-               "x":30,
-               "y":37,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":1171,
-               "x":36,
-               "y":35,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1447,
-               "x":41,
-               "y":42,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1441,
-               "x":39,
-               "y":42,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1317,
-               "x":30,
-               "y":39,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":1289,
-               "x":17,
-               "y":39,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":1367,
-               "x":11,
-               "y":42,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1113,
-               "x":11,
-               "y":34,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1115,
-               "x":13,
-               "y":34,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1374,
-               "x":25,
-               "y":42,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1375,
-               "x":27,
-               "y":42,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1622,
-               "x":11,
-               "y":50,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1623,
-               "x":13,
-               "y":50,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1708,
-               "x":25,
-               "y":52,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1709,
-               "x":27,
-               "y":52,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1642,
-               "x":39,
-               "y":50,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1643,
-               "x":41,
-               "y":50,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1984,
-               "x":11,
-               "y":60,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1985,
-               "x":13,
-               "y":60,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1997,
-               "x":25,
-               "y":60,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1998,
-               "x":27,
-               "y":60,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2012,
-               "x":39,
-               "y":60,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2013,
-               "x":41,
-               "y":60,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2271,
-               "x":13,
-               "y":68,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2484,
-               "x":15,
-               "y":73,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":2486,
-               "x":21,
-               "y":73,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":2559,
-               "x":15,
-               "y":75,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":2360,
-               "x":25,
-               "y":70,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2362,
-               "x":27,
-               "y":70,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2292,
-               "x":39,
-               "y":68,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2563,
-               "x":25,
-               "y":76,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2564,
-               "x":27,
-               "y":76,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":3086,
-               "x":23,
-               "y":89,
-               "w":"7",
-               "h":"7",
-               "item_id":"location_1"
-            },
-            {
-               "index":2834,
-               "x":25,
-               "y":84,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2838,
-               "x":27,
-               "y":84,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1169,
-               "x":38,
-               "y":35,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2096,
-               "x":11,
-               "y":68,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1231,
-               "x":9,
-               "y":39,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":392,
-               "x":13,
-               "y":12,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1021,
-               "x":25,
-               "y":32,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1032,
-               "x":27,
-               "y":32,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":787,
-               "x":13,
-               "y":25,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":180,
-               "x":40,
-               "y":6,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":285,
-               "x":38,
-               "y":9,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":257,
-               "x":40,
-               "y":8,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":389,
-               "x":40,
-               "y":11,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":390,
-               "x":38,
-               "y":11,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":548,
-               "x":38,
-               "y":19,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":656,
-               "x":38,
-               "y":22,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":549,
-               "x":40,
-               "y":19,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":610,
-               "x":40,
-               "y":21,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":752,
-               "x":40,
-               "y":24,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":175,
-               "x":17,
-               "y":6,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":355,
-               "x":11,
-               "y":10,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":425,
-               "x":11,
-               "y":12,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":433,
-               "x":23,
-               "y":6,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":279,
-               "x":25,
-               "y":4,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":278,
-               "x":27,
-               "y":4,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":962,
-               "x":11,
-               "y":25,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":746,
-               "x":25,
-               "y":19,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1566,
-               "x":7,
-               "y":39,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1654,
-               "x":7,
-               "y":41,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1466,
-               "x":11,
-               "y":36,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2234,
-               "x":11,
-               "y":53,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2199,
-               "x":13,
-               "y":52,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2709,
-               "x":11,
-               "y":70,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2710,
-               "x":13,
-               "y":70,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2752,
-               "x":23,
-               "y":73,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":2785,
-               "x":36,
-               "y":75,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":2680,
-               "x":41,
-               "y":68,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2707,
-               "x":41,
-               "y":70,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2756,
-               "x":41,
-               "y":73,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":3107,
-               "x":25,
-               "y":87,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":3069,
-               "x":27,
-               "y":86,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":2240,
-               "x":39,
-               "y":53,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":2181,
-               "x":41,
-               "y":52,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":1584,
-               "x":44,
-               "y":39,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1009,
-               "x":39,
-               "y":26,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":2724,
-               "x":39,
-               "y":71,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1281,
-               "x":19,
-               "y":32,
-               "w":"3",
-               "h":"4",
-               "item_id":"decorator_11"
-            },
-            {
-               "index":1193,
-               "x":29,
-               "y":30,
-               "w":"3",
-               "h":"4",
-               "item_id":"decorator_10"
-            },
-            {
-               "index":2787,
-               "x":34,
-               "y":67,
-               "w":"3",
-               "h":"3",
-               "item_id":"decorator_13"
-            },
-            {
-               "index":2594,
-               "x":35,
-               "y":61,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":379,
-               "x":11,
-               "y":6,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":427,
-               "x":14,
-               "y":8,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":428,
-               "x":16,
-               "y":8,
-               "w":"3",
-               "h":"1",
-               "item_id":"decorator_3"
-            },
-            {
-               "index":437,
-               "x":28,
-               "y":8,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":468,
-               "x":25,
-               "y":9,
-               "w":"1",
-               "h":"3",
-               "item_id":"decorator_4"
-            },
-            {
-               "index":429,
-               "x":30,
-               "y":8,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":443,
-               "x":36,
-               "y":8,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1103,
-               "x":36,
-               "y":27,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1104,
-               "x":38,
-               "y":27,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1537,
-               "x":38,
-               "y":37,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1576,
-               "x":39,
-               "y":39,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1586,
-               "x":41,
-               "y":39,
-               "w":"3",
-               "h":"1",
-               "item_id":"decorator_3"
-            },
-            {
-               "index":1605,
-               "x":36,
-               "y":40,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1637,
-               "x":37,
-               "y":41,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1647,
-               "x":42,
-               "y":41,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1648,
-               "x":44,
-               "y":41,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1620,
-               "x":9,
-               "y":41,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":1561,
-               "x":14,
-               "y":39,
-               "w":"3",
-               "h":"1",
-               "item_id":"decorator_3"
-            },
-            {
-               "index":1599,
-               "x":13,
-               "y":40,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1671,
-               "x":13,
-               "y":42,
-               "w":"1",
-               "h":"2",
-               "item_id":"decorator_5"
-            },
-            {
-               "index":1523,
-               "x":20,
-               "y":37,
-               "w":"3",
-               "h":"1",
-               "item_id":"decorator_3"
-            },
-            {
-               "index":1520,
-               "x":14,
-               "y":37,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":2978,
-               "x":17,
-               "y":75,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":2977,
-               "x":19,
-               "y":75,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":2980,
-               "x":34,
-               "y":75,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":2979,
-               "x":28,
-               "y":75,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":2915,
-               "x":33,
-               "y":73,
-               "w":"6",
-               "h":"1",
-               "item_id":"decorator_1"
-            },
-            {
-               "index":2916,
-               "x":28,
-               "y":73,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_2"
-            },
-            {
-               "index":2917,
-               "x":30,
-               "y":73,
-               "w":"3",
-               "h":"1",
-               "item_id":"decorator_3"
-            },
-            {
-               "index":3399,
-               "x":12,
-               "y":90,
-               "w":"4",
-               "h":"3",
-               "item_id":"decorator_24"
-            },
-            {
-               "index":3426,
-               "x":38,
-               "y":90,
-               "w":"3",
-               "h":"3",
-               "item_id":"decorator_23"
-            },
-            {
-               "index":935,
-               "x":16,
-               "y":24,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":966,
-               "x":17,
-               "y":25,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":2253,
-               "x":19,
-               "y":61,
-               "w":"2",
-               "h":"3",
-               "item_id":"decorator_18"
-            },
-            {
-               "index":2385,
-               "x":18,
-               "y":64,
-               "w":"3",
-               "h":"2",
-               "item_id":"decorator_17"
-            },
-            {
-               "index":2350,
-               "x":17,
-               "y":63,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":1944,
-               "x":21,
-               "y":53,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":1982,
-               "x":20,
-               "y":54,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":1610,
-               "x":34,
-               "y":43,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":1655,
-               "x":32,
-               "y":44,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":546,
-               "x":17,
-               "y":13,
-               "w":"3",
-               "h":"3",
-               "item_id":"decorator_13"
-            },
-            {
-               "index":485,
-               "x":33,
-               "y":11,
-               "w":"3",
-               "h":"2",
-               "item_id":"decorator_15"
-            },
-            {
-               "index":519,
-               "x":31,
-               "y":12,
-               "w":"2",
-               "h":"1",
-               "item_id":"decorator_20"
-            },
-            {
-               "index":751,
-               "x":31,
-               "y":19,
-               "w":"3",
-               "h":"3",
-               "item_id":"decorator_7"
-            },
-            {
-               "index":1689,
-               "x":17,
-               "y":45,
-               "w":"3",
-               "h":"3",
-               "item_id":"decorator_7"
-            },
-            {
-               "index":1928,
-               "x":32,
-               "y":52,
-               "w":"4",
-               "h":"3",
-               "item_id":"decorator_8"
-            }
-         ],
+        {
+          "index": 182,
+          "x": 28,
+          "y": 6,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 183,
+          "x": 34,
+          "y": 6,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 248,
+          "x": 19,
+          "y": 8,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 282,
+          "x": 27,
+          "y": 9,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 269,
+          "x": 13,
+          "y": 9,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 201,
+          "x": 11,
+          "y": 7,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 609,
+          "x": 27,
+          "y": 19,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 809,
+          "x": 30,
+          "y": 24,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 810,
+          "x": 36,
+          "y": 24,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 714,
+          "x": 11,
+          "y": 22,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 716,
+          "x": 13,
+          "y": 22,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 973,
+          "x": 25,
+          "y": 29,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 974,
+          "x": 27,
+          "y": 29,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 865,
+          "x": 30,
+          "y": 26,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 1252,
+          "x": 30,
+          "y": 37,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 1171,
+          "x": 36,
+          "y": 35,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1447,
+          "x": 41,
+          "y": 42,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1441,
+          "x": 39,
+          "y": 42,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1317,
+          "x": 30,
+          "y": 39,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 1289,
+          "x": 17,
+          "y": 39,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 1367,
+          "x": 11,
+          "y": 42,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1113,
+          "x": 11,
+          "y": 34,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1115,
+          "x": 13,
+          "y": 34,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1374,
+          "x": 25,
+          "y": 42,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1375,
+          "x": 27,
+          "y": 42,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1622,
+          "x": 11,
+          "y": 50,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1623,
+          "x": 13,
+          "y": 50,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1708,
+          "x": 25,
+          "y": 52,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1709,
+          "x": 27,
+          "y": 52,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1642,
+          "x": 39,
+          "y": 50,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1643,
+          "x": 41,
+          "y": 50,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1984,
+          "x": 11,
+          "y": 60,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1985,
+          "x": 13,
+          "y": 60,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1997,
+          "x": 25,
+          "y": 60,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1998,
+          "x": 27,
+          "y": 60,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2012,
+          "x": 39,
+          "y": 60,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2013,
+          "x": 41,
+          "y": 60,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2271,
+          "x": 13,
+          "y": 68,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2484,
+          "x": 15,
+          "y": 73,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 2486,
+          "x": 21,
+          "y": 73,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 2559,
+          "x": 15,
+          "y": 75,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 2360,
+          "x": 25,
+          "y": 70,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2362,
+          "x": 27,
+          "y": 70,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2292,
+          "x": 39,
+          "y": 68,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2563,
+          "x": 25,
+          "y": 76,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2564,
+          "x": 27,
+          "y": 76,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 3086,
+          "x": 23,
+          "y": 89,
+          "w": "7",
+          "h": "7",
+          "item_id": "location_1"
+        },
+        {
+          "index": 2834,
+          "x": 25,
+          "y": 84,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2838,
+          "x": 27,
+          "y": 84,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1169,
+          "x": 38,
+          "y": 35,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2096,
+          "x": 11,
+          "y": 68,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1231,
+          "x": 9,
+          "y": 39,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 392,
+          "x": 13,
+          "y": 12,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1021,
+          "x": 25,
+          "y": 32,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1032,
+          "x": 27,
+          "y": 32,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 787,
+          "x": 13,
+          "y": 25,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 180,
+          "x": 40,
+          "y": 6,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 285,
+          "x": 38,
+          "y": 9,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 257,
+          "x": 40,
+          "y": 8,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 389,
+          "x": 40,
+          "y": 11,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 390,
+          "x": 38,
+          "y": 11,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 548,
+          "x": 38,
+          "y": 19,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 656,
+          "x": 38,
+          "y": 22,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 549,
+          "x": 40,
+          "y": 19,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 610,
+          "x": 40,
+          "y": 21,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 752,
+          "x": 40,
+          "y": 24,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 175,
+          "x": 17,
+          "y": 6,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 355,
+          "x": 11,
+          "y": 10,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 425,
+          "x": 11,
+          "y": 12,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 433,
+          "x": 23,
+          "y": 6,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 279,
+          "x": 25,
+          "y": 4,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 278,
+          "x": 27,
+          "y": 4,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 962,
+          "x": 11,
+          "y": 25,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 746,
+          "x": 25,
+          "y": 19,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1566,
+          "x": 7,
+          "y": 39,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1654,
+          "x": 7,
+          "y": 41,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1466,
+          "x": 11,
+          "y": 36,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2234,
+          "x": 11,
+          "y": 53,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2199,
+          "x": 13,
+          "y": 52,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2709,
+          "x": 11,
+          "y": 70,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2710,
+          "x": 13,
+          "y": 70,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2752,
+          "x": 23,
+          "y": 73,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 2785,
+          "x": 36,
+          "y": 75,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 2680,
+          "x": 41,
+          "y": 68,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2707,
+          "x": 41,
+          "y": 70,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2756,
+          "x": 41,
+          "y": 73,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 3107,
+          "x": 25,
+          "y": 87,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 3069,
+          "x": 27,
+          "y": 86,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 2240,
+          "x": 39,
+          "y": 53,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 2181,
+          "x": 41,
+          "y": 52,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 1584,
+          "x": 44,
+          "y": 39,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1009,
+          "x": 39,
+          "y": 26,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 2724,
+          "x": 39,
+          "y": 71,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1281,
+          "x": 19,
+          "y": 32,
+          "w": "3",
+          "h": "4",
+          "item_id": "decorator_11"
+        },
+        {
+          "index": 1193,
+          "x": 29,
+          "y": 30,
+          "w": "3",
+          "h": "4",
+          "item_id": "decorator_10"
+        },
+        {
+          "index": 2787,
+          "x": 34,
+          "y": 67,
+          "w": "3",
+          "h": "3",
+          "item_id": "decorator_13"
+        },
+        {
+          "index": 2594,
+          "x": 35,
+          "y": 61,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 379,
+          "x": 11,
+          "y": 6,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 427,
+          "x": 14,
+          "y": 8,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 428,
+          "x": 16,
+          "y": 8,
+          "w": "3",
+          "h": "1",
+          "item_id": "decorator_3"
+        },
+        {
+          "index": 437,
+          "x": 28,
+          "y": 8,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 468,
+          "x": 25,
+          "y": 9,
+          "w": "1",
+          "h": "3",
+          "item_id": "decorator_4"
+        },
+        {
+          "index": 429,
+          "x": 30,
+          "y": 8,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 443,
+          "x": 36,
+          "y": 8,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1103,
+          "x": 36,
+          "y": 27,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1104,
+          "x": 38,
+          "y": 27,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1537,
+          "x": 38,
+          "y": 37,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1576,
+          "x": 39,
+          "y": 39,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1586,
+          "x": 41,
+          "y": 39,
+          "w": "3",
+          "h": "1",
+          "item_id": "decorator_3"
+        },
+        {
+          "index": 1605,
+          "x": 36,
+          "y": 40,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1637,
+          "x": 37,
+          "y": 41,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1647,
+          "x": 42,
+          "y": 41,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1648,
+          "x": 44,
+          "y": 41,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1620,
+          "x": 9,
+          "y": 41,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 1561,
+          "x": 14,
+          "y": 39,
+          "w": "3",
+          "h": "1",
+          "item_id": "decorator_3"
+        },
+        {
+          "index": 1599,
+          "x": 13,
+          "y": 40,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1671,
+          "x": 13,
+          "y": 42,
+          "w": "1",
+          "h": "2",
+          "item_id": "decorator_5"
+        },
+        {
+          "index": 1523,
+          "x": 20,
+          "y": 37,
+          "w": "3",
+          "h": "1",
+          "item_id": "decorator_3"
+        },
+        {
+          "index": 1520,
+          "x": 14,
+          "y": 37,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 2978,
+          "x": 17,
+          "y": 75,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 2977,
+          "x": 19,
+          "y": 75,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 2980,
+          "x": 34,
+          "y": 75,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 2979,
+          "x": 28,
+          "y": 75,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 2915,
+          "x": 33,
+          "y": 73,
+          "w": "6",
+          "h": "1",
+          "item_id": "decorator_1"
+        },
+        {
+          "index": 2916,
+          "x": 28,
+          "y": 73,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_2"
+        },
+        {
+          "index": 2917,
+          "x": 30,
+          "y": 73,
+          "w": "3",
+          "h": "1",
+          "item_id": "decorator_3"
+        },
+        {
+          "index": 3399,
+          "x": 12,
+          "y": 90,
+          "w": "4",
+          "h": "3",
+          "item_id": "decorator_24"
+        },
+        {
+          "index": 3426,
+          "x": 38,
+          "y": 90,
+          "w": "3",
+          "h": "3",
+          "item_id": "decorator_23"
+        },
+        {
+          "index": 935,
+          "x": 16,
+          "y": 24,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 966,
+          "x": 17,
+          "y": 25,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 2253,
+          "x": 19,
+          "y": 61,
+          "w": "2",
+          "h": "3",
+          "item_id": "decorator_18"
+        },
+        {
+          "index": 2385,
+          "x": 18,
+          "y": 64,
+          "w": "3",
+          "h": "2",
+          "item_id": "decorator_17"
+        },
+        {
+          "index": 2350,
+          "x": 17,
+          "y": 63,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 1944,
+          "x": 21,
+          "y": 53,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 1982,
+          "x": 20,
+          "y": 54,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 1610,
+          "x": 34,
+          "y": 43,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 1655,
+          "x": 32,
+          "y": 44,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 546,
+          "x": 17,
+          "y": 13,
+          "w": "3",
+          "h": "3",
+          "item_id": "decorator_13"
+        },
+        {
+          "index": 485,
+          "x": 33,
+          "y": 11,
+          "w": "3",
+          "h": "2",
+          "item_id": "decorator_15"
+        },
+        {
+          "index": 519,
+          "x": 31,
+          "y": 12,
+          "w": "2",
+          "h": "1",
+          "item_id": "decorator_20"
+        },
+        {
+          "index": 751,
+          "x": 31,
+          "y": 19,
+          "w": "3",
+          "h": "3",
+          "item_id": "decorator_7"
+        },
+        {
+          "index": 1689,
+          "x": 17,
+          "y": 45,
+          "w": "3",
+          "h": "3",
+          "item_id": "decorator_7"
+        },
+        {
+          "index": 1928,
+          "x": 32,
+          "y": 52,
+          "w": "4",
+          "h": "3",
+          "item_id": "decorator_8"
+        }
+      ],
       "paths": [
         {
           "index": 371,
@@ -5234,27 +5234,52 @@
       "questions": [
         {
           "id": "question_0",
-          "content": "Điện thóa hòa khởi công năm nào?",
+          "content": "Một cộng một bằng mấy?",
           "images": [
-            "link anh"
+            "https://tinypng.com/images/social/website.jpg",
+            "https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
           ],
           "answers": [
             {
-              "content": "1958",
-              "images": [
-                "link anh"
-              ],
-              "is_correct": false
+              "content": "Bằng 10",
+              "isAnswer": true,
+              "images": "https://www.cleverfiles.com/howto/wp-content/uploads/2018/03/minion.jpg"
             },
             {
-              "content": "1865",
-              "images": [
-                "link anh"
-              ],
-              "is_correct": true
+              "content": "Bằng 20",
+              "isAnswer": false,
+              "images": "https://static5.depositphotos.com/1007168/472/i/950/depositphotos_4725473-stock-photo-hot-summer-sun-wearing-shades.jpg"
             }
           ],
-          "reward": 0
+          "reward": 3
+        },
+        {
+          "id": "question_1",
+          "content": "Một con vịt có bao nhiêu cái chân?",
+          "images": [],
+          "answers": [
+            {
+              "content": "1 đôi chân",
+              "isAnswer": true,
+              "images": ""
+            },
+            {
+              "content": "2 đôi chân",
+              "isAnswer": false,
+              "images": ""
+            },
+            {
+              "content": "3 đôi chân",
+              "isAnswer": false,
+              "images": ""
+            },
+            {
+              "content": "4 đôi chân",
+              "isAnswer": false,
+              "images": ""
+            }
+          ],
+          "reward": 3
         }
       ],
       "key": "Nhom 15",

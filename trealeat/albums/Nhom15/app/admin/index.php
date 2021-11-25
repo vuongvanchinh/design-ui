@@ -215,7 +215,7 @@
             <h1 style="text-align: center">Game</h1>
                 <div id="game-setting">
                     <div class="row">
-                        <div class="col-7 col-md-12">
+                        <div class="col-6 col-md-12">
                             <div class="form-card">
                                 <div class="form-card-header">Mô tả chung về  trò chơi của bạn cho người chơi</div>
                                 <div class="form-card-body">
@@ -304,64 +304,8 @@
                             </div>
 
                         </div>
-                        <div class="col-5 col-md-12">
-                            <div class="form-card">
-                                <div class="form-card-header">
-                                    <div class="title-and-drop">
-                                        <div>
-                                            <p>Thêm câu hỏi</p>
-                                        </div>
-                                        <div class="idlocal-dropdown-form">
-                                            <button id="showLocationId-btn"></button>
-                                            <div class="idlocal-dropdown-content" id="locationId-list">
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-card-body">
-                                    <div class="section">
-                                        <div class="textfield" style="margin-bottom: 1rem;">
-                                            <input type="text" name="question" placeholder="vd: Nhóm 15 được điểm gì?" id="question_content" />
-                                            <label for="question">Câu hỏi</label>
-                                        </div>
-                                        <div class="QA-card-form">
-                                            <p>Câu trả lời:</p>
-                                            <div class="answer-list" id="answers-list">
-                                                <div class="textfield text-del-row" >
-                                                    <input type="text" name="answer" placeholder="vd: Được A+" />
-                                                    <label for="answer">Đáp án 1</label>
-                                                </div>
-                                            </div>
-                                            <div class="add-A" style="margin-top: 1rem;">
-                                                <button class="add-answers" id="add-answer-btn" >Thêm câu trả lời</button>
-                                            </div>
-                                        </div>
-                                        <div class="QA-card-form">
-                                            <p>Hình ảnh cho câu hỏi:</p>
-                                            <div class="question-image-list">
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                    <button><i class='bx bxs-x-circle'></i></button>
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                    <button><i class='bx bxs-x-circle'></i></button>
-                                                </div>
-                                                <div class="question-image" > 
-                                                    <img src="https://tinypng.com/images/social/website.jpg" alt="">
-                                                    <button><i class='bx bxs-x-circle'></i></button>
-                                                </div>
-                                                <div class="question-image" id="add-q-img" onclick='addQImage("select-QA-image")'> 
-                                                    <i class='bx bx-image-add'></i>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="add-QA" style="margin-top: 1rem;" id="add-QA-btn">
-                                            <button>Thêm vào danh sách</button>
-                                        </div>
-                                    </div>
-                                </div>
+                        <div class="col-6 col-md-12">
+                            <div id="QA-container">
                             </div>
                         </div>
                     </div>

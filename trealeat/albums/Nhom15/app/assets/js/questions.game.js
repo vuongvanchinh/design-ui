@@ -1,120 +1,326 @@
 const ADD_QA_BTN = '#add-QA-btn';
 const ADD_ANSWER_BTN = '#add-answer-btn'
-const SHOW_LOCATIONID_BTN = '#showLocationId-btn'
-const ADD_Q_IMG_BTN = '#add-q-img'
+const ADD_QUESTION_IMG_BTN = '#add-question-img'
 
 const ANSWER_LIST = '#answers-list'
-const LOCATIONID_LIST = '#locationId-list'
-const QUESTION_CONTENT = '#locationId-list'
-
-const MAX_ANSWER_INPUT = 5
-let currentAnswerNum = 1;
+const QUESTION_LIST = '#question-list'
+const QA_CONTAINER ='#QA-container'
 
 $(document).ready(() => {
+
+    let questionForm = quizForm();
+
+    $(QA_CONTAINER).append(questionForm.html())
+
     $(ADD_QA_BTN).click(()=>{
-        console.log('oke')
-    })
-    $(ADD_ANSWER_BTN).click(()=>{
-        if(currentAnswerNum >= MAX_ANSWER_INPUT) {
-            addToast(document.getElementById('toasts'), {
-                type: "error",
-                message: `${MAX_ANSWER_INPUT} là lớn nhất rồi nhé!`, 
-                title:'Thông tin cho bạn',
-                duration: 3000
-            })
-        } else {
-            addAnswer();
+        if(questionForm.validate()) {
+            let data = questionForm.getData()
+            $(QUESTION_LIST).append(appendIDQuestion(data).html());
+            state.game.questions.push(data)
         }
     })
-    $(SHOW_LOCATIONID_BTN).click(()=>{
-       $(LOCATIONID_LIST).toggle("fast");
-    })
 
-    $(LOCATIONID_LIST).append(renderLocationIdList())
+    $(ADD_ANSWER_BTN).click(()=>{
+       addAnswer();
+   })
+
 })
+const appendIDQuestion = (data) => {
+html = `
+    <tr>
+        <td>
+            <div >
+                <p>${data.id}</p>
+            </div>
+        </td>
+        <td>
+            <div >
+                <p>${data.content}</p>
+            </div>
+        </td>
+    </tr>
+    `
+    return {
+        html: () => html
+    }
+}
+const quizForm = () => {
 
-const questionForm = () => {
-    let data =             {
-        id: "",
-        content: "",
-        images: [],
-        answers: [
-           {
-              content:"",
-              images: [""],
-              is_correct: false
-           }
-        ],
-        reward: 0
-     };
-    
-    $
+    let questionList = renderQuestionList();
 
-     const answer_Form = () => {
+     const html = () => `
+            <div class="form-card">
+            <div class="form-card-header">
+                <p>Thêm câu hỏi</p>
+            </div>
+            <div class="form-card-body">
+                <div class="section">
+                    <div class="textfield" style="margin-bottom: 1rem;">
+                        <input type="text" name="question" placeholder="vd: Một cộng một bằng mấy?" id="question_content" />
+                        <label for="question">Câu hỏi</label>
+                        <p style="display: none" class='error-message'></p>
+                    </div>
 
+                    <div class="QA-card-form">
+                        <p>Hình ảnh cho câu hỏi:</p>
+
+                        <div></div>
+                        <div class="question-image-list">
+                            <div class="question-image" id="add-question-img" onclick='addQImage("select-QA-image")'> 
+                                <i class='bx bx-image-add'></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="QA-card-form">
+                        <p>Thêm câu trả lời</p>
+                        <table>
+                            <thead>
+                                <tr style="margin-bottom: 2rem;">
+                                    <th style="width: 3%">Đúng/Sai</th>
+                                    <th style="width: 20%">Ảnh</th>
+                                    <th style="width: 75%;text-align: start">Câu trả lời</th>
+                                    <th style="padding: 0 10px">Xoá</th>
+                                </tr>
+                            </thead>
+                            <tbody id="answers-list">
+                            <tr>
+                                <td><input type="checkbox"/></td>
+                                <td style="padding: 0 10px;">
+                                    <div class="answer-img" id="add-answer-img1" onclick='addAImage(this)'> 
+                                        <i class='bx bx-image-add'></i>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="textfield text-del-row" >
+                                        <input type="text" name="answer" placeholder="vd: Bằng 10" />
+                                        <label for="answer">Đáp án 1</label>
+                                        <p style="display: none" class='error-message'>abc</p>
+                                    </div>
+                                </td>
+                                <td style="padding: 0 10px;">
+                                    <div style="padding:0 1rem 0.2rem 1rem;"></div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="add-A" style="margin-top: 1rem;">
+                            <button class="add-answers" id="add-answer-btn" >Thêm câu trả lời</button>
+                        </div>
+
+                        <div class="reward">
+                        <p>Phần thưởng</p>
+                        <form>
+                            <div class="triggervalue-button left-decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+                            <input type="number" id="rewardId" value="0" />
+                            <div class="triggervalue-button right-increase" onclick="increaseValue()" value="Increase Value">+</div>
+                            <div style="display: none" class='error-message'></div>
+                        </form>
+                       
+                    </div>
+                    </div>
+                    <div class="add-QA" style="margin-top: 1rem;" id="add-QA-btn">
+                        <button>Thêm vào danh sách</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-card">
+        <div class="form-card-header">
+            <p>Danh sách câu hỏi</p>
+        </div>
+        <div class="form-card-body">
+            <div class="QA-card-form">
+            <table class="question_list_style" >
+                <thead>
+                    <tr style="margin-bottom: 2rem;">
+                        <th style="width: 15%">ID</th>
+                        <th style="width: 100vw;">Câu hỏi</th>
+                    </tr>
+                </thead>
+                <tbody id="question-list">
+                    ${questionList}
+                </tbody>
+            </table>
+            </div>
+        </div>
+     `
+
+     let questionId = parseInt(state.game.questions[state.game.questions.length - 1].id.split("_")[1]);
+
+     const increaseQuestionId = () => {
+        questionId ++;
+        return `question_${questionId}`
+     } 
+
+     const answers = () => {
+         let data = [];
+         $("#answers-list tr").each(function(){
+            let isAnswer = $(this).find('input[type=checkbox]').is(":checked")
+            let imgUrl = $(this).find('div.answer-img').css('background-image')
+            imgUrl = imgUrl.replace('url("','').replace('")','');
+            if(imgUrl === 'none') {
+                imgUrl = ''
+            }
+            data.push({content: $(this).find('input[type=text]').val(), isAnswer, images: imgUrl });
+         })
+         return data;
      }
 
+     const getQuestionImg = () => {
+        let images = [];
+        $(".QA-card-form .question-image-list").find('.question-image img').each( function() {
+            images.push($(this).attr('src'))
+        })
+        return images;
+     }
+
+     const getRewardId = () => parseInt(document.getElementById('rewardId').value, 10)
+
+     const validate = () => {
+            let success = true
+            let range = state.game.rows * state.game.cols - 1;
+            let reward = $('#rewardId').val()
+            if(!$('#question_content').val()) {
+                $('#question_content').next().next().text('Bạn không được bỏ trống câu hỏi')
+                $('#question_content').next().next().show()
+                success = false
+            }
+            if(reward >= range|| reward < 0) {
+                $('#rewardId').next().next().text(`Id của phần thưởng nằm trong khoảng từ 0 - ${range}`)
+                $('#rewardId').next().next().show()
+                success = false
+            }
+            $("#answers-list tr").each(function(){
+                if(!$(this).find('input[type=text]').val()) {
+                    $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
+                    $(this).find('input[type=text]').next().next().show()
+                    success = false
+                }
+            })
+            return success
+     }
+
+     return {
+         html: () => html(),
+         getData: () => {
+            return {
+                id: increaseQuestionId(),
+                content: $('#question_content').val(),
+                images : getQuestionImg(),
+                answers: answers(),
+                reward: getRewardId()
+            };
+        }, 
+        validate: () => validate(),
+     }
 }
 
-const renderLocationIdList = () => {
-    let locationIdList = '';
-    let {locations} = state;
-
-    function addList(value) {
-        locationIdList += `
-            <div onclick='selectLocationId(this)'>
-                <p>${value.id}</p> 
-            </div>
+const renderQuestionList = () => {
+    let html = ``;
+    console.log(state.game.questions.length)
+    for (let i = 0; i < state.game.questions.length; i++) {
+        html += `
+        <tr>
+            <td>
+                <div >
+                    <p>${state.game.questions[i].id}</p>
+                </div>
+            </td>
+            <td>
+                <div >
+                    <p>${state.game.questions[i].content}</p>
+                </div>
+            </td>
+        </tr>
         `
     }
-    locations.forEach(addList);
-    $(SHOW_LOCATIONID_BTN).text(locations[0].id)
-    return locationIdList;
+
+    return html;
 }
 
-const selectLocationId = (e) => {
-    let text = e.querySelector("p").innerHTML;
-    $(SHOW_LOCATIONID_BTN).text(text)
-    $(LOCATIONID_LIST).toggle("fast");
+const increaseValue = () => {
+    var value = parseInt(document.getElementById('rewardId').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value++;
+    document.getElementById('rewardId').value = value;
+}
+  
+const  decreaseValue = () => {
+    var value = parseInt(document.getElementById('rewardId').value, 10);
+    value = isNaN(value) ? 0 : value;
+    value < 1 ? value = 1 : '';
+    value--;
+    document.getElementById('rewardId').value = value;
 }
 
 const addAnswer = () => {
-    let delBtn = document.querySelector(`${ANSWER_LIST} .del-answer-form`);
-    if(delBtn !== null) {
-        delBtn.remove();
+    let num = $(ANSWER_LIST).children().length + 1
+    let form = answerForm(num);
+
+    if(num > 5) {
+        addToast(document.getElementById('toasts'), {
+            type: "error",
+            message: `Đáp án chỉ tối đa ${num - 1 } câu`,
+            title: "Thông tin cho bạn!",
+            duration: 3000
+        })
+    } else {
+        let delBtn = document.querySelector(`${ANSWER_LIST} .del-answer-form`);
+        if(delBtn !== null) {
+            delBtn.parentElement.remove();
+        }
+        $(ANSWER_LIST).append(form.html());
     }
-    currentAnswerNum = currentAnswerNum + 1;
-    $(ANSWER_LIST).append(answerForm(currentAnswerNum));
-    $(ANSWER_LIST).scrollTop(Number.MAX_SAFE_INTEGER);
+    // $(ANSWER_LIST).scrollTop(Number.MAX_SAFE_INTEGER);
 }
+
 const answerForm = (num) => {
+    
     let html = `
-    <div class="textfield text-del-row">
-        <input type="text" name="answer" id='answer_${num}' placeholder="vd: Được A+"/>
-        <label for="answer">Đáp án ${num}</label>
-        ${delAnserInputBtn(num)}
-    </div>
+    <tr>
+        <td><input type="checkbox"/></td>
+        <td style="padding: 0 10px;">
+            <div class="answer-img" id="add-answer-img${num}" onclick='addAImage(this)'> 
+                <i class='bx bx-image-add'></i>
+            </div>
+        </td>
+        <td>
+            <div class="textfield text-del-row" >
+                <input type="text" name="answer" placeholder="vd: Bằng 10" />
+                <label for="answer">Đáp án ${num}</label>
+                <p style="display: none" class='error-message'></p>
+            </div>
+        </td>
+        <td style="padding: 0 10px;">
+            <button class="del-answer-form" onClick='delAnswerInput(this)'>x</button>
+        </td>
+    </tr>
     `
     return {
-        html: () => html,
-        getData: () => {
-            return $(`#answer_${num}`).val()
-        }
+        html: () => html
     }
 }
 
 const delAnswerInput = (e) =>{
-    $(`${ANSWER_LIST} .text-del-row:nth-child(${e})`).remove();
-    e = e - 1;
-    currentAnswerNum = e;
-    if(e != 1) {
-        $(`${ANSWER_LIST} .text-del-row:nth-child(${e})`).append(delAnserInputBtn(e))
+    e.parentElement.parentElement.remove()
+    if($(`${ANSWER_LIST} tr td`).length !== 4) {
+        $(`${ANSWER_LIST} tr:last-child`).append(delAnserInputBtn())
     }
+
+    // $(`${ANSWER_LIST} .text-del-row:nth-child(${e})`).remove();
+    // e = e - 1;
+    // currentAnswerNum = e;
+    // if(e != 1) {
+    // }
 }
 
-const delAnserInputBtn = (num) => {
+const delAnserInputBtn = () => {
     return `
-        <div class="del-answer-form" onClick='delAnswerInput(${num})' id="del-answer-input">x</div>
+    <td style="padding: 0 10px;">
+        <button class="del-answer-form" onClick='delAnswerInput(this)'>x</button>
+    </td>
     `
 }
 
@@ -159,11 +365,40 @@ const addQImage = (name) => {
     $('#cancel_Qimage').click(() => {
         md.close()
     })
-      let url = form.getData()
 
     $('#save_Qimage').click(() => {
         if(form.validate()) {
-            $(ADD_Q_IMG_BTN).before(imageAppendForm('https://tinypng.com/images/social/website.jpg'))
+            let url = form.getData()
+            $(ADD_QUESTION_IMG_BTN).before(imageAppendForm(url))
+            md.close()
+            addToast(document.getElementById('toasts'), {
+                type: "success",
+                message: "Đã thay đổi thành công.",
+                title: "Xong!",
+                duration: 3000
+            })
+        }
+    })
+}
+const addAImage = (e) => {
+    let num = $(ANSWER_LIST).children().length + 1;
+    let form = image_form('root_image', num)
+    let footer = `
+        <button class='btn btn-light'id="cancel_Aimage">Hủy</button>
+        <button class='btn btn-save' id="save_Aimage">Lưu</button>
+    `
+    let md = modal('Thay đổi hình ảnh', form.getHtml(), footer, 'image_id', 'image_id', false, 'medium')
+    $('#game').prepend(md.getHtml())
+    
+    $('#cancel_Aimage').click(() => {
+        md.close()
+    })
+
+    $('#save_Aimage').click(() => {
+        if(form.validate()) {
+            e.style.backgroundImage  = `url('${form.getData()}')`
+            let icon = e.querySelector('i')
+            icon.classList.add('disableImg')
             md.close()
             addToast(document.getElementById('toasts'), {
                 type: "success",
@@ -179,6 +414,11 @@ const imageAppendForm = (url) => {
     return `
         <div class="question-image" > 
         <img src="${url}" alt="">
-        <button><i class='bx bxs-x-circle'></i></button>
+        <button onclick='delQImage(this)'><i class='bx bxs-x-circle'></i></button>
     </div>`
+}
+
+const delQImage = (e) => {
+    console.log(e.parentElement)
+    e.parentElement.remove();
 }

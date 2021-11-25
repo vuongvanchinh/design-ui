@@ -38,6 +38,7 @@ const renderGameGridImage = () => {
     let rows = parseInt(state.game.rows)
     let number_cells = cols * rows
     let img_cells = ''
+    
     for (let i = 0; i < number_cells; i++) {
         img_cells += `
         <div class='img_cell' style=''>
@@ -45,6 +46,7 @@ const renderGameGridImage = () => {
         </div>
         `
     }
+
     let html = `
         <div class='grid bg-image' style="--col:${cols}; background-image:url('${state.game.root_image}');" >
             ${img_cells}
