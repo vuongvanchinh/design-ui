@@ -241,3 +241,8 @@
     color:white;
     cursor: pointer;
 }
+
+.selected-question-item {
+    color:white;
+    background-color: grey;
+}

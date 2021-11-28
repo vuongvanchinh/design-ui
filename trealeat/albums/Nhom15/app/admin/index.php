@@ -307,6 +307,8 @@
                         <div class="col-6 col-md-12">
                             <div id="QA-container">
                             </div>
+                            <div id="QA-list-container">
+                            </div>
                         </div>
                     </div>
          

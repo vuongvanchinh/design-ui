@@ -544,7 +544,6 @@ const showPopup = (item_id) => {
 		$(`#${item_id} .tooltip`).append("<i class='bx bx-user-check'></i>")
 	}
 	
-	
 	if (index === -1) {
 		alert("Location not found")
 	} else {

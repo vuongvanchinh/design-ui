@@ -5,51 +5,28 @@ const ADD_QUESTION_IMG_BTN = '#add-question-img'
 const ANSWER_LIST = '#answers-list'
 const QUESTION_LIST = '#question-list'
 const QA_CONTAINER ='#QA-container'
+const QA_LIST_CONTAINER ='#QA-list-container'
 
 $(document).ready(() => {
+    let questionForm =  quizForm();
 
-    let questionForm = quizForm();
+    renderQuestionList()
 
-    $(QA_CONTAINER).append(questionForm.html())
-
+    questionForm.render();
     $(ADD_QA_BTN).click(()=>{
         if(questionForm.validate()) {
             let data = questionForm.getData()
-            console.log(data)
-            $(QUESTION_LIST).append(appendIDQuestion(data).html());
+            // $(QUESTION_LIST).append(appendIDQuestion(data).html());
             state.game.questions.push(data)
+            renderQuestionList()
         }
     })
-    $(ADD_ANSWER_BTN).click(()=>{
-       addAnswer();
-   })
 
 })
-const appendIDQuestion = (data) => {
-html = `
-    <tr>
-        <td>
-            <div >
-                <p>${data.id}</p>
-            </div>
-        </td>
-        <td>
-            <div >
-                <p>${data.content}</p>
-            </div>
-        </td>
-    </tr>
-    `
-    return {
-        html: () => html
-    }
-}
+
 const quizForm = () => {
-
-    let questionList = renderQuestionList();
-
      const html = () => `
-            <div class="form-card">
+        <div class="form-card">
             <div class="form-card-header">
                 <p>Thêm câu hỏi</p>
             </div>
@@ -95,7 +72,7 @@ const quizForm = () => {
                                     <div class="textfield text-del-row" >
                                         <input type="text" name="answer" placeholder="vd: Bằng 10" />
                                         <label for="answer">Đáp án 1</label>
-                                        <p style="display: none" class='error-message'>abc</p>
+                                        <p style="display: none" class='error-message'></p>
                                     </div>
                                 </td>
                                 <td style="padding: 0 10px;">
@@ -106,7 +83,7 @@ const quizForm = () => {
                         </table>
 
                         <div class="add-A" style="margin-top: 1rem;">
-                            <button class="add-answers" id="add-answer-btn" >Thêm câu trả lời</button>
+                            <button class="add-answers" id="add-answer-btn" onclick="addAnswer()">Thêm câu trả lời</button>
                         </div>
 
                         <div class="reward">
@@ -126,25 +103,6 @@ const quizForm = () => {
                 </div>
             </div>
         </div>
-        <div class="form-card">
-        <div class="form-card-header">
-            <p>Danh sách câu hỏi</p>
-        </div>
-        <div class="form-card-body">
-            <div class="QA-card-form">
-            <table class="question_list_style" >
-                <thead>
-                    <tr style="margin-bottom: 2rem;">
-                        <th style="width: 15%">ID</th>
-                        <th style="width: 100vw;">Câu hỏi</th>
-                    </tr>
-                </thead>
-                <tbody id="question-list">
-                    ${questionList}
-                </tbody>
-            </table>
-            </div>
-        </div>
      `
 
      let questionId = parseInt(state.game.questions[state.game.questions.length - 1].id.split("_")[1]);
@@ -154,9 +112,9 @@ const quizForm = () => {
         return `question_${questionId}`
      } 
 
-     const answers = () => {
+     const answers = () => { 
          let data = [];
-         $("#answers-list tr").each(function(){
+         $(`${ANSWER_LIST} tr`).each(function(){
             let isAnswer = $(this).find('input[type=checkbox]').is(":checked")
             let imgUrl = $(this).find('div.answer-img').css('background-image')
             imgUrl = imgUrl.replace('url("','').replace('")','');
@@ -194,7 +152,7 @@ const quizForm = () => {
                 $('#rewardId').next().next().show()
                 success = false
             }
-            $("#answers-list tr").each(function(){
+            $(`${ANSWER_LIST} tr`).each(function(){
                 if(!$(this).find('input[type=text]').val()) {
                     $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
                     $(this).find('input[type=text]').next().next().show()
@@ -203,9 +161,9 @@ const quizForm = () => {
             })
             return success
      }
-
+     
      return {
-         html: () => html(),
+         render: () => $(QA_CONTAINER).html(html),
          getData: () => {
             return {
                 id: increaseQuestionId(),
@@ -219,27 +177,233 @@ const quizForm = () => {
      }
 }
 
+const UpdateQuestionForm = (data) => {
+
+    let questionImages = ''
+    let answerContent = ''
+
+    for (let i = 0; i < data.images.length; i++) {
+        questionImages += imageAppendForm(data.images[i])
+    }
+
+    for (let i = 0; i < data.answers.length; i++) {
+        answerContent += updateAnswerForm(i+1, data.answers[i].content, data.answers[i].images[0], data.answers[i].isAnswer);
+    }
+
+
+     const html = () => `
+        <div class="form-card">
+            <div class="form-card-header" style="display: flex; justify-content:space-between">
+                <p>Chỉnh sửa câu hỏi</p>
+                <div style="margin-right: 2rem;">
+                    <button class="btn btn btn-save" id="back-to-add-questions">Quay lại</button>
+                </div>
+            </div>
+            <div class="form-card-body">
+                <div class="section">
+                    <div class="textfield" style="margin-bottom: 1rem;">
+                        <input type="text" name="question" placeholder="vd: Một cộng một bằng mấy?" id="question_content" value="${data.content}" />
+                        <label for="question">Câu hỏi</label>
+                        <p style="display: none" class='error-message'></p>
+                    </div>
+
+                    <div class="QA-card-form">
+                        <p>Hình ảnh cho câu hỏi:</p>
+
+                        <div></div>
+                        <div class="question-image-list">
+                        ${questionImages}
+                            <div class="question-image" id="add-question-img" onclick='addQImage("select-QA-image")'> 
+
+                                <i class='bx bx-image-add'></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="QA-card-form">
+                        <p>Chỉnh sửa câu trả lời</p>
+                        <table>
+                            <thead>
+                                <tr style="margin-bottom: 2rem;">
+                                    <th style="width: 3%">Đúng/Sai</th>
+                                    <th style="width: 20%">Ảnh</th>
+                                    <th style="width: 75%;text-align: start">Câu trả lời</th>
+                                    <th style="padding: 0 10px">Xoá</th>
+                                </tr>
+                            </thead>
+                            <tbody id="answers-list">
+
+                                ${answerContent}
+
+                            </tbody>
+                        </table>
+
+                        <div class="add-A" style="margin-top: 1rem;">
+                            <button class="add-answers" id="add-answer-btn" onclick="addAnswer()" >Thêm câu trả lời</button>
+                        </div>
+
+                        <div class="reward">
+                        <p>Phần thưởng</p>
+                        <form>
+                            <div class="triggervalue-button left-decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+                            <input type="number" id="rewardId" value="${data.reward}" />
+                            <div class="triggervalue-button right-increase" onclick="increaseValue()" value="Increase Value">+</div>
+                            <div style="display: none" class='error-message'></div>
+                        </form>
+                       
+                    </div>
+                    </div>
+                    <div class="add-QA" style="margin-top: 1rem;" id="SubmitEditQA-Btn">
+                        <button>Xác nhận chỉnh sửa</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+     `
+     const answers = () => { 
+        let data = [];
+        $(`${ANSWER_LIST} tr`).each(function(){
+           let isAnswer = $(this).find('input[type=checkbox]').is(":checked")
+           let imgUrl = $(this).find('div.answer-img').css('background-image')
+           imgUrl = imgUrl.replace('url("','').replace('")','');
+           if(imgUrl === 'none') {
+               imgUrl = ''
+           }
+           let images = [];
+           images.push(imgUrl);
+           data.push({content: $(this).find('input[type=text]').val(), isAnswer, images: images });
+        })
+        return data;
+    }
+
+    const getQuestionImg = () => {
+       let images = [];
+       $(".QA-card-form .question-image-list").find('.question-image img').each( function() {
+           images.push($(this).attr('src'))
+       })
+       return images;
+    }
+
+    const getRewardId = () => parseInt(document.getElementById('rewardId').value, 10)
+
+    const validate = () => {
+           let success = true
+           let range = state.game.rows * state.game.cols - 1;
+           let reward = $('#rewardId').val()
+           if(!$('#question_content').val()) {
+               $('#question_content').next().next().text('Bạn không được bỏ trống câu hỏi')
+               $('#question_content').next().next().show()
+               success = false
+           }
+           if(reward >= range|| reward < 0) {
+               $('#rewardId').next().next().text(`Id của phần thưởng nằm trong khoảng từ 0 - ${range}`)
+               $('#rewardId').next().next().show()
+               success = false
+           }
+           $(`${ANSWER_LIST} tr`).each(function(){
+               if(!$(this).find('input[type=text]').val()) {
+                   $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
+                   $(this).find('input[type=text]').next().next().show()
+                   success = false
+               }
+           })
+           return success
+    }
+
+     return {
+         render: () => $(QA_CONTAINER).html(html),
+         getData: () => {
+            return {
+                id: data.id,
+                content: $('#question_content').val(),
+                images : getQuestionImg(),
+                answers: answers(),
+                reward: getRewardId()
+            };
+        }, 
+        validate: () => validate(),
+
+     }
+}
+
 const renderQuestionList = () => {
+    let questionList = questionItem();
+    let html = `
+
+    <div class="form-card">
+    <div class="form-card-header">
+        <p>Danh sách câu hỏi</p>
+    </div>
+    <div class="form-card-body">
+        <div class="QA-card-form">
+        <table class="question_list_style" >
+            <thead>
+                <tr style="margin-bottom: 2rem;">
+                    <th style="width: 15%">ID</th>
+                    <th style="width: 100vw;">Câu hỏi</th>
+                </tr>
+            </thead>
+            <tbody id="question-list">
+                ${questionList}
+            </tbody>
+        </table>
+        </div>
+    </div>
+    `
+    return $(QA_LIST_CONTAINER).html(html)
+}
+
+const questionItem = () => {
     let html = ``;
-    console.log(state.game.questions.length)
     for (let i = 0; i < state.game.questions.length; i++) {
         html += `
-        <tr>
+        <tr onclick="showUpdateQuestion('${i}',this)">
             <td>
                 <div >
                     <p>${state.game.questions[i].id}</p>
                 </div>
             </td>
             <td>
-                <div >
+                <div>
                     <p>${state.game.questions[i].content}</p>
                 </div>
             </td>
         </tr>
         `
     }
-
     return html;
+}
+
+const showUpdateQuestion = (index, e) => {
+    for(let i = 0; i < e.parentElement.children.length; i++) {
+        e.parentElement.children[i].classList.remove('selected-question-item')
+    }
+    e.classList.add('selected-question-item');
+    let form  = UpdateQuestionForm(state.game.questions[parseInt(index)]);
+    form.render();
+    $("#SubmitEditQA-Btn").click(() => {
+        if(form.validate()) {
+        state.game.questions[parseInt(index)] = {...form.getData()};
+        }
+    })
+    let questionForm = quizForm();
+    
+    $("#back-to-add-questions").click(() => {
+        questionForm.render()
+        console.log(questionForm.render());
+        for(let i = 0; i < e.parentElement.children.length; i++) {
+            e.parentElement.children[i].classList.remove('selected-question-item')
+        }
+    })
+    $("#add-QA-btn").click(()=>{
+        if(questionForm.validate()) {
+            let data = questionForm.getData()
+            console.log(data)
+            // $(QUESTION_LIST).append(appendIDQuestion(data).html());
+            state.game.questions.push(data)
+            renderQuestionList()
+        }
+    })
 }
 
 const increaseValue = () => {
@@ -269,17 +433,16 @@ const addAnswer = () => {
             duration: 3000
         })
     } else {
-        let delBtn = document.querySelector(`${ANSWER_LIST} .del-answer-form`);
-        if(delBtn !== null) {
-            delBtn.parentElement.remove();
-        }
-        $(ANSWER_LIST).append(form.html());
+        // let delBtn = document.querySelector(`${ANSWER_LIST} .del-answer-form`);
+        // if(delBtn !== null) {
+        //     delBtn.parentElement.remove();
+        // }
+        $(ANSWER_LIST).append(form);
     }
     // $(ANSWER_LIST).scrollTop(Number.MAX_SAFE_INTEGER);
 }
 
-const answerForm = (num) => {
-    
+const answerForm = (num, value='') => {
     let html = `
     <tr>
         <td><input type="checkbox"/></td>
@@ -290,7 +453,7 @@ const answerForm = (num) => {
         </td>
         <td>
             <div class="textfield text-del-row" >
-                <input type="text" name="answer" placeholder="vd: Bằng 10" />
+                <input type="text" name="answer" placeholder="vd: Bằng 10" value="${value}"/>
                 <label for="answer">Đáp án ${num}</label>
                 <p style="display: none" class='error-message'></p>
             </div>
@@ -300,22 +463,48 @@ const answerForm = (num) => {
         </td>
     </tr>
     `
-    return {
-        html: () => html
-    }
+    return html;
+}
+const updateAnswerForm = (num, value='',imageUrl, isAnswer) => {
+    let imageStyle = imageUrl? `style="background-image: url(${imageUrl})"`:"";
+    let disableImg = imageUrl? `disableImg`:"";
+    isAnswer = isAnswer ? `checked`: "";
+
+    let html = `
+    <tr>
+        <td><input type="checkbox" ${isAnswer}/></td>
+        <td style="padding: 0 10px;">
+            <div class="answer-img " id="add-answer-img${num}" ${imageStyle} onclick='addAImage(this)'> 
+                <i class='bx bx-image-add ${disableImg}'></i>
+            </div>
+        </td>
+        <td>
+            <div class="textfield text-del-row" >
+                <input type="text" name="answer" placeholder="vd: Bằng 10" value="${value}"/>
+                <label for="answer">Đáp án ${num}</label>
+                <p style="display: none" class='error-message'></p>
+            </div>
+        </td>
+        <td style="padding: 0 10px;">
+            <button class="del-answer-form" onClick='delAnswerInput(this)'>x</button>
+        </td>
+    </tr>
+    `
+    return html;
 }
 
-const delAnswerInput = (e) =>{
-    e.parentElement.parentElement.remove()
-    if($(`${ANSWER_LIST} tr td`).length !== 4) {
-        $(`${ANSWER_LIST} tr:last-child`).append(delAnserInputBtn())
-    }
+// const delAnswerInput = (e) =>{
+//     e.parentElement.parentElement.remove()
+//     if($(`${ANSWER_LIST} tr td`).length !== 4) {
+//         $(`${ANSWER_LIST} tr:last-child`).append(delAnserInputBtn())
+//     }
+// }
 
-    // $(`${ANSWER_LIST} .text-del-row:nth-child(${e})`).remove();
-    // e = e - 1;
-    // currentAnswerNum = e;
-    // if(e != 1) {
-    // }
+const delAnswerInput = (e) =>{
+    e.parentElement.parentElement.remove();
+    $(`${ANSWER_LIST} tr`).each(function(index){
+        $(this).find('input[type=text]').next().text(`Đáp án ${index + 1}`)
+    })
 }
 
 const delAnserInputBtn = () => {
@@ -414,13 +603,12 @@ const addAImage = (e) => {
 
 const imageAppendForm = (url) => {
     return `
-        <div class="question-image" > 
+    <div class="question-image" > 
         <img src="${url}" alt="">
         <button onclick='delQImage(this)'><i class='bx bxs-x-circle'></i></button>
     </div>`
 }
 
 const delQImage = (e) => {
-    console.log(e.parentElement)
     e.parentElement.remove();
 }

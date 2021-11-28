@@ -242,7 +242,6 @@ const renderNavs = () => {
         {icon: "bx bx-dialpad-alt", name: "Banner", page:'decorators-page', onClick:() => changePage('decorators-page')},
         {icon: "bx bx-game", name: "Game", page:'game', onClick:() => changePage('game')},
         {icon: "bx bxs-save", name: "Lưu", page:'sav', onClick: () => saveMap()}
-        
     ]
     let navigation = $('#navs')
     for (i = 0; i < navs.length; i++) {
@@ -301,7 +300,6 @@ const changePage = (id) => {
     
     $('.page').removeClass('page-view')
     $(`#${id}`).addClass('page-view')
-    
 }
 
 const change = (el) => {
