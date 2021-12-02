@@ -1,3 +1,5 @@
+
+
 let data = null
 let loadding = true
  // outputs a javascript object from the parsed json
@@ -19,6 +21,7 @@ const location_headers = ['Item Id', 'Name']
 let zoom_rate = 1
 
 $(document).ready(() => {
+
     console.log(state)
     renderNavs()
     renderMap()
@@ -279,10 +282,27 @@ const renderMap = () => {
         b.css({"--b_w":"auto", gridRow: `${plot.y} / span ${plot.h}`, gridColumn: `${plot.x} / span ${plot.w}`})
        
         if (plot.item_id.startsWith('decorator')) {
-            clas += 'plot--decorator'
-            b.append(`item id: ${plot.item_id}`)
+            clas += 'plot--decorator bgimage'
+            let mediaId = state.decorators.find(x => x.id === plot.item_id).media[0]
+
+            if (window.location.hostname === '127.0.0.1') {
+                b.append(`item id: ${plot.item_id}`);
+                $(function(){
+                    $.getJSON('media.json',function(data){
+                        b.css('background-image', `url("${data[mediaId].url}")`)
+                    })
+                });
+            } else {
+                (async function fetchApi() {
+                    let mres = await fetch(`https://hcloud.trealet.com/tiny${mediaId}?json`)
+                    let {url_full} = mres.image;
+                    let imageUrl =  await fetch(`https://hcloud.trealet.com${url_full}`)
+                    b.css('background-image', `url("${imageUrl}")`)
+                })()
+            }
         } else {
-            b.append(`item id: ${plot.item_id} <br> ( ${plot.item_id,state.locations.find(x => x.id === plot.item_id).name} )`)
+            let content = `<div><p>item id: ${plot.item_id}</p> <p><strong>( ${plot.item_id,state.locations.find(x => x.id === plot.item_id).name} )</strong></p></div>`
+            b.append(content)
         }
         b.addClass(clas)
     }
@@ -495,7 +515,6 @@ const onPlotMode = (index) => {
         }
         let b = $(`.brick:nth-child(${index + 1})`)
         let p = b.position()
-        
         const zero = $(`.brick:nth-child(1)`).position()
         let cell_w = parseInt(state.map.cell_width)
         let x = Math.round((Math.round(p.left) - Math.round(zero.left)) / cell_w) + 1
@@ -524,6 +543,21 @@ const onPlotMode = (index) => {
         b.css({'--b_w': 'auto' , gridRow: `${y} / span ${dt.h}`, gridColumn: `${x} / span ${dt.w}`})
         if(dt.item_id.startsWith('decorator')) {
             b.addClass('plot plot--decorator');
+            let mediaId = state.decorators.find(x => x.id === dt.item_id).media[0]
+            if (window.location.hostname === '127.0.0.1') {
+                $(function(){
+                    $.getJSON('media.json',function(data){
+                        b.css('background-image', `url("${data[mediaId].url}")`)
+                    })
+                });
+            } else {
+                (async function fetchApi() {
+                    let mres = await fetch(`https://hcloud.trealet.com/tiny${mediaId}?json`)
+                    let {url_full} = mres.image;
+                    let imageUrl =  await fetch(`https://hcloud.trealet.com${url_full}`)
+                    b.css('background-image', `url("${imageUrl}")`)
+                })()
+            }
         } else {
             b.addClass('plot');
         }
@@ -577,6 +611,7 @@ const removeModal = (id) => {
 const deletePlot = (index) => {
     state.map.plots = state.map.plots.filter(item => item.index != index);
     let b = $(`.brick:nth-child(${index + 1})`)
+    b.css('background-image' , 'none');
     b.css({'--b_w': state.map.cell_width ,gridRow: "auto", gridColumn: "auto"})
     b.removeClass('plot')
     b.removeClass('plot--decorator')
