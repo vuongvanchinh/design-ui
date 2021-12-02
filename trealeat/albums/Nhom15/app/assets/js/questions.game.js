@@ -345,7 +345,7 @@ const questionItem = () => {
     let html = ``;
     for (let i = 0; i < state.game.questions.length; i++) {
         html += `
-        <tr onclick="showUpdateQuestion('${i}',this)">
+        <tr ondblclick="showUpdateQuestion('${i}',this)">
             <td>
                 <div >
                     <p>${state.game.questions[i].id}</p>
@@ -358,13 +358,46 @@ const questionItem = () => {
             </td>
             <td>
                 <div>
-                    Xoá
+                    ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
+                        <div class="btn-del" onclick="deleteQuestionItem(${i})">Xóa</div>
+                    `).getHtml()}
                 </div>
             </td>
         </tr>
         `
     }
     return html;
+}
+const deleteQuestionItem = (index) => {
+    let footer = `
+        <div class="flex space-between">
+            <button class="btn btn-light" id='no-delete'>Không</button>
+            <button class="btn btn-danger" id='confirm-delete'>Có</button>
+        </div>
+    `
+    let m = modal(``,`Cảnh báo!Bạn có chắc muốn xóa ${state.game.questions[index].id}?` , footer, 'confirm-delete-modal','confirm-delete-modal', false, 'small')
+
+    $('#game').prepend(m.getHtml())
+
+    $('#no-delete').click(() => {
+        m.close()
+        m=null   
+        $(`#question-list .dropdown-content`).removeClass('drop')
+    })
+
+    $('#confirm-delete').click(() => {
+        state.game.questions.splice(index, 1)
+        $(`#question-list .dropdown-content`).removeClass('drop')
+        m.close()
+        m = null
+        addToast(document.getElementById('toasts'), {
+            type: 'success',
+            title: 'Đã xong!',
+            message: 'Đã xóa thành công!',
+            duration: 3000
+        })
+        renderQuestionList();
+    })
 }
 
 const showUpdateQuestion = (index, e) => {

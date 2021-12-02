@@ -453,7 +453,7 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
 const onPlotMode = (index) => {
     
     if(state.map.paths.findIndex(item => item.index === index) !== -1) {
-        alert('Đây là một ô đường đi, Bận phải xó nó trước khi biến nó thành ô đất.')
+        alert('Đây là một ô đường đi, Bạn phải xó nó trước khi biến nó thành ô đất.')
         return
     }
 
