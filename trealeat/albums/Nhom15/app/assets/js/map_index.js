@@ -142,7 +142,7 @@ $(document).ready(() => {
 					}
 				}
 				console.log(JSON.stringify(data))
-				console.log(data)
+				console.log("abc",data)
 			} catch (error) {
 				console.log(error)
 				alert('can not fetch data')

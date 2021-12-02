@@ -272,13 +272,19 @@ const renderMap = () => {
     for (let i = 0; i < state.map.plots.length; i++) {
         let plot = state.map.plots[i];
         let clas = 'plot '
-        if (plot.item_id.startsWith('decorator')) {
-            clas += 'plot--decorator'
-        }
+        // if (plot.item_id.startsWith('decorator')) {
+        //     clas += 'plot--decorator'
+        // }
         let b = $(`.brick:nth-child(${plot.index + 1})`)
         b.css({"--b_w":"auto", gridRow: `${plot.y} / span ${plot.h}`, gridColumn: `${plot.x} / span ${plot.w}`})
+       
+        if (plot.item_id.startsWith('decorator')) {
+            clas += 'plot--decorator'
+            b.append(`item id: ${plot.item_id}`)
+        } else {
+            b.append(`item id: ${plot.item_id} <br> ( ${plot.item_id,state.locations.find(x => x.id === plot.item_id).name} )`)
+        }
         b.addClass(clas)
-        b.append(`item id: ${plot.item_id}`)
     }
     
     //render paths

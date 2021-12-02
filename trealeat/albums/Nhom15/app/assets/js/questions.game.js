@@ -19,6 +19,12 @@ $(document).ready(() => {
             // $(QUESTION_LIST).append(appendIDQuestion(data).html());
             state.game.questions.push(data)
             renderQuestionList()
+            addToast(document.getElementById('toasts'), {
+                type: "success",
+                message: `Thêm câu hỏi thành công`,
+                title: "Xong!",
+                duration: 3000
+            })
         }
     })
 
@@ -328,28 +334,10 @@ const UpdateQuestionForm = (data) => {
 
 const renderQuestionList = () => {
     let questionList = questionItem();
-    let html = `
+    const header = ['ID', 'Câu hỏi', '']
+    let questionNum = state.game.questions.length
+    let html = table(header,questionList,"question-list","Danh sách câu hỏi",`Đang có ${questionNum} câu hỏi`)
 
-    <div class="form-card">
-    <div class="form-card-header">
-        <p>Danh sách câu hỏi</p>
-    </div>
-    <div class="form-card-body">
-        <div class="QA-card-form">
-        <table class="question_list_style" >
-            <thead>
-                <tr style="margin-bottom: 2rem;">
-                    <th style="width: 15%">ID</th>
-                    <th style="width: 100vw;">Câu hỏi</th>
-                </tr>
-            </thead>
-            <tbody id="question-list">
-                ${questionList}
-            </tbody>
-        </table>
-        </div>
-    </div>
-    `
     return $(QA_LIST_CONTAINER).html(html)
 }
 
@@ -368,6 +356,11 @@ const questionItem = () => {
                     <p>${state.game.questions[i].content}</p>
                 </div>
             </td>
+            <td>
+                <div>
+                    Xoá
+                </div>
+            </td>
         </tr>
         `
     }
@@ -381,9 +374,17 @@ const showUpdateQuestion = (index, e) => {
     e.classList.add('selected-question-item');
     let form  = UpdateQuestionForm(state.game.questions[parseInt(index)]);
     form.render();
+
     $("#SubmitEditQA-Btn").click(() => {
         if(form.validate()) {
         state.game.questions[parseInt(index)] = {...form.getData()};
+        renderQuestionList()
+        addToast(document.getElementById('toasts'), {
+            type: "success",
+            message: `Chỉnh sửa câu hỏi thành công`,
+            title: "Xong!",
+            duration: 3000
+        })
         }
     })
     let questionForm = quizForm();
@@ -394,15 +395,22 @@ const showUpdateQuestion = (index, e) => {
         for(let i = 0; i < e.parentElement.children.length; i++) {
             e.parentElement.children[i].classList.remove('selected-question-item')
         }
-    })
-    $("#add-QA-btn").click(()=>{
-        if(questionForm.validate()) {
-            let data = questionForm.getData()
-            console.log(data)
-            // $(QUESTION_LIST).append(appendIDQuestion(data).html());
-            state.game.questions.push(data)
-            renderQuestionList()
-        }
+
+        $("#add-QA-btn").click(()=>{
+            if(questionForm.validate()) {
+                let data = questionForm.getData()
+                console.log(data)
+                // $(QUESTION_LIST).append(appendIDQuestion(data).html());
+                state.game.questions.push(data)
+                renderQuestionList()
+                addToast(document.getElementById('toasts'), {
+                    type: "success",
+                    message: `Thêm câu hỏi thành công`,
+                    title: "Xong!",
+                    duration: 3000
+                })
+            }
+        })
     })
 }
 

@@ -64,7 +64,10 @@
 }
 
 .wrap-answer-item .answer-img {
-    width: 3rem;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    justify-content: center;
 }
 .wrap-answer-item .answer-img img{
     width: 100%;
@@ -157,15 +160,16 @@
 }
 .question-image-list .question-image{
     position: relative;
-    border: 2px solid var(--main-color);
+    border: 1px solid var(--main-color);
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
-    height: 6rem;
-    min-width: 9rem;
+    height: 4rem;
+    width: 4rem;
     text-align: center;
     overflow: hidden;
 }
 .question-image-list .question-image img{
     height: 100%;
+    width: 100%;
 }
 .question-image-list .question-image button{
     color: red;
@@ -189,46 +193,51 @@
     font-size: 4rem!important;
     text-align:center;
     position:relative;
-    background-color: var(--main-color);
-    color:white;
+    background-color: white;
+    color:black;
     cursor:pointer;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
 #add-question-img:hover {
-    background-color: green;
-    color: #CAD5E2;
+    color: var(--main-color);
 }
 
+#add-question-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 #add-question-img i{
-    position:absolute;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
+    font-size: 2.5rem!important;
 }
 
 .answer-img i {
-    font-size: 5rem!important;
+    font-size: 2.5rem!important;
 }
 
 .answer-img{
-    width: 7rem;
-    height: 5rem;
+    width: 3rem;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .answer-img{
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
     cursor: pointer;
     margin: auto;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    border: 1px solid var(--main-color);
 }
 .disableImg {
     display: none;
 }
 .answer-img:hover .disableImg{
     display: block;
-    color:white;
-    background-color: rgb(0, 0, 0, 0.3)
+    color:var(--main-color);
+    transition: all 0.5s ease  ;
 }
 
 .QA-card-form .question_list_style {
@@ -243,6 +252,5 @@
 }
 
 .selected-question-item {
-    color:white;
-    background-color: grey;
+    background-color: var(--main-color);
 }
