@@ -28,19 +28,19 @@ const filloutMediaData = (medias, data) => {
 		}
 	}
 	//fetch media for decorators
-	for (let i = 0; i < data.decorators.length; i++) {
-		let j = 0
-		while (j < data.decorators[i].media.length) {
-			let id = data.decorators[i].media[j]
-			if (medias[id]) {
-				data.decorators[i].media[j] = medias[id]
-				j += 1
-			} else {
-				console.log('lost', data.decorators[i].media[j])
-				data.decorators[i].media.splice(j, 1)
-			}
-		}
-	}
+	// for (let i = 0; i < data.decorators.length; i++) {
+	// 	let j = 0
+	// 	while (j < data.decorators[i].media.length) {
+	// 		let id = data.decorators[i].media[j]
+	// 		if (medias[id]) {
+	// 			data.decorators[i].media[j] = medias[id]
+	// 			j += 1
+	// 		} else {
+	// 			console.log('lost', data.decorators[i].media[j])
+	// 			data.decorators[i].media.splice(j, 1)
+	// 		}
+	// 	}
+	// }
 	return data
 }
 $(document).ready(() => {
@@ -310,7 +310,7 @@ function openModal(el) {
 const presentDecorator = (data) => {
 	if (data.media.length > 0) {
 		return `
-            <div class='full bgc-image' style='background-image: url(${data.media[0].url})'></div>
+            <div class='full bgc-image' style='background-image: url(${data.media[0]})'></div>
         `
 	} else {
 		return `Not decorator`

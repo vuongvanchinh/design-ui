@@ -1,16 +1,28 @@
 $(document).ready(() => {
+    // (async () => {
+    //     let medias_res = await fetch('media.json');
+    //     let data = await medias_res.json()
+    //     for (i = 0; i < state.decorators.length; i++) { 
+    //         let mediaId = state.decorators[i].media[0];
+    //         state.decorators[i].media[0] = data[mediaId].url;
+    //     }
+    // })()
+
     renderDecoratorPage()
+
     // changePage('decorators-page')
 })
 
 const renderDecoratorPage = () => {
     let body = ''
+
     for (i = 0; i < state.decorators.length; i++) {
+
         body += `
             <tr id='${state.decorators[i].id}'>
                 <td>${state.decorators[i].id}</td>
                 <td>${state.decorators[i].name}</td>
-                <td>${state.decorators[i].media}</td>
+                <td><div class="bg-image" style="background-image: url('${state.decorators[i].media[0]}'); width: 3rem; height: 3rem; "></div></td>
                 <td>
                     ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
                         <div class="btn-del" onclick="deleteDecorator('${state.decorators[i].id}')">Xóa</div>
@@ -18,9 +30,10 @@ const renderDecoratorPage = () => {
                 </td>
             </tr>
         `
+
     }
-    const decorator_headers = ['Id', 'Tên', 'Id Hình ảnh/video...', '']
-    $('#decorator-content').append(table(decorator_headers, body, 'decorators-table', 'Các banner', `Đang có ${state.decorators.length} decorators`))
+    const decorator_headers = ['Id', 'Tên', 'Hình ảnh', '']
+    $('#decorator-content').append(table(decorator_headers, body, 'decorators-table', 'Các decorator', `Đang có ${state.decorators.length} decorators`))
     $('#decorators-table tbody tr').dblclick((e) => {
         // console.log(e)
         if ($(e.target).is('td')) {
@@ -33,7 +46,6 @@ const renderDecoratorPage = () => {
 
 const decorator_form = (dt = {id: false, name:'', description: '', media: []}) => {
     let form = `
-    
     <form>
         <div class="form-card">
             <div class="form-card-header">
@@ -62,7 +74,7 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
                         placeholder="nhập các số nguyên cách nhau dấu phẩy" 
                         id="decorator-media-ids" 
                     />
-                    <label for="decorator-media-ids">Các media id</label>
+                    <label for="decorator-media-ids">Đường link ảnh</label>
                     <p class='error-message' ></p>
                 </div>
                </div>
@@ -70,12 +82,13 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
         </div>
     </form>
     `
+
     return {
         getHtml: () => form,
         getData: () =>{
             return {
                 name: $('#decorator_name').val(),
-                media: $('#decorator-media-ids').val().trim().split(',').map(item => parseInt(item.trim()))
+                media: [$('#decorator-media-ids').val().trim()]
             }
         },
         validate: () => { 
@@ -90,29 +103,28 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
                 $('#decorator_name').next().next().empty()
             }
             let media =  $('#decorator-media-ids').val()
-            if (!media) {
-                $('#decorator-media-ids').next().next().text('Mục này phải điền các số nguyên cách nhau bằng dấu phẩy')
+            if (!checkImgURL(media)) {
+                $('#decorator-media-ids').next().next().text('Mục này phải là đường link ảnh')
                 failed = true
                 $('#decorator-media-ids').focus()
-            } else {
-                let medias = media.trim().split(',')
-                let ok = true
-                for (i = 0; i < medias.length; i++) {
-                    let item = medias[i]
-                    if (isNaN(item.trim())) {
-                        failed = true
-                        $('#decorator-media-ids').next().next().text('Mục này phải điền các số nguyên cách nhau bằng dấu phẩy')
+            } 
+            // else {
+            //     let medias = media.trim().split(',')
+            //     let ok = true
+            //     for (i = 0; i < medias.length; i++) {
+            //         let item = medias[i]
+            //         if (isNaN(item.trim())) {
+            //             failed = true
+            //             $('#decorator-media-ids').next().next().text('Mục này phải điền các số nguyên cách nhau bằng dấu phẩy')
                         
-                        ok = false
-                        break;
-                    }
-                }
-                if (ok) {
-                    $('#decorator-media-ids').next().next().empty()
-                    
-                    
-                }
-            }
+            //             ok = false
+            //             break;
+            //         }
+            //     }
+            //     if (ok) {
+            //         $('#decorator-media-ids').next().next().empty()
+            //     }
+            // }
             
             return failed
         },
@@ -208,7 +220,7 @@ const addDecorator = () => {
             <span class='btn btn-save' id='add-decorator-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`<p style='font-weight: 560;'>Thêm banner mới</p>`, form.getHtml(), footer, 'decorator-form', 'decorator-form', false, 'medium')
+    let m = modal(`<p style='font-weight: 560;'>Thêm decorator mới</p>`, form.getHtml(), footer, 'decorator-form', 'decorator-form', false, 'medium')
     $('#decorators-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-decorator-form').click(() => {
@@ -248,7 +260,7 @@ const addDecorator = () => {
             addToast(document.getElementById('toasts'), {
                 type: 'success',
                 title: 'Đã xong!',
-                message: 'Đã thêm thành công 1 banner!',
+                message: 'Đã thêm thành công 1 decorator!',
                 duration: 3000
             })
         }
@@ -269,7 +281,7 @@ const updateDecorator = (decorator_id) => {
             <span class='btn btn-save' id='update-decorator-btn'>Lưu</span>
         </div>
     `
-    let m = modal(`<p style='font-weight: 560;'>Cập nhật banner</p>`, form.getHtml(), footer, 'decorator-update-modal', 'decorator-update-modal', false, 'medium')
+    let m = modal(`<p style='font-weight: 560;'>Cập nhật decorator</p>`, form.getHtml(), footer, 'decorator-update-modal', 'decorator-update-modal', false, 'medium')
     $('#decorators-page').prepend(m.getHtml())
     form.setup()
     $('#cancel-decorator-modal').click(() => {

@@ -45,6 +45,10 @@ const loading = (id='', variant='medium',  full_page = true) => {
     }
 }
 
+function checkImgURL(url) {
+    return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
+}
+
 const table = (headers, body, id ='table-location', name='Table name', footer ='...') => {
     let heads = ''
     for (i = 0; i < headers.length; i++) {

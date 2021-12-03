@@ -195,6 +195,10 @@ main {
   /* border: 1px solid #000; */
 }
 
+#decorators-table tbody td {
+  padding: 0.5rem;
+}
+
 .table-admin th:first-child {
   padding: 1rem;
   min-width: 90px;

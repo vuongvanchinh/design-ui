@@ -204,9 +204,9 @@
             <div class="page" id="decorators-page">
                 <div id="decorator-content" style="max-width: 1080px; margin: 0 auto;">
                     <div class="page-header">
-                        <h2>Các banner</h2>
+                        <h2>Các decorators</h2>
                         <button onclick='addDecorator()' class="btn btn-save">
-                            Thêm banner mới
+                            Thêm decorator mới
                         </button>
                     </div>
                     
