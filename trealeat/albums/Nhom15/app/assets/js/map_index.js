@@ -484,21 +484,7 @@ const cardReverseSlider = (data) => {
   </section>`;
 	return content;
 }
-// const popUpContent = (data) => {
-//     let content = ''
-//     for (i = 1; i < data.media.length; i++) {
-//         content += mediaHtml(data.media[i], '', false)
-//     }
-//     return `
-//         <div>
-//             ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
-//                ${mediaHtml(data.media[0], '', true)}
-//             `:''}
-//             <p class="media-description">${data.description}</p>
-//             ${content}
-//         </div>
-//     `
-// }
+
 const popUpFooter = (data) => {
 	// phát triển tính năng tương tác
 	return `
@@ -582,12 +568,6 @@ const zoom = (direction, offset = 0.05) => {
 			console.log("room rate", zoom_rate)
 			$('.brick').css('zoom', zoom_rate)
 		}
-		// else if (b_w > view_w) {
-		//     // offset = zoom_rate * (1 - (view_h / board_h))
-		//     zoom_rate = zoom_rate * view_w / b_w
-		//     // console.log("room rate", zoom_rate)
-		//     $('.brick').css('zoom', zoom_rate)
-		// }
 	} else {
 		zoom_rate = current_percent + offset
 		$('.brick').css('zoom', zoom_rate)
