@@ -175,5 +175,4 @@ const addToast = (parentEl, toast= {type: 'success', title:'', message: '', dura
             parentEl.removeChild(t)
         })
     }
-
 }
