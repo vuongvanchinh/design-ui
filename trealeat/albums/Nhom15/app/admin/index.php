@@ -23,6 +23,7 @@
             <link rel="stylesheet" href="../assets/css/grid.css">
             <link rel="stylesheet" href="../assets/css/map.css">
             <link rel="stylesheet" href="../assets/css/settingpage.css">
+            <link rel="stylesheet" href="../assets/css/questions.game.css">
             <link rel="stylesheet" href="../assets/css/game.css">
             <link rel="stylesheet" href="../assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="../assets/js/richtext/jquery.richtext.js"></script>
@@ -35,6 +36,7 @@
             <link rel="stylesheet" href="assets/css/admin.css">
             <link rel="stylesheet" href="assets/css/map.css">
             <link rel="stylesheet" href="assets/css/settingpage.css">
+            <link rel="stylesheet" href="assets/css/questions.game.css">
             <link rel="stylesheet" href="assets/css/game.css">
             <link rel="stylesheet" href="assets/js/richtext/richtext.min.css">
             <script type="text/javascript" src="assets/js/richtext/jquery.richtext.js"></script>
@@ -138,7 +140,6 @@
             </div>
             <div class="page" id="locations-page">
                 <div id='add-item' class="grid" style='grid-gap: 10px;'>
-                
             </div>
     
                 <div id="location-content" style="max-width: 1080px; margin: 0 auto;">
@@ -148,9 +149,7 @@
                             Thêm địa điểm mới
                         </button>
                     </div>
-                    
                 </div>
-                  
             </div>
             <div class="page" id="map">
                 <h1 style="text-align: center; font-size: 1.5rem; line-height: 1.5rem;">Thiết kế bản đồ</h1>
@@ -205,9 +204,9 @@
             <div class="page" id="decorators-page">
                 <div id="decorator-content" style="max-width: 1080px; margin: 0 auto;">
                     <div class="page-header">
-                        <h2>Các banner</h2>
+                        <h2>Các decorators</h2>
                         <button onclick='addDecorator()' class="btn btn-save">
-                            Thêm banner mới
+                            Thêm decorator mới
                         </button>
                     </div>
                     
@@ -217,7 +216,7 @@
             <h1 style="text-align: center">Game</h1>
                 <div id="game-setting">
                     <div class="row">
-                        <div class="col-7 col-md-12">
+                        <div class="col-6 col-md-12">
                             <div class="form-card">
                                 <div class="form-card-header">Mô tả chung về  trò chơi của bạn cho người chơi</div>
                                 <div class="form-card-body">
@@ -229,7 +228,6 @@
                                 <div class="form-card-body">
                                     <div class="row">
                                         <div class="col-5 col-ms-12 game-params" >
-                                            
                                             <div class="section">
                                                 <div class="textfield" style="margin-bottom: 1rem;">
                                                     <input type="number" 
@@ -265,8 +263,6 @@
                                                    </div>      
                                                 </div>
                                             </div>
-                                            
-
                                         </div>
                                           
                                         <div class="col-7 col-ms-12" style = "padding:0;">
@@ -308,8 +304,11 @@
                             </div>
 
                         </div>
-                        <div class="col-5 col-md-12">
-                            Questions
+                        <div class="col-6 col-md-12">
+                            <div id="QA-container">
+                            </div>
+                            <div id="QA-list-container">
+                            </div>
                         </div>
                     </div>
          
@@ -370,6 +369,7 @@
             <script src="../assets/js/admin.js"></script>
             <script src="../assets/js/settingPage.js"></script>
             <script src="../assets/js/locationadmin.js"></script>
+            <script src="../assets/js/questions.game.js"></script>
             <script src="../assets/js/decoratoradmin.js"></script>
             <script src="../assets/js/gamePage.js"></script>
             ';
@@ -379,6 +379,7 @@
             <script src="assets/js/admin.js"></script>
             <script src="assets/js/settingPage.js"></script>
             <script src="assets/js/locationadmin.js"></script>
+            <script src="assets/js/questions.game.js"></script>
             <script src="assets/js/decoratoradmin.js"></script>
             <script src="assets/js/gamePage.js"></script>
             ';

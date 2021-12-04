@@ -196,10 +196,11 @@
         </main>        
     </div>
     
-    <script>
+    <script>     
         let state =  JSON.parse('<?php echo json_encode($d); ?>')
         // handle scroll event 
         document.addEventListener('DOMContentLoaded', function () {
+            console.log(media);
                 const ele = document.getElementById('view');
                 ele.style.cursor = 'grab';
                 let pos = { top: 0, left: 0, x: 0, y: 0 };

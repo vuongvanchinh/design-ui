@@ -28,19 +28,19 @@ const filloutMediaData = (medias, data) => {
 		}
 	}
 	//fetch media for decorators
-	for (let i = 0; i < data.decorators.length; i++) {
-		let j = 0
-		while (j < data.decorators[i].media.length) {
-			let id = data.decorators[i].media[j]
-			if (medias[id]) {
-				data.decorators[i].media[j] = medias[id]
-				j += 1
-			} else {
-				console.log('lost', data.decorators[i].media[j])
-				data.decorators[i].media.splice(j, 1)
-			}
-		}
-	}
+	// for (let i = 0; i < data.decorators.length; i++) {
+	// 	let j = 0
+	// 	while (j < data.decorators[i].media.length) {
+	// 		let id = data.decorators[i].media[j]
+	// 		if (medias[id]) {
+	// 			data.decorators[i].media[j] = medias[id]
+	// 			j += 1
+	// 		} else {
+	// 			console.log('lost', data.decorators[i].media[j])
+	// 			data.decorators[i].media.splice(j, 1)
+	// 		}
+	// 	}
+	// }
 	return data
 }
 $(document).ready(() => {
@@ -142,7 +142,7 @@ $(document).ready(() => {
 					}
 				}
 				console.log(JSON.stringify(data))
-				console.log(data)
+				console.log("abc",data)
 			} catch (error) {
 				console.log(error)
 				alert('can not fetch data')
@@ -310,7 +310,7 @@ function openModal(el) {
 const presentDecorator = (data) => {
 	if (data.media.length > 0) {
 		return `
-            <div class='full bgc-image' style='background-image: url(${data.media[0].url})'></div>
+            <div class='full bgc-image' style='background-image: url(${data.media[0]})'></div>
         `
 	} else {
 		return `Not decorator`
@@ -484,21 +484,7 @@ const cardReverseSlider = (data) => {
   </section>`;
 	return content;
 }
-// const popUpContent = (data) => {
-//     let content = ''
-//     for (i = 1; i < data.media.length; i++) {
-//         content += mediaHtml(data.media[i], '', false)
-//     }
-//     return `
-//         <div>
-//             ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
-//                ${mediaHtml(data.media[0], '', true)}
-//             `:''}
-//             <p class="media-description">${data.description}</p>
-//             ${content}
-//         </div>
-//     `
-// }
+
 const popUpFooter = (data) => {
 	// phát triển tính năng tương tác
 	return `
@@ -544,7 +530,6 @@ const showPopup = (item_id) => {
 		$(`#${item_id} .tooltip`).append("<i class='bx bx-user-check'></i>")
 	}
 	
-	
 	if (index === -1) {
 		alert("Location not found")
 	} else {
@@ -583,12 +568,6 @@ const zoom = (direction, offset = 0.05) => {
 			console.log("room rate", zoom_rate)
 			$('.brick').css('zoom', zoom_rate)
 		}
-		// else if (b_w > view_w) {
-		//     // offset = zoom_rate * (1 - (view_h / board_h))
-		//     zoom_rate = zoom_rate * view_w / b_w
-		//     // console.log("room rate", zoom_rate)
-		//     $('.brick').css('zoom', zoom_rate)
-		// }
 	} else {
 		zoom_rate = current_percent + offset
 		$('.brick').css('zoom', zoom_rate)

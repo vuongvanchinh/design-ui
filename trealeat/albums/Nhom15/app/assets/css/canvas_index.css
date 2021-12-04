@@ -67,6 +67,7 @@
     width: var(--b_w);
     height: var(--b_w);
     display: flex;
+   
     justify-content: center;
     align-items: center;
     zoom: 1;

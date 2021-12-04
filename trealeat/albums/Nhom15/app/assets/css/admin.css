@@ -133,6 +133,8 @@ main {
   align-items: center;
   border: 1px solid #000;
   background-color: #ddd;
+  flex-direction: column;
+
 }
 .plot {
   --plot-bg: rgb(5, 175, 161);
@@ -141,6 +143,9 @@ main {
 }
 .plot--decorator {
   --plot-bg: rgb(4, 218, 171);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .brick:hover {
@@ -188,6 +193,10 @@ main {
   padding: 0.8rem;
   font-size: 1.2rem;
   /* border: 1px solid #000; */
+}
+
+#decorators-table tbody td {
+  padding: 0.5rem;
 }
 
 .table-admin th:first-child {

@@ -1,3 +1,5 @@
+
+
 let data = null
 let loadding = true
  // outputs a javascript object from the parsed json
@@ -19,6 +21,7 @@ const location_headers = ['Item Id', 'Name']
 let zoom_rate = 1
 
 $(document).ready(() => {
+
     console.log(state)
     renderNavs()
     renderMap()
@@ -239,10 +242,9 @@ const renderNavs = () => {
         {icon: "bx bx-palette", name: "Chung", page:'setting-page', onClick: () => changePage('setting-page')},
         {icon: "bx bx-map", name: "Địa điểm", page:'locations-page', onClick: () => changePage('locations-page')},
         {icon: "bx bxs-dashboard", name: "Bản đồ", page:'map', onClick:() =>  changePage('map')},
-        {icon: "bx bx-dialpad-alt", name: "Banner", page:'decorators-page', onClick:() => changePage('decorators-page')},
+        {icon: "bx bx-dialpad-alt", name: "Trang trí", page:'decorators-page', onClick:() => changePage('decorators-page')},
         {icon: "bx bx-game", name: "Game", page:'game', onClick:() => changePage('game')},
         {icon: "bx bxs-save", name: "Lưu", page:'sav', onClick: () => saveMap()}
-        
     ]
     let navigation = $('#navs')
     for (i = 0; i < navs.length; i++) {
@@ -273,13 +275,39 @@ const renderMap = () => {
     for (let i = 0; i < state.map.plots.length; i++) {
         let plot = state.map.plots[i];
         let clas = 'plot '
-        if (plot.item_id.startsWith('decorator')) {
-            clas += 'plot--decorator'
-        }
+        // if (plot.item_id.startsWith('decorator')) {
+        //     clas += 'plot--decorator'
+        // }
         let b = $(`.brick:nth-child(${plot.index + 1})`)
         b.css({"--b_w":"auto", gridRow: `${plot.y} / span ${plot.h}`, gridColumn: `${plot.x} / span ${plot.w}`})
+       
+        if (plot.item_id.startsWith('decorator')) {
+            clas += 'plot--decorator bgimage'
+            let mediaUrl = state.decorators.find(x => x.id === plot.item_id).media[0]
+
+            b.css('background-image', `url("${mediaUrl}")`)
+
+            // if (window.location.hostname === '127.0.0.1') {
+            //     b.append(`item id: ${plot.item_id}`);
+            //     $(function(){
+            //         $.getJSON('media.json',function(data){
+            //             b.css('background-image', `url("${data[mediaId].url}")`)
+            //         })
+            //     });
+            // } else {
+            //     (async function fetchApi() {
+            //         let mres = await fetch(`https://hcloud.trealet.com/tiny${mediaId}?json`)
+            //         let {url_full} = mres.image;
+            //         let imageUrl =  await fetch(`https://hcloud.trealet.com${url_full}`)
+            //         b.css('background-image', `url("${imageUrl}")`)
+            //     })()
+            // }
+
+        } else {
+            let content = `<div><p>item id: ${plot.item_id}</p> <p><strong>( ${plot.item_id,state.locations.find(x => x.id === plot.item_id).name} )</strong></p></div>`
+            b.append(content)
+        }
         b.addClass(clas)
-        b.append(`item id: ${plot.item_id}`)
     }
     
     //render paths
@@ -301,7 +329,6 @@ const changePage = (id) => {
     
     $('.page').removeClass('page-view')
     $(`#${id}`).addClass('page-view')
-    
 }
 
 const change = (el) => {
@@ -434,14 +461,21 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
                 $('#number_cell_height').next().next().text('')
             }
             //item_id
-            let item_id = $('#plot_item_id').val()
-            if (!item_id.trim()) {
-                $('#plot_item_id').next().next().text('Which item will be put on this plot? fill its id')
+            let item_id = $('#plot_item_id').val().trim();
+            if (!item_id.startsWith('decorator_')&&!item_id.startsWith('location_')) {
+                $('#plot_item_id').next().next().text('Mục này phải bắt đầu bằng "decorator_" hoặc "location_" ví dụ location_0')
                 success = false
             } else {
-                $('#plot_item_id').next().next().text('')
+                if(state.decorators.findIndex(item => item.id === item_id) === -1) {
+                    $('#plot_item_id').next().next().text('Không tồn tại decorator với ID này')
+                    success = false
+                } else if (state.locations.findIndex(item => item.id === item_id) === -1) {
+                    $('#plot_item_id').next().next().text('Không tồn tại locations với ID này')
+                    success = false
+                } else {
+                    $('#plot_item_id').next().next().text('')
+                }
             }
-
             return success
         }
     }
@@ -449,7 +483,7 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
 const onPlotMode = (index) => {
     
     if(state.map.paths.findIndex(item => item.index === index) !== -1) {
-        alert('Đây là một ô đường đi, Bận phải xó nó trước khi biến nó thành ô đất.')
+        alert('Đây là một ô đường đi, Bạn phải xó nó trước khi biến nó thành ô đất.')
         return
     }
 
@@ -461,7 +495,7 @@ const onPlotMode = (index) => {
         form = plot_form(state.map.plots[has_index])
     }
     
-    const header = `Set brick no ${index} become a plots`
+    const header = `Biến ô số ${index} thành ô đất`
     const body = `
         <div class='child_setparate'>
            ${form.getHtml()}
@@ -469,11 +503,11 @@ const onPlotMode = (index) => {
     `
     const footer = `
         <div class="flex space-between">
-            <button class='btn btn-save' id='save-plot'>Save</button>
+            <button class='btn btn-save' id='save-plot'>Lưu</button>
             ${has_index !== -1? `
-                <button class="btn btn-danger" id='delete-plot'>Delete</button>    
+                <button class="btn btn-danger" id='delete-plot'>Xoá</button>    
             `:''}
-            <button class="btn btn-light" id='cancel-plot'>Cancel</button>
+            <button class="btn btn-light" id='cancel-plot'>Huỷ</button>
         </div>`
     let m = modal(header, body, footer, modal_id, 'modal-set-feature', false, 'small')
     $('#map').prepend(m.getHtml())
@@ -491,7 +525,6 @@ const onPlotMode = (index) => {
         }
         let b = $(`.brick:nth-child(${index + 1})`)
         let p = b.position()
-        
         const zero = $(`.brick:nth-child(1)`).position()
         let cell_w = parseInt(state.map.cell_width)
         let x = Math.round((Math.round(p.left) - Math.round(zero.left)) / cell_w) + 1
@@ -520,6 +553,8 @@ const onPlotMode = (index) => {
         b.css({'--b_w': 'auto' , gridRow: `${y} / span ${dt.h}`, gridColumn: `${x} / span ${dt.w}`})
         if(dt.item_id.startsWith('decorator')) {
             b.addClass('plot plot--decorator');
+            let imageUrl = state.decorators.find(x => x.id === dt.item_id).media[0]
+            b.css('background-image', `url("${imageUrl}")`)
         } else {
             b.addClass('plot');
         }
@@ -573,6 +608,7 @@ const removeModal = (id) => {
 const deletePlot = (index) => {
     state.map.plots = state.map.plots.filter(item => item.index != index);
     let b = $(`.brick:nth-child(${index + 1})`)
+    b.css('background-image' , 'none');
     b.css({'--b_w': state.map.cell_width ,gridRow: "auto", gridColumn: "auto"})
     b.removeClass('plot')
     b.removeClass('plot--decorator')
