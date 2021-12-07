@@ -135,8 +135,12 @@ main {
   border: 1px solid #000;
   background-color: #ddd;
   flex-direction: column;
-
 }
+
+.brick p {
+  text-align: center;
+}
+
 .plot {
   --plot-bg: rgb(5, 175, 161);
   background-color: var(--plot-bg);

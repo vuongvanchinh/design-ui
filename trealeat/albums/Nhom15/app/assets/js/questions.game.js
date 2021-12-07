@@ -59,11 +59,11 @@ const quizForm = () => {
                         <p>Thêm câu trả lời</p>
                         <table>
                             <thead>
-                                <tr style="margin-bottom: 2rem;">
-                                    <th style="width: 3%">Đúng/Sai</th>
-                                    <th style="width: 20%">Ảnh</th>
+                                <tr>
+                                    <th >Đúng/Sai</th>
+                                    <th >Ảnh</th>
                                     <th style="width: 75%;text-align: start">Câu trả lời</th>
-                                    <th style="padding: 0 10px">Xoá</th>
+                                    <th>   </th>
                                 </tr>
                             </thead>
                             <tbody id="answers-list">
@@ -96,7 +96,7 @@ const quizForm = () => {
                         <p>Phần thưởng</p>
                         <form>
                             <div class="triggervalue-button left-decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
-                            <input type="number" id="rewardId" value="0" />
+                            <input type="number" id="rewardId" value="0" disabled />
                             <div class="triggervalue-button right-increase" onclick="increaseValue()" value="Increase Value">+</div>
                             <div style="display: none" class='error-message'></div>
                         </form>
@@ -230,11 +230,11 @@ const UpdateQuestionForm = (data) => {
                         <p>Chỉnh sửa câu trả lời</p>
                         <table>
                             <thead>
-                                <tr style="margin-bottom: 2rem;">
-                                    <th style="width: 3%">Đúng/Sai</th>
-                                    <th style="width: 20%">Ảnh</th>
-                                    <th style="width: 75%;text-align: start">Câu trả lời</th>
-                                    <th style="padding: 0 10px">Xoá</th>
+                                <tr>
+                                    <th>Đúng/Sai</th>
+                                    <th>Ảnh</th>
+                                    <th>Câu trả lời</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody id="answers-list">
@@ -266,6 +266,7 @@ const UpdateQuestionForm = (data) => {
             </div>
         </div>
      `
+
      const answers = () => { 
         let data = [];
         $(`${ANSWER_LIST} tr`).each(function(){
@@ -336,7 +337,8 @@ const renderQuestionList = () => {
     let questionList = questionItem();
     const header = ['ID', 'Câu hỏi', '']
     let questionNum = state.game.questions.length
-    let html = table(header,questionList,"question-list","Danh sách câu hỏi",`Đang có ${questionNum} câu hỏi`)
+    let title = `<h3>Danh sách câu hỏi</h3>`
+    let html = table(header,questionList,"question-list",title,`Đang có ${questionNum} câu hỏi`)
 
     return $(QA_LIST_CONTAINER).html(html)
 }
@@ -420,8 +422,8 @@ const showUpdateQuestion = (index, e) => {
         })
         }
     })
+    $('#question_content').focus();
     let questionForm = quizForm();
-    
     $("#back-to-add-questions").click(() => {
         questionForm.render()
         console.log(questionForm.render());

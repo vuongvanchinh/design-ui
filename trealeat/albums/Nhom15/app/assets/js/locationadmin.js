@@ -250,7 +250,10 @@ const deleteLocation = (id) => {
             <button class="btn btn-save" id='confirm-delete'>Có</button>
         </div>
     `
-    let m = modal(`Bạn có chắc muốn xóa ${id}?`, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
+
+    let header = `Bạn có muốn xoá ${id} này không? <p class="error-message">Nếu xoá, các ô đất có item id là "${id}" cũng nên được sửa!</p>`
+
+    let m = modal(header, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
     $('#locations-page').prepend(m.getHtml())
     $('#no-delete').click(() => {
         m.close()

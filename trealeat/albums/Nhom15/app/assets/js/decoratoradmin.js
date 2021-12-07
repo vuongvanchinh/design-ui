@@ -175,9 +175,6 @@ const decorator_form = (dt = {id: false, name:'', description: '', media: []}) =
     }
 }
 
-
-
-
 const deleteDecorator = (id) => {
     let index = state.decorators.findIndex(item => item.id === id)
     if (index === -1) {
@@ -190,7 +187,8 @@ const deleteDecorator = (id) => {
             <button class="btn btn-save" id='confirm-delete'>Có</button>
         </div>
     `
-    let m = modal(`Bạn có chắc muốn xóa ${id}?`, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
+    let header = `Bạn có muốn xoá ${id} này không? <p class="error-message">Nếu xoá, các ô đất có item id là "${id}" cũng nên được sửa!</p>`
+    let m = modal(header, body, '', 'confirm-delete-modal','confirm-delete-modal', false, 'small')
     $('#decorators-page').prepend(m.getHtml())
     $('#no-delete').click(() => {
         m.close()
