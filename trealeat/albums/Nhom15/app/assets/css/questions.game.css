@@ -1,9 +1,9 @@
 .QA-card-form {
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
-    padding:1rem;
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px; */
+    border-bottom: 1px solid var(--main-color);
+    padding: 1rem 0;
 }
 .QA-card-form .reward {
-    display: flex;
     margin-top: 2rem;
 }
 .QA-card-form .reward p{
@@ -14,7 +14,7 @@
 .QA-card-form .reward form {
     width: 300px;
     margin: 0 auto;
-    text-align: start;
+    text-align: center;
 }
 
 .reward .triggervalue-button {
@@ -50,7 +50,21 @@
     overflow-y: auto;
     max-height: 30vh;
 }
-
+.QA-card-form table thead tr {
+    margin-bottom: 2rem;
+}
+.QA-card-form table thead tr th:nth-child(1){
+    width: 3%;
+}
+.QA-card-form table thead tr th:nth-child(2){
+    width: 12%;
+}
+.QA-card-form table thead tr th:nth-child(3){
+    width: 75%;text-align: start
+}
+.QA-card-form table thead tr th:nth-child(4){
+    
+}
 .answer-list .textfield {
     width:80%;
     margin:0.5rem auto;
@@ -103,6 +117,7 @@
 .QA-card-form > p{
     font-size: 1.2rem;
     font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 .add-QA{
@@ -118,11 +133,12 @@
     padding: 0.5rem 1rem;
     width: 100%;
     border: 1px solid black;
+    transition: all .5s ease;
 }
 .add-QA button:hover {
     background-color: var(--main-color);
     color: white;
-    border: none;
+    border: 1px solid  var(--main-color);
 }
 .add-A {
     display:flex;
@@ -138,11 +154,12 @@
     padding: 0.5rem 1rem;
     width: 80%;
     border: 1px solid black;
+    transition: all .5s ease;
 }
 .add-A button.add-answers:hover {
     background-color: var(--main-color);
     color: white;
-    border: none;
+    border: 1px solid  var(--main-color);
 }
 
 /* question image*/
@@ -180,6 +197,7 @@
     cursor: pointer;
     display:none;
     font-size: 1.5rem!important;
+    transition: all .5s ease;
 }
 
 .question-image-list .question-image:hover img{
@@ -197,11 +215,14 @@
     color:black;
     cursor:pointer;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
+    transition: all .5s ease;
 }
 #add-question-img:hover {
     color: var(--main-color);
 }
-
+.bx-image-add:hover {
+    color: var(--main-color);
+}
 #add-question-img{
     display: flex;
     justify-content: center;
@@ -230,6 +251,7 @@
     cursor: pointer;
     margin: auto;
     border: 1px solid var(--main-color);
+    transition: all .5s ease;
 }
 .disableImg {
     display: none;

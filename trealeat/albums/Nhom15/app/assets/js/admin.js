@@ -283,28 +283,26 @@ const renderMap = () => {
        
         if (plot.item_id.startsWith('decorator')) {
             clas += 'plot--decorator bgimage'
-            let mediaUrl = state.decorators.find(x => x.id === plot.item_id).media[0]
-
-            b.css('background-image', `url("${mediaUrl}")`)
-
-            // if (window.location.hostname === '127.0.0.1') {
-            //     b.append(`item id: ${plot.item_id}`);
-            //     $(function(){
-            //         $.getJSON('media.json',function(data){
-            //             b.css('background-image', `url("${data[mediaId].url}")`)
-            //         })
-            //     });
-            // } else {
-            //     (async function fetchApi() {
-            //         let mres = await fetch(`https://hcloud.trealet.com/tiny${mediaId}?json`)
-            //         let {url_full} = mres.image;
-            //         let imageUrl =  await fetch(`https://hcloud.trealet.com${url_full}`)
-            //         b.css('background-image', `url("${imageUrl}")`)
-            //     })()
-            // }
+            let index = state.decorators.findIndex(x => x.id === plot.item_id)
+            if( index === -1 ) {
+                b.css({backgroundColor: `#B9345A` })
+                b.attr("title","decorator này có thể đã bị xoá");
+            } else {
+                let mediaUrl = state.decorators[index].media[0];
+                b.css('background-image', `url("${mediaUrl}")`)
+            }
 
         } else {
-            let content = `<div><p>item id: ${plot.item_id}</p> <p><strong>( ${plot.item_id,state.locations.find(x => x.id === plot.item_id).name} )</strong></p></div>`
+            let content = '';
+            let index = state.locations.findIndex(x => x.id === plot.item_id)
+            if( index === -1 ) {
+                content = `location này có thể đã bị xoá`
+                b.css({backgroundColor: `#B9345A` })
+                b.attr("title","decorator này có thể đã bị xoá");
+            } else {
+                content = `<div><p>item id: ${plot.item_id}</p> <p><strong>( ${state.locations[index].name} )</strong></p></div>`
+              
+            }
             b.append(content)
         }
         b.addClass(clas)
@@ -338,10 +336,27 @@ const change = (el) => {
         
         value = parseInt(value);
         if(!value || value < 50) { // min width is 50px
-            value = `${max_w}px`
+            value = `50px`
             $(el).val(value)
         } else {
             value += "px"
+            $(el).val(value)
+        }
+    } else if (el.name === 'cells_per_row') {
+        if(value !== '') {
+            value = parseInt(value);
+            if(value < 1) {
+                value = 1;
+                $(el).val(value)
+            }
+        }
+    } else if (el.name === 'number_of_cells') {
+        if(value !== '') {
+            value = parseInt(value);
+            if(value < 1) {
+                value = 1;
+                $(el).val(value)
+            }
         }
     }
     state.map[el.name] = value
@@ -349,8 +364,14 @@ const change = (el) => {
 
 const refresh = () => {
     let {cell_width,cells_per_row, number_of_cells } = state.map
-    if (cell_width && cells_per_row, number_of_cells) {
 
+    if (cell_width && cells_per_row, number_of_cells) {
+        addToast(document.getElementById('toasts'), {
+            type: "success",
+            message: `Bạn đã làm mới thành công`, 
+            title:'Xong!',
+            duration: 3000
+        })
         renderMap()
         $('.brick').css('zoom', 1)
     } else {
@@ -466,10 +487,11 @@ const plot_form = (dt={index:false, w: 0, h: 0, item_id: ''}) => {
                 $('#plot_item_id').next().next().text('Mục này phải bắt đầu bằng "decorator_" hoặc "location_" ví dụ location_0')
                 success = false
             } else {
-                if(state.decorators.findIndex(item => item.id === item_id) === -1) {
+
+                if(item_id.startsWith('decorator_') && state.decorators.findIndex(item => item.id === item_id) === -1) {
                     $('#plot_item_id').next().next().text('Không tồn tại decorator với ID này')
                     success = false
-                } else if (state.locations.findIndex(item => item.id === item_id) === -1) {
+                } else if (item_id.startsWith('location_') && state.locations.findIndex(item => item.id === item_id) === -1) {
                     $('#plot_item_id').next().next().text('Không tồn tại locations với ID này')
                     success = false
                 } else {
@@ -530,6 +552,7 @@ const onPlotMode = (index) => {
         let x = Math.round((Math.round(p.left) - Math.round(zero.left)) / cell_w) + 1
         let y = Math.round((Math.round(p.top) - Math.round(zero.top)) / cell_w ) + 1
         let dt = form.getData()
+        console.log(zero)
         // console.log('x y: ', x, y, dt.w, dt.h, cell_w)
         if(has_index === -1) { // add new
              // when add new dt.x and dt.y is undefinded 
@@ -557,6 +580,8 @@ const onPlotMode = (index) => {
             b.css('background-image', `url("${imageUrl}")`)
         } else {
             b.addClass('plot');
+            let content = `<div><p>item id: ${dt.item_id}</p> <p><strong>( ${state.locations.find(x => x.id === dt.item_id).name} )</strong></p></div>`
+            b.append(content)
         }
        
         //close modal
