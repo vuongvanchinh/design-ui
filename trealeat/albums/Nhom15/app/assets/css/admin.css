@@ -10,6 +10,7 @@
   position: fixed;
   height: 100vh;
   --logo-height: 90px;
+  
 }
 .sidebar > ul {
   padding: 0.5rem;
