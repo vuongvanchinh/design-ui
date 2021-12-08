@@ -2,7 +2,7 @@
 ## Yêu cầu:
 có môi trường php và internet
 
-# Cách chay
+# Cách chạy
 sau khi clone về
 cd đến folder trealet
 
