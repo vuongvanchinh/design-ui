@@ -49,11 +49,14 @@ function checkImgURL(url) {
     return(url.match(/\.(jpeg|jpg|gif|png)$/) != null);
 }
 
+
+
 const table = (headers, body, id ='table-location', name='Table name', footer ='...') => {
     let heads = ''
     for (i = 0; i < headers.length; i++) {
         heads += `<th>${headers[i]}</th>`
     }
+    console.log(heads)
 
     return `
     <div class="table-admin-wraper">

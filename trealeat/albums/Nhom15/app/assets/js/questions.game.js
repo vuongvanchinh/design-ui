@@ -133,7 +133,6 @@ const quizForm = () => {
          })
          return data;
      }
-
      const getQuestionImg = () => {
         let images = [];
         $(".QA-card-form .question-image-list").find('.question-image img').each( function() {
@@ -152,17 +151,26 @@ const quizForm = () => {
                 $('#question_content').next().next().text('Bạn không được bỏ trống câu hỏi')
                 $('#question_content').next().next().show()
                 success = false
+            } else {
+                $('#question_content').next().next().text('')
+                $('#question_content').next().next().show()
             }
             if(reward >= range|| reward < 0) {
                 $('#rewardId').next().next().text(`Id của phần thưởng nằm trong khoảng từ 0 - ${range}`)
                 $('#rewardId').next().next().show()
                 success = false
+            }else {
+                $('#rewardId').next().next().text('')
+                $('#rewardId').next().next().show()
             }
             $(`${ANSWER_LIST} tr`).each(function(){
                 if(!$(this).find('input[type=text]').val()) {
                     $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
                     $(this).find('input[type=text]').next().next().show()
                     success = false
+                } else {
+                    $(this).find('input[type=text]').next().next().text('')
+                    $(this).find('input[type=text]').next().next().show()
                 }
             })
             return success
@@ -301,17 +309,26 @@ const UpdateQuestionForm = (data) => {
                $('#question_content').next().next().text('Bạn không được bỏ trống câu hỏi')
                $('#question_content').next().next().show()
                success = false
+           } else {
+            $('#question_content').next().next().text('')
+            $('#question_content').next().next().show()
            }
            if(reward >= range|| reward < 0) {
                $('#rewardId').next().next().text(`Id của phần thưởng nằm trong khoảng từ 0 - ${range}`)
                $('#rewardId').next().next().show()
                success = false
+           } else {
+                $('#rewardId').next().next().text('')
+                $('#rewardId').next().next().show()
            }
            $(`${ANSWER_LIST} tr`).each(function(){
                if(!$(this).find('input[type=text]').val()) {
                    $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
                    $(this).find('input[type=text]').next().next().show()
                    success = false
+               } else {
+                    $(this).find('input[type=text]').next().next().text('')
+                    $(this).find('input[type=text]').next().next().show()
                }
            })
            return success
@@ -421,6 +438,27 @@ const showUpdateQuestion = (index, e) => {
             duration: 3000
         })
         }
+        let questionForm = quizForm();
+            questionForm.render()
+            console.log(questionForm.render());
+            for(let i = 0; i < e.parentElement.children.length; i++) {
+                e.parentElement.children[i].classList.remove('selected-question-item')
+            }
+    
+        $("#add-QA-btn").click(()=>{
+            if(questionForm.validate()) {
+                let data = questionForm.getData()
+                // $(QUESTION_LIST).append(appendIDQuestion(data).html());
+                state.game.questions.push(data)
+                renderQuestionList()
+                addToast(document.getElementById('toasts'), {
+                    type: "success",
+                    message: `Thêm câu hỏi thành công`,
+                    title: "Xong!",
+                    duration: 3000
+                })
+            }
+        })
     })
     $('#question_content').focus();
     let questionForm = quizForm();
@@ -434,7 +472,6 @@ const showUpdateQuestion = (index, e) => {
         $("#add-QA-btn").click(()=>{
             if(questionForm.validate()) {
                 let data = questionForm.getData()
-                console.log(data)
                 // $(QUESTION_LIST).append(appendIDQuestion(data).html());
                 state.game.questions.push(data)
                 renderQuestionList()
@@ -451,7 +488,7 @@ const showUpdateQuestion = (index, e) => {
 
 const increaseValue = () => {
     var value = parseInt(document.getElementById('rewardId').value, 10);
-    value = isNaN(value)|| value >= state.game.rows * state.game.cols - 1 ? 0 : value;
+    value = isNaN(value)|| value >= state.game.rows * state.game.cols - 1 ? -1 : value;
     value++;
     document.getElementById('rewardId').value = value;
 }
@@ -459,7 +496,7 @@ const increaseValue = () => {
 const  decreaseValue = () => {
     var value = parseInt(document.getElementById('rewardId').value, 10);
     value = isNaN(value) ? 0 : value;
-    value < 1  ? value = 1 : '';
+    value < 1  ? value = state.game.rows * state.game.cols : '';
     value--;
     document.getElementById('rewardId').value = value;
 }
@@ -470,7 +507,7 @@ const addAnswer = () => {
 
     if(num > 5) {
         addToast(document.getElementById('toasts'), {
-            type: "error",
+            type: "info",
             message: `Đáp án chỉ tối đa ${num - 1 } câu`,
             title: "Thông tin cho bạn!",
             duration: 3000
@@ -517,7 +554,7 @@ const updateAnswerForm = (num, value='',imageUrl, isAnswer) => {
     <tr>
         <td><input type="checkbox" ${isAnswer}/></td>
         <td style="padding: 0 10px;">
-            <div class="answer-img " id="add-answer-img${num}" ${imageStyle} onclick='addAImage(this)'> 
+            <div class="answer-img " id="add-answer-img${num}" ${imageStyle} onclick='addAImage(this,"${imageUrl}")'> 
                 <i class='bx bx-image-add ${disableImg}'></i>
             </div>
         </td>
@@ -572,7 +609,7 @@ const imageQForm = (name, id) => {
         validate: () => {
             let link = $(`#${id}`).val()
             let success = true
-            if(!link.startsWith('https')) {
+            if(!link.startsWith('http')) {
                 $('#link_image').text('bạn cần nhập link đúng định dạng.')
                 success = false
             } else {
@@ -614,16 +651,16 @@ const addQImage = (name) => {
         }
     })
 }
-const addAImage = (e) => {
+const addAImage = (e, imageUrl='') => {
     let num = $(ANSWER_LIST).children().length + 1;
-    let form = image_form('root_image', num)
+    let form = image_form('root_image', num, imageUrl)
     let footer = `
         <button class='btn btn-light'id="cancel_Aimage">Hủy</button>
         <button class='btn btn-save' id="save_Aimage">Lưu</button>
     `
     let md = modal('Thay đổi hình ảnh', form.getHtml(), footer, 'image_id', 'image_id', false, 'medium')
     $('#game').prepend(md.getHtml())
-    
+    form.setup()
     $('#cancel_Aimage').click(() => {
         md.close()
     })

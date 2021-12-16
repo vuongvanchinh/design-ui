@@ -1005,7 +1005,14 @@ textarea {
   margin-bottom: 1rem;
   display: none;
 }
-
+.oneline {
+  display:-webkit-box;
+  -webkit-line-clamp:1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
 .active-alert-popup {
   display:block;
 }
