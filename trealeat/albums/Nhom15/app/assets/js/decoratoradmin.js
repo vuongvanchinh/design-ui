@@ -7,9 +7,7 @@ $(document).ready(() => {
     //         state.decorators[i].media[0] = data[mediaId].url;
     //     }
     // })()
-
     renderDecoratorPage()
-
     // changePage('decorators-page')
 })
 

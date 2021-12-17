@@ -4,12 +4,30 @@ $(document).ready(() => {
 const renderLocationPage = () => {
     let body = ''
     for (i = 0; i < state.locations.length; i++) {
+        let questionString = '';
+        
+        for (let j = 0; j < state.locations[i].question_ids.length; j++) {
+            let index = state.game.questions.findIndex(question => question.id === state.locations[i].question_ids[j])
+            let string = ''
+            if(index === -1) {
+                string = '<p class="error-message">Không tồn tại</p>';
+            } else {
+                string = state.game.questions[index].content;
+            }
+            if(questionString !== '') {
+                questionString += ',';
+            }
+            questionString += string
+        }
+
         body += `
             <tr id='${state.locations[i].id}'>
 
                 <td>${state.locations[i].id}</td>
                 <td>${state.locations[i].name}</td>
-                <td>${state.locations[i].media}</td>
+                <td ><p class="oneline">${state.locations[i].media}</p></td>
+                <td><p class="oneline">${questionString}</p></td>
+                <td></td>
                 <td>
                     ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
                         <div class="btn-del" onclick="deleteLocation('${state.locations[i].id}')">Xóa</div>
@@ -19,7 +37,7 @@ const renderLocationPage = () => {
         `
     }
 
-    const location_headers = ['Id', 'Tên', 'Id Hình ảnh/video...', '']
+    const location_headers = ['Id', 'Tên', 'Id Hình ảnh/video...','Id câu hỏi','']
     $('#location-content').append(table(location_headers, body, 'locations-table', 'Các địa điểm', `Đang có ${state.locations.length} địa điểm.`))
     $('#locations-table tbody tr').dblclick((e) => {
         // console.log(e)
@@ -30,10 +48,7 @@ const renderLocationPage = () => {
     } )
 }
 
-
-
-
-const location_form = (dt = {id: false, name:'', description: '', media: []}) => {
+const location_form = (dt = {id: false, name:'', description: '', media: [], question_ids:[]}) => {
     let form = `
     
     <form>
@@ -77,6 +92,23 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                </div>
             </div>
         </div>
+        <div class="form-card">
+            <div class="form-card-header">
+                Câu hỏi
+            </div>
+            <div class="form-card-body">
+               <div id='questions' class='child_setparate'>
+                <div class="textfield">
+                    <input type="text" name="question-ids" 
+                        placeholder="một dãy các số nguyên cách nhau bởi dấu cách" 
+                        id="question-ids" 
+                    />
+                    <label for="question-ids">Các id câu hỏi</label>
+                    <p class='error-message'></p>
+                </div>
+               </div>
+            </div>
+        </div>
     </form>
     `
     return {
@@ -85,7 +117,8 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
             return {
                 name: $('#location_name').val(),
                 description: $('#location_description').val().trim(),
-                media: $('#media-ids').val().trim().split(',').map(item => parseInt(item.trim()))
+                media: $('#media-ids').val().trim().split(',').map(item => parseInt(item.trim())),
+                question_ids: $('#question-ids').val().trim().split(',').map(item => item.trim())
             }
         },
         validate: () => {
@@ -113,7 +146,6 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                     if (isNaN(item.trim())) {
                         failed = true
                         $('#media-ids').next().next().text('Mục này cần điền các số nguyên cách nhau bằng dấu phẩy')
-                        
                         ok = false
                         break;
                     }
@@ -122,7 +154,28 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                     $('#media-ids').next().next().empty()
                 }
             }
-            
+
+            let question =  $('#question-ids').val()
+            if (!question) {
+                $('#question-ids').next().next().text('Mục này cần điền các id câu hỏi cách nhau bằng dấu phẩy')
+                failed = true
+                $('#question-ids').focus()
+            } else {
+                let questions = question.trim().split(',')
+                let ok = true
+                for (i = 0; i < questions.length; i++) {
+                    let item = questions[i]
+                    if (item.trim() === '') {
+                        failed = true
+                        $('#question-ids').next().next().text('Mục này cần điền các id câu hỏi cách nhau bằng dấu phẩy')
+                        ok = false
+                        break;
+                    }
+                }
+                if (ok) {
+                    $('#question-ids').next().next().empty()
+                }
+            }
             return failed
         },
         setup: () => {
@@ -131,14 +184,13 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
             if (dt.id) {
                 $('#location_name').val(dt.name)
                 $('#media-ids').val(dt.media.join(','))
+                $('#question-ids').val(dt.media.join(','))
+                $('#question-ids').val(dt.question_ids.join(','))
                 $('#location_description').val(dt.description).trigger('change')
             }
-
-
             $('#location_name').focus();
             $('#location_name').change(() => {
                 let name = $('#location_name').val().trim()
-            
                 if (!name) {
                     $('#location_name').next().next().text('Mục này không được trống')
                 }else {
@@ -155,7 +207,6 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                     for (i = 0; i < medias.length; i++) {
                         let item = medias[i]
                         if (isNaN(item.trim()) || item.trim() === '') {
-                            console.log(item, 'is not number')
                             $('#media-ids').next().next().text('Mục này cần điền các số nguyên cách nhau bằng dấu phẩy')
                             
                             ok = false
@@ -165,6 +216,26 @@ const location_form = (dt = {id: false, name:'', description: '', media: []}) =>
                     if (ok) {
                         $('#media-ids').next().next().empty()
                         
+                    }
+                }
+            })
+            $('#question-ids').change(() => {
+                let question =  $('#question-ids').val()
+                if (!question) {
+                    $('#question-ids').next().next().text('Mục này cần điền các id câu hỏi cách nhau bằng dấu phẩy')
+                } else {
+                    let questions = question.trim().split(',')
+                    let ok = true
+                    for (i = 0; i < questions.length; i++) {
+                        let item = questions[i]
+                        if (item.trim() === '') {
+                            $('#question-ids').next().next().text('Mục này cần điền các id câu hỏi cách nhau bằng dấu phẩy')
+                            ok = false
+                            break;
+                        }
+                    }
+                    if (ok) {
+                        $('#question-ids').next().next().empty()
                     }
                 }
             })
@@ -293,7 +364,6 @@ const addLocation = () => {
         if(!form.validate()) { // not fail
             let lastid = 1
             let l = state.locations.length 
-            console.log(l)
             if (l > 0) {
 
                 lastid = parseInt(state.locations[l - 1].id.split('_')[1])
@@ -301,11 +371,29 @@ const addLocation = () => {
             let new_id = `location_${lastid + 1}`
             let dt = form.getData()
             state.locations.push({...dt, id: new_id})
+
+            let questionString = ''
+            for (let i = 0; i < dt.question_ids.length; i++) {
+                let index = state.game.questions.findIndex(v => v.id === dt.question_ids[i])
+                let string = ''
+                if(index === -1) {
+                    string = '<p class="error-message">Không tồn tại</p>';
+                } else {
+                    string = state.game.questions[index].content;
+                }
+                if(questionString !== '') {
+                    questionString += ',';
+                }
+                questionString += string
+            }
+
             $('#locations-table tbody').append(`
                 <tr id='${new_id}'>
                     <td>${new_id}</td>
                     <td>${dt.name}</td>
-                    <td>${dt.media}</td>
+                    <td><p class='oneline'>${dt.media}<p/></td>
+                    <td><p class="oneline">${questionString}</p></td>
+                    <td></td>
                     <td>
                         ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
                             <div class="btn-del" onclick="deleteLocation('${new_id}')">Xóa</div>
@@ -314,7 +402,6 @@ const addLocation = () => {
                 </tr>
             `)
             $('#locations-table tbody tr:last-child()').dblclick((e) => {
-                // console.log(e)
                 if ($(e.target).is('td')) {
                     let id = $(e.target).parent().attr('id');
                     updateLocation(id)
