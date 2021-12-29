@@ -131,7 +131,6 @@ const location_form = (dt = {id: false, name:'', description: '', media: [], que
             }else {
                 $('#location_name').next().next().empty()
             }
-
             
             let media =  $('#media-ids').val()
             if (!media) {

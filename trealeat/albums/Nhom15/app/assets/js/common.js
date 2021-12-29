@@ -1,12 +1,12 @@
 const features = [
     {name: 'Zoom', key:'zoom'},
-    {name: 'Hoạt hình chào mừng', key:'welcome_animation'}
-
+    {name: 'Hoạt hình chào mừng', key:'welcome_animation'},
+    {name: 'Trò chơi', key:'gameFeature'},
 ]
 const constants = {
     welcome_animation: 'welcome_animation',
-    zoom: 'zoom'
-
+    zoom: 'zoom',
+    game: 'gameFeature'
 }
 
 function makeid(length) {

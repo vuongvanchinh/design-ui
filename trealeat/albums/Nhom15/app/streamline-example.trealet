@@ -3,7 +3,8 @@
     "greeting": "Chúc các bạn vui vẻ. Nhớ đến Huế chơi nhé",
     "features": [
       "zoom",
-      "welcome_animation"
+      "welcome_animation",
+      "gameFeature"
     ],
     "map": {
       "cell_width": "50px",
