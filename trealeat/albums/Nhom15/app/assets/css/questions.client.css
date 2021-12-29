@@ -1,0 +1,527 @@
+.game-quiz-container {
+    /* background-color: lightgray; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 30px;
+    background: url(https://i.pinimg.com/564x/12/f4/f4/12f4f4e7f85a771324d7758356ae23e7.jpg);
+    background-size: cover;
+    border: 1px dotted #ccc;
+    padding: 2rem;
+    margin: 15px auto;
+    font-family: 'Montserrat', serif;
+}
+
+.game-details-container {
+    width: 80%;
+    height: 4rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#display-question {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-question-container img {
+    /* max-width: ; */
+    /* height: 12rem; */
+    width: 20rem;
+}
+
+.game-details-container h1 {
+    font-size: 1.4rem;
+}
+
+.game-question-container {
+    width: 80%;
+    /* height: 8rem; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 2px solid darkgray;
+    border-radius: 25px; */
+}
+
+.game-question-container h1 {
+    font-size: 1.3rem;
+    text-align: center;
+    padding: 3px;
+    margin: 10px;
+}
+
+.game-options-container {
+    width: 80%;
+    /* height: 12rem; */
+    display: flex;
+    /* flex-direction: column; */
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.game-options-container label img {
+    display: block;
+}
+
+.game-options-container div {
+    /* width: 40%; */
+    height: auto;
+    /* border: 2px solid darkgray;
+    border-radius: 20px; */
+    overflow: hidden;
+}
+
+.answer {
+    width: 15rem;
+    /* margin: 0 0 rem 0 .7rem; */
+    align-items: center;
+}
+
+.answer {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: solid 2px rgb(43 40 28);
+    /* padding: .4rem .5rem .4rem; */
+    background: #e3e3e3;
+    text-align: center;
+    font-family: Open Sans;
+}
+
+.answer img {
+    margin: auto;
+    height: 5rem;
+}
+
+.answer input[type=radio] {
+    display: none;
+}
+
+.answer label {
+    margin: 0 !important;
+    height: 100%;
+}
+
+.answer input[type=radio]+label {
+    cursor: pointer;
+    float: left;
+    padding: 0.5rem 0;
+    font-size: 1.1rem;
+    font-weight: 100;
+    color: black;
+    width: 100%;
+    vertical-align: middle;
+}
+
+.answer input[type=radio]+label {
+    background: #e3e3e3;
+    -webkit-transition: 0.5s;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -ms-transition: 0.5s;
+    transition: 0.5s;
+}
+
+.answer input[type=radio]+label:hover {
+    background: rgba(189, 232, 243, 0.75);
+}
+
+.answer input[type=radio]:checked+label {
+    background: rgb(112, 175, 175);
+    color: white;
+}
+
+.answer input[type=radio]:checked~label[for=" "] {
+    background: rgba(26, 188, 156, 0.25);
+}
+
+.answer span {
+    margin-bottom: 1rem;
+}
+
+
+/* answer-correct */
+
+.answer-correct {
+    background-color: #10c018;
+    animation: blinkingText 2s infinite;
+}
+
+@keyframes blinkingText {
+    0% {
+        background-color: #10c018;
+    }
+    25% {
+        background-color: green;
+    }
+    50% {
+        background-color: #10c018;
+    }
+    75% {
+        background-color: green;
+    }
+    100% {
+        background-color: #10c018;
+    }
+}
+
+.submit-button-container {
+    width: 50%;
+    height: 3rem;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-button-container button {
+    width: 8rem;
+    height: 2rem;
+    border-radius: 10px;
+    background: none;
+    color: rgb(25, 25, 25);
+    font-weight: 600;
+    border: 2px solid gray;
+    cursor: pointer;
+    outline: none;
+}
+
+.submit-button-container button:hover {
+    background-color: rgb(93, 116, 143);
+}
+
+.grid-img {
+    display: grid;
+    --col: 2;
+    grid-template-columns: repeat(var(--col), 1fr);
+    /* width: fit-content; */
+    width: 100%;
+    margin-bottom: 2rem;
+    /* max-width: 500px; */
+}
+
+.img_cell {
+    --url: '';
+    /* background-color: transparent; */
+    border: 0.1px solid #000;
+    padding-top: calc(100% - 2rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-color: #afafaf; */
+}
+
+.game-des {
+    text-align: left;
+    margin: 1rem;
+}
+
+.key_input input[type=text] {
+    width: 80%;
+    padding: 0.5rem;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.key_input .lable {
+    margin-top: 1rem;
+    text-align: left;
+    font-size: 1.2rem;
+}
+
+.key_input button {
+    width: 5rem;
+    height: 2rem;
+    background-color: rgb(230 166 105);
+    color: rgb(0, 0, 0);
+    font: inherit;
+    font-size: 1.25rem;
+    padding: 0.3rem;
+    /* margin: 8px 0; */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+
+/* MODALCSS */
+
+.modalGame {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    /* left: 0.5rem;
+    top: 3.7rem; */
+    width: 20rem;
+    height: 30rem;
+    border-radius: 20px;
+    /* overflow: auto; */
+    background-color: rgb(0, 0, 0);
+    /* background-color: rgba(0, 0, 0, 0.4); */
+    /* -webkit-animation-name: fadeIn; */
+    /* Fade in the background */
+    /* -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s; */
+    transition: transform 0.5s ease;
+    animation-name: popup;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.modalGame-left {
+    left: 0.5rem;
+    top: 3.7rem;
+}
+
+.modalGame-right {
+    right: 0.5rem;
+    top: 3.7rem;
+}
+
+
+/* Modal Content */
+
+.modalGame-content {
+    border-radius: 20px;
+    text-align: center;
+    /* background-color: #d6a622; */
+    background: url(https://i.pinimg.com/564x/90/5b/e7/905be7cb2e0f3b3e728ae57fe233f86f.jpg);
+    background-size: cover;
+    margin: auto;
+    padding: 10px;
+    border: 1px solid #888;
+    width: 100%;
+    /* -webkit-animation-name: fadeIn;
+ 
+    -webkit-animation-duration: 0.4s;
+    animation-name: fadeIn;
+    animation-duration: 0.4s; */
+}
+
+
+/* The Close Button */
+
+.close {
+    color: rgb(0 136 102);
+    float: right;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.guide {
+    color: rgb(0 136 102);
+    float: left;
+    width: 2.1rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+    border: 3px solid #555;
+    border-radius: 50%;
+}
+
+.guide:hover,
+.guide:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.guide-popup {
+    visibility: hidden;
+    width: 80%;
+    background-color: #fdd891;
+    /* color: #fff; */
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    left: 1.3rem;
+    top: 3.5rem;
+    /* z-index: 130; */
+    /* bottom: 125%;
+    left: 50%;
+    margin-left: -80px; */
+}
+
+.guide-popup::after {
+    content: "";
+    position: absolute;
+    top: -0.4rem;
+    left: 0.3rem;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #fdd891 #fdd891;
+}
+
+.show-guidePopup {
+    visibility: visible;
+    /* -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s; */
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+
+/* win-game */
+
+.win-game,
+.lose-game {
+    position: absolute;
+    z-index: 101;
+    width: 80%;
+    height: auto;
+    top: 30%;
+    left: 10%;
+    display: none;
+    transition: transform 0.5s ease;
+    animation-name: popup;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+}
+
+.win-game img,
+.lose-game img {
+    width: 100%;
+}
+
+.win-game p,
+.lose-game {
+    font-size: large;
+    font-weight: 750;
+    font-family: system-ui;
+    background-color: #adf04c;
+}
+
+
+/***
+
+
+/* bubble-chat */
+
+#bubble-chat {
+    background-image: url('https://image.winudf.com/v2/image/bW9uaS5ndWVzc19pY29uXzBfYzk3MTY5YTQ/icon.png?w=&fakeurl=1');
+    z-index: 100;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    border-radius: 50%;
+    box-shadow: #000000b8 0px 0px 12px;
+    pointer-events: auto;
+}
+
+
+/* Popup container - can be anything you want */
+
+.popup {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+
+/* The actual popup */
+
+.popup .popuptext {
+    display: none;
+    /* visibility: hidden; */
+    width: 20rem;
+    background-color: #f2f2f2;
+    /* color: #fff; */
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px 0;
+    position: absolute;
+    z-index: 10;
+    top: 1px;
+}
+
+
+/* Popup arrow */
+
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    /* width: 0;
+    height: 0; */
+    border: 15px solid;
+    border-left: 10px solid #555;
+    border-right: 10px solid transparent;
+    border-top: 10px solid #555;
+    border-bottom: 10px solid transparent;
+    top: 0;
+}
+
+
+/* Toggle this class - hide and show the popup */
+
+.popup .show-left {
+    display: block;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    margin-left: 40px;
+}
+
+.popup .show-right {
+    visibility: visible;
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    margin-left: -190px;
+}
+
+
+/* Add animation (fade in the popup) */
+
+@-webkit-keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@media only screen and (max-width: 1980px) {
+    .modalGame {
+        width: 24rem;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .modalGame {
+        width: 21rem;
+    }
+}

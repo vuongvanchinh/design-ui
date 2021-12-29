@@ -3,347 +3,365 @@ let zoom_rate = 1
 let data = {}
 let med = {}
 const getListMediaId = (data) => {
-	let rs = []
-	for (let i = 0; i < data.locations.length; i++) {
-		rs.push(...data.locations[i].media)
-	}
-	for (let i = 0; i < data.decorators.length; i++) {
-		rs.push(...data.decorators[i].media)
-	}
-	return rs
+    let rs = []
+    for (let i = 0; i < data.locations.length; i++) {
+        rs.push(...data.locations[i].media)
+    }
+    for (let i = 0; i < data.decorators.length; i++) {
+        rs.push(...data.decorators[i].media)
+    }
+    return rs
 }
 const filloutMediaData = (medias, data) => {
-	//fetch media for locations 
-	for (i = 0; i < data.locations.length; i++) {
-		let j = 0
-		while (j < data.locations[i].media.length) {
-			let id = data.locations[i].media[j]
-			if (medias[id]) {
-				data.locations[i].media[j] = medias[id]
-				j += 1
-			} else {
-				console.log('lost', data.locations[i].media[j])
-				data.locations[i].media.splice(j, 1)
-			}
-		}
-	}
-	//fetch media for decorators
-	// for (let i = 0; i < data.decorators.length; i++) {
-	// 	let j = 0
-	// 	while (j < data.decorators[i].media.length) {
-	// 		let id = data.decorators[i].media[j]
-	// 		if (medias[id]) {
-	// 			data.decorators[i].media[j] = medias[id]
-	// 			j += 1
-	// 		} else {
-	// 			console.log('lost', data.decorators[i].media[j])
-	// 			data.decorators[i].media.splice(j, 1)
-	// 		}
-	// 	}
-	// }
-	return data
+    //fetch media for locations 
+    for (i = 0; i < data.locations.length; i++) {
+        let j = 0
+        while (j < data.locations[i].media.length) {
+            let id = data.locations[i].media[j]
+            if (medias[id]) {
+                data.locations[i].media[j] = medias[id]
+                j += 1
+            } else {
+                console.log('lost', data.locations[i].media[j])
+                data.locations[i].media.splice(j, 1)
+            }
+        }
+    }
+    //fetch media for decorators
+    // for (let i = 0; i < data.decorators.length; i++) {
+    // 	let j = 0
+    // 	while (j < data.decorators[i].media.length) {
+    // 		let id = data.decorators[i].media[j]
+    // 		if (medias[id]) {
+    // 			data.decorators[i].media[j] = medias[id]
+    // 			j += 1
+    // 		} else {
+    // 			console.log('lost', data.decorators[i].media[j])
+    // 			data.decorators[i].media.splice(j, 1)
+    // 		}
+    // 	}
+    // }
+    return data
 }
 $(document).ready(() => {
-	if (window.location.hostname === '127.0.0.1') {
-		// ở local tạm thời dùng dữ liệu cứng 
-		//muốn update thì xóa file .trealet trong app trong nhom15 upload lại 
-		//vào trag https://hcloud.trealet.com/apps_dev/btl/nhom15/app/ để lấy chuỗi mới nhất thay vào str_data
-		;
-		(async () => {
-			try {
-				let res = await fetch('streamline-example.trealet')
-				let dt = await res.json()
-				data = dt.trealet
-				document.title = data.title
-				console.log('media loi')
-				// let media_ids = getListMediaId(data)
-				let medias_res = await fetch('media.json')
-				let medias = await medias_res.json()
-				console.log(medias)
-				data = filloutMediaData(medias, data)
-				setup()
-				if (data.features.includes(constants.zoom)) {
-					document.getElementById('view').onwheel = function(e) {
-						e.preventDefault()
-						const pre_zoom_rate = zoom_rate
-						let direction = e.deltaY < 0 ? 1 : -1
-						zoom(direction, offset = 0.05)
-						let view = document.getElementById('view')
-						view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
-						view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
-						return false;
-					}
-				}
-			} catch (error) {
-				console.log(error)
-				alert(error)
-			}
-		})()
-	} else {
-		// trên online thì gọi dữ liệu 
-		let url = 'https://hcloud.trealet.com/apps_dev/btl/nhom15/app/streamline-example.trealet';
-		(async () => {
-			try {
-				let res = await fetch(url)
-				data = await res.json()
-				data = data.trealet
-				document.title = data.title
-				let media_ids = getListMediaId(data)
-				let medias = {}
-				await Promise.all(media_ids.map(async (id) => {
-					try {
-						if (!medias[id]) {
-							let mres = await fetch(`https://hcloud.trealet.com/tiny${id}?json`)
-							let dt = await mres.json()
-							if (dt && dt.image && dt.image.path) {
-								dt = dt.image
-								let type = dt.path.split('.')[1].toUpperCase()
-								if (type === 'YTB' || type === 'TXT') {
-									try {
-										let code = await fetch(`https://hcloud.trealet.com${dt.url_full}`)
-										let link = await code.text()
-										medias[id] = {
-											type: 'IFRAME',
-											url: link.trim(),
-											description: dt.desc,
-											name: dt.title
-										}
-									} catch (error) {
-										console.log(`id ${id} error ${type}`)
-									}
-								} else {
-									medias[id] = {
-										type: type,
-										url: `https://hcloud.trealet.com/${dt.url_full}`,
-										description: dt.desc,
-										name: dt.title
-									}
-								}
-							}
-						}
-					} catch (error) {
-						console.log("Error ", id, error)
-					}
-				}))
-				// console.log(medias)
-				data = filloutMediaData(medias, data)
-				// console.log(data)
-				setup()
-				if (data.features.includes(constants.zoom)) {
-					// document.getElementById('view').onwheel = function(e) {
-					// 	e.preventDefault()
-					// 	const pre_zoom_rate = zoom_rate
-					// 	let direction = e.deltaY < 0 ? 1 : -1
-					// 	zoom(direction, offset = 0.05)
-					// 	let view = document.getElementById('view')
-					// 	view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
-					// 	view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
-					// 	return false;
-					// }
-					document.getElementById('view').addEventListener('wheel',function(e) {
-						e.preventDefault()
-						const pre_zoom_rate = zoom_rate
-						let direction = e.deltaY < 0 ? 1 : -1
-						zoom(direction, offset = 0.05)
-						let view = document.getElementById('view')
-						view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
-						view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
-						return false;
-					})
-				}
-				console.log(JSON.stringify(data))
-				console.log("abc",data)
-			} catch (error) {
-				console.log(error)
-				alert('can not fetch data')
-				// document.getElementById('#message').innerHTML = 'Can not fetch data'
-			}
-		})()
-	}
+
+    if (window.location.hostname === '127.0.0.1') {
+        // ở local tạm thời dùng dữ liệu cứng 
+        //muốn update thì xóa file .trealet trong app trong nhom15 upload lại 
+        //vào trag https://hcloud.trealet.com/apps_dev/btl/nhom15/app/ để lấy chuỗi mới nhất thay vào str_data
+        ;
+        (async() => {
+            try {
+                let res = await fetch('streamline-example.trealet')
+                let dt = await res.json()
+                data = dt.trealet
+                document.title = data.title
+                console.log('media loi')
+                    // let media_ids = getListMediaId(data)
+                let medias_res = await fetch('media.json')
+                let medias = await medias_res.json()
+                console.log(medias)
+                data = filloutMediaData(medias, data)
+                setup()
+                if (data.features.includes(constants.zoom)) {
+                    document.getElementById('view').onwheel = function(e) {
+                        e.preventDefault()
+                        const pre_zoom_rate = zoom_rate
+                        let direction = e.deltaY < 0 ? 1 : -1
+                        zoom(direction, offset = 0.05)
+                        let view = document.getElementById('view')
+                        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+                        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
+                        return false;
+                    }
+                }
+            } catch (error) {
+                console.log(error)
+                alert(error)
+            }
+        })()
+    } else {
+        // trên online thì gọi dữ liệu 
+        let url = 'https://hcloud.trealet.com/apps_dev/btl/nhom15/app/streamline-example.trealet';
+        (async() => {
+            try {
+                let res = await fetch(url)
+                data = await res.json()
+                data = data.trealet
+                document.title = data.title
+                let media_ids = getListMediaId(data)
+                let medias = {}
+                await Promise.all(media_ids.map(async(id) => {
+                        try {
+                            if (!medias[id]) {
+                                let mres = await fetch(`https://hcloud.trealet.com/tiny${id}?json`)
+                                let dt = await mres.json()
+                                if (dt && dt.image && dt.image.path) {
+                                    dt = dt.image
+                                    let type = dt.path.split('.')[1].toUpperCase()
+                                    if (type === 'YTB' || type === 'TXT') {
+                                        try {
+                                            let code = await fetch(`https://hcloud.trealet.com${dt.url_full}`)
+                                            let link = await code.text()
+                                            medias[id] = {
+                                                type: 'IFRAME',
+                                                url: link.trim(),
+                                                description: dt.desc,
+                                                name: dt.title
+                                            }
+                                        } catch (error) {
+                                            console.log(`id ${id} error ${type}`)
+                                        }
+                                    } else {
+                                        medias[id] = {
+                                            type: type,
+                                            url: `https://hcloud.trealet.com/${dt.url_full}`,
+                                            description: dt.desc,
+                                            name: dt.title
+                                        }
+                                    }
+                                }
+                            }
+                        } catch (error) {
+                            console.log("Error ", id, error)
+                        }
+                    }))
+                    // console.log(medias)
+                data = filloutMediaData(medias, data)
+                    // console.log(data)
+                setup()
+                if (data.features.includes(constants.zoom)) {
+                    // document.getElementById('view').onwheel = function(e) {
+                    // 	e.preventDefault()
+                    // 	const pre_zoom_rate = zoom_rate
+                    // 	let direction = e.deltaY < 0 ? 1 : -1
+                    // 	zoom(direction, offset = 0.05)
+                    // 	let view = document.getElementById('view')
+                    // 	view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+                    // 	view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
+                    // 	return false;
+                    // }
+                    document.getElementById('view').addEventListener('wheel', function(e) {
+                        e.preventDefault()
+                        const pre_zoom_rate = zoom_rate
+                        let direction = e.deltaY < 0 ? 1 : -1
+                        zoom(direction, offset = 0.05)
+                        let view = document.getElementById('view')
+                        view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
+                        view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
+                        return false;
+                    })
+                }
+                console.log(JSON.stringify(data))
+                console.log("abc", data)
+            } catch (error) {
+                console.log(error)
+                alert('can not fetch data')
+                    // document.getElementById('#message').innerHTML = 'Can not fetch data'
+            }
+        })()
+    }
 })
+
+const gameFeature = () => {
+    if (!data.features.includes("gameFeature")) {
+        document.getElementById('bubble-chat').style.display = "none";
+        document.getElementById("myModal").style.display = "none";
+        // document.getElementsByClassName("game-container").style.display = "none";
+    }
+
+}
+
 const welcomeAnimation = () => {
-	if (data.features.includes(constants.welcome_animation)) {
-		$('#view').addClass('horizontal_center')
-		let board_h = $('#board').height()
-		let board_w = $('#board').width()
-		let min_zoom_rate = $('#view').height() / board_h
-		if ($('#view').width() / board_w < min_zoom_rate) {
-			min_zoom_rate = $('#view').width() / board_w
-			alert('width')
-		}
-		document.documentElement.style.setProperty('--min-zoom-rate', min_zoom_rate);
-		
-		let board = document.getElementById('board')
-		let view = document.getElementById('view')
-		let maxScrollTop = view.scrollHeight - view.clientHeight;
-		view.scrollTop = maxScrollTop
-		board.addEventListener('animationend', (e) => {
-			if (e.animationName === 'welcome') {
-				$('#view').removeClass('horizontal_center')
-				let maxScrollLeft = view.scrollWidth - view.clientWidth;
-				view.scrollLeft = maxScrollLeft / 2
-				let toasts = document.getElementById('toasts')
-				addToast(toasts, {
-					type: 'success',
-					title: 'Chào bạn!',
-					message: data.greeting,
-					duration: 2000
-				})
-			}
-		})
-		$('#board').css('animation-name', 'welcome')
-	} else {
-		let toasts = document.getElementById('toasts')
-		addToast(toasts, {
-			type: 'success',
-			title: 'Chào bạn!',
-			message: data.greeting,
-			duration: 2000
-		})
-	}
+    if (data.features.includes(constants.welcome_animation)) {
+        $('#view').addClass('horizontal_center')
+        let board_h = $('#board').height()
+        let board_w = $('#board').width()
+        let min_zoom_rate = $('#view').height() / board_h
+        if ($('#view').width() / board_w < min_zoom_rate) {
+            min_zoom_rate = $('#view').width() / board_w
+            alert('width')
+        }
+        document.documentElement.style.setProperty('--min-zoom-rate', min_zoom_rate);
+
+        let board = document.getElementById('board')
+        let view = document.getElementById('view')
+        let maxScrollTop = view.scrollHeight - view.clientHeight;
+        view.scrollTop = maxScrollTop
+        board.addEventListener('animationend', (e) => {
+            if (e.animationName === 'welcome') {
+                $('#view').removeClass('horizontal_center')
+                let maxScrollLeft = view.scrollWidth - view.clientWidth;
+                view.scrollLeft = maxScrollLeft / 2
+                let toasts = document.getElementById('toasts')
+                addToast(toasts, {
+                    type: 'success',
+                    title: 'Chào bạn!',
+                    message: data.greeting,
+                    duration: 2000
+                })
+            }
+        })
+        $('#board').css('animation-name', 'welcome')
+    } else {
+        let toasts = document.getElementById('toasts')
+        addToast(toasts, {
+            type: 'success',
+            title: 'Chào bạn!',
+            message: data.greeting,
+            duration: 2000
+        })
+    }
 }
 const setup = () => {
-	// render brick
-	let brick = `
+    gameFeature();
+    // render brick
+    let brick = `
         <div class='brick' style ='--b_w: ${data.map.cell_width}'>
         </div>
     `
-	let style = board_style()
-	$('#view').empty()
-	$('#view').css(style)
-	$('#view').append(`
+    let style = board_style()
+    $('#view').empty()
+    $('#view').css(style)
+    $('#view').append(`
             <div id='board' class='board bg-image' ></div>
     `)
-	$('#board').css(style)
-	$('#board').append(brick.repeat(data.map.number_of_cells))
-	//plots
-	for (let i = 0; i < data.map.plots.length; i++) {
-		let p = data.map.plots[i]
-		//find location
-		let b = $(`.brick:nth-child(${p.index+1})`) // b = brick
-		if (p.item_id.startsWith('location')) {
-			let index = data.locations.findIndex(item => item.id === p.item_id)
-			if (index !== -1) { // find out
-				b.append(presentItem(data.locations[index]))
-			} else {
-				b.append("cái này chưa có location đặt vào, vào trang admin để đặt")
-			}
-		} else if (p.item_id.startsWith('decorator')) {
-			let index = data.decorators.findIndex(item => item.id === p.item_id)
-			if (index !== -1) { // find out
-				b.append(presentDecorator(data.decorators[index]))
-			} else {
-				b.append("cái này chưa có decorators đặt vào, vào trang admin để đặt")
-			}
-		}
-		b.css({
-			'--b_w': "auto",
-			gridColumn: `${p.x} / span ${p.w}`,
-			gridRow: `${p.y} / span ${p.h}`
-		})
-		b.addClass('plot')
-	}
-	
-	//paths
-	for (let i = 0; i < data.map.paths.length; i++) {
-		let p = data.map.paths[i]
-		let b = $(`.brick:nth-child(${p.index+1})`)
-		b.css({
-			backgroundImage: `url("${data.map.path_list.options[p.op_no]}")`,
-			gridColumn: `${p.x} / span 1`,
-			gridRow: `${p.y} / span 1`
-		})
-		b.addClass('path')
-	}
-	// alert($('#board').height())
-	welcomeAnimation()
-	$(window).resize((e) => {
-		if (zoom_rate < 1) {
-			zoom_rate = 1
-			$('.brick').css('zoom', zoom_rate)
-		}
-	})
-	$('#pre-loader').remove()
-	// auto change slide
-	let timer = setInterval(changeSimpleSlide, 5000)
-	// let view = document.getElementById('view')
-	// let maxScrollTop = view.scrollHeight - view.clientHeight;
-	// view.scrollTop = maxScrollTop
-	// let scroller = setTimeout(function () {
-	//     $('#view').removeClass('horizontal_center')     
-	//     let maxScrollLeft = view.scrollWidth - view.clientWidth;
-	//     view.scrollLeft = maxScrollLeft/2   
-	//     let toasts = document.getElementById('toasts')
-	//     addToast(toasts, {type: 'success', title: 'Chào bạn!', message: 'Chúc bạn tham quan vui vẻ', duration: 2000})
-	// }, animation_duration)
-	// $('.brick:nth-child(1)').click(() => {
-	// 	let maxScrollLeft = view.scrollWidth - view.clientWidth;
-	// 	// let maxScrollTop = view.scrollHeight - view.clientHeight;
-	// 	console.log(maxScrollLeft, view.scrollWidth, view.clientWidth)
-	// })
+    $('#board').css(style)
+    $('#board').append(brick.repeat(data.map.number_of_cells))
+        //plots
+    for (let i = 0; i < data.map.plots.length; i++) {
+        let p = data.map.plots[i]
+            //find location
+        let b = $(`.brick:nth-child(${p.index+1})`) // b = brick
+        if (p.item_id.startsWith('location')) {
+            let index = data.locations.findIndex(item => item.id === p.item_id)
+            if (index !== -1) { // find out
+                b.append(presentItem(data.locations[index]))
+            } else {
+                b.append("cái này chưa có location đặt vào, vào trang admin để đặt")
+            }
+        } else if (p.item_id.startsWith('decorator')) {
+            let index = data.decorators.findIndex(item => item.id === p.item_id)
+            if (index !== -1) { // find out
+                b.append(presentDecorator(data.decorators[index]))
+            } else {
+                b.append("cái này chưa có decorators đặt vào, vào trang admin để đặt")
+            }
+        }
+        b.css({
+            '--b_w': "auto",
+            gridColumn: `${p.x} / span ${p.w}`,
+            gridRow: `${p.y} / span ${p.h}`
+        })
+        b.addClass('plot')
+    }
+
+    //paths
+    for (let i = 0; i < data.map.paths.length; i++) {
+        let p = data.map.paths[i]
+        let b = $(`.brick:nth-child(${p.index+1})`)
+        b.css({
+            backgroundImage: `url("${data.map.path_list.options[p.op_no]}")`,
+            gridColumn: `${p.x} / span 1`,
+            gridRow: `${p.y} / span 1`
+        })
+        b.addClass('path')
+    }
+    // alert($('#board').height())
+    welcomeAnimation()
+
+    // if (data.features.includes('gameFeature')) {
+    //     document.getElementById('bubble-chat').style.display = "none";
+    //     document.getElementById("myModal").style.display = "none";
+    // }
+
+    $(window).resize((e) => {
+        if (zoom_rate < 1) {
+            zoom_rate = 1
+            $('.brick').css('zoom', zoom_rate)
+        }
+    })
+    $('#pre-loader').remove()
+        // auto change slide
+    let timer = setInterval(changeSimpleSlide, 5000)
+        // let view = document.getElementById('view')
+        // let maxScrollTop = view.scrollHeight - view.clientHeight;
+        // view.scrollTop = maxScrollTop
+        // let scroller = setTimeout(function () {
+        //     $('#view').removeClass('horizontal_center')     
+        //     let maxScrollLeft = view.scrollWidth - view.clientWidth;
+        //     view.scrollLeft = maxScrollLeft/2   
+        //     let toasts = document.getElementById('toasts')
+        //     addToast(toasts, {type: 'success', title: 'Chào bạn!', message: 'Chúc bạn tham quan vui vẻ', duration: 2000})
+        // }, animation_duration)
+        // $('.brick:nth-child(1)').click(() => {
+        // 	let maxScrollLeft = view.scrollWidth - view.clientWidth;
+        // 	// let maxScrollTop = view.scrollHeight - view.clientHeight;
+        // 	console.log(maxScrollLeft, view.scrollWidth, view.clientWidth)
+        // })
 }
 const board_style = () => {
-	let index = parseInt(data.map.background.selected)
-	let style = {}
-	let style_str = data.map.background.options[index].style
-	if (style_str.startsWith('http')) {
-		style = {
-			backgroundImage: `url('${style_str}')`,
-		}
-	} else {
-		// let st = "background-color: #000000; background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);"
-		let l = style_str.split(';')
-		// let res = {}
-		for (let i = 0; i < l.length; i++) {
-			if (l[i].trim()) {
-				let t = l[i].trim().split(':')
-				let attrs = t[0].split('-')
-				if (attrs.length > 1) {
-					for (let j = 1; j < attrs.length; j++) {
-						attrs[j] = attrs[j].charAt(0).toUpperCase() + attrs[j].slice(1);
-					}
-					style[attrs.join('')] = t[1]
-				} else {
-					style[t[0]] = t[1]
-				}
-			}
-		}
-	}
-	style.gridTemplateColumns = `repeat(${data.map.cells_per_row}, 1fr)`
-	console.log(style)
-	return style
+    let index = parseInt(data.map.background.selected)
+    let style = {}
+    let style_str = data.map.background.options[index].style
+    if (style_str.startsWith('http')) {
+        style = {
+            backgroundImage: `url('${style_str}')`,
+        }
+    } else {
+        // let st = "background-color: #000000; background-image: linear-gradient(315deg, #000000 0%, #7f8c8d 74%);"
+        let l = style_str.split(';')
+            // let res = {}
+        for (let i = 0; i < l.length; i++) {
+            if (l[i].trim()) {
+                let t = l[i].trim().split(':')
+                let attrs = t[0].split('-')
+                if (attrs.length > 1) {
+                    for (let j = 1; j < attrs.length; j++) {
+                        attrs[j] = attrs[j].charAt(0).toUpperCase() + attrs[j].slice(1);
+                    }
+                    style[attrs.join('')] = t[1]
+                } else {
+                    style[t[0]] = t[1]
+                }
+            }
+        }
+    }
+    style.gridTemplateColumns = `repeat(${data.map.cells_per_row}, 1fr)`
+    console.log(style)
+    return style
 }
 
 function openModal(el) {
-	$(el).next().addClass('open-modal')
+    $(el).next().addClass('open-modal')
 }
 const presentDecorator = (data) => {
-	if (data.media.length > 0) {
-		return `
+    if (data.media.length > 0) {
+        return `
             <div class='full bgc-image' style='background-image: url(${data.media[0]})'></div>
         `
-	} else {
-		return `Not decorator`
-	}
+    } else {
+        return `Not decorator`
+    }
 }
 const presentItem = (data) => {
-	// sử hàm này để thay đổi cái present card cái này sẽ để  hiển thị location, tạo thêm cái tương tự để  hiển thị decorators 
-	let slide_items = ''
-	for (let i = 0; i < data.media.length; i++) {
-		let classs = 'simple-slide-item '
-		if (slide_items.length === 0) {
-			classs += 'simple-slide-item-active'
-		}
-		let media = data.media[i]
-		if (media.type === 'JPEG' || media.type === 'JPG' || media.type === 'image' || media.type === 'GIF' || media.type === 'PNG' || media.type === 'TIF' || media.type === 'TIFF') {
-			slide_items += `
+    // sử hàm này để thay đổi cái present card cái này sẽ để  hiển thị location, tạo thêm cái tương tự để  hiển thị decorators 
+    let slide_items = ''
+    for (let i = 0; i < data.media.length; i++) {
+        let classs = 'simple-slide-item '
+        if (slide_items.length === 0) {
+            classs += 'simple-slide-item-active'
+        }
+        let media = data.media[i]
+        if (media.type === 'JPEG' || media.type === 'JPG' || media.type === 'image' || media.type === 'GIF' || media.type === 'PNG' || media.type === 'TIF' || media.type === 'TIFF') {
+            slide_items += `
             <div class="${classs}" style="background-image: url('${data.media[i].url}')">
             
             </div>
            `
-		}
-	}
-	return `    
+        }
+    }
+    return `    
         <div class="present-item" id="${data.id}" onclick="showPopup('${data.id}')">
            <div class="simple-slider">
             ${
@@ -395,32 +413,36 @@ const presentItem = (data) => {
         </div>
    `
 }
-const popUpContent = (data) => {
-	let card = '';
-	let sign = 0
-	for (i = 1; i < data.media.length; i++) {
-		if (data.media[i].type === 'IFRAME') {
-			card += `<div style='margin-top: 4rem;'>
+const popUpContent = (data, isGame) => {
+        let card = '';
+        let sign = 0
+        for (i = 1; i < data.media.length; i++) {
+            if (data.media[i].type === 'IFRAME') {
+                card += `<div style='margin-top: 4rem;'>
                 ${mediaHtml(data.media[i], '', false)}
             </div>`
-		} else {
-			card += imageSection(data.media[i], sign)
-			sign += 1
-		}
-	}
-	return `
+            } else {
+                card += imageSection(data.media[i], sign)
+                sign += 1
+            }
+        }
+        let showQuestion = '';
+        if (isGame) {
+            showQuestion = `<div>${showGame(data)}</div>`;
+        } else {
+            showQuestion = ``;
+        }
+        return `
         ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
         ${mediaHtml(data.media[0], '', true)}
         `:'<div></div>'}
         <p class="media-description">${data.description}</p>
        ${card}
-        <div style="text-align: center">
-        <br>
-        <br>
-        <p> HẾT </p>
-        </div>
+	   <div>${showQuestion}</div>
+
         `
 }
+
 const imageSection = (data, i) => {
 	let modifed = 'image-section--even'
 	let inner = `
@@ -534,8 +556,9 @@ const slider = (data) => {
 const showPopup = (item_id) => {
 	let index = data.locations.findIndex(item => item.id == item_id)
 	// console.log(data.locations, item_id)
-
-	if(!$(`#${item_id} .tooltip`).hasClass('tooltip-visited')) {
+    let isGame = data.features.includes("gameFeature");
+    // console.log(a);
+    if(!$(`#${item_id} .tooltip`).hasClass('tooltip-visited')) {
 		$(`#${item_id} .tooltip`).addClass('tooltip-visited')
 		$(`#${item_id} .tooltip`).append("<i class='bx bx-user-check'></i>")
 	}
@@ -547,7 +570,7 @@ const showPopup = (item_id) => {
 		let header = `
             <p style='font-size: 1.5rem; font-weight: 560;'>${location.name}</p>
         `
-		let popup_content = popUpContent(location)
+		let popup_content = popUpContent(location,isGame)
 		let popup_footer = popUpFooter(location)
 		let md = modal(header, popup_content, popup_footer, popup_id, popup_id, true, 'medium')
 		$('#container').prepend(md.getHtml())
@@ -560,6 +583,8 @@ const showPopup = (item_id) => {
 			md.close()
 		})
 	}
+    // checkAnswer();
+
 }
 const zoom = (direction, offset = 0.05) => {
 	let current_percent = parseFloat($('.brick').css('zoom'))

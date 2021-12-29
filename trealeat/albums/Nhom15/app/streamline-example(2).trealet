@@ -11,7 +11,7 @@
             "cells_per_row": 50,
             "number_of_cells": "3800",
             "path_list": {
-                "selected": "op_10",
+                "selected": "op_15",
                 "options": {
                     "op_9": "https://hcloud.trealet.com/albums/Nhom15/song8.png",
                     "op_10": "https://hcloud.trealet.com/albums/Nhom15/gach6.png",
@@ -4476,7 +4476,7 @@
                 ],
                 "next": "",
                 "question_ids": [
-                    "question_1"
+                    "question_0"
                 ]
             },
             {
@@ -4547,7 +4547,7 @@
                     15762
                 ],
                 "question_ids": [
-                    "question_2"
+                    "question_0"
                 ]
             },
             {
@@ -5045,7 +5045,7 @@
                     "reward": 0
                 },
                 {
-                    "id": "question_0",
+                    "id": "question_5",
                     "content": "Ở giữa Vườn Cơ Hạ có một hồ nước rộng gọi là Minh Hồ. Một cây cầu bắc qua Minh Hồ có tên gọi là gì?",
                     "images": [],
                     "answers": [{
@@ -5542,10 +5542,7 @@
             "max_turn_replies": 5,
             "win": "https://hcloud.trealet.com/albums/Nhom15/win.png",
             "loss": "https://hcloud.trealet.com/albums/Nhom15/lose.png",
-            "bg_icon": "",
-            "bg_game": "",
-            "picked": -1,
-            "guide": "Đây là một trò chơi giải ô chữ, ô chữ gồm X chữ cái.Câu hỏi: Kinh thành Huế được một vua tiến hành khảo sát từ năm 1803, khởi công xây dựng từ 1805, hãy cho biết đó là vị vua nào? Bạn sẽ có Y lần trả lời Giải thưởng: … Gợi ý của chương trình là một hình ảnh liên quan đến ô chữ mà bạn cần đoán đúng đó nhưng được chia thành các mảnh khác nhau và bị lật úp. Để lật các ô hình ảnh đó lên, nhiệm vụ của các bạn là khám phá các địa điểm của Đại Nội Huế, ở cuối mỗi địa điểm sẽ có một câu hỏi liên quan đế",
+            "guide": "Đây là một trò chơi giải “ô chữ’’, ô chữ gồm X chữ cái. \nCâu hỏi: Kinh thành Huế được một vua tiến hành khảo sát từ năm 1803, khởi công xây dựng từ 1805, hãy cho biết đó là vị vua nào?\nBạn sẽ có Y lần trả lời\nGiải thưởng: …\nGợi ý của chương trình là một hình ảnh liên quan đến ô chữ mà bạn cần đoán đúng đó nhưng được chia thành các mảnh khác nhau và bị lật úp. Để lật các ô hình ảnh đó lên, nhiệm vụ của các bạn là khám phá các địa điểm của Đại Nội Huế, ở cuối mỗi địa điểm sẽ có một câu hỏi liên quan đến địa điểm mà bạn đang khám phá. Nếu trả lời đúng bạn sẽ lật được ô hình ảnh tương ứng, ngược lại nếu trả lời sai ô hình ảnh đó vẫn sẽ bị lật úp.\nLưu ý: Trong quá trình tham quan, bạn có thể trả lời ô chữ bất kì khi nào.\n",
             "description": "Từ khóa gồm 7 kí tự, nói về một địa điểm nào đó ở Huế"
         }
     }
