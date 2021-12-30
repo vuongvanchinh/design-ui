@@ -95,26 +95,19 @@ $domain = $_SERVER['HTTP_HOST'];
 
         </div>
         <div id="bubble-chat">
-            <!-- <div class="popup">
-                <div class="popuptext" id="myPopup">
-                </div>
-            </div> -->
+           
         </div>
         <div id="myModal" class="modalGame">
             <!-- Modal content -->
-            <div class="modalGame-content">
+            <div class="modalGame-content" >
                 <span class="close">&times;</span>
                 <div>
                     <span class="guide">?</span>
                     <span class="guide-popup" id="guide-popup">
                         <h2>Hướng dẫn</h2>
                         <hr color="black">
-                        <span style="text-align: left">
-                            <br>
-                            - Mỗi địa điểm sẽ có một câu hỏi là một mảnh ghép của bức tranh phía dưới.
-                            <br> - Bạn cần trả lời đúng câu hỏi ở các địa điểm để có thể xem được một phần của bức tranh.
-                            <br> - Nhập từ khóa liên quan đến hình ảnh mà bạn mở ra ở dưới. Bạn sẽ có 5 lần trả lời.
-                        </span>
+                        <span style="text-align: left" id="guide-content">
+                             </span>
                     </span>
                 </div>
                 <div id="gamePopup"></div>
@@ -144,8 +137,6 @@ $domain = $_SERVER['HTTP_HOST'];
     ?>
     <script>
         $(document).ready(() => {
-            // Check Gamefeature
-
             let count = 0;
             const ele = document.getElementById('bubble-chat');
             const screen_w = $("#container").width()
@@ -161,10 +152,7 @@ $domain = $_SERVER['HTTP_HOST'];
                 y: 0
             };
             var rect;
-            // if(1==1) {
-            //     ele.style.display = "none";
-            //     modal.style.display = "none";
-            // }
+          
             //MODEL
             // Get the modal
             let modal = document.getElementById("myModal");
@@ -172,7 +160,9 @@ $domain = $_SERVER['HTTP_HOST'];
             // Get the <span> element that closes the modal
             let span_close = document.getElementsByClassName("close")[0];
             let span_guide = document.getElementsByClassName("guide")[0];
+            let guide_content =document.getElementById("guide-content");
 
+            
             // When the user clicks the button, open the modal 
             ele.onclick = function() {
                 myGamePopup.innerHTML = `${gamePopup()}`;
@@ -197,8 +187,12 @@ $domain = $_SERVER['HTTP_HOST'];
             }
 
             span_guide.onclick = function() {
+                // console.log(document.getElementById("guide-popup"));
+                // console.log(guide_content);
+                guide_content.innerText = `${showGuide()}`
                 document.getElementById("guide-popup").classList.toggle("show-guidePopup");
             }
+
 
             // When the user clicks on <span> (x), close the modal
             span_close.onclick = function() {

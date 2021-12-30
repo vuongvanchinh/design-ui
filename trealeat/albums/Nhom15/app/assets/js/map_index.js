@@ -413,33 +413,43 @@ const presentItem = (data) => {
         </div>
    `
 }
-const popUpContent = (data, isGame) => {
+const popUpContent = (location, isGame) => {
         let card = '';
         let sign = 0
-        for (i = 1; i < data.media.length; i++) {
-            if (data.media[i].type === 'IFRAME') {
+        for (i = 1; i < location.media.length; i++) {
+            if (location.media[i].type === 'IFRAME') {
                 card += `<div style='margin-top: 4rem;'>
-                ${mediaHtml(data.media[i], '', false)}
+                ${mediaHtml(location.media[i], '', false)}
             </div>`
             } else {
-                card += imageSection(data.media[i], sign)
+                card += imageSection(location.media[i], sign)
                 sign += 1
             }
         }
+        let isShown = true;
+        for(let i = 0; i < location.question_ids.length; i++) {
+            let index = data.game.questions.findIndex(v => v.id === location.question_ids[i]);
+            console.log(location.question_ids[i],"location.question_ids");
+            if(index === -1) {
+                isShown = false;
+            }
+        }
         let showQuestion = '';
-        if (isGame) {
-            showQuestion = `<div>${showGame(data)}</div>`;
+        if (isGame&&isShown) {
+            showQuestion = `<div>${showGame(location)}</div>`;
         } else {
             showQuestion = ``;
         }
-        return `
-        ${data.media.length > 0 && data.media[0].type === 'IFRAME' ? `
-        ${mediaHtml(data.media[0], '', true)}
-        `:'<div></div>'}
-        <p class="media-description">${data.description}</p>
-       ${card}
-	   <div>${showQuestion}</div>
+	
 
+
+        return `
+        ${location.media.length > 0 && location.media[0].type === 'IFRAME' ? `
+        ${mediaHtml(location.media[0], '', true)}
+        `:'<div></div>'}
+        <p class="media-description">${location.description}</p>
+       ${card}
+       <div>${showQuestion}</div>
         `
 }
 
@@ -524,7 +534,6 @@ const popUpFooter = (data) => {
             <span class="btn btn-footer"
             onclick="alert('chưa cài đặt')"
             >Quét mã QR</span>
-
             <span class="btn btn-footer"
                 onclick="alert('chưa cài đặt')"
             >

@@ -8,11 +8,37 @@ const QA_CONTAINER ='#QA-container'
 const QA_LIST_CONTAINER ='#QA-list-container'
 
 $(document).ready(() => {
-    let questionForm =  quizForm();
+    // let questionForm =  quizForm();
+    // renderQuestionList()
+    // questionForm.render();
+    // questionForm.setup();
+    // $(ADD_QA_BTN).click(()=>{
+    //     if(questionForm.validate()) {
+    //         let data = questionForm.getData()
+    //         // $(QUESTION_LIST).append(appendIDQuestion(data).html());
+    //         state.game.questions.push(data)
+    //         renderQuestionList()
+    //         addToast(document.getElementById('toasts'), {
+    //             type: "success",
+    //             message: `Thêm câu hỏi thành công`,
+    //             title: "Xong!",
+    //             duration: 3000
+    //         })
 
+    //         let form =  quizForm();
+    //         form.render();
+    //         form.setup();
+    //     }
+    // })
+    initRender();
+})
+
+const initRender = () => {
+    let questionForm =  quizForm();
     renderQuestionList()
 
     questionForm.render();
+    questionForm.setup();
     $(ADD_QA_BTN).click(()=>{
         if(questionForm.validate()) {
             let data = questionForm.getData()
@@ -25,10 +51,11 @@ $(document).ready(() => {
                 title: "Xong!",
                 duration: 3000
             })
+
+            initRender();
         }
     })
-
-})
+}
 
 const quizForm = () => {
      const html = () => `
@@ -68,7 +95,7 @@ const quizForm = () => {
                             </thead>
                             <tbody id="answers-list">
                             <tr>
-                                <td><input type="checkbox"/></td>
+                                <td><input type="checkbox" /></td>
                                 <td style="padding: 0 10px;">
                                     <div class="answer-img" id="add-answer-img1" onclick='addAImage(this)'> 
                                         <i class='bx bx-image-add'></i>
@@ -150,30 +177,68 @@ const quizForm = () => {
             if(!$('#question_content').val()) {
                 $('#question_content').next().next().text('Bạn không được bỏ trống câu hỏi')
                 $('#question_content').next().next().show()
+                $('#question_content').focus();
                 success = false
             } else {
                 $('#question_content').next().next().text('')
-                $('#question_content').next().next().show()
             }
             if(reward >= range|| reward < 0) {
                 $('#rewardId').next().next().text(`Id của phần thưởng nằm trong khoảng từ 0 - ${range}`)
                 $('#rewardId').next().next().show()
+                $('#rewardId').focus();
                 success = false
             }else {
-                $('#rewardId').next().next().text('')
-                $('#rewardId').next().next().show()
+                $('#rewardId').next().next().hide();
             }
             $(`${ANSWER_LIST} tr`).each(function(){
                 if(!$(this).find('input[type=text]').val()) {
                     $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
                     $(this).find('input[type=text]').next().next().show()
+                    $(this).find('input[type=text]').focus()
                     success = false
                 } else {
-                    $(this).find('input[type=text]').next().next().text('')
-                    $(this).find('input[type=text]').next().next().show()
+                    $(this).find('input[type=text]').next().next().hide();
                 }
             })
             return success
+     }
+
+     const setup = () => {
+        $('#question_content').change(() => {
+            let name = $('#question_content')
+            if(!name.val().trim()) {
+                name.next().next().text('Bạn không được bỏ trống câu hỏi')
+                name.next().next().show()
+                name.focus();
+            } else {
+                name.next().next().hide();
+            }
+        })
+        $(`${ANSWER_LIST} tr`).each(function(){
+            let input = $(this).find('input[type=text]')
+            $(this).find('input[type=text]').change(() => {
+                if(!input.val()) {
+                    $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
+                    $(this).find('input[type=text]').next().next().show()
+                    $(this).find('input[type=text]').focus()
+                } else {
+                    $(this).find('input[type=text]').next().next().hide();
+                }
+            })
+        })
+        $(`${ANSWER_LIST} tr`).each(function(){
+            let input = $(this).find('input[type=text]')
+            $(this).find('input[type=text]').change(() => {
+                if(!input.val()) {
+                    $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
+                    $(this).find('input[type=text]').next().next().show()
+                    $(this).find('input[type=text]').focus()
+                } else {
+                    $(this).find('input[type=text]').next().next().hide();
+                }
+            })
+        })
+
      }
      
      return {
@@ -188,6 +253,7 @@ const quizForm = () => {
             };
         }, 
         validate: () => validate(),
+        setup: () => setup()
      }
 }
 
@@ -308,32 +374,56 @@ const UpdateQuestionForm = (data) => {
            if(!$('#question_content').val()) {
                $('#question_content').next().next().text('Bạn không được bỏ trống câu hỏi')
                $('#question_content').next().next().show()
+               $('#question_content').focus();
                success = false
            } else {
-            $('#question_content').next().next().text('')
-            $('#question_content').next().next().show()
+            $('#question_content').next().next().hide();
            }
            if(reward >= range|| reward < 0) {
                $('#rewardId').next().next().text(`Id của phần thưởng nằm trong khoảng từ 0 - ${range}`)
                $('#rewardId').next().next().show()
+               $('#rewardId').focus()
                success = false
            } else {
-                $('#rewardId').next().next().text('')
-                $('#rewardId').next().next().show()
+                $('#rewardId').next().next().hide();
            }
            $(`${ANSWER_LIST} tr`).each(function(){
                if(!$(this).find('input[type=text]').val()) {
                    $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
                    $(this).find('input[type=text]').next().next().show()
+                   !$(this).find('input[type=text]').focus()
                    success = false
                } else {
-                    $(this).find('input[type=text]').next().next().text('')
-                    $(this).find('input[type=text]').next().next().show()
+                    $(this).find('input[type=text]').next().next().hide();
                }
            })
            return success
     }
+    const setup = () => {
+        $('#question_content').change(() => {
+            let name = $('#question_content')
+            if(!name.val().trim()) {
+                name.next().next().text('Bạn không được bỏ trống câu hỏi')
+                name.next().next().show()
+                name.focus();
+            } else {
+                name.next().next().hide();
+            }
+        })
+        $(`${ANSWER_LIST} tr`).each(function(){
+            let input = $(this).find('input[type=text]')
+            $(this).find('input[type=text]').change(() => {
+                if(!input.val()) {
+                    $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
+                    $(this).find('input[type=text]').next().next().show()
+                    $(this).find('input[type=text]').focus()
+                } else {
+                    $(this).find('input[type=text]').next().next().hide();
+                }
+            })
 
+        })
+     }
      return {
          render: () => $(QA_CONTAINER).html(html),
          getData: () => {
@@ -346,7 +436,7 @@ const UpdateQuestionForm = (data) => {
             };
         }, 
         validate: () => validate(),
-
+        setup: () => setup(),
      }
 }
 
@@ -387,6 +477,7 @@ const questionItem = () => {
     }
     return html;
 }
+
 const deleteQuestionItem = (index) => {
     let footer = `
         <div class="flex space-between">
@@ -426,26 +517,28 @@ const showUpdateQuestion = (index, e) => {
     e.classList.add('selected-question-item');
     let form  = UpdateQuestionForm(state.game.questions[parseInt(index)]);
     form.render();
+    form.setup();
 
     $("#SubmitEditQA-Btn").click(() => {
         if(form.validate()) {
-        state.game.questions[parseInt(index)] = {...form.getData()};
-        renderQuestionList()
-        addToast(document.getElementById('toasts'), {
-            type: "success",
-            message: `Chỉnh sửa câu hỏi thành công`,
-            title: "Xong!",
-            duration: 3000
-        })
-        }
+            state.game.questions[parseInt(index)] = {...form.getData()};
+            renderQuestionList()
+            addToast(document.getElementById('toasts'), {
+                type: "success",
+                message: `Chỉnh sửa câu hỏi thành công`,
+                title: "Xong!",
+                duration: 3000
+            })
         let questionForm = quizForm();
             questionForm.render()
             console.log(questionForm.render());
             for(let i = 0; i < e.parentElement.children.length; i++) {
                 e.parentElement.children[i].classList.remove('selected-question-item')
             }
+            questionForm.setup();
     
         $("#add-QA-btn").click(()=>{
+            questionForm.setup();
             if(questionForm.validate()) {
                 let data = questionForm.getData()
                 // $(QUESTION_LIST).append(appendIDQuestion(data).html());
@@ -459,6 +552,9 @@ const showUpdateQuestion = (index, e) => {
                 })
             }
         })
+        }
+
+
     })
     $('#question_content').focus();
     let questionForm = quizForm();
@@ -468,9 +564,10 @@ const showUpdateQuestion = (index, e) => {
         for(let i = 0; i < e.parentElement.children.length; i++) {
             e.parentElement.children[i].classList.remove('selected-question-item')
         }
-
+        questionForm.setup();
         $("#add-QA-btn").click(()=>{
             if(questionForm.validate()) {
+                questionForm.setup();
                 let data = questionForm.getData()
                 // $(QUESTION_LIST).append(appendIDQuestion(data).html());
                 state.game.questions.push(data)
@@ -481,6 +578,7 @@ const showUpdateQuestion = (index, e) => {
                     title: "Xong!",
                     duration: 3000
                 })
+                initRender();
             }
         })
     })
@@ -503,7 +601,7 @@ const  decreaseValue = () => {
 
 const addAnswer = () => {
     let num = $(ANSWER_LIST).children().length + 1
-    let form = answerForm(num);
+    let form = answerForm(num,'');
 
     if(num > 5) {
         addToast(document.getElementById('toasts'), {
@@ -517,7 +615,8 @@ const addAnswer = () => {
         // if(delBtn !== null) {
         //     delBtn.parentElement.remove();
         // }
-        $(ANSWER_LIST).append(form);
+        $(ANSWER_LIST).append(form.html);
+        form.setup();
     }
     // $(ANSWER_LIST).scrollTop(Number.MAX_SAFE_INTEGER);
 }
@@ -543,7 +642,35 @@ const answerForm = (num, value='') => {
         </td>
     </tr>
     `
-    return html;
+    const setup = () => {
+        let answer = $(`${ANSWER_LIST} tr:nth-child(${num})`)
+        answer.find('input[type=text]').change(() => {
+            if(!answer.find('input[type=text]').val()) {
+                answer.find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
+                answer.find('input[type=text]').next().next().show()
+                answer.find('input[type=text]').focus()
+            } else {
+                answer.find('input[type=text]').next().next().hide();
+            }
+        })
+        answer.find('input[type=checkbox]').change(() => {
+            isAnswer = num -1;
+        })
+        // .each(function(){
+        //     if(!$(this).find('input[type=text]').val()) {
+        //         $(this).find('input[type=text]').next().next().text('Bạn không được bỏ trống câu trả lời')
+        //         $(this).find('input[type=text]').next().next().show()
+        //         $(this).find('input[type=text]').focus()
+        //         success = false
+        //     } else {
+        //         $(this).find('input[type=text]').next().next().hide();
+        //     }
+        // })
+    }
+    return {
+        html,
+        setup: () => setup(),
+    };
 }
 const updateAnswerForm = (num, value='',imageUrl, isAnswer) => {
     let imageStyle = imageUrl? `style="background-image: url(${imageUrl})"`:"";

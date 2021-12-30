@@ -4,21 +4,27 @@ let rewards = [];
 let times = 5;
 
 
-
-const showQuestion = (qs_id) => {
+const showQuestion = (qs_id,locationQuestion) => {
     let index = data.game.questions.findIndex(qs => qs.id == qs_id);
     let question = data.game.questions[index];
     let reward = question.reward;
 
     let answer = '';
+
+    let indexLocation = data.locations.findIndex(v => v.id === locationQuestion.id);
+
+    if( data.locations[indexLocation].picked !== -1) {
+
+    }
+
+
     for (let i = 0; i < question.answers.length; i++) {
         // console.log(question.answers[i].images.length);
         answer += ` <div class="answer">
     <input type="radio" class ="answer-input" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
-    <label for="option-${i}" class="option" id="option-${i}-label">
-        <span>${question.answers[i].content}</span>
-        
-    </label>
+        <label for="option-${i}" class="option" id="option-${i}-label">
+            <span>${question.answers[i].content}</span>
+        </label>
     </div>
     `
     }
@@ -33,33 +39,48 @@ const showQuestion = (qs_id) => {
         ${answer}
     </div>
     <div class="submit-button-container">
-        <button onclick="checkAnswer(${reward})">Submit Question</button>
+        <button class='btn btn-save' onclick="checkAnswer(${locationQuestion.id},${reward})">Xem đáp án</button>
     </div>
     `
 }
 
-const checkAnswer = (reward) => {
-    let a;
+const checkAnswer = (locationQuestionId, reward) => { 
+    let pick = -1;
+    document.querySelector('.submit-button-container').remove();
+    let indexLocation = data.locations.findIndex(v => v.id === locationQuestionId.id);
+    
     const options = document.getElementsByName("option");
     for (let index = 0; index < options.length; index++) {
         if (options[index].value === 'true') {
-            a = index;
+            pick = index;
         }
+        document.getElementById(`option-${index}-label`).disabled = true;
+        document.getElementById(`option-${index}`).disabled = true;
+        document.getElementById(`option-${index}`).classList.add('none_hover');
     }
+
     for (let index = 0; index < options.length; index++) {
         if (options[index].value === 'true' && options[index].checked === true) {
+            data.locations[indexLocation].picked = index;
             rewards.push(reward);
             setTimeout(() => {
-                document.getElementById("option-" + a + "-label").classList.add("answer-correct");
+                document.getElementById("option-" + pick + "-label").classList.add("answer-correct");
                 setTimeout(() => {
                     showGamePopup();
                 }, 1000);
             }, 1000);
 
         } else if (options[index].value === 'false' && options[index].checked === true) {
+            data.locations[indexLocation].picked = index;
             setTimeout(() => {
-                document.getElementById("option-" + a + "-label").classList.add("answer-correct");
+                document.getElementById("option-" + pick + "-label").classList.add("answer-correct");
                 document.getElementById("option-" + index + "-label").style.backgroundColor = "red";
+                addToast(document.getElementById('toasts'), {
+                    type: 'success',
+                    title: 'Bạn đã trả lời sai!',
+                    message: 'Chúc bạn may mắn lần sau!',
+                    duration: 3000
+                })
             }, 2000);
             // alert('chưa chính xác');
             // console.log(index);
@@ -82,6 +103,12 @@ const checkAnswer = (reward) => {
 const showGamePopup = () => {
     const ele = document.getElementById('bubble-chat');
     ele.click();
+    addToast(document.getElementById('toasts'), {
+        type: 'success',
+        title: 'Xin chúc mừng!',
+        message: 'Bạn đã mở khoá thêm một mảnh ghép hình ảnh!',
+        duration: 3000
+    })
     // console.log();
     // document.getElementById(`grid-${reward}`).style.background = "none";
 }
@@ -93,7 +120,7 @@ const showGame = (data) => {
     let footer = '';
     let content = '';
     // data.question_ids.length
-    for (let i = 0; i < 1; i++) { content += ` ${showQuestion(data.question_ids[i])} ` }
+    for (let i = 0; i < 1; i++) { content += ` ${showQuestion(data.question_ids[i], data)} ` }
     return ` 
     <div class = "game-container">
     <hr style="margin: 2rem ">
@@ -105,6 +132,19 @@ const showGame = (data) => {
         </div>
         </div>
         `
+}
+const showGuide = () => {
+    return `
+        ${data.game.guide}
+    `
+}
+
+function getBackground(param) {
+    if (param == 1) {
+        return data.game.bg_icon;
+    } else {
+        return data.game.bg_game;
+    }
 }
 
 const gamePopup = () => {

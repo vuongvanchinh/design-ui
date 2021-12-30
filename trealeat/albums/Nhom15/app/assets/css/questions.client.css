@@ -135,6 +135,9 @@
 .answer input[type=radio]+label:hover {
     background: rgba(189, 232, 243, 0.75);
 }
+.answer input[type=radio].none_hover+label:hover {
+    background: none;
+}
 
 .answer input[type=radio]:checked+label {
     background: rgb(112, 175, 175);
@@ -182,7 +185,7 @@
     justify-content: center;
 }
 
-.submit-button-container button {
+/* .submit-button-container button {
     width: 8rem;
     height: 2rem;
     border-radius: 10px;
@@ -192,10 +195,12 @@
     border: 2px solid gray;
     cursor: pointer;
     outline: none;
-}
+} */
 
 .submit-button-container button:hover {
-    background-color: rgb(93, 116, 143);
+    color: var(--hover-color);
+    background-color: transparent;
+    outline: solid;
 }
 
 .grid-img {

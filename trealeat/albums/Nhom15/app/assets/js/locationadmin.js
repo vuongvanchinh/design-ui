@@ -35,6 +35,7 @@ const renderLocationPage = () => {
                 </td>
             </tr>
         `
+        state.locations[i].picked = -1;
     }
 
     const location_headers = ['Id', 'Tên', 'Id Hình ảnh/video...','Id câu hỏi','']
@@ -111,6 +112,7 @@ const location_form = (dt = {id: false, name:'', description: '', media: [], que
         </div>
     </form>
     `
+    
     return {
         getHtml: () => form,
         getData: () =>{
@@ -442,11 +444,29 @@ const updateLocation = (location_id) => {
         if(!form.validate()) { // not fail
             let dt = form.getData()
             state.locations[index] = {id: state.locations[index].id, ...dt}
+
+            let questionString = ''
+            for (let i = 0; i < dt.question_ids.length; i++) {
+                let index = state.game.questions.findIndex(v => v.id === dt.question_ids[i])
+                let string = ''
+                if(index === -1) {
+                    string = '<p class="error-message">Không tồn tại</p>';
+                } else {
+                    string = state.game.questions[index].content;
+                }
+                if(questionString !== '') {
+                    questionString += ',';
+                }
+                questionString += string
+            }
+
             $(`#locations-table  tbody tr:nth-child(${index + 1})`).text('')
             $(`#locations-table > tbody > tr:nth-child(${index + 1})`).append(`
                 <td>${state.locations[index].id}</td>
                 <td>${dt.name}</td>
-                <td>${state.locations[index].media}</td>
+                <td><p class='oneline'>${dt.media}<p/></td>
+                <td><p class="oneline">${questionString}</p></td>
+                <td></td>
                 <td>
                     ${dropdown("<i class='bx bx-dots-vertical-rounded circle-icon'></i>", `
                         <div class="btn-del" onclick="deleteLocation('${state.locations[index].id}')">Xóa</div>
