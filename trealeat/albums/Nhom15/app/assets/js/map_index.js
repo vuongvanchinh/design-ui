@@ -56,7 +56,7 @@ $(document).ready(() => {
                 let dt = await res.json()
                 data = dt.trealet
                 document.title = data.title
-                console.log('media loi')
+                    // console.log('media loi')
                     // let media_ids = getListMediaId(data)
                 let medias_res = await fetch('media.json')
                 let medias = await medias_res.json()
@@ -169,6 +169,11 @@ const gameFeature = () => {
         document.getElementById("myModal").style.display = "none";
         // document.getElementsByClassName("game-container").style.display = "none";
     }
+    document.getElementById('bubble-chat').style.visibility = "visible";
+    document.getElementById('bubble-chat').style.background = `url('${data.game.bg_icon}')`;
+    document.getElementById('bubble-chat').style.backgroundSize = "cover";
+
+
 
 }
 
@@ -214,7 +219,6 @@ const welcomeAnimation = () => {
     }
 }
 const setup = () => {
-    gameFeature();
     // render brick
     let brick = `
         <div class='brick' style ='--b_w: ${data.map.cell_width}'>
@@ -269,11 +273,8 @@ const setup = () => {
     }
     // alert($('#board').height())
     welcomeAnimation()
+    gameFeature();
 
-    // if (data.features.includes('gameFeature')) {
-    //     document.getElementById('bubble-chat').style.display = "none";
-    //     document.getElementById("myModal").style.display = "none";
-    // }
 
     $(window).resize((e) => {
         if (zoom_rate < 1) {
@@ -427,20 +428,20 @@ const popUpContent = (location, isGame) => {
             }
         }
         let isShown = true;
-        for(let i = 0; i < location.question_ids.length; i++) {
+        for (let i = 0; i < location.question_ids.length; i++) {
             let index = data.game.questions.findIndex(v => v.id === location.question_ids[i]);
-            console.log(location.question_ids[i],"location.question_ids");
-            if(index === -1) {
+            // console.log(location.question_ids[i],"location.question_ids");
+            if (index === -1) {
                 isShown = false;
             }
         }
         let showQuestion = '';
-        if (isGame&&isShown) {
+        if (isGame && isShown) {
             showQuestion = `<div>${showGame(location)}</div>`;
         } else {
             showQuestion = ``;
         }
-	
+
 
 
         return `

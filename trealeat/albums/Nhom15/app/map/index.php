@@ -94,7 +94,7 @@ $domain = $_SERVER['HTTP_HOST'];
         <div id="toasts">
 
         </div>
-        <div id="bubble-chat">
+        <div id="bubble-chat" style="background-size: cover;">
            
         </div>
         <div id="myModal" class="modalGame">
@@ -161,8 +161,6 @@ $domain = $_SERVER['HTTP_HOST'];
             let span_close = document.getElementsByClassName("close")[0];
             let span_guide = document.getElementsByClassName("guide")[0];
             let guide_content =document.getElementById("guide-content");
-
-            
             // When the user clicks the button, open the modal 
             ele.onclick = function() {
                 myGamePopup.innerHTML = `${gamePopup()}`;

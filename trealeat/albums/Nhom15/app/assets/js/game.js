@@ -4,51 +4,100 @@ let rewards = [];
 let times = 5;
 
 
-const showQuestion = (qs_id,locationQuestion) => {
+const showQuestion = (qs_id, locationQuestion) => {
     let index = data.game.questions.findIndex(qs => qs.id == qs_id);
     let question = data.game.questions[index];
     let reward = question.reward;
-
     let answer = '';
+    let index_corect = question.answers.findIndex(isAs => isAs.isAnswer == true);
+    console.log(index_corect, "indexcorect");
+
 
     let indexLocation = data.locations.findIndex(v => v.id === locationQuestion.id);
+    let index_picker = data.locations[indexLocation].picked;
+    console.log(index_picker, "indexpicker");
 
-    if( data.locations[indexLocation].picked !== -1) {
+    if (index_picker !== -1) {
+        for (let i = 0; i < question.answers.length; i++) {
+            //hiển thị đap an đúng
+            if ((i == index_corect)) {
+                answer += ` <div class="answer">
+                        <input type="radio" class ="answer-input" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
+                            <label for="option-${i}" class="option answer-correct" id="option-${i}-label">
+                                <span>${question.answers[i].content}</span>
+                            </label>
+                        </div>
+                        `
+            } //nếu chọn sai
+            else if ((index_picker !== index_corect) && (i == index_picker)) {
+                answer += ` <div class="answer">
+                            <input type="radio" class ="answer-input" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
+                                <label for="option-${i}" class="option" style="background-color: red;" id="option-${i}-label">
+                                    <span>${question.answers[i].content}</span>
+                                </label>
+                            </div>
+                            `
+            } else {
+                answer += ` <div class="answer">
+                        <input type="radio" class ="answer-input none_hover none_click" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
+                            <label for="option-${i}" class="option" id="option-${i}-label">
+                                <span>${question.answers[i].content}</span>
+                            </label>
+                        </div>
+                        `
+            }
+            // console.log(question.answers[i].images.length);
 
-    }
+            // document.getElementById(`option-${i}-label`).classList.add("answer-correct");
 
-
-    for (let i = 0; i < question.answers.length; i++) {
-        // console.log(question.answers[i].images.length);
-        answer += ` <div class="answer">
-    <input type="radio" class ="answer-input" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
-        <label for="option-${i}" class="option" id="option-${i}-label">
-            <span>${question.answers[i].content}</span>
-        </label>
-    </div>
-    `
-    }
-    return `
-    <div class="game-question-container">
-        <div id="display-question">
-            <img src="${question.images[0]}" alt="">
-            <h1>Câu ${reward}, ${question.content}</h1>
+        }
+        return `
+        <div class="game-question-container">
+            <div id="display-question">
+                <img src="${question.images[0]}" alt="">
+                <h1>Câu ${reward}, ${question.content}</h1>
+            </div>
         </div>
-    </div>
-    <div class="game-options-container">
-        ${answer}
-    </div>
-    <div class="submit-button-container">
-        <button class='btn btn-save' onclick="checkAnswer(${locationQuestion.id},${reward})">Xem đáp án</button>
-    </div>
-    `
+        <div class="game-options-container">
+            ${answer}
+        </div>
+     
+        `
+    } else {
+        for (let i = 0; i < question.answers.length; i++) {
+            // console.log(question.answers[i].images.length);
+            answer += ` <div class="answer">
+        <input type="radio" class ="answer-input" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
+            <label for="option-${i}" class="option" id="option-${i}-label">
+                <span>${question.answers[i].content}</span>
+            </label>
+        </div>
+        `
+        }
+        return `
+        <div class="game-question-container">
+            <div id="display-question">
+                <img src="${question.images[0]}" alt="">
+                <h1>Câu ${reward}, ${question.content}</h1>
+            </div>
+        </div>
+        <div class="game-options-container">
+            ${answer}
+        </div>
+        <div class="submit-button-container">
+            <button class='btn btn-save' onclick="checkAnswer(${locationQuestion.id},${reward})">Xem đáp án</button>
+        </div>
+        `
+    }
+
 }
 
-const checkAnswer = (locationQuestionId, reward) => { 
+const checkAnswer = (locationQuestionId, reward) => {
     let pick = -1;
-    document.querySelector('.submit-button-container').remove();
     let indexLocation = data.locations.findIndex(v => v.id === locationQuestionId.id);
-    
+    //xóa hiệu ứng khi trả lời
+
+
     const options = document.getElementsByName("option");
     for (let index = 0; index < options.length; index++) {
         if (options[index].value === 'true') {
@@ -65,6 +114,8 @@ const checkAnswer = (locationQuestionId, reward) => {
             rewards.push(reward);
             setTimeout(() => {
                 document.getElementById("option-" + pick + "-label").classList.add("answer-correct");
+                document.querySelector('.submit-button-container').remove();
+
                 setTimeout(() => {
                     showGamePopup();
                 }, 1000);
@@ -75,6 +126,8 @@ const checkAnswer = (locationQuestionId, reward) => {
             setTimeout(() => {
                 document.getElementById("option-" + pick + "-label").classList.add("answer-correct");
                 document.getElementById("option-" + index + "-label").style.backgroundColor = "red";
+                document.querySelector('.submit-button-container').remove();
+
                 addToast(document.getElementById('toasts'), {
                     type: 'success',
                     title: 'Bạn đã trả lời sai!',
@@ -99,39 +152,17 @@ const checkAnswer = (locationQuestionId, reward) => {
 
 
 // Hiển thị gamepopup khi trả lời đúng
-
 const showGamePopup = () => {
     const ele = document.getElementById('bubble-chat');
     ele.click();
     addToast(document.getElementById('toasts'), {
-        type: 'success',
-        title: 'Xin chúc mừng!',
-        message: 'Bạn đã mở khoá thêm một mảnh ghép hình ảnh!',
-        duration: 3000
-    })
-    // console.log();
-    // document.getElementById(`grid-${reward}`).style.background = "none";
-}
-
-const showGame = (data) => {
-    let header = `
-    <p style='font-size: 1.5rem; font-weight: 560;'>Trò chơi</p>
-    `
-    let footer = '';
-    let content = '';
-    // data.question_ids.length
-    for (let i = 0; i < 1; i++) { content += ` ${showQuestion(data.question_ids[i], data)} ` }
-    return ` 
-    <div class = "game-container">
-    <hr style="margin: 2rem ">
-        <div>
-        ${header}
-        </div>
-        <div class="game-quiz-container">
-            ${content}
-        </div>
-        </div>
-        `
+            type: 'success',
+            title: 'Xin chúc mừng!',
+            message: 'Bạn đã mở khoá thêm một mảnh ghép hình ảnh!',
+            duration: 3000
+        })
+        // console.log();
+        // document.getElementById(`grid-${reward}`).style.background = "none";
 }
 const showGuide = () => {
     return `
@@ -146,12 +177,36 @@ function getBackground(param) {
         return data.game.bg_game;
     }
 }
+const showGame = (locations) => {
+    let header = `
+    <p style='font-size: 1.5rem; font-weight: 560;'>Trò chơi</p>
+    `
+    let footer = '';
+    let content = '';
+    // locations.question_ids.length
+    for (let i = 0; i < 1; i++) { content += ` ${showQuestion(locations.question_ids[i], locations)} ` }
+    return ` 
+    <div class = "game-container">
+    <hr style="margin: 2rem ">
+        <div>
+        ${header}
+        </div>
+        <div class="game-quiz-container" style="background-image:url('${data.game.bg_game}')">
+            ${content}
+        </div>
+        </div>
+        `
+}
+
 
 const gamePopup = () => {
     let cols = parseInt(data.game.cols)
     let rows = parseInt(data.game.rows)
     let number_cells = cols * rows
     let img_cells = ''
+    let modalGame_content = document.getElementsByClassName("modalGame-content")[0];
+    let a = getBackground(5);
+    modalGame_content.style.backgroundImage = `url(${a})`;
     for (let i = 0; i < number_cells; i++) {
 
         if (rewards.includes(i)) {
@@ -170,7 +225,7 @@ const gamePopup = () => {
                 
     `
     let img_grid = `
-            <div class='grid-img bg-image' style="--col:${cols}; background-image:url('${data.game.root_image}');">
+            <div class='grid-img ' style="--col:${cols}; background-image:url('${data.game.root_image}');">
                 ${img_cells}
             </div>
             `
@@ -223,13 +278,14 @@ const checkEnter = () => {
 
 
 const CheckKey = () => {
+
     let a = document.getElementById("key").value;
     if (a == data.game.key) {
         document.getElementById("win").style.display = "block";
     } else {
-        times--;
-        if (times >= 1) {
-            document.getElementById("err_p").innerText = `Đáp án chưa chính xác, bạn còn ${times} lần!`;
+        data.game.max_turn_replies--;
+        if (data.game.max_turn_replies >= 1) {
+            document.getElementById("err_p").innerText = `Đáp án chưa chính xác, bạn còn ${data.game.max_turn_replies} lần!`;
         } else {
             document.getElementById("lose").style.display = "block";
             document.getElementById("err_p").innerText = `Hết số lần trả lời`;
