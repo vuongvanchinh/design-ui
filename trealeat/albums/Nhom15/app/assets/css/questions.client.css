@@ -1,11 +1,9 @@
 .game-quiz-container {
-    /* background-color: lightgray; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
     border-radius: 30px;
-    /* background: url(https://i.pinimg.com/564x/12/f4/f4/12f4f4e7f85a771324d7758356ae23e7.jpg); */
     background-size: cover;
     border: 1px dotted #ccc;
     padding: 2rem;
@@ -29,8 +27,6 @@
 }
 
 .game-question-container img {
-    /* max-width: ; */
-    /* height: 12rem; */
     width: 20rem;
 }
 
@@ -44,8 +40,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    /* border: 2px solid darkgray;
-    border-radius: 25px; */
+    margin: 2rem 0;
 }
 
 .game-question-container h1 {
@@ -58,8 +53,9 @@
 .game-options-container {
     width: 80%;
     /* height: 12rem; */
-    display: flex;
-    /* flex-direction: column; */
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1.5rem;
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
@@ -71,16 +67,17 @@
 
 .game-options-container div {
     /* width: 40%; */
-    height: auto;
+    height: 100%;
     /* border: 2px solid darkgray;
     border-radius: 20px; */
     overflow: hidden;
 }
 
 .answer {
-    width: 15rem;
+    /* width: 15rem; */
     /* margin: 0 0 rem 0 .7rem; */
-    align-items: center;
+    /* min-height: 3.5rem; */
+    /* align-items: flex-start; */
 }
 
 .answer {
@@ -89,11 +86,11 @@
     align-content: center;
     justify-content: center;
     overflow: hidden;
-    margin-bottom: 15px;
-    border-radius: 5px;
-    border: solid 2px rgb(43 40 28);
+    border-radius: 10px;
+    padding: 0.5px;
     /* padding: .4rem .5rem .4rem; */
-    background: #e3e3e3;
+    border: 1px solid var(--main-color);
+    background: white;
     text-align: center;
     font-family: Open Sans;
 }
@@ -110,6 +107,7 @@
 .answer label {
     margin: 0 !important;
     height: 100%;
+    width: 100%;
 }
 
 .answer input[type=radio]+label {
@@ -120,20 +118,22 @@
     font-weight: 100;
     color: black;
     width: 100%;
-    vertical-align: middle;
+    text-align: start;
+    padding-left: .5rem;
 }
 
 .answer input[type=radio]+label {
-    background: #e3e3e3;
+    background: white;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     -ms-transition: 0.5s;
     transition: 0.5s;
+    /* min-height: 3.5rem; */
 }
 
 .answer input[type=radio]+label:hover {
-    background: rgba(189, 232, 243, 0.75);
+    background: rgba(31, 177, 155, 0.75);
 }
 
 .answer input[type=radio].none_hover+label:hover {
@@ -142,16 +142,17 @@
 
 .answer input[type=radio].none_click:checked+label {
     background: none;
-    color: black;
 }
 
 .answer input[type=radio]:checked+label {
-    background: rgb(112, 175, 175);
+    background: var(--main-color);
     color: white;
+    box-shadow: rgb(30, 186, 157) 0px 0px 150px;
+    outline: solid rgb(0 136 102);
 }
 
 .answer input[type=radio]:checked~label[for=" "] {
-    background: rgba(26, 188, 156, 0.25);
+    background: rgba(99, 186, 168, 0.25);
 }
 
 .answer span {
@@ -189,10 +190,22 @@
 }
 
 .submit-button-container {
-    width: 50%;
+    margin-top: 2rem;
+    width: 14rem;
     height: 3rem;
     display: flex;
     justify-content: center;
+}
+.submit-button-container button{
+    background-color: rgb(33, 186, 158);
+    transition: .5s ease-in-out;
+    font-size: 1.2rem;
+    width: 100%;
+    height: 100%;
+    color: white;
+    border-radius:10px;
+    cursor: pointer;
+    font-weight: 600;
 }
 
 
@@ -209,9 +222,8 @@
 } */
 
 .submit-button-container button:hover {
-    color: var(--hover-color);
-    background-color: transparent;
-    outline: solid;
+    background-color: var(--main-color);
+    font-size: 1.4rem;
 }
 
 .grid-img {
@@ -242,13 +254,12 @@
 
 .key_input input[type=text] {
     width: 80%;
-    padding: 0.5rem;
     margin: 8px 0;
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
-}
+    padding: .5rem}
 
 .key_input .lable {
     margin-top: 1rem;

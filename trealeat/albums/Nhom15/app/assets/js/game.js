@@ -10,12 +10,9 @@ const showQuestion = (qs_id, locationQuestion) => {
     let reward = question.reward;
     let answer = '';
     let index_corect = question.answers.findIndex(isAs => isAs.isAnswer == true);
-    console.log(index_corect, "indexcorect");
-
 
     let indexLocation = data.locations.findIndex(v => v.id === locationQuestion.id);
     let index_picker = data.locations[indexLocation].picked;
-    console.log(index_picker, "indexpicker");
 
     if (index_picker !== -1) {
         for (let i = 0; i < question.answers.length; i++) {
@@ -46,9 +43,6 @@ const showQuestion = (qs_id, locationQuestion) => {
                         </div>
                         `
             }
-            // console.log(question.answers[i].images.length);
-
-            // document.getElementById(`option-${i}-label`).classList.add("answer-correct");
 
         }
         return `
@@ -85,7 +79,7 @@ const showQuestion = (qs_id, locationQuestion) => {
             ${answer}
         </div>
         <div class="submit-button-container">
-            <button class='btn btn-save' onclick="checkAnswer(${locationQuestion.id},${reward})">Xem đáp án</button>
+            <button onclick="checkAnswer(${locationQuestion.id},${reward})">Trả lời</button>
         </div>
         `
     }
@@ -97,7 +91,6 @@ const checkAnswer = (locationQuestionId, reward) => {
     let indexLocation = data.locations.findIndex(v => v.id === locationQuestionId.id);
     //xóa hiệu ứng khi trả lời
 
-
     const options = document.getElementsByName("option");
     for (let index = 0; index < options.length; index++) {
         if (options[index].value === 'true') {
@@ -106,6 +99,7 @@ const checkAnswer = (locationQuestionId, reward) => {
         document.getElementById(`option-${index}-label`).disabled = true;
         document.getElementById(`option-${index}`).disabled = true;
         document.getElementById(`option-${index}`).classList.add('none_hover');
+        document.querySelectorAll(`.answer input[type=radio]`)[index].disabled = true;
     }
 
     for (let index = 0; index < options.length; index++) {
@@ -154,7 +148,9 @@ const checkAnswer = (locationQuestionId, reward) => {
 // Hiển thị gamepopup khi trả lời đúng
 const showGamePopup = () => {
     const ele = document.getElementById('bubble-chat');
-    ele.click();
+    if(document.getElementById('myModal').style.display !== "block") {
+        ele.click();
+    };
     addToast(document.getElementById('toasts'), {
             type: 'success',
             title: 'Xin chúc mừng!',
