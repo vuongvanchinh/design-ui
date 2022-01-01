@@ -220,7 +220,13 @@
                             <div class="form-card">
                                 <div class="form-card-header">Mô tả chung về  trò chơi của bạn cho người chơi</div>
                                 <div class="form-card-body">
-                                    <textarea id="game_description" name="game_description" id="game_description"></textarea>
+                                    <textarea id="game_description" name="game_description"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-card">
+                                <div class="form-card-header">Hướng dẫn chơi trò chơi</div>
+                                <div class="form-card-body">
+                                    <textarea name="game_description" id="game_guide" ></textarea>
                                 </div>
                             </div>
                             <div class="form-card">
@@ -259,6 +265,26 @@
                                                    <div class="bg-image select_image_wraper" id="loss_banner">
                                                     <div class="select_button_blur ">
                                                         <span onclick="selectImage('loss')">Chọn ảnh</span>
+                                                    </div>
+                                                   </div>      
+                                                </div>
+                                            </div>
+                                            <div class="section">
+                                                <div class="section__label">Hình ảnh biểu tượng</div>
+                                                <div class="section__body">
+                                                   <div class="bg-image select_image_wraper" id="bg_icon_id">
+                                                    <div class="select_button_blur ">
+                                                        <span onclick="selectImage('bg_icon')">Chọn ảnh</span>
+                                                    </div>
+                                                   </div>      
+                                                </div>
+                                            </div>
+                                            <div class="section">
+                                                <div class="section__label">Hình nền trò chơi</div>
+                                                <div class="section__body">
+                                                   <div class="bg-image select_image_wraper" id="bg_game_id">
+                                                    <div class="select_button_blur ">
+                                                        <span onclick="selectImage('bg_game')">Chọn ảnh</span>
                                                     </div>
                                                    </div>      
                                                 </div>
@@ -386,7 +412,6 @@
         }
     
     ?>
-    
 
 </body>
 </html>

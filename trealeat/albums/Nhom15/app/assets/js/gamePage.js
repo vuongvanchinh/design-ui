@@ -8,6 +8,8 @@ $(document).ready(() => {
     $('#key').val(state.game.key)
     $('#win_banner').css({backgroundImage: `url('${state.game.win}')`})
     $('#loss_banner').css({backgroundImage: `url('${state.game.loss}')`})
+    $('#bg_icon_id').css({backgroundImage: `url('${state.game.bg_icon}')`})
+    $('#bg_game_id').css({backgroundImage: `url('${state.game.bg_game}')`})
     $('#max_turn_replies').change((e) => {
         if($(e.target).val().trim()) {
             let t = parseInt()
@@ -21,8 +23,30 @@ $(document).ready(() => {
     $('#key').change((e) => {
         state.game.key = $(e.target).val()
     })
+    $('#game_description').val(state.game.description);
     $('#game_description').change(() => {
         state.game.description = $('#game_description').val()
+        addToast(document.getElementById('toasts'), {
+            type: 'success',
+            title: 'Đã lưu',
+            message: 'Thay đổi mô tả đã được ghi nhận.',
+            duration: 3000
+        })
+    })
+    $('#game_guide').text(state.game.guide);
+
+    document.getElementById("game_guide").addEventListener("change", function() {
+        console.log("input event fired");
+        addToast(document.getElementById('toasts'), {
+            type: 'success',
+            title: 'Đã lưu',
+            message: 'Thay đổi mô tả đã được ghi nhận.',
+            duration: 3000
+        })
+    }, false);
+
+    $('#game_guide').change(() => {
+        state.game.guide = $('#game_guide').val()
         addToast(document.getElementById('toasts'), {
             type: 'success',
             title: 'Đã lưu',
@@ -138,7 +162,9 @@ const selectImage = (name) => {
     const css_selector = {
         root_image: '#grid-images >.grid',
         win: '#win_banner',
-        loss: '#loss_banner'
+        loss: '#loss_banner',
+        bg_game: '#bg_game_id',
+        bg_icon: '#bg_icon_id'
     }
 
     $('#save_image').click(() => {
