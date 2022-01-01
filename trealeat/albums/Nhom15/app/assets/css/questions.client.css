@@ -11,6 +11,7 @@
     font-family: 'Montserrat', serif;
 }
 
+
 .game-details-container {
     width: 80%;
     height: 4rem;
@@ -89,8 +90,6 @@
     border-radius: 10px;
     padding: 0.5px;
     /* padding: .4rem .5rem .4rem; */
-    border: 1px solid var(--main-color);
-    background: white;
     text-align: center;
     font-family: Open Sans;
 }
@@ -105,7 +104,6 @@
 }
 
 .answer label {
-    margin: 0 !important;
     height: 100%;
     width: 100%;
 }
@@ -113,35 +111,36 @@
 .answer input[type=radio]+label {
     cursor: pointer;
     float: left;
-    padding: 0.5rem 0;
     font-size: 1.1rem;
     font-weight: 100;
     color: black;
     width: 100%;
     text-align: start;
-    padding-left: .5rem;
-}
-
-.answer input[type=radio]+label {
+    padding: 0.5rem .5rem 0.5rem 1rem;
     background: white;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     -ms-transition: 0.5s;
     transition: 0.5s;
-    /* min-height: 3.5rem; */
+    border: 1px solid var(--main-color);
+    border-radius: 10px;
 }
+
 
 .answer input[type=radio]+label:hover {
     background: rgba(31, 177, 155, 0.75);
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
 }
 
 .answer input[type=radio].none_hover+label:hover {
-    background: none;
+    background: white;
 }
 
 .answer input[type=radio].none_click:checked+label {
-    background: none;
+    background: white;
     color: black;
     box-shadow: none;
     outline: none;
@@ -167,6 +166,9 @@
 
 .answer-correct {
     background-color: #10c018;
+    width: 100%;
+    border-radius: 10px;
+    height: 100%;
     animation: blinkingText 2s infinite;
 }
 
@@ -209,7 +211,9 @@
     color: white;
     border-radius: 10px;
     cursor: pointer;
-    font-weight: 600;
+    font-weight: 500;
+    transition: .5s ease-in-out;
+    transform: scale(0);
 }
 
 
@@ -284,6 +288,11 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    transition: all 0.5s ease;
+}
+.key_input button:hover {
+    background-color: rgb(214, 116, 23);
+    color: rgb(255, 255, 255);
 }
 
 
@@ -291,21 +300,13 @@
 
 .modalGame {
     display: none;
-    position: fixed;
+    position: absolute;
     z-index: 100;
-    /* left: 0.5rem;
-    top: 3.7rem; */
-    width: 20rem;
+    top: 1rem;
+    width: 24rem;
     height: 30rem;
     border-radius: 20px;
-    /* overflow: auto; */
     background-color: rgb(0, 0, 0);
-    /* background-color: rgba(0, 0, 0, 0.4); */
-    /* -webkit-animation-name: fadeIn; */
-    /* Fade in the background */
-    /* -webkit-animation-duration: 0.4s;
-    animation-name: fadeIn;
-    animation-duration: 0.4s; */
     transition: transform 0.5s ease;
     animation-name: popup;
     animation-duration: 0.5s;
@@ -314,14 +315,39 @@
 
 .modalGame-left {
     left: 0.5rem;
-    top: 3.7rem;
+    top: 4.5rem;
 }
+
+.modalGame-left:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background: #ffebd8;
+    position: absolute;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    top: -5px;
+    left: 5%;
+  }
+
 
 .modalGame-right {
     right: 0.5rem;
-    top: 3.7rem;
+    top: 4.5rem;
 }
-
+.modalGame-right:after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background: #ffebd8;
+    position: absolute;
+    box-shadow: 1px 4px 8px rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    top: -5px;
+    right: 5%;
+  }
 
 /* Modal Content */
 
@@ -335,6 +361,7 @@
     padding: 10px;
     border: 1px solid #888;
     width: 100%;
+    top: 20rem;
     /* -webkit-animation-name: fadeIn;
  
     -webkit-animation-duration: 0.4s;
@@ -371,7 +398,8 @@
 
 .guide-popup {
     visibility: hidden;
-    width: 80%;
+    width: 90%;
+    height: 80%;
     background-color: #fdd891;
     /* color: #fff; */
     text-align: center;
@@ -427,6 +455,11 @@
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
 }
+
+.win-game {
+    cursor: pointer;
+}
+
 
 .win-game img,
 .lose-game img {

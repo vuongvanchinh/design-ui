@@ -42,6 +42,7 @@ const urlContentToDataUri = (url) => {
       return imageObjectURL
   });
 }
+
 $(document).ready(() => {
 
     if (window.location.hostname === '127.0.0.1') {
@@ -111,7 +112,6 @@ $(document).ready(() => {
                                             console.log(`id ${id} error ${type}`)
                                         }
                                     } else {
-                                        
                                         medias[id] = {
                                             type: type,
                                             url: `https://hcloud.trealet.com/${dt.url_full}`,
@@ -525,12 +525,11 @@ const popUpFooter = (data) => {
         <div class="flex space-between">
             <span class="btn btn-footer"
             onclick="alert('chưa cài đặt')"
-            >Quét mã QR</span>
+            ></span>
             <span class="btn btn-footer"
                 onclick="alert('chưa cài đặt')"
             >
-            Chơi một trò chơi</span>
-        
+            </span>
         </div>
     `
 }
