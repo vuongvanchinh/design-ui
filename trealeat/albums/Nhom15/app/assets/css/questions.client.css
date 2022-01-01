@@ -315,6 +315,7 @@
 .modalGame-left {
     left: 0.5rem;
     top: 4.5rem;
+    transform-origin: top left;
 }
 
 .modalGame-left:after {
@@ -333,6 +334,7 @@
 .modalGame-right {
     right: 0.5rem;
     top: 4.5rem;
+    transform-origin: top right;
 }
 
 .modalGame-right:after {
@@ -362,6 +364,7 @@
     border: 1px solid #888;
     width: 100%;
     top: 20rem;
+
     /* -webkit-animation-name: fadeIn;
  
     -webkit-animation-duration: 0.4s;
@@ -477,23 +480,6 @@
 /***
 
 
-/* bubble-chat */
-
-#bubble-chat {
-    /* background-image: url('https://image.winudf.com/v2/image/bW9uaS5ndWVzc19pY29uXzBfYzk3MTY5YTQ/icon.png?w=&fakeurl=1'); */
-    visibility: hidden;
-    z-index: 100;
-    background-size: cover;
-    width: 60px;
-    height: 60px;
-    background-color: red;
-    position: absolute;
-    top: 10px;
-    left: 20px;
-    border-radius: 50%;
-    box-shadow: #000000b8 0px 0px 12px;
-    pointer-events: auto;
-}
 
 
 /* Popup container - can be anything you want */
@@ -581,7 +567,9 @@
 
 @media only screen and (max-width: 1980px) {
     .modalGame {
-        width: 24rem;
+        width: 30rem;
+        max-height: calc(100vh - 70px);
+        max-width: 100vw;
     }
 }
 
@@ -589,4 +577,36 @@
     .modalGame {
         width: 21rem;
     }
+}
+
+
+#game-mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    background: transparent;
+    z-index: 100000;
+    pointer-events: none;
+}
+/* bubble-chat */
+#game-board {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    width: fit-content;
+    pointer-events: auto;
+}
+#bubble-chat {
+    /* background-image: url('https://image.winudf.com/v2/image/bW9uaS5ndWVzc19pY29uXzBfYzk3MTY5YTQ/icon.png?w=&fakeurl=1'); */
+    visibility: hidden;
+    z-index: 100;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    background-color: red;
+    border-radius: 50%;
+    box-shadow: #000000b8 0px 0px 12px;
+    pointer-events: auto;
 }
