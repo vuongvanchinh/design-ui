@@ -12,6 +12,8 @@
 </style>
 <link rel="stylesheet" href="assets/css/common.css">
 <link rel="stylesheet" href="assets/css/global_variable.css">
+<link rel="stylesheet" href="../assets/css/common.css">
+<link rel="stylesheet" href="../assets/css/global_variable.css">
 <!-- <link rel="stylesheet" href="assets/css/index.css"> -->
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -40,6 +42,7 @@
        left: 0;
        height: 100vh;
        width: 100vw;
+       pointer-events: none;
 
    }
    #bubble-chat {
@@ -51,8 +54,8 @@
         top: 10px;
         left: 20px;
         border-radius: 50%;
-        box-shadow: #000000b8 0px 0px 12px
-        
+        box-shadow: #000000b8 0px 0px 12px;
+        pointer-events: auto;
     }
 </style>
 <body >
@@ -76,6 +79,7 @@
         ele.style.top = "20px"    
         let pos = { top: 0, left: 0, x: 0, y: 0 };
         const touchDownHandle = (e) => {
+            
             ele.style.cursor = 'grabbing';
             ele.style.userSelect = 'none';
 
@@ -94,7 +98,7 @@
             document.addEventListener('touchend', touchUpHandle);
         }
         const touchMoveHandle = (e) => {
-        
+            e.preventDefault()
             // How far the mouse has been moved
             const dx = e.changedTouches[0].clientX - pos.x;
             const dy = e.changedTouches[0].clientY - pos.y;
@@ -132,7 +136,7 @@
                 document.removeEventListener('touchend', touchUpHandle);
         }
        if (navigator.userAgentData.mobile) {
-           
+            // alert("mobile add listener ")
             ele.addEventListener('touchstart', touchDownHandle);
         } else {
             const mouseDownHandler = function (e) {
@@ -201,7 +205,7 @@
             };
             ele.addEventListener('mousedown', mouseDownHandler);
             if (window.location.host === '127.0.0.1:8000') {// for test, develop 
-                ele.addEventListener('touchstart', touchDownHandle);
+                // ele.addEventListener('touchstart', touchDownHandle);
             }
         }
   })
