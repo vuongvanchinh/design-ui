@@ -15,6 +15,15 @@
 
 }
 
+#flower {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999999999;
+}
+
 .horizontal_center {
     display: flex;
     justify-content: center;
