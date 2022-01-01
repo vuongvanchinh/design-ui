@@ -29,18 +29,18 @@ const filloutMediaData = (medias, data) => {
             }
         }
     }
-    
+
     return data
 }
 
 const urlContentToDataUri = (url) => {
     return fetch(url)
-    .then(response => response.blob())
-    .then(imageBlob => {
-      // Then create a local URL for that image and print it 
-      const imageObjectURL = URL.createObjectURL(imageBlob);
-      return imageObjectURL
-  });
+        .then(response => response.blob())
+        .then(imageBlob => {
+            // Then create a local URL for that image and print it 
+            const imageObjectURL = URL.createObjectURL(imageBlob);
+            return imageObjectURL
+        });
 }
 
 $(document).ready(() => {
@@ -59,7 +59,7 @@ $(document).ready(() => {
                 let medias_res = await fetch('media.json')
                 let medias = await medias_res.json()
                 console.log("🚀 ~ file: map_index.js ~ line 48 ~ medias", medias)
-                
+
                 data = filloutMediaData(medias, data)
                 setup()
                 if (data.features.includes(constants.zoom)) {
@@ -163,7 +163,7 @@ const gameFeature = () => {
     document.getElementById('bubble-chat').style.visibility = "visible";
     document.getElementById('bubble-chat').style.background = `url('${data.game.bg_icon}')`;
     document.getElementById('bubble-chat').style.backgroundSize = "cover";
-
+    document.getElementById('bubble-chat').click();
 
 
 }

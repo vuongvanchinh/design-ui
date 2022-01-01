@@ -85,8 +85,9 @@ const showQuestion = (qs_id, locationQuestion) => {
     }
 
 }
+
 function handleChange(checkbox) {
-    if(checkbox.checked == true){
+    if (checkbox.checked == true) {
         document.querySelector('.submit-button-container button').style.transform = 'scale(1)';
     }
 }
@@ -165,7 +166,10 @@ const showGamePopup = () => {
     const ele = document.getElementById('bubble-chat');
     if (document.getElementById('myModal').style.display !== "block") {
         ele.click();
-    };
+    } else {
+        ele.click();
+        ele.click();
+    }
     addToast(document.getElementById('toasts'), {
             type: 'success',
             title: 'Xin chúc mừng!',
@@ -223,8 +227,8 @@ const gamePopup = () => {
     let isGameEnd = data.game.picked;
     let hideImg = `style="background-color: #afafaf"`
 
-    if(isGameEnd !== -1 ) {
-        hideImg =  `style="background-color: none"`
+    if (isGameEnd !== -1) {
+        hideImg = `style="background-color: none"`
     }
 
     for (let i = 0; i < number_cells; i++) {
@@ -251,7 +255,7 @@ const gamePopup = () => {
             </div>
             `
 
-    let textfield = isGameEnd === -1? `
+    let textfield = isGameEnd === -1 ? `
             <div class="key_input">
                 <label class="lable">Nhập từ khóa trò chơi</label>
                 <input type="text" placeholder="vd: XINCHAO" id="key">
@@ -312,8 +316,8 @@ const CheckKey = () => {
         data.game.picked = 1;
         let imgs = document.querySelectorAll('.img_cell');
 
-        for (let i = 0;i < imgs.length; i++ ){
-             imgs[i].style.backgroundColor = "transparent"
+        for (let i = 0; i < imgs.length; i++) {
+            imgs[i].style.backgroundColor = "transparent"
         }
         document.getElementById("win").style.display = "block";
         flowerFalling()
