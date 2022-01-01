@@ -96,14 +96,27 @@ const checkAnswer = (locationQuestionId, reward) => {
         if (options[index].value === 'true') {
             pick = index;
         }
-        document.getElementById(`option-${index}-label`).disabled = true;
-        document.getElementById(`option-${index}`).disabled = true;
-        document.getElementById(`option-${index}`).classList.add('none_hover');
-        document.querySelectorAll(`.answer input[type=radio]`)[index].disabled = true;
+
     }
+    for (let index = 0; index < options.length; index++) {
+        if (options[index].checked === true) {
+            for (let j = 0; j < options.length; j++) {
+
+                document.getElementById(`option-${j}-label`).disabled = true;
+                document.getElementById(`option-${j}`).disabled = true;
+                document.getElementById(`option-${j}`).classList.add('none_hover');
+                document.querySelectorAll(`.answer input[type=radio]`)[j].disabled = true;
+
+
+            }
+        }
+
+    }
+
 
     for (let index = 0; index < options.length; index++) {
         if (options[index].value === 'true' && options[index].checked === true) {
+
             data.locations[indexLocation].picked = index;
             rewards.push(reward);
             setTimeout(() => {
@@ -117,6 +130,7 @@ const checkAnswer = (locationQuestionId, reward) => {
 
         } else if (options[index].value === 'false' && options[index].checked === true) {
             data.locations[indexLocation].picked = index;
+
             setTimeout(() => {
                 document.getElementById("option-" + pick + "-label").classList.add("answer-correct");
                 document.getElementById("option-" + index + "-label").style.backgroundColor = "red";
@@ -148,7 +162,7 @@ const checkAnswer = (locationQuestionId, reward) => {
 // Hiển thị gamepopup khi trả lời đúng
 const showGamePopup = () => {
     const ele = document.getElementById('bubble-chat');
-    if(document.getElementById('myModal').style.display !== "block") {
+    if (document.getElementById('myModal').style.display !== "block") {
         ele.click();
     };
     addToast(document.getElementById('toasts'), {
