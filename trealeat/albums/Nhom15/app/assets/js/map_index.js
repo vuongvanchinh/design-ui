@@ -32,6 +32,16 @@ const filloutMediaData = (medias, data) => {
     
     return data
 }
+
+const urlContentToDataUri = (url) => {
+    return fetch(url)
+    .then(response => response.blob())
+    .then(imageBlob => {
+      // Then create a local URL for that image and print it 
+      const imageObjectURL = URL.createObjectURL(imageBlob);
+      return imageObjectURL
+  });
+}
 $(document).ready(() => {
 
     if (window.location.hostname === '127.0.0.1') {
@@ -45,7 +55,7 @@ $(document).ready(() => {
                 let dt = await res.json()
                 data = dt.trealet
                 document.title = data.title
-                let medias_res = await fetch('media1.json')
+                let medias_res = await fetch('media.json')
                 let medias = await medias_res.json()
                 console.log("🚀 ~ file: map_index.js ~ line 48 ~ medias", medias)
                 
@@ -108,7 +118,8 @@ $(document).ready(() => {
                                             description: dt.desc,
                                             name: dt.title
                                         }
-
+                                        let dataUri = await urlContentToDataUri(`https://hcloud.trealet.com/${dt.url_full}`);
+                                        medias[id].url = dataUri
                                     }
                                 }
                             }
