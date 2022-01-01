@@ -8,6 +8,20 @@ const constants = {
     zoom: 'zoom'
 
 }
+const flowerFalling = () => {
+    let canva = document.createElement("canvas");
+    canva.setAttribute("id", "flower");
+    
+    document.body.appendChild(canva)
+    console.log(document.getElementById('flower'))
+    var confettiSettings = { target: document.getElementById('flower')};
+    var confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+
+    setTimeout(() => {
+        document.body.removeChild(canva)        
+    }, 5)
+}
 
 function makeid(length) {
     var result           = '';

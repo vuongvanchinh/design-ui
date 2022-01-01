@@ -48,6 +48,8 @@ $domain = $_SERVER['HTTP_HOST'];
     </style>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="assets/js/flower/index.min.js"></script>
+    <script src="../assets/js/flower/index.min.js"></script>
     <?php
 
     if ($domain == '127.0.0.1:8000') {

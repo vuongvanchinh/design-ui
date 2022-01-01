@@ -11,7 +11,7 @@
             "cells_per_row": 50,
             "number_of_cells": "3800",
             "path_list": {
-                "selected": "op_15",
+                "selected": "op_10",
                 "options": {
                     "op_9": "https://hcloud.trealet.com/albums/Nhom15/song8.png",
                     "op_10": "https://hcloud.trealet.com/albums/Nhom15/gach6.png",
@@ -4446,7 +4446,6 @@
         "locations": [{
                 "id": "location_1",
                 "name": "Kỳ Đài",
-                "effect": "loops",
                 "description": "Kỳ đài của Kinh thành Huế, còn gọi là Cột cờ Kinh thành Huế là di tích kiến trúc thời nhà Nguyễn nằm chính giữa mặt nam của kinh thành Huế thuộc phạm vi pháo đài Nam Chánh cũng là nơi treo cờ của triều đình. Kỳ Đài được xây dựng vào năm Gia Long thứ 6 tức 1807 cùng thời gian xây dựng kinh thành Huế. Đến thời Minh Mạng, Kỳ Ðài được tu sửa. Kỳ Đài gồm hai phần: đài cờ và cột cờ.",
                 "media": [
                     19018,
@@ -4456,10 +4455,10 @@
                     12762,
                     12770
                 ],
-                "next": "",
                 "question_ids": [
-                    "question_0"
-                ]
+                    "question_18"
+                ],
+                "picked": -1
             },
             {
                 "id": "location_2",
@@ -4476,14 +4475,14 @@
                 ],
                 "next": "",
                 "question_ids": [
-                    "question_0"
-                ]
+                    "question_17"
+                ],
+                "picked": -1
             },
             {
                 "id": "location_3",
                 "name": "Điện Kiến Trung",
-                "effect": "loops",
-                "description": " Điện Kiến Trung còn có tên Lầu Kiến Trung là một cung điện tọa lạc trong khu vực Tử cấm thành của kinh thành Huế được xây dựng vào thời vua Khải Định năm 1921– 1923 cùng thời gian với việc xây lăng để làm nơi sinh hoạt của vua trong hoàng cung.",
+                "description": "Điện Kiến Trung còn có tên Lầu Kiến Trung là một cung điện tọa lạc trong khu vực Tử cấm thành của kinh thành Huế được xây dựng vào thời vua Khải Định năm 1921– 1923 cùng thời gian với việc xây lăng để làm nơi sinh hoạt của vua trong hoàng cung.",
                 "media": [
                     12018,
                     12026,
@@ -4492,8 +4491,9 @@
                     12050
                 ],
                 "question_ids": [
-                    "question_0"
-                ]
+                    "question_4"
+                ],
+                "picked": -1
             },
             {
                 "id": "location_4",
@@ -4509,7 +4509,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_5",
@@ -4529,7 +4530,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_6",
@@ -4547,8 +4549,9 @@
                     15762
                 ],
                 "question_ids": [
-                    "question_0"
-                ]
+                    "question_2"
+                ],
+                "picked": -1
             },
             {
                 "id": "location_7",
@@ -4565,7 +4568,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_8",
@@ -4582,7 +4586,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_9",
@@ -4599,7 +4604,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_10",
@@ -4615,7 +4621,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_11",
@@ -4633,7 +4640,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_12",
@@ -4651,7 +4659,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_13",
@@ -4670,7 +4679,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_14",
@@ -4692,7 +4702,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_15",
@@ -4713,7 +4724,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_16",
@@ -4738,7 +4750,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             },
             {
                 "id": "location_17",
@@ -4757,7 +4770,8 @@
                 ],
                 "question_ids": [
                     "question_0"
-                ]
+                ],
+                "picked": -1
             }
         ],
         "decorators": [{
@@ -5532,7 +5546,7 @@
                             ]
                         }
                     ],
-                    "reward": 0
+                    "reward": 3
                 }
             ],
             "key": "GiaLong",
@@ -5542,7 +5556,10 @@
             "max_turn_replies": 5,
             "win": "https://hcloud.trealet.com/albums/Nhom15/win.png",
             "loss": "https://hcloud.trealet.com/albums/Nhom15/lose.png",
-            "guide": "Đây là một trò chơi giải “ô chữ’’, ô chữ gồm X chữ cái. Câu hỏi: Kinh thành Huế được một vua tiến hành khảo sát từ năm 1803, khởi công xây dựng từ 1805, hãy cho biết đó là vị vua nào?Bạn sẽ có Y lần trả lờiGiải thưởng: …Gợi ý của chương trình là một hình ảnh liên quan đến ô chữ mà bạn cần đoán đúng đó nhưng được chia thành các mảnh khác nhau và bị lật úp. Để lật các ô hình ảnh đó lên, nhiệm vụ của các bạn là khám phá các địa điểm của Đại Nội Huế, ở cuối mỗi địa điểm sẽ có một câu hỏi liên quan đến địa điểm mà bạn đang khám phá. Nếu trả lời đúng bạn sẽ lật được ô hình ảnh tương ứng, ngược lại nếu trả lời sai ô hình ảnh đó vẫn sẽ bị lật úp.Lưu ý: Trong quá trình tham quan, bạn có thể trả lời ô chữ bất kì khi nào.",
+            "bg_icon": "https://image.winudf.com/v2/image/bW9uaS5ndWVzc19pY29uXzBfYzk3MTY5YTQ/icon.png?w=&fakeurl=1",
+            "bg_game": "https://i.pinimg.com/564x/90/5b/e7/905be7cb2e0f3b3e728ae57fe233f86f.jpg",
+            "picked": -1,
+            "guide": "Đây là một trò chơi giải ô chữ, ô chữ gồm X chữ cái.Câu hỏi: Kinh thành Huế được một vua tiến hành khảo sát từ năm 1803, khởi công xây dựng từ 1805, hãy cho biết đó là vị vua nào? Bạn sẽ có Y lần trả lời Giải thưởng: … Gợi ý của chương trình là một hình ảnh liên quan đến ô chữ mà bạn cần đoán đúng đó nhưng được chia thành các mảnh khác nhau và bị lật úp. Để lật các ô hình ảnh đó lên, nhiệm vụ của các bạn là khám phá các địa điểm của Đại Nội Huế, ở cuối mỗi địa điểm sẽ có một câu hỏi liên quan đế",
             "description": "Từ khóa gồm 7 kí tự, nói về một địa điểm nào đó ở Huế"
         }
     }

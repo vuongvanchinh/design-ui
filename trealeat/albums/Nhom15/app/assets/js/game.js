@@ -278,6 +278,8 @@ const CheckKey = () => {
     let a = document.getElementById("key").value;
     if (a == data.game.key) {
         document.getElementById("win").style.display = "block";
+        flowerFalling()
+
     } else {
         data.game.max_turn_replies--;
         if (data.game.max_turn_replies >= 1) {
@@ -290,3 +292,5 @@ const CheckKey = () => {
     }
 
 }
+
+
