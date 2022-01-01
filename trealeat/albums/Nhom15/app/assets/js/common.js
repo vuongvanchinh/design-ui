@@ -121,6 +121,23 @@ const modal = (header='', body='', footer='', id='modal_id', name='set-feature-m
         }
     }
 }
+const flowerFalling = () => {
+    let canva = document.createElement("canvas");
+    canva.setAttribute("id", "flower");
+    
+    document.body.appendChild(canva)
+    console.log(document.getElementById('flower'))
+    var confettiSettings = { target: document.getElementById('flower')};
+    var confetti = new ConfettiGenerator(confettiSettings);
+    confetti.render();
+
+    $('#flower').click(() => {
+        document.body.removeChild(canva);
+    })
+    // setTimeout(() => {
+    //     document.body.removeChild(canva)        
+    // }, 5000)
+}
 
 const dropdown = (toggle, content) => {
     let html = `

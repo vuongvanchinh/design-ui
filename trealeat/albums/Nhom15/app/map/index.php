@@ -114,7 +114,6 @@ $domain = $_SERVER['HTTP_HOST'];
                 </div>
                 <div id="gamePopup"></div>
             </div>
-
         </div>
 
     </div>
@@ -147,6 +146,7 @@ $domain = $_SERVER['HTTP_HOST'];
             ele.style.cursor = 'grab';
             ele.style.left = "0px"
             ele.style.top = "20px"
+
             let pos = {
                 top: 0,
                 left: 0,
@@ -186,6 +186,7 @@ $domain = $_SERVER['HTTP_HOST'];
                 checkEnter();
             }
 
+
             span_guide.onclick = function() {
                 // console.log(document.getElementById("guide-popup"));
                 // console.log(guide_content);
@@ -198,40 +199,6 @@ $domain = $_SERVER['HTTP_HOST'];
             span_close.onclick = function() {
                 modal.style.display = "none";
             }
-            //
-
-            // function myFunction() {
-
-
-            // if (count == 0) {
-            //     rect = ele.getBoundingClientRect();
-            //     var popup = document.getElementById("myPopup");
-            //     rect.left == 0;
-            //     popup.innerHTML = `${gamePopup()}`;
-            //     if (popup.style.display == "block") {
-            //             popup.style.display = "none"
-            //         } else
-            //             popup.style.display = "block"
-            //         popup.style.left = "100%";
-            //         popup.style.top = "100%";
-            //         popup.style.right = "none";
-            //         // if (rect.left == 0) {
-            //         //     popup.innerHTML = `${gamePopup()}`;
-            //         //     popup.classList.toggle("show-left");
-            //         //     popup.style.left = "50%";
-            //         //     popup.style.top = "100%";
-            //         //     popup.style.right = "none";
-            //         // } else {
-            //         //     popup.innerHTML = `${gamePopup()}`;
-            //         //     popup.classList.toggle("show-right");
-            //         //     popup.style.right = "15px";
-            //         //     popup.style.left = "none";
-            //         // }
-            //     }
-            // }
-
-            // ele.onclick = myFunction;
-
 
             const touchDownHandle = (e) => {
 
@@ -248,6 +215,7 @@ $domain = $_SERVER['HTTP_HOST'];
                 document.addEventListener('touchmove', touchMoveHandle);
                 document.addEventListener('touchend', touchUpHandle);
             }
+
             const touchMoveHandle = (e) => {
                 e.preventDefault()
                 // How far the mouse has been moved

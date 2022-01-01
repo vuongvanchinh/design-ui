@@ -7,8 +7,6 @@ const getListMediaId = (data) => {
     return rs
 }
 
-
-
 const urlContentToDataUri = (url) => {
     return fetch(url)
     .then(response => response.blob())
@@ -66,7 +64,6 @@ $(document).ready(() => {
                                 } catch (error) {
                                     console.log(error.message)            
                                 }
-
                             }
                         }
                     }
