@@ -102,21 +102,24 @@ $domain = $_SERVER['HTTP_HOST'];
             
                </div>
                <div id="myModal" class="modalGame">
-                   <!-- Modal content -->
-                   <div class="modalGame-content" >
-                       <span class="close">&times;</span>
-                       <div>
-                           <span class="guide">?</span>
-                           <span class="guide-popup" id="guide-popup">
-                               <h2>Hướng dẫn</h2>
-                               <hr color="black">
-                               <span style="text-align: left" id="guide-content">
-                                    </span>
-                           </span>
-                       </div>
-                       <div id="gamePopup"></div>
-                   </div>
-               </div>
+                <!-- Modal content -->
+                <div class="modalGame-content">
+                    <div>
+                        <span class="close">&times;</span>
+                        <span class="guide">?</span>
+                        <span class="guide-popup" id="guide-popup">
+                            <h2>Hướng dẫn</h2>
+                            <hr color="black">
+                            <span style="text-align: left" id="guide-content">
+                            </span>
+                        </span>
+                        <h1>Trò Chơi</h1>
+                        <hr>
+                    </div>
+                    <div id="gamePopup"></div>
+                </div>
+            </div>
+
             </div>
         </div>
        
@@ -249,7 +252,7 @@ $domain = $_SERVER['HTTP_HOST'];
                         }, time, function() {
                             // Animation complete.
                             modal.style.display = "block";  
-                            if (rect.left <= screen_w/2) {
+                            if (parseInt(elew.style.left) <= screen_w/2) {
                                 modal.classList.remove("modalGame-right");
                                 modal.classList.add("modalGame-left");
                                 
