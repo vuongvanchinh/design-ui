@@ -121,16 +121,6 @@ $(document).ready(() => {
                     // console.log(data)
                 setup()
                 if (data.features.includes(constants.zoom)) {
-                    // document.getElementById('view').onwheel = function(e) {
-                    // 	e.preventDefault()
-                    // 	const pre_zoom_rate = zoom_rate
-                    // 	let direction = e.deltaY < 0 ? 1 : -1
-                    // 	zoom(direction, offset = 0.05)
-                    // 	let view = document.getElementById('view')
-                    // 	view.scrollLeft = view.scrollLeft + (zoom_rate - pre_zoom_rate) * (e.clientX);
-                    // 	view.scrollTop = view.scrollTop + (zoom_rate - pre_zoom_rate) * (e.clientY);
-                    // 	return false;
-                    // }
                     document.getElementById('view').addEventListener('wheel', function(e) {
                         e.preventDefault()
                         const pre_zoom_rate = zoom_rate

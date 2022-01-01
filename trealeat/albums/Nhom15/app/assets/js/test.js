@@ -65,7 +65,8 @@ function urlContentToDataUri(url){
                 let reader = new FileReader() ;
                 reader.onload = function(){ callback(this.result) } ;
                 reader.readAsDataURL(blob) ;
-            }) );
+            })
+        );
 }
 
 $(document).ready(() => {
@@ -108,7 +109,6 @@ $(document).ready(() => {
                                 try {
                                     let dataUri = await urlContentToDataUri(`https://hcloud.trealet.com/${dt.url_full}`) ;
                                     console.log("🚀 ~ file: test.js ~ line 120 ~ awaitPromise.all ~ dataUri", dataUri)
-                                
                                     medias[id].url = dataUri
                                 } catch (error) {
                                     console.log(error.message)            
@@ -133,3 +133,5 @@ $(document).ready(() => {
    
 })
 
+
+// 
