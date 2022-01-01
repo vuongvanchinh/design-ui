@@ -22,6 +22,8 @@ const showQuestion = (qs_id, locationQuestion) => {
                         <input type="radio" class ="answer-input" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
                             <label for="option-${i}" class="option answer-correct" id="option-${i}-label">
                                 <span>${question.answers[i].content}</span>
+                                <img src="${question.answers[i].images[0]}" alt="">
+
                             </label>
                         </div>
                         `
@@ -31,17 +33,21 @@ const showQuestion = (qs_id, locationQuestion) => {
                             <input type="radio" class ="answer-input" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
                                 <label for="option-${i}" class="option" style="background-color: red;" id="option-${i}-label">
                                     <span>${question.answers[i].content}</span>
+                                    <img src="${question.answers[i].images[0]}" alt="">
+
                                 </label>
                             </div>
                             `
             } else {
                 answer += ` <div class="answer">
-                        <input type="radio" class ="answer-input none_hover none_click" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
-                            <label for="option-${i}" class="option" id="option-${i}-label">
-                                <span>${question.answers[i].content}</span>
-                            </label>
-                        </div>
-                        `
+                            <input type="radio" class ="answer-input none_hover none_click" id="option-${i}" name="option" class="radio" value="${question.answers[i].isAnswer}" />
+                                <label for="option-${i}" class="option" id="option-${i}-label">
+                                    <span>${question.answers[i].content}</span>
+                                    <img src="${question.answers[i].images[0]}" alt="">
+
+                                </label>
+                            </div>
+                            `
             }
 
         }
@@ -64,7 +70,8 @@ const showQuestion = (qs_id, locationQuestion) => {
         <input type="radio" class ="answer-input" id="option-${i}" onchange='handleChange(this);' name="option" class="radio" value="${question.answers[i].isAnswer}" />
             <label for="option-${i}" class="option" id="option-${i}-label">
                 <span>${question.answers[i].content}</span>
-            </label>
+                <img src="${question.answers[i].images[0]}" alt="">
+                </label>
         </div>
         `
         }

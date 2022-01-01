@@ -4603,7 +4603,7 @@
                     12514
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_15"
                 ],
                 "picked": -1
             },
@@ -4620,7 +4620,7 @@
                     12554
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_3"
                 ],
                 "picked": -1
             },
@@ -4749,7 +4749,7 @@
                     15154
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_13"
                 ],
                 "picked": -1
             },
@@ -4769,7 +4769,7 @@
                     15218
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_14"
                 ],
                 "picked": -1
             }
@@ -5411,7 +5411,7 @@
                 {
                     "id": "question_14",
                     "content": "Thế Miếu tọa lạc ở góc nào bên trong Hoàng Thành Huế?",
-                    "images": [],
+                    "images": ["https://cdn.yeudulich.com/1200x630/media/attraction/attraction/3a/1e/01c4-a1b7-4ddf-8598-577f92ca3a7a.jpg"],
                     "answers": [{
                             "content": "A. Tây Nam",
                             "isAnswer": true,
@@ -5518,7 +5518,7 @@
                     "content": "Ngọ Môn gồm phần nào?",
                     "images": [],
                     "answers": [{
-                            "content": "A. Phần Cổng",
+                            "content": "A. Phần Cổng và phần Đài",
                             "isAnswer": false,
                             "images": [
                                 ""
@@ -5595,7 +5595,7 @@
             "bg_game": "https://i.pinimg.com/564x/90/5b/e7/905be7cb2e0f3b3e728ae57fe233f86f.jpg",
             "picked": -1,
             "guide": "Đây là một trò chơi giải ô chữ, ô chữ gồm X chữ cái.Câu hỏi: Kinh thành Huế được một vua tiến hành khảo sát từ năm 1803, khởi công xây dựng từ 1805, hãy cho biết đó là vị vua nào? Bạn sẽ có Y lần trả lời Giải thưởng: … Gợi ý của chương trình là một hình ảnh liên quan đến ô chữ mà bạn cần đoán đúng đó nhưng được chia thành các mảnh khác nhau và bị lật úp. Để lật các ô hình ảnh đó lên, nhiệm vụ của các bạn là khám phá các địa điểm của Đại Nội Huế, ở cuối mỗi địa điểm sẽ có một câu hỏi liên quan đế",
-            "description": "Từ khóa gồm 7 kí tự, nói về một địa điểm nào đó ở Huế"
+            "description": "Từ khóa gồm 7 kí tự, là tên một vị vua của nước ta"
         }
     }
 }
