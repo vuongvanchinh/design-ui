@@ -7,11 +7,13 @@ const getListMediaId = (data) => {
     for (let i = 0; i < data.locations.length; i++) {
         rs.push(...data.locations[i].media)
     }
-    for (let i = 0; i < data.decorators.length; i++) {
-        rs.push(...data.decorators[i].media)
-    }
+    // for (let i = 0; i < data.decorators.length; i++) {
+    //     rs.push(...data.decorators[i].media)
+    // }
     return rs
 }
+
+
 const filloutMediaData = (medias, data) => {
     //fetch media for locations 
     for (i = 0; i < data.locations.length; i++) {
@@ -27,20 +29,7 @@ const filloutMediaData = (medias, data) => {
             }
         }
     }
-    //fetch media for decorators
-    // for (let i = 0; i < data.decorators.length; i++) {
-    // 	let j = 0
-    // 	while (j < data.decorators[i].media.length) {
-    // 		let id = data.decorators[i].media[j]
-    // 		if (medias[id]) {
-    // 			data.decorators[i].media[j] = medias[id]
-    // 			j += 1
-    // 		} else {
-    // 			console.log('lost', data.decorators[i].media[j])
-    // 			data.decorators[i].media.splice(j, 1)
-    // 		}
-    // 	}
-    // }
+    
     return data
 }
 $(document).ready(() => {
@@ -56,11 +45,10 @@ $(document).ready(() => {
                 let dt = await res.json()
                 data = dt.trealet
                 document.title = data.title
-                    // console.log('media loi')
-                    // let media_ids = getListMediaId(data)
-                let medias_res = await fetch('media.json')
+                let medias_res = await fetch('media1.json')
                 let medias = await medias_res.json()
-                console.log(medias)
+                console.log("🚀 ~ file: map_index.js ~ line 48 ~ medias", medias)
+                
                 data = filloutMediaData(medias, data)
                 setup()
                 if (data.features.includes(constants.zoom)) {
@@ -113,12 +101,14 @@ $(document).ready(() => {
                                             console.log(`id ${id} error ${type}`)
                                         }
                                     } else {
+                                        
                                         medias[id] = {
                                             type: type,
                                             url: `https://hcloud.trealet.com/${dt.url_full}`,
                                             description: dt.desc,
                                             name: dt.title
                                         }
+
                                     }
                                 }
                             }

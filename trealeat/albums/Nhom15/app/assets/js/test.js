@@ -1,23 +1,9 @@
 
-const fetchItem = async (id) => {
-    try {
-        let res = await fetch(`https://hcloud.trealet.com/tiny${id}?json`)
-        let data = await res.json()
-        console.log(data)
-        return data
-    } catch (error) {
-        return {}        
-    }
-}
 const getListMediaId = (data) => {
     let rs = []
     for(let i = 0; i < data.locations.length; i++) {
         rs.push(...data.locations[i].media)
     }
-    for(let i = 0; i < data.decorators.length; i++) {
-        rs.push(...data.decorators[i].media)
-    }
-
     return rs
 }
 
@@ -45,6 +31,24 @@ const callDataPromises = (media_ids) => {
                             description: dt.desc, 
                             name: dt.title
                         }
+                        try {
+                            let res = await fetch(url)
+                            console.log(res)
+                            if (res.status === 200) {
+                                let data = await res.blob()
+                               
+                                let reader = new FileReader() ;
+                                reader.readAsDataURL(data);
+                                reader.onload = function(){
+                                    medias[id].url = this.result
+                                };
+                            } else {
+                                console.log(res.status)
+                                console.log(`get file id ${id} error ${type}`)
+                            }
+                        } catch (error) {
+                            console.log(error.message)            
+                        }
                     }
                 }
             }
@@ -54,6 +58,15 @@ const callDataPromises = (media_ids) => {
     })
 }
 
+function urlContentToDataUri(url){
+    return  fetch(url)
+            .then( response => response.blob() )
+            .then( blob => new Promise( callback =>{
+                let reader = new FileReader() ;
+                reader.onload = function(){ callback(this.result) } ;
+                reader.readAsDataURL(blob) ;
+            }) );
+}
 
 $(document).ready(() => {
     let data = null
@@ -85,12 +98,22 @@ $(document).ready(() => {
                                     console.log(`id ${id} error ${type}`)
                                 }
                             } else {
+
                                 medias[id] =  {
                                     type: type, 
                                     url: `https://hcloud.trealet.com/${dt.url_full}`, 
                                     description: dt.desc, 
                                     name: dt.title
                                 }
+                                try {
+                                    let dataUri = await urlContentToDataUri(`https://hcloud.trealet.com/${dt.url_full}`) ;
+                                    console.log("🚀 ~ file: test.js ~ line 120 ~ awaitPromise.all ~ dataUri", dataUri)
+                                
+                                    medias[id].url = dataUri
+                                } catch (error) {
+                                    console.log(error.message)            
+                                }
+
                             }
                         }
                     }
@@ -99,7 +122,6 @@ $(document).ready(() => {
                 }
             }))
             console.log(medias)
-
             document.getElementById('root').innerHTML = JSON.stringify(medias)
         
         } catch (error) {
@@ -110,5 +132,4 @@ $(document).ready(() => {
 
    
 })
-
 
