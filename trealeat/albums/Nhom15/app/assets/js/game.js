@@ -1,7 +1,7 @@
 let indexNumber = 0
 let questionNumber = 1
 let rewards = [];
-let times = 5;
+// let times = 5;
 
 
 const showQuestion = (qs_id, locationQuestion) => {
@@ -13,7 +13,6 @@ const showQuestion = (qs_id, locationQuestion) => {
 
     let indexLocation = data.locations.findIndex(v => v.id === locationQuestion.id);
     let index_picker = data.locations[indexLocation].picked;
-
     if (index_picker !== -1) {
         for (let i = 0; i < question.answers.length; i++) {
             //hiển thị đap an đúng
@@ -23,7 +22,6 @@ const showQuestion = (qs_id, locationQuestion) => {
                             <label for="option-${i}" class="option answer-correct" id="option-${i}-label">
                                 <span>${question.answers[i].content}</span>
                                 <img src="${question.answers[i].images[0]}" alt="">
-
                             </label>
                         </div>
                         `
@@ -34,7 +32,6 @@ const showQuestion = (qs_id, locationQuestion) => {
                                 <label for="option-${i}" class="option" style="background-color: red;" id="option-${i}-label">
                                     <span>${question.answers[i].content}</span>
                                     <img src="${question.answers[i].images[0]}" alt="">
-
                                 </label>
                             </div>
                             `
@@ -44,24 +41,32 @@ const showQuestion = (qs_id, locationQuestion) => {
                                 <label for="option-${i}" class="option" id="option-${i}-label">
                                     <span>${question.answers[i].content}</span>
                                     <img src="${question.answers[i].images[0]}" alt="">
-
                                 </label>
                             </div>
                             `
             }
 
         }
+        let historyAnswer = '';
+        if((index_picker === index_corect)) {
+            historyAnswer = `<p style="color:green; transform: scale(1)">Bạn đã trả lời đúng<br/>Bạn nhận được mảnh ghép số ${reward}!</p>`;
+        } else {
+            historyAnswer = `<p style="color:red; transform: scale(1)">Bạn đã trả lời sai!</p>`;
+        }
         return `
         <div class="game-question-container">
             <div id="display-question">
                 <img src="${question.images[0]}" alt="">
-                <h1>Câu ${reward}, ${question.content}</h1>
+                <h1>${question.content}</h1>
             </div>
         </div>
         <div class="game-options-container">
             ${answer}
         </div>
      
+        <div class="submit-button-container">
+            ${historyAnswer}
+        </div>
         `
     } else {
         for (let i = 0; i < question.answers.length; i++) {
@@ -79,7 +84,7 @@ const showQuestion = (qs_id, locationQuestion) => {
         <div class="game-question-container">
             <div id="display-question">
                 <img src="${question.images[0]}" alt="">
-                <h1>Câu ${reward}, ${question.content}</h1>
+                <h1>${question.content}</h1>
             </div>
         </div>
         <div class="game-options-container">
@@ -98,6 +103,7 @@ function handleChange(checkbox) {
         document.querySelector('.submit-button-container button').style.transform = 'scale(1)';
     }
 }
+
 const checkAnswer = (locationQuestionId, reward) => {
     let pick = -1;
     let indexLocation = data.locations.findIndex(v => v.id === locationQuestionId.id);
@@ -119,39 +125,38 @@ const checkAnswer = (locationQuestionId, reward) => {
                 document.querySelectorAll(`.answer input[type=radio]`)[j].disabled = true;
             }
         }
-
     }
-
+    let btnContenner = document.querySelector('.submit-button-container');
 
     for (let index = 0; index < options.length; index++) {
         if (options[index].value === 'true' && options[index].checked === true) {
 
             data.locations[indexLocation].picked = index;
             rewards.push(reward);
-
+            btnContenner.querySelector('button').remove();
+            let message = document.createElement('div');
+            message.innerHTML = `<p style="color:green;">Bạn đã trả lời đúng<br/>Bạn nhận được mảnh ghép số ${reward}</p>`;
+            btnContenner.appendChild(message);
             setTimeout(() => {
+                btnContenner.querySelector('p').style.transform= 'scale(1)';
                 document.getElementById("option-" + pick + "-label").classList.add("answer-correct");
-                document.querySelector('.submit-button-container').remove();
                 setTimeout(() => {
                     showGamePopup();
-                }, 1000);
-            }, 1000);
+                }, 500);
+            }, 500);
 
         } else if (options[index].value === 'false' && options[index].checked === true) {
             data.locations[indexLocation].picked = index;
-
+            btnContenner.querySelector('button').remove();
+            let message = document.createElement('div');
+            message.innerHTML = `<p style="color:red;">Chúc bạn may mắn lần sau!</p>`
+            btnContenner.appendChild(message);
             setTimeout(() => {
+                btnContenner.querySelector('p').style.transform= 'scale(1)';
                 document.getElementById("option-" + pick + "-label").classList.add("answer-correct");
                 document.getElementById("option-" + index + "-label").style.backgroundColor = "red";
-                document.querySelector('.submit-button-container').remove();
 
-                addToast(document.getElementById('toasts'), {
-                    type: 'success',
-                    title: 'Bạn đã trả lời sai!',
-                    message: 'Chúc bạn may mắn lần sau!',
-                    duration: 3000
-                })
-            }, 2000);
+            }, 500);
             // alert('chưa chính xác');
             // console.log(index);
         }
@@ -170,21 +175,41 @@ const checkAnswer = (locationQuestionId, reward) => {
 
 // Hiển thị gamepopup khi trả lời đúng
 const showGamePopup = () => {
+    // const ele = document.getElementById('bubble-chat');
+    // if (document.getElementById('myModal').style.display !== "block") {
+    //     ele.click();
+    // } else {
+    //     ele.click();
+    //     ele.click();
+    // }
     const ele = document.getElementById('bubble-chat');
-    if (document.getElementById('myModal').style.display !== "block") {
-        ele.click();
-    } else {
-        ele.click();
-        ele.click();
-    }
-    addToast(document.getElementById('toasts'), {
-            type: 'success',
-            title: 'Xin chúc mừng!',
-            message: 'Bạn đã mở khoá thêm một mảnh ghép hình ảnh!',
-            duration: 3000
-        })
-        // console.log();
-        // document.getElementById(`grid-${reward}`).style.background = "none";
+    const elew = document.getElementById('game-board'); 
+    let modal = document.getElementById("myModal");
+    let myGamePopup = document.getElementById("gamePopup");
+    modal.style.display = "block"
+    myGamePopup.innerHTML = `${gamePopup()}`;
+
+    const screen_w = $("#game-mask").width()
+    let time = (parseInt(elew.style.top) -  1) *  0.5;
+                            
+    $( elew ).animate({
+        top: "1px"
+    }, time, function() {
+        // Animation complete.
+        modal.style.display = "block"; 
+        if (parseInt(elew.style.left) <= screen_w/2) {
+            modal.classList.remove("modalGame-right");
+            modal.classList.add("modalGame-left");
+            
+        } else {
+            modal.classList.remove("modalGame-left");
+            modal.classList.add("modalGame-right");
+        }
+    })
+    rect = ele.getBoundingClientRect();
+        // console.log(rect.left);
+        
+    checkEnter();
 }
 
 const showGuide = () => {
@@ -205,7 +230,6 @@ const showGame = (locations) => {
     let header = `
     <p style='font-size: 1.5rem; font-weight: 560;'>Trò chơi</p>
     `
-    let footer = '';
     let content = '';
     for (let i = 0; i < 1; i++) { content += ` ${showQuestion(locations.question_ids[i], locations)} ` }
     return ` 
@@ -221,7 +245,6 @@ const showGame = (locations) => {
         `
 }
 
-
 const gamePopup = () => {
     let cols = parseInt(data.game.cols)
     let rows = parseInt(data.game.rows)
@@ -230,48 +253,57 @@ const gamePopup = () => {
     let modalGame_content = document.getElementsByClassName("modalGame-content")[0];
     let a = getBackground(5);
     modalGame_content.style.backgroundImage = `url(${a})`;
-
+ 
     let isGameEnd = data.game.picked;
-    let hideImg = `style="background-color: #afafaf"`
-
-    if (isGameEnd !== -1) {
+    let hideImg = `style="background-color: #d9cfcf"`
+ 
+    if (isGameEnd === 1) {
         hideImg = `style="background-color: none"`
     }
-
+    let times;
+    if (data.game.max_turn_replies >= 1) {
+        times = `còn ${data.game.max_turn_replies} lần`;
+    } else {
+        times = "Hết số lần trả lời";
+    }
+ 
     for (let i = 0; i < number_cells; i++) {
-
         if (rewards.includes(i)) {
             img_cells += ` <div class='img_cell' style="background-color: none" id="grid-${i}">
-                 <span>${i}</span>
+                 <span >${i}</span>
             </div>
             `
         } else {
             img_cells += ` <div class='img_cell' ${hideImg} id="grid-${i}">
-                <span>${i}</span>
-           </div>
+            <span >${i}</span>
+            </div>
            `
         }
     }
     let header = `
-                
+               
     `
-
+ 
     let img_grid = `
             <div class='grid-img ' style="--col:${cols}; background-image:url('${data.game.root_image}');">
                 ${img_cells}
             </div>
             `
-
-    let textfield = isGameEnd === -1 ? `
-            <div class="key_input">
-                <label class="lable">Nhập từ khóa trò chơi</label>
-                <input type="text" placeholder="vd: XINCHAO" id="key">
-                <p id="err_p" style="color:#de3232; margin-bottom:10px"></p>
-                <button onclick="CheckKey()" id="btn-key">Trả lời</button>
-            </div>
-            ` : `<div class="key_input">
-            <label class="lable">Trò chơi kết thúc</label>
+    let textfield = '';
+    if(isGameEnd === -1) {
+        textfield = `
+        <div class="key_input">
+            <label class="lable" id ="lable-key">Nhập từ khóa trò chơi (<b>${times}</b>)</label>
+            <input type="text" placeholder="vd: XINCHAO" id="key">
+            <p id="err_p" style="color:#de3232; margin-bottom:10px"></p>
+            <button onclick="CheckKey()" id="btn-key">Trả lời</button>
+        </div>
+        `
+    } else {
+        textfield = `<div class="key_input">
+            <div class="win-text">Trò chơi kết thúc</div>
         </div>`
+    }
 
     let win = `
         <div class="win-game" id = "win" onclick="closeWinBanner(this)">
@@ -279,17 +311,16 @@ const gamePopup = () => {
         <img src="${data.game.win}" alt="">
         </div>
     `
-
+ 
     let lose = `
-            <div class="lose-game" id = "lose">
+            <div class="lose-game" id = "lose" onclick="closeWinBanner(this)" ${isGameEnd === 2&& "style='display:block; transition-delay: 2s;'"}>
             <p style="">Game Over!</p>
             <img src="${data.game.loss}" alt="">
             </div>
         `
+ 
     return `
             <div>
-                <h1>Trò Chơi</h1>
-                <hr>
                 <div class="game-des">
                     <p><span style="font-size: 1.3rem;  text-decoration: underline;">Mô tả:</span> ${data.game.description}</p>
                 </div>
@@ -315,28 +346,38 @@ const checkEnter = () => {
     });
 }
 
-
 const CheckKey = () => {
-
+    let lable_key = document.getElementById("lable-key")
     let a = document.getElementById("key").value;
+
     if (a == data.game.key) {
         data.game.picked = 1;
         let imgs = document.querySelectorAll('.img_cell');
-
         for (let i = 0; i < imgs.length; i++) {
             imgs[i].style.backgroundColor = "transparent"
         }
         document.getElementById("win").style.display = "block";
-        flowerFalling()
+        flowerFalling();
+        document.querySelector('.key_input').innerHTML = "<div class='win-text'>Xin chúc mừng bạn!<div>"
     } else {
+        data.game.picked = 2;
         data.game.max_turn_replies--;
         if (data.game.max_turn_replies >= 1) {
-            document.getElementById("err_p").innerText = `Đáp án chưa chính xác, bạn còn ${data.game.max_turn_replies} lần!`;
+            lable_key.innerHTML = `Nhập từ khóa trò chơi (<b>còn ${data.game.max_turn_replies} lần</b>)`;
+            // document.getElementById("err_p").innerText = `Đáp án chưa chính xác, bạn còn ${data.game.max_turn_replies} lần!`;
         } else {
             document.getElementById("lose").style.display = "block";
-            document.getElementById("err_p").innerText = `Hết số lần trả lời`;
+            data.game.picked = 2;
+            lable_key.innerHTML = `Nhập từ khóa trò chơi (<b>Hết số lần trả lời</b>)`;
+            // document.getElementById("err_p").innerText = `Hết số lần trả lời`;
+            document.getElementById('key').style.display = 'none';
+            document.getElementById('btn-key').style.display = 'none';
         }
         // console.log(times);
     }
 
+
 }
+
+////////////////////////////////////////////////////////////////
+

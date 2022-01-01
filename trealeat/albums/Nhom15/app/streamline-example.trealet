@@ -4475,7 +4475,7 @@
                 ],
                 "next": "",
                 "question_ids": [
-                    "question_17"
+                    "question_1"
                 ],
                 "picked": -1
             },
@@ -4491,7 +4491,7 @@
                     12050
                 ],
                 "question_ids": [
-                    "question_4"
+                    "question_2"
                 ],
                 "picked": -1
             },
@@ -4508,7 +4508,7 @@
                     12090
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_3"
                 ],
                 "picked": -1
             },
@@ -4529,7 +4529,7 @@
                     12162
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_4"
                 ],
                 "picked": -1
             },
@@ -4549,7 +4549,7 @@
                     15762
                 ],
                 "question_ids": [
-                    "question_2"
+                    "question_5"
                 ],
                 "picked": -1
             },
@@ -4567,7 +4567,7 @@
                     12362
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_6"
                 ],
                 "picked": -1
             },
@@ -4585,7 +4585,7 @@
                     12474
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_7"
                 ],
                 "picked": -1
             },
@@ -4603,7 +4603,7 @@
                     12514
                 ],
                 "question_ids": [
-                    "question_15"
+                    "question_8"
                 ],
                 "picked": -1
             },
@@ -4620,7 +4620,7 @@
                     12554
                 ],
                 "question_ids": [
-                    "question_3"
+                    "question_9"
                 ],
                 "picked": -1
             },
@@ -4639,7 +4639,7 @@
                     12714
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_10"
                 ],
                 "picked": -1
             },
@@ -4658,7 +4658,7 @@
                     12826
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_11"
                 ],
                 "picked": -1
             },
@@ -4678,7 +4678,7 @@
                     14794
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_12"
                 ],
                 "picked": -1
             },
@@ -4701,7 +4701,7 @@
                     15474
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_13"
                 ],
                 "picked": -1
             },
@@ -4723,7 +4723,7 @@
                     15034
                 ],
                 "question_ids": [
-                    "question_0"
+                    "question_14"
                 ],
                 "picked": -1
             },
@@ -4749,7 +4749,7 @@
                     15154
                 ],
                 "question_ids": [
-                    "question_13"
+                    "question_15"
                 ],
                 "picked": -1
             },
@@ -4769,7 +4769,7 @@
                     15218
                 ],
                 "question_ids": [
-                    "question_14"
+                    "question_16"
                 ],
                 "picked": -1
             }
@@ -4984,10 +4984,10 @@
                             ]
                         }
                     ],
-                    "reward": 3
+                    "reward": 1
                 },
                 {
-                    "id": "question_2",
+                    "id": "question_1",
                     "content": "Điện Kiện Trung được xây dựng vào năm nào?",
                     "images": [
                         "https://hcloud.trealet.com/albums/Nhom15/kientrung.png"
@@ -5021,10 +5021,10 @@
                             ]
                         }
                     ],
-                    "reward": 0
+                    "reward": 2
                 },
                 {
-                    "id": "question_3",
+                    "id": "question_2",
                     "content": "Đâu là hình ảnh của Triệu Miếu?",
                     "images": [],
                     "answers": [{
@@ -5056,10 +5056,10 @@
                             ]
                         }
                     ],
-                    "reward": 4
+                    "reward": 3
                 },
                 {
-                    "id": "question_4",
+                    "id": "question_3",
                     "content": "Cung Trường Sanh đã từng được vua Thiệu Trị xếp vào hàng thứ mấy của thắng cảnh đất Thần Kinh?",
                     "images": [],
                     "answers": [{
@@ -5091,10 +5091,10 @@
                             ]
                         }
                     ],
-                    "reward": 8
+                    "reward": 4
                 },
                 {
-                    "id": "question_5",
+                    "id": "question_4",
                     "content": "Ở giữa Vườn Cơ Hạ có một hồ nước rộng gọi là Minh Hồ. Một cây cầu bắc qua Minh Hồ có tên gọi là gì?",
                     "images": [],
                     "answers": [{
@@ -5129,7 +5129,7 @@
                     "reward": 5
                 },
                 {
-                    "id": "question_6",
+                    "id": "question_5",
                     "content": "Cung Diên Thọ được xây dựng sớm nhất trong Đại Nội và được xây dựng vào năm nào?",
                     "images": [],
                     "answers": [{
@@ -5161,10 +5161,10 @@
                             ]
                         }
                     ],
-                    "reward": 3
+                    "reward": 6
                 },
                 {
-                    "id": "question_7",
+                    "id": "question_6",
                     "content": "Điện Càn Thành có tên gọi khác là gì?",
                     "images": [],
                     "answers": [{
@@ -5199,7 +5199,7 @@
                     "reward": 7
                 },
                 {
-                    "id": "question_8",
+                    "id": "question_7",
                     "content": "Vườn Ngự Uyển nổi tiếng với kiểu cấu trúc gì? ",
                     "images": [],
                     "answers": [{
@@ -5231,10 +5231,10 @@
                             ]
                         }
                     ],
-                    "reward": 4
+                    "reward": 8
                 },
                 {
-                    "id": "question_9",
+                    "id": "question_8",
                     "content": "Điện Cần Chánh được coi là có kết cấu gỗ lớn và đẹp nhất trong Tử Cấm Thành bao gồm bộ khung cột gỗ lim hoành tráng gồm bao nhiêu cột?",
                     "images": [],
                     "answers": [{
@@ -5269,7 +5269,7 @@
                     "reward": 1
                 },
                 {
-                    "id": "question_10",
+                    "id": "question_9",
                     "content": "Điện Phụng Tiên là ngôi điện thờ tổ tiên của nhà nào?",
                     "images": [],
                     "answers": [{
@@ -5304,7 +5304,7 @@
                     "reward": 2
                 },
                 {
-                    "id": "question_11",
+                    "id": "question_10",
                     "content": "Hiển Lâm Các là công trình kiến trúc cao nhất trong Hoàng Thành và cao?",
                     "images": [],
                     "answers": [{
@@ -5336,10 +5336,10 @@
                             ]
                         }
                     ],
-                    "reward": 8
+                    "reward": 3
                 },
                 {
-                    "id": "question_12",
+                    "id": "question_11",
                     "content": "Phủ Nội Vụ được xây dựng năm nào?",
                     "images": [],
                     "answers": [{
@@ -5371,10 +5371,10 @@
                             ]
                         }
                     ],
-                    "reward": 7
+                    "reward": 4
                 },
                 {
-                    "id": "question_13",
+                    "id": "question_12",
                     "content": "Hưng Miếu là ngôi miếu thờ ai?",
                     "images": [],
                     "answers": [{
@@ -5406,10 +5406,10 @@
                             ]
                         }
                     ],
-                    "reward": 6
+                    "reward": 5
                 },
                 {
-                    "id": "question_14",
+                    "id": "question_13",
                     "content": "Thế Miếu tọa lạc ở góc nào bên trong Hoàng Thành Huế?",
                     "images": ["https://cdn.yeudulich.com/1200x630/media/attraction/attraction/3a/1e/01c4-a1b7-4ddf-8598-577f92ca3a7a.jpg"],
                     "answers": [{
@@ -5441,10 +5441,10 @@
                             ]
                         }
                     ],
-                    "reward": 2
+                    "reward": 6
                 },
                 {
-                    "id": "question_15",
+                    "id": "question_14",
                     "content": "Năm 1947, diễn ra sự kiện gì ở Thái Miếu?",
                     "images": [],
                     "answers": [{
@@ -5476,10 +5476,10 @@
                             ]
                         }
                     ],
-                    "reward": 1
+                    "reward": 7
                 },
                 {
-                    "id": "question_16",
+                    "id": "question_15",
                     "content": "Điện Thái Hòa là nơi đăng quang của các vua triều Nguyễn từ Gia Long đến Bảo Đại. Hãy cho biết có tất cả bao nhiêu triều đại vua được đăng quang ở đây?",
                     "images": [],
                     "answers": [{
@@ -5511,10 +5511,10 @@
                             ]
                         }
                     ],
-                    "reward": 2
+                    "reward": 8
                 },
                 {
-                    "id": "question_17",
+                    "id": "question_16",
                     "content": "Ngọ Môn gồm phần nào?",
                     "images": [],
                     "answers": [{
@@ -5546,10 +5546,10 @@
                             ]
                         }
                     ],
-                    "reward": 6
+                    "reward": 1
                 },
                 {
-                    "id": "question_18",
+                    "id": "question_17",
                     "content": "Kỳ đài gồm hai phần là đài cờ và cột cờ. Hãy cho biết Đài cờ gồm mấy tầng hình chóp cụt chữ nhật chồng lên nhau?",
                     "images": [],
                     "answers": [{
@@ -5581,7 +5581,7 @@
                             ]
                         }
                     ],
-                    "reward": 3
+                    "reward": 2
                 }
             ],
             "key": "GiaLong",

@@ -72,7 +72,6 @@ $domain = $_SERVER['HTTP_HOST'];
     }
     ?>
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
@@ -96,25 +95,33 @@ $domain = $_SERVER['HTTP_HOST'];
         <div id="toasts">
 
         </div>
-        <div id="bubble-chat" style="background-size: cover;">
-           
-        </div>
-        <div id="myModal" class="modalGame">
-            <!-- Modal content -->
-            <div class="modalGame-content" >
-                <span class="close">&times;</span>
-                <div>
-                    <span class="guide">?</span>
-                    <span class="guide-popup" id="guide-popup">
-                        <h2>Hướng dẫn</h2>
-                        <hr color="black">
-                        <span style="text-align: left" id="guide-content">
-                             </span>
-                    </span>
+        <div id="game-mask">
+            <div id="game-board">
+                <div id="bubble-chat" style="background-size: cover;">
+            
+               </div>
+               <div id="myModal" class="modalGame">
+                <!-- Modal content -->
+                <div class="modalGame-content">
+                    <div>
+                        <span class="close">&times;</span>
+                        <span class="guide">?</span>
+                        <span class="guide-popup" id="guide-popup">
+                            <h2>Hướng dẫn</h2>
+                            <hr color="black">
+                            <span style="text-align: left" id="guide-content">
+                            </span>
+                        </span>
+                        <h1>Trò Chơi</h1>
+                        <hr>
+                    </div>
+                    <div id="gamePopup"></div>
                 </div>
-                <div id="gamePopup"></div>
+            </div>
+
             </div>
         </div>
+       
 
     </div>
 
@@ -140,12 +147,13 @@ $domain = $_SERVER['HTTP_HOST'];
         $(document).ready(() => {
             let count = 0;
             const ele = document.getElementById('bubble-chat');
-            const screen_w = $("#container").width()
-            const screen_h = $("#container").height()
-            const ele_w = $(ele).width()
+            const elew = document.getElementById('game-board');
+            const screen_w = $("#game-mask").width()
+            const screen_h = $("#game-mask").height()
+            const ele_w = $(elew).width()
             ele.style.cursor = 'grab';
-            ele.style.left = "0px"
-            ele.style.top = "20px"
+            elew.style.left = "0px"
+            elew.style.top = "20px"
 
             let pos = {
                 top: 0,
@@ -159,33 +167,11 @@ $domain = $_SERVER['HTTP_HOST'];
             // Get the modal
             let modal = document.getElementById("myModal");
             let myGamePopup = document.getElementById("gamePopup");
+            modal.style.display = "none"; 
             // Get the <span> element that closes the modal
             let span_close = document.getElementsByClassName("close")[0];
             let span_guide = document.getElementsByClassName("guide")[0];
             let guide_content =document.getElementById("guide-content");
-            // When the user clicks the button, open the modal 
-            ele.onclick = function() {
-                myGamePopup.innerHTML = `${gamePopup()}`;
-               
-                if (modal.style.display == "none") {
-                    ele.style.top = "1px";
-                    rect = ele.getBoundingClientRect();
-                    // console.log(rect.left);
-                    if (rect.left == 0) {
-                        modal.classList.remove("modalGame-right");
-                        modal.classList.add("modalGame-left");
-                        modal.style.display = "block";
-                    } else {
-                        modal.classList.remove("modalGame-left");
-                        modal.classList.add("modalGame-right");
-                        modal.style.display = "block";
-                    }
-                } else {
-                    modal.style.display = "none";
-                }
-                checkEnter();
-            }
-
 
             span_guide.onclick = function() {
                 // console.log(document.getElementById("guide-popup"));
@@ -206,8 +192,8 @@ $domain = $_SERVER['HTTP_HOST'];
                 ele.style.userSelect = 'none';
 
                 pos = {
-                    left: parseInt(ele.style.left),
-                    top: parseInt(ele.style.top),
+                    left: parseInt(elew.style.left),
+                    top: parseInt(elew.style.top),
                     x: e.changedTouches[0].clientX,
                     y: e.changedTouches[0].clientY,
                 };
@@ -218,10 +204,20 @@ $domain = $_SERVER['HTTP_HOST'];
 
             const touchMoveHandle = (e) => {
                 e.preventDefault()
+                count++;
+                if (modal.style.display !== "none") {
+                    
+                    return
+                }
                 // How far the mouse has been moved
                 const dx = e.changedTouches[0].clientX - pos.x;
                 const dy = e.changedTouches[0].clientY - pos.y;
+                // Scroll the element
+                const screen_w = $("#game-mask").width()
+                const screen_h = $("#game-mask").height()
+
                 let top = pos.top + dy
+                
                 if (top < 0) {
                     top = 0
                 } else if (top > screen_h - ele_w) {
@@ -233,19 +229,62 @@ $domain = $_SERVER['HTTP_HOST'];
                 } else if (left > screen_w - ele_w) {
                     left = screen_w - ele_w
                 }
-                ele.style.top = `${top}px`;
-                ele.style.left = `${left}px`;
+                elew.style.top = `${top}px`;
+                elew.style.left = `${left}px`;
             }
             const touchUpHandle = (e) => {
                 ele.style.cursor = 'grab';
                 ele.style.removeProperty('user-select');
 
-                if (parseInt(ele.style.left) < screen_w / 2) {
-                    $(ele).animate({
+                 // How far the mouse has been moved
+                const dx = e.changedTouches[0].clientX - pos.x;
+                const dy = e.changedTouches[0].clientY - pos.y;
+                
+                if (dx < 60 && dy < 60) { // click
+                    myGamePopup.innerHTML = `${gamePopup()}`;
+                    const screen_w = $("#game-mask").width()
+                    if (modal.style.display === "none") {
+                        let time = (parseInt(elew.style.top) -  1) *  0.5;
+                                                    
+                        $( elew ).animate({
+                            top: "1px"
+                        }, time, function() {
+                            // Animation complete.
+                            modal.style.display = "block";  
+                            if (parseInt(elew.style.left) <= screen_w/2) {
+                                modal.classList.remove("modalGame-right");
+                                modal.classList.add("modalGame-left");
+                                
+                            } else {
+                                modal.classList.remove("modalGame-left");
+                                modal.classList.add("modalGame-right");
+                                
+                            }
+                        })
+                        rect = ele.getBoundingClientRect();
+                        // console.log(rect.left);
+                        
+                    } else {
+                        myGamePopup.innerHTML
+                        modal.style.display = "none";
+                        modal.classList.remove("modalGame-left")
+                        modal.classList.remove("modalGame-right")
+
+                    }
+                    checkEnter();
+                }
+                const screen_w = $("#game-mask").width()
+                console.log(pos)
+
+                
+                if (parseInt(elew.style.left) < screen_w / 2) {
+                    // alert('1')
+                    $(elew).animate({
                         left: 0
                     })
                 } else {
-                    $(ele).animate({
+                    // alert('2')
+                    $(elew).animate({
                         left: screen_w - $(ele).width()
                     })
                 }
@@ -260,8 +299,8 @@ $domain = $_SERVER['HTTP_HOST'];
                     ele.style.userSelect = 'none';
                     count = 0;
                     pos = {
-                        left: parseInt(ele.style.left),
-                        top: parseInt(ele.style.top),
+                        left: parseInt(elew.style.left),
+                        top: parseInt(elew.style.top),
                         // Get the current mouse position
                         x: e.clientX,
                         y: e.clientY,
@@ -276,14 +315,19 @@ $domain = $_SERVER['HTTP_HOST'];
 
                 const mouseMoveHandler = function(e) {
                     count++;
+                    if (modal.style.display !== "none") { 
+                        return
+                    }
                     // How far the mouse has been moved
                     const dx = e.clientX - pos.x;
                     const dy = e.clientY - pos.y;
+
                     // Scroll the element
-                    const screen_w = $("#container").width()
-                    const screen_h = $("#container").height()
+                    const screen_w = $("#game-mask").width()
+                    const screen_h = $("#game-mask").height()
 
                     let top = pos.top + dy
+                    
                     if (top < 0) {
                         top = 0
                     } else if (top > screen_h - ele_w) {
@@ -295,21 +339,64 @@ $domain = $_SERVER['HTTP_HOST'];
                     } else if (left > screen_w - ele_w) {
                         left = screen_w - ele_w
                     }
-                    ele.style.top = `${top}px`;
-                    ele.style.left = `${left}px`;
+                    elew.style.top = `${top}px`;
+                    elew.style.left = `${left}px`;
+                    // console.log(elew.style.top, elew.style.left)
                 };
 
-                const mouseUpHandler = function() {
+                const mouseUpHandler = function(e) {
                     ele.style.cursor = 'grab';
                     ele.style.removeProperty('user-select');
-                    const screen_w = $("#container").width()
+                   
+                    // How far the mouse has been moved
+                    const dx = Math.abs(e.clientX - pos.x)
+                    const dy = Math.abs(e.clientY - pos.y);
+                    
+                    if (dx < 60 && dy < 60) { // click
+                        myGamePopup.innerHTML = `${gamePopup()}`;
+                        const screen_w = $("#game-mask").width()
+                        if (modal.style.display === "none") {
+                            let time = (parseInt(elew.style.top) -  1) *  0.5;
+                                                      
+                            $( elew ).animate({
+                               top: "1px"
+                            }, time, function() {
+                                // Animation complete.
+                                modal.style.display = "block";  
+                                if (rect.left <= screen_w/2) {
+                                    modal.classList.remove("modalGame-right");
+                                    modal.classList.add("modalGame-left");
+                                    
+                                } else {
+                                    modal.classList.remove("modalGame-left");
+                                    modal.classList.add("modalGame-right");
+                                   
+                                }
+                            })
+                            rect = ele.getBoundingClientRect();
+                            // console.log(rect.left);
+                            
+                        } else {
+                            myGamePopup.innerHTML
+                            modal.style.display = "none";
+                            modal.classList.remove("modalGame-left")
+                            modal.classList.remove("modalGame-right")
 
-                    if (parseInt(ele.style.left) < screen_w / 2) {
-                        $(ele).animate({
+                        }
+                        checkEnter();
+                    }
+                    const screen_w = $("#game-mask").width()
+                    console.log(pos)
+
+                    
+                    if (parseInt(elew.style.left) < screen_w / 2) {
+                        // alert('1')
+                        $(elew).animate({
                             left: 0
                         })
                     } else {
-                        $(ele).animate({
+                        // alert('2')
+                        $(elew).animate({
                             left: screen_w - $(ele).width()
                         })
                     }
@@ -318,6 +405,7 @@ $domain = $_SERVER['HTTP_HOST'];
                 };
                 ele.addEventListener('mousedown', mouseDownHandler);
                 if (window.location.host === '127.0.0.1:8000') { // for test, develop 
+                    ele.addEventListener('touchstart', touchDownHandle);
                 }
             }
         });
