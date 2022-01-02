@@ -60,6 +60,21 @@
     align-items: center;
     justify-content: space-around;
 }
+@media screen and (max-width: 767.98px) {
+    .game-options-container {
+        width: 100%;
+        grid-template-columns: repeat(1, 1fr);
+
+    }
+}
+
+@media screen and (max-width: 1279px) {
+    .game-options-container {
+        width: 100%;
+        /* grid-template-columns: repeat(1, 1fr); */
+
+    }
+}
 
 .game-options-container label img {
     display: block;
@@ -99,6 +114,7 @@
 .answer label {
     height: 100%;
     width: 100%;
+   
 }
 
 .answer input[type=radio]+label {
