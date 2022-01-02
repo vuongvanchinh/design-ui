@@ -74,28 +74,22 @@
 }
 
 .answer {
-    /* width: 15rem; */
-    /* margin: 0 0 rem 0 .7rem; */
-    /* min-height: 3.5rem; */
-    /* align-items: flex-start; */
-}
-
-.answer {
     display: flex;
     flex-direction: column;
     align-content: center;
-    justify-content: center;
+    /* justify-content: center; */
     overflow: hidden;
     border-radius: 10px;
-    padding: 0.5px;
-    /* padding: .4rem .5rem .4rem; */
+    /* padding: 0.5rem; */
     text-align: center;
     font-family: Open Sans;
 }
 
 .answer img {
     margin: auto;
-    max-height: 5rem;
+    /* max-height: 5rem; */
+    width: 100%;
+    /* height: 100%; */
 }
 
 .answer input[type=radio] {
@@ -115,19 +109,19 @@
     color: black;
     width: 100%;
     text-align: start;
-    padding: 0.5rem .5rem 0.5rem 1rem;
+    padding: 1rem;
     background: white;
     -webkit-transition: 0.5s;
     -moz-transition: 0.5s;
     -o-transition: 0.5s;
     -ms-transition: 0.5s;
     transition: 0.5s;
-    border: 1px solid var(--main-color);
-    border-radius: 10px;
+    border: 3px solid var(--main-color);
+    border-radius: 3rem;
 }
 
 .answer input[type=radio]+label:hover {
-    background: rgba(31, 177, 155, 0.75);
+    background: rgba(101, 185, 173, 0.75);
     width: 100%;
     height: 100%;
     border-radius: 10px;
@@ -147,8 +141,9 @@
 .answer input[type=radio]:checked+label {
     background: var(--main-color);
     color: white;
-    box-shadow: rgb(30, 186, 157) 0px 0px 150px;
-    outline: solid rgb(0 136 102);
+    /* box-shadow: rgb(30, 186, 157) 0px 0px 150px; */
+    /* outline: solid rgb(0 136 102); */
+    border-radius: 3rem;
 }
 
 .answer input[type=radio]:checked~label[for=" "] {
@@ -165,13 +160,13 @@
 .answer-correct {
     background-color: #10c018;
     width: 100%;
-    border-radius: 10px;
+    /* border-radius: 10px; */
     height: 100%;
     animation: blinkingText 2s infinite;
 }
 
 .answer-incorrect {
-    background-color: red;
+    background-color: rgb(184, 6, 6);
 }
 
 @keyframes blinkingText {
@@ -627,3 +622,7 @@
     pointer-events: auto;
  }
  
+.error-key {
+    border-color: red;
+    outline: 1px solid red;
+}

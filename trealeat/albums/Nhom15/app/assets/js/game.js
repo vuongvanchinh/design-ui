@@ -337,20 +337,23 @@ const closeWinBanner = (i) => {
 }
 
 const checkEnter = () => {
-    var key = document.getElementById("key");
-    key.addEventListener("keyup", function(event) {
+    let key = document.getElementById("key");
+    if (key) {
+        key.addEventListener("keyup", function(event) {
         if (event.keyCode === 13) {
             event.preventDefault();
             document.getElementById("btn-key").click();
-        }
-    });
+            }
+        });
+    }
+    
 }
 
 const CheckKey = () => {
     let lable_key = document.getElementById("lable-key")
     let a = document.getElementById("key").value;
 
-    if (a == data.game.key) {
+    if (a === data.game.key) {
         data.game.picked = 1;
         let imgs = document.querySelectorAll('.img_cell');
         for (let i = 0; i < imgs.length; i++) {
@@ -360,15 +363,19 @@ const CheckKey = () => {
         flowerFalling();
         document.querySelector('.key_input').innerHTML = "<div class='win-text'>Xin chúc mừng bạn!<div>"
     } else {
-        data.game.picked = 2;
+        // data.game.picked = 2;
         data.game.max_turn_replies--;
         if (data.game.max_turn_replies >= 1) {
-            lable_key.innerHTML = `Nhập từ khóa trò chơi (<b>còn ${data.game.max_turn_replies} lần</b>)`;
+            lable_key.innerHTML = `Nhập từ khóa trò chơi (<b>còn <span style='color: red'>${data.game.max_turn_replies}</span> lần</b>)`;
+            let key = document.getElementById("key")
+            if (key) {
+                key.classList.add('error-key')
+            }
             // document.getElementById("err_p").innerText = `Đáp án chưa chính xác, bạn còn ${data.game.max_turn_replies} lần!`;
         } else {
             document.getElementById("lose").style.display = "block";
             data.game.picked = 2;
-            lable_key.innerHTML = `Nhập từ khóa trò chơi (<b>Hết số lần trả lời</b>)`;
+            lable_key.innerHTML = `<b>Hết số lần trả lời</b>)`;
             // document.getElementById("err_p").innerText = `Hết số lần trả lời`;
             document.getElementById('key').style.display = 'none';
             document.getElementById('btn-key').style.display = 'none';
